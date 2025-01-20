@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: Personal Growth
-  text: Archives
+  name: Personal Growth Archives
+  # text:
   tagline: 숙성중💭
   actions:
     - theme: brand
@@ -15,10 +15,13 @@ hero:
       link: /programmers-js.md
 
 features:
-  - title: Feature A
+  - icon: 👩🏻‍💻
+    title: Feature A
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
+  - icon: 💡
+    title: Feature B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
+  - icon: ✍🏼
+    title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
