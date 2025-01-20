@@ -5,7 +5,7 @@ export default defineConfig({
   title: "Binyard",
   description: "Hyebin Vitepress Blog",
   srcDir: "./pages/",
-  base: "/binyard/",
+  base: "/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
