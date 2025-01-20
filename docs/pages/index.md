@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Personal Growth"
-  text: "Archives"
+  name: Personal Growth
+  text: Archives
   tagline: 숙성중💭
   actions:
     - theme: brand
