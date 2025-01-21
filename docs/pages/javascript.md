@@ -8,7 +8,7 @@ Summarizing what I've learned about JavaScript..✍🏼
 
 - 변수 선언 방식
 
-```md
+```js
 let 이름 = 값;
 
 let color = "skyblue";
@@ -17,7 +17,7 @@ console.log(color); //skyblue
 
 - 변수 선언 후 중간에 변수의 값을 변경할 수도 있음
 
-```md
+```js
 let color = "skyblue";
 color = "yellow";
 
@@ -30,21 +30,21 @@ console.log(color);
 
 1. ‘$’와 ‘\_’를 제외한 기호는 사용 불가
 
-```md
+```js
 let $name;
 let test_data;
 ```
 
 2. 변수명의 맨 앞은 숫자 사용 불가 (맨 뒤 숫자 사용가능)
 
-```md
+```js
 let 9test; //불가능
 let test99; //가능
 ```
 
 3. 예약어 사용 불가
 
-```md
+```js
 let let = `; // 에러
 let class = "class" // 에러
 ```
@@ -62,7 +62,7 @@ let class = "class" // 에러
 - C와 Java의 변수 선언<br>
   C, Java에서는 변수를 선언할 때, 해당 변수의 자료형을 먼저 작성한 후 변수명을 지정. 예를 들어, char이나 String과 같은 자료형을 앞에 작성하여 변수의 데이터 타입을 명시
 
-```md
+```js
 char color[10] = “skyblue”;
 string color = “skyblue”
 ```
@@ -70,7 +70,7 @@ string color = “skyblue”
 - 자바스크립트의 변수 선언<br>
   자바스크립트는 변수 선언 시 변수의 자료형을 작성하지 않음
 
-```md
+```js
 let color;
 color = “skyblue”;
 ```
@@ -78,7 +78,7 @@ color = “skyblue”;
 - 자바스크립트 변수의 자료형을 알 수 있는 방법?<br>
   <code>typeof</code> 연산자를 통해 해당 변수의 현재 type을 알 수 있음
 
-```md
+```js
 let nowType = “안녕하세요”;
 console.log(typeof nowType); //string
 ```
@@ -89,7 +89,7 @@ console.log(typeof nowType); //string
   처음 문자열로 선언된 변수에 숫자를 저장하면, 자료형이 숫자형으로 변경됨<br>
   변수 선언 시 자료형을 명시할 필요가 없으며, 서로 다른 타입의 값을 저장해도 에러 없이 동작함
 
-```md
+```js
 let nowType = “안녕하세요”;
 console.log(typeof nowType); //string
 nowType = 100;
@@ -103,7 +103,7 @@ console.log(typeof nowType); //number
 변화하지 않는 변수 <br>
 (상수를 선언할 때에는 let이 아닌 const 사용)
 
-```md
+```js
 // let의 경우
 let color = "skyblue";
 color = "yellow"; //값 변경 가능
@@ -121,7 +121,7 @@ color = "yellow"; //TypeError: "color" is read-only
 
 1. 변경될 수 없다고 확신하는 값
 
-```md
+```js
 const BIRTH = "04-07";
 const NAME = "hyebin";
 ```
@@ -130,7 +130,7 @@ const NAME = "hyebin";
    상수는 값이 변경되지 않기 때문에 기억하기 어려운 값을 저장하는 예약어로도 사용됨<br>
    상수를 예약어로 쓸 때는 전부 대문자로 선언 후 사용
 
-```md
+```js
 const PI = 3.14159; //수학 상수, 변경 불가능
 const API_URL = "https://api.example.com"; //API 기본 URL, 변경되지 않음
 
