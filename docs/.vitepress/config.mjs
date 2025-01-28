@@ -39,6 +39,15 @@ export default defineConfig({
         collapsed: true,
         items: [{ text: "Javascript.js", link: "/programmers-js" }],
       },
+      {
+        text: "정보처리기사",
+        collapsed: true,
+        items: [
+          { text: "C", link: "/C" },
+          { text: "Java", link: "/Java" },
+          { text: "Python", link: "/Python" },
+        ],
+      },
     ],
 
     socialLinks: [

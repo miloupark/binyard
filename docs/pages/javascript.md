@@ -117,6 +117,8 @@ color = "yellow"; //TypeError: "color" is read-only
 - const로 선언된 변수(상수)는 값이 한 번 할당되면 프로그램 실행 중 변경할 수 없음
 - 상수로 선언된 변수에 값을 변경하려 하면 "읽기 전용"이라는 오류가 발생함
 
+<br>
+
 ### 상수를 사용하는 이유
 
 1. 변경될 수 없다고 확신하는 값
@@ -137,4 +139,275 @@ const API_URL = "https://api.example.com"; //API 기본 URL, 변경되지 않음
 const GITHUB_URL = "http://github.com/miloupark";
 
 let userUrl = GITHUB_URL;
+```
+
+<br>
+
+## 자료형(Data Type)
+
+'변수의 종류'를 뜻하며 <code>원시 타입</code>, <code>비 원시 타입</code>으로 나뉨
+
+### 원시 타입(Primitive Type)
+
+값이 변경되지 않는 불변성을 가지며, 변수에 직접 값을 저장
+
+<code>Number</code>, <code>BigInt</code>, <code>String</code>, <code>Boolean</code>, <code>null</code>,<code>undefined</code>, <code>symbol</code>
+
+<br>
+
+#### Number
+
+```js
+let number = 25;
+console.log(number + 5); //30
+console.log(number - 5); //20
+console.log(number * 5); //125
+console.log(number / 5); //5
+```
+
+<br>
+
+- 특수한 숫자 값들<br>
+  <code>Infinity</code>: 무한대를 나타내는 값<br>
+  변수에 하나의 값으로 직접 할당할 수 있고, 숫자를 0으로 나누는 연산을 수행할 경우 반환되는 값<br>
+
+  <code>NaN</code>: "숫자가 아님"을 의미하는 값(Not a Number)<br>
+  부정확한 연산을 하게 될 경우 반환되는 값, 문자열을 숫자로 나누는 연산을 하게 될 경우
+
+```js
+let number = 25;
+number = 10.00123;
+number = Infinity; // 변수에 특수한 값도 할당 가능
+number = NaN; // 변수에 특수한 값도 할당 가능
+
+let number1 = 10;
+console.log(number1 / 0); // Infinity
+
+let number2 = 10;
+console.log("자바스크립트" / number2); // NaN
+```
+
+<br>
+
+#### BigInt
+
+<code>Number</code>가 "안전하게 표현할 수 없는" 매우 큰 정수나 작은 정수를 다룰 때 사용 <br>
+숫자형이 "안전하게 표현할 수 있는" 범위: 정수 범위 2^53 -1 보다 크거나 - (2^53 - 1) 보다 작은 정수 <br>
+
+```js
+let big1 = 9007199254740991n; //숫자 뒤에 'n'을 붙여 생성
+let big2 = BigInt("9007199254740991"); //BigInt() 함수를 호출하여 생성
+```
+
+<br>
+
+- BigInt의 사칙연산<br>
+  <code>BigInt</code>는 <code>BigInt</code>끼리만 연산할 수 있으며, 숫자형과는 연산할 수 없음
+
+```js
+let big1 = 10n;
+let big2 = 5n;
+let num = 5;
+
+console.log(big1 + big2); // 15n
+console.log(big1 + num); // TypeError: Cannot mix BigInt and other types
+```
+
+<br>
+
+- 2^53 - 1의 의미 <br>
+  <code>Number</code>데이터 타입은 64비트(8바이트) 부동소수점 형식을 사용한다.
+  이 중 53비트가 정수 부분을 저장하는 데 사용된다.(나머지는 부호와 소수점 위치) 따라서, 이 53비트로 표현할 수 있는 최대 정수는 <code>2^53 -1</code> 이다.<br>
+  <br>
+  <code>2^53 -1</code> = 9,007,199,254,740,991 → 최대 정수값.<br>
+  <code>-(2^53 -1)</code> = -9,007,199,254,740,991 → 최소 정수값.<br>
+  이 범위를 벗어나면 정밀도 문제가 발생하기 때문에, BigInt가 필요하다.<br>
+
+<br>
+
+- BigInt는 왜 정밀도 문제를 해결하는지?<br>
+  <code>BigInt</code>는 임의 정밀도를 지원하는 자료형이다. 즉, 숫자가 커질수록 그에 따라 저장공간이 동적으로 늘어나므로, 크기에 제한이 없고 매우 큰 정수를 정확하게 표현할 수 있다. 정수에 대한 정확한 연산을 지원하므로, 크고 작은 숫자 간 연산 시 정밀도를 잃지 않는다.<br>
+
+  <code>Number</code>: 64비트 부동소수점 방식을 사용하며, 정수 범위에 한계가 있어 정밀도 문제를 일으킨다. <br>
+  <code>BigInt</code>: 임의 크기 정수를 지원하여, 정밀도 손실 없이 큰 숫자를 정확하게 표현할 수 있다. 크기에 제한이 없어서 매우 큰 정수도 정확하게 다룰 수 있다.
+
+<br>
+
+#### String
+
+문자열을 변수에 할당할 때는 따옴표로 문자열을 감싸야 한다.
+
+```js
+let name1 = "bin"; // 큰 따옴표
+let name2 = "bin"; // 작은 따옴표
+
+let name3 = `bin`; // 역 따옴표(백틱)
+```
+
+- 큰 따옴표와 작은 따옴표는 같은 기능을 하기 때문에 문자열 할당 시 아무거나 사용해도 됨
+- 역 따옴표 `를 사용하면 템플릿 리터럴 (Template Literals) 방식으로 문자열을 표현할 수 있음.
+  이 방식은 문자열 안에 변수나 표현식을 쉽게 삽입할 수 있다.
+
+<br>
+
+템플릿 리터럴 방식
+
+```js
+let name = "bin";
+let greeting = `제 이름은 ${name} 입니다.`;
+
+console.log(greeting); //제 이름은 bin입니다.
+```
+
+<br>
+
+#### Boolean
+
+<code>true</code>, <code>false</code> 두 가지 값을 가질 수 있는 자료형. 주로 조건문에서 참과 거짓을 판단할 때 사용되며, 코드에서 참/거짓을 분별하는데 필요한 값을 저장하는데 사용된다.
+
+```js
+let isClicked = false; // 버튼이 클릭되었는지 여부
+let isOpen = true; // modal이 열렸는지 여부
+
+if (isClicked) {
+  console.log("클릭O");
+} else {
+  console.log("클릭X");
+}
+```
+
+<br>
+
+#### null
+
+값이 없음을 명시적으로 할당하는 자료형, 존재하지 않거나 알 수 없는 값을 나타낼 때 사용
+
+```js
+let name = null;
+```
+
+<br>
+
+#### undefined
+
+<code>null</code>과 마찬가지로 값이 없음을 나타내는 자료형이지만, 값이 할당되지 않은 변수에 자동으로 할당되는 값. <br>
+<code>undefined</code>는 <code>null</code>처럼 값이 존재하지 않거나 알 수 없는 값일 때가 아니라
+변수의 값이 할당되지 않은 상태일 때 자동으로 <code>undefined</code> 값이 할당됨
+
+```js
+let name; // 변수 선언만 하고 값은 할당하지 않음
+console.log(name); // undefined 출력
+```
+
+<br>
+
+#### symbol
+
+```js
+
+```
+
+<br>
+
+### 비 원시 타입(Non-Primitive Typ)
+
+비 원시 타입은 <code>object</code> 객체, <code>array</code> 배열, <code>function</code> 함수와 같은 값들을 포함하는 복합적인 데이터 구조를 의미한다. 원시 타입과 달리, 비 원시 타입은 참조에 의한 전달로 자동하며 여러 개의 값을 한번에 저장할 수 있다. 참조형으로 동작하며, 변경 가능하므로 원본 데이터에 영향을 줄 수 있다.
+
+<br>
+
+#### 객체 <code>Object</code>
+
+객체는 key-value 쌍으로 데이터를 저장하는 구조, 객체의 값은 다른 객체일 수도 있고, 함수나 배열 등의 다양한 타입일 수 있다.
+
+```js
+let person = {
+  name: "Bin",
+  age: 30,
+  isEmployed: true,
+};
+```
+
+<br>
+
+#### 배열 <code>Array</code>
+
+배열은 여러 개의 값을 순서대로 저장할 수 있는 자료형, 숫자 인덱스로 접근할 수 있으며, 배열 안에 다양한 타입의 값을 저장할 수 있다.
+
+```js
+let colors = ["red", "green", "blue"];
+let mixedArray = [1, "apple", true, [2, 3], { key: "value" }];
+```
+
+::: details 숫자 인덱스?
+자바스크립트의 배열은 순서가 있는 값들의 집합이다. 배열에서 각 값은 인덱스라는 숫자로 접근할 수 있는데, 인덱스는 배열의 각 요소가 위치한 순서를 나타내는 숫자. 자바스크립트 배열의 인덱스는 0부터 시작.
+
+즉, 배열에서 값을 저장할 때마다 인덱스 번호가 자동으로 부여되고, 이 인덱스를 통해 배열의 특정 값을 참조하거나 수정할 수 있다.
+
+- 배열 선언 및 숫자 인덱스
+
+```js
+let fruits = ["apple", "banana", "cherry"];
+
+// 배열에서 첫 번째 요소(apple)에 접근
+console.log(fruits[0]); // "apple"
+
+// 배열에서 두 번째 요소(banana)에 접근
+console.log(fruits[1]); // "banana"
+
+// 배열에서 세 번째 요소(cherry)에 접근
+console.log(fruits[2]); // "cherry"
+```
+
+<br>
+
+- 배열에 값 추가 <br>
+  배열에서 값을 추가하면, 추가된 값은 그 배열의 끝에 들어가며, 자동으로 다음 숫자 인덱스가 할당된다.
+
+```js
+let numbers = [10, 20, 30];
+
+// 새로운 값 추가
+numbers[3] = 40; // 인덱스 3에 40을 추가
+
+console.log(numbers); // [10, 20, 30, 40]
+```
+
+:::
+
+<br>
+
+#### 함수 <code>Function</code>
+
+함수도 자바스크립트에서 객체의 일종으로 취급된다, 코드의 재사용을 위해 일련의 명령문을 하나의 블록으로 묶어 실행하는 기능을 한다.
+
+```js
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+```
+
+<br>
+
+#### 비 원시 타입의 특징
+
+- 참조형<br>
+  비 원시 타입은 참조에 의한 전달로 작동한다. 즉, 변수에 객체를 할당하면 해당 객체의 주소가 전달되며, 복사된 객체를 수정하면 원본 객체도 영향을 받는다.
+
+```js
+let obj1 = { name: "Alice" };
+let obj2 = obj1; // obj1과 obj2는 같은 객체를 참조함
+
+obj2.name = "Bob";
+console.log(obj1.name); // "Bob" - obj2에서 수정한 값이 obj1에도 영향을 미침
+```
+
+<br>
+
+- 변경 가능<br>
+  비 원시 타입은 변경 가능하다. 객체의 속성 값을 추가하거나 변경할 수 있으며 배열의 요소로 수정할 수도 있다.
+
+```js
+let numbers = [1, 2, 3];
+numbers[0] = 100; // 배열의 첫 번째 값 수정
+console.log(numbers); // [100, 2, 3]
 ```
