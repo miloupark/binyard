@@ -1,6 +1,6 @@
 # Javascript Basic
 
-Summarizing what I've learned about JavaScript..✍🏼
+Summarizing what I've learned about Javascript..✍🏼
 
 ## 변수
 
@@ -213,23 +213,22 @@ console.log(big1 + big2); // 15n
 console.log(big1 + num); // TypeError: Cannot mix BigInt and other types
 ```
 
+::: details 2^53 - 1의 의미
+<code>Number</code>데이터 타입은 64비트(8바이트) 부동소수점 형식을 사용한다.
+이 중 53비트가 정수 부분을 저장하는 데 사용된다.(나머지는 부호와 소수점 위치) 따라서, 이 53비트로 표현할 수 있는 최대 정수는 <code>2^53 -1</code> 이다.<br>
 <br>
-
-- 2^53 - 1의 의미 <br>
-  <code>Number</code>데이터 타입은 64비트(8바이트) 부동소수점 형식을 사용한다.
-  이 중 53비트가 정수 부분을 저장하는 데 사용된다.(나머지는 부호와 소수점 위치) 따라서, 이 53비트로 표현할 수 있는 최대 정수는 <code>2^53 -1</code> 이다.<br>
-  <br>
-  <code>2^53 -1</code> = 9,007,199,254,740,991 → 최대 정수값.<br>
-  <code>-(2^53 -1)</code> = -9,007,199,254,740,991 → 최소 정수값.<br>
-  이 범위를 벗어나면 정밀도 문제가 발생하기 때문에, BigInt가 필요하다.<br>
+<code>2^53 -1</code> = 9,007,199,254,740,991 → 최대 정수값.<br>
+<code>-(2^53 -1)</code> = -9,007,199,254,740,991 → 최소 정수값.<br>
+이 범위를 벗어나면 정밀도 문제가 발생하기 때문에, BigInt가 필요하다.<br>
+:::
+::: details BigInt는 왜 정밀도 문제를 해결하는지?
 
 <br>
-
-- BigInt는 왜 정밀도 문제를 해결하는지?<br>
   <code>BigInt</code>는 임의 정밀도를 지원하는 자료형이다. 즉, 숫자가 커질수록 그에 따라 저장공간이 동적으로 늘어나므로, 크기에 제한이 없고 매우 큰 정수를 정확하게 표현할 수 있다. 정수에 대한 정확한 연산을 지원하므로, 크고 작은 숫자 간 연산 시 정밀도를 잃지 않는다.<br>
 
-  <code>Number</code>: 64비트 부동소수점 방식을 사용하며, 정수 범위에 한계가 있어 정밀도 문제를 일으킨다. <br>
-  <code>BigInt</code>: 임의 크기 정수를 지원하여, 정밀도 손실 없이 큰 숫자를 정확하게 표현할 수 있다. 크기에 제한이 없어서 매우 큰 정수도 정확하게 다룰 수 있다.
+<code>Number</code>: 64비트 부동소수점 방식을 사용하며, 정수 범위에 한계가 있어 정밀도 문제를 일으킨다. <br>
+<code>BigInt</code>: 임의 크기 정수를 지원하여, 정밀도 손실 없이 큰 숫자를 정확하게 표현할 수 있다. 크기에 제한이 없어서 매우 큰 정수도 정확하게 다룰 수 있다.
+:::
 
 <br>
 
@@ -411,3 +410,323 @@ let numbers = [1, 2, 3];
 numbers[0] = 100; // 배열의 첫 번째 값 수정
 console.log(numbers); // [100, 2, 3]
 ```
+
+<br>
+
+## 형변환 (Type Conversion)
+
+자료형을 자동으로 변환해주는 형변환이 존재하며, 형변환에는 <code>묵시적 형변환</code>, <code>명시적 형변환</code>이 있음
+
+### 묵시적 형변환 (Implicit Type Conversion)
+
+자바스크립트 엔진이 연산을 수행하기 위해 자동으로 자료형을 변환하는 것. <br>
+사칙연산 중 나누기, 곱하기, 빼기 연산은 문자열을 숫자형으로 변환
+
+```js
+let num1 = "15";
+let num2 = 5;
+
+console.log(num1 / num2); // 3 (문자열"15"가 숫자로 변환됨)
+```
+
+<br>
+
+### 명시적 형변환 (Explicit Type Conversion)
+
+직접 내장함수 등을 이용해 값을 유지하며 자료형을 의도적으로 변환시키는 것 <br>
+더하기 연산자는 문자열 결합 기능이 있어서 숫자가 문자열로 변환됨.
+
+```js
+let num1 = "15";
+let num2 = 5;
+
+console.log(num1 + num2); // 155
+```
+
+```js
+let num1 = "15";
+let num2 = 5;
+
+console.log(parseInt(num1) + num2); // 20
+// parseInt 괄호 안에 있는 문자열이 숫자로 변경되어 반환
+
+console.log(Number(num1) + num2); // 20
+console.log(String(num2) + num1); // "515"
+```
+
+<br>
+
+## 연산자 (Operators)
+
+프로그래밍 언어에서 특정 연산을 할 수 있도록 도와주는 기호 <br>
+<code>산술연산자</code>, <code>대입 연산자</code>, <code>논리 연산자</code>, <code>비교 연산자</code>, <code>연결 연산자</code>, <code>null 병합 연산자</code>, <code>삼항 연산자</code>
+
+<br>
+
+### 산술 연산자 (Arithmetic Operators)
+
+- 사칙 연산자
+
+```js
+let num1 = 10;
+let num2 = 5;
+
+console.log(num1 + num2); // 15 덧셈
+console.log(num1 - num2); // 5 뺄셈
+console.log(num1 * num2); // 50 곱셈
+console.log(num1 / num2); // 2 나눗셈
+```
+
+<br>
+
+- 나머지 연산자
+
+```js
+console.log(num1 % 2); // 0 나머지 연산자
+console.log(num2 % 2); // 1 나머지 연산자
+```
+
+<br>
+
+- 증감 연산자 <code>++</code>, <code>--</code> <br>
+  변수의 값을 증가, 감소 시켜주는 증감 연산자 <br>
+
+  <code>후위 연산++ (postfix)</code>: 현재 값을 먼저 반환한 후 1증가<br>
+  <code>++전위 연산 (prefix)</code>: 1을 먼저 증가시키고 증가된 값을 반환
+
+```js
+let num = 10;
+
+console.log(num++); // 10 후위연산
+console.log(num); // 11 현재 num 값
+console.log(++num); // 12 전위연산
+```
+
+```js
+let num2 = 10;
+
+console.log(num2--); // 10 후위연산
+console.log(num2); // 9 현재 num 값
+console.log(--num2); // 8 전위연산
+```
+
+<br>
+
+### 대입 연산자 (Assignment Operators)
+
+변수에 값을 할당할 때 사용하는 연산자 <code>=</code>
+
+```js
+let num = 20;
+num = num + 5;
+
+console.log(num); // 25
+```
+
+<br>
+
+- 복합 대입 연산자<br>
+  산술 연산자와 대입 연산자가 결합한 것, 덧셈 뿐만 아니라 사칙 연산 모두 가능
+
+```js
+let num = 20;
+
+num += 5; // num = num + 5
+num -= 5; // num = num - 5
+num *= 5; // num = num * 5
+num / +5; // num = num / 5
+```
+
+<br>
+
+### 논리 연산자 (Logical Operators)
+
+논리 연산자는 Boolean 타입 (true / false)을 다룰 때 사용됩니다. <br>
+자바스크립트에서는 ! (NOT), || (OR), && (AND) 연산자를 제공함
+
+- NOT 연산자 <code>!</code> <br>
+  <code>!</code>는 true를 false로, false를 true로 반전시킴
+
+```js
+let isOpen = false;
+let isClicked = true;
+
+console.log(!isOpen); // true  (false → true)
+console.log(!isClicked); // false (true → false)
+
+// 이중 NOT 연산자 !! 두 번 사용하면 원래 값으로 돌아감
+console.log(!!isOpen); // false (false → true → false)
+console.log(!!isClicked); // true (true → false → true)
+```
+
+<br>
+
+- OR 연산자 <code>||</code> <br>
+  하나라도 true이면 true 반환, 모두 false이면 false 반환 <br>
+
+  왼쪽 값이 truthy면 그대로 반환, falsy면 오른쪽 값을 반환하는 특징이 있다.<br>
+  Falsy: <code>false</code>, <code>0</code>, <code>""(빈문자열)</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code> <br>
+  Truthy: 그 외 모든 값 (<code>true</code>, <code>"hello"</code>, <code>[] 빈 배열</code>, <code>{} 빈 객체</code>)
+
+```js
+let a = true || true; // true
+let b = true || false; // true
+let c = false || true; // true
+
+let d = false || false; // false
+
+console.log(a, b, c, d);
+```
+
+```js
+// 예시 (기본값 설정)
+let userName = "";
+let defaultName = "Guest";
+
+console.log(userName || defaultName); // "Guest" (userName이 빈 문자열이므로 기본값 사용)
+```
+
+<br>
+
+- AND 연산자 <code>&&</code> <br>
+  모든 값이 true일 때만 true 반환, 하나라도 false이면 false 반환
+  <br>
+
+```js
+console.log(true && true); // true
+console.log(true && false); // false
+console.log(false && false); // false
+```
+
+```js
+// 예시 (조건이 모두 만족할 때 실행)
+let isLoggedIn = true;
+let hasPermission = true;
+
+if (isLoggedIn && hasPermission) {
+  console.log("Access granted!"); // 두 조건이 모두 true일 때 실행
+}
+```
+
+<br>
+
+::: tip 논리 연산자 정리
+
+- <code>!</code>: 값을 반전
+- <code>||</code>: 하나라도 true이면 true
+- <code>&&</code>: 모두 true일 때만 true
+  :::
+
+<br>
+
+### 비교 연산자
+
+자바스크립트에서 비교 연산자는 두 값이 같은지, 다른지, 크거나 작은지를 비교하는 연산자
+
+- 일치 연산자 <code>==</code>, <code>===</code> <br>
+  <code>==</code> 타입 변환을 수행하며 비교, <code>===</code> 타입이 다르면 무조건 false 반환
+
+```js
+let num1 = 10;
+let num2 = "10";
+
+console.log(num1 == num2); // true (타입 변환 후 비교)
+console.log(num1 === num2); // false (타입까지 비교)
+```
+
+<br>
+
+- 불일치 연산자 <code>!=</code>, <code>!==</code> <br>
+  <code>!=</code> 타입 변환 허용, <code>!==</code> 타입까지 비교
+
+```js
+let num1 = 10;
+let num2 = "10";
+
+console.log(num1 != num2); // false (값이 달라서 false)
+console.log(num1 !== num2); // true (타입이 달라서 true)
+```
+
+<br>
+
+- 대소비교 연산자 <br>
+  <code>></code>, <code><</code>, <code>>=</code>, <code><=</code>
+
+```js
+let a = 10;
+let b = 20;
+let c = 10;
+
+console.log(a < b); // true
+console.log(a > b); // false
+console.log(b >= c); // true
+console.log(b > c); // true
+console.log(a <= c); // true
+console.log(a > c); // false
+```
+
+  <br>
+
+### 연결 연산자 (Concatenation Operator)
+
+<code>+</code> 연산자는 숫자뿐만 아니라 문자열과 문자열을 연결함
+
+```js
+let a = "안녕";
+let b = "자니";
+
+console.log(a + b); // 안녕자니
+console.log(a + " " + b); // "안녕 자니"
+```
+
+<br>
+
+### null 병합 연산자 (Nullish Coalescing Operator)
+
+변수의 값이 <code>null</code> 또는 <code>undefined</code>일 때만 오른쪽 값을 대입하는 연산자
+
+```js
+let num; // 변수는 선언했지만, 값은 할당하지 않음 -> undefined
+num = num ?? 20; // num이 null 또는 undefined일 때 오른쪽 값 20을 할당
+
+console.log(num); // 20
+```
+
+<br>
+
+- 이미 값이 있는 경우 <br>
+
+```js
+let num = 100;
+num = num ?? 20; // num이 null 또는 undefined가 아니면 기존 값을 유지
+
+console.log(num); // 100
+```
+
+<br>
+
+### 삼항 연산자 (Ternary Operator)
+
+<code>a ? b : c</code> <br>
+<code>조건 ? 참일 때 반환할 값 : 거짓일 때 반환할 값</code> <br>
+a라는 조건이 참일 경우 b를, 거짓일 경우 c를 수행해라
+
+```js
+let num = 100;
+
+console.log(num % 2 === 0 ? "짝수" : "홀수"); // 짝수
+```
+
+<br>
+
+- 변수에 값 할당 가능<br>
+  삼항연산자는 결과를 변수에 저장할 수도 있음
+
+```js
+let num = 7;
+let result = num % 2 === 0 ? "짝수" : "홀수";
+
+console.log(result); // "홀수"
+```
+
+<br>
