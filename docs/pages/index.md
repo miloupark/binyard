@@ -8,6 +8,9 @@ hero:
   tagline: 숙성중💭
   actions:
     - theme: brand
+      text: About
+      link: /about.md
+    - theme: alt
       text: Javascript
       link: /javascript.md
     - theme: alt
@@ -16,8 +19,8 @@ hero:
 
 features:
   - icon: 👩🏻‍💻
-    title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    title: Hyebin Park
+    details:
   - icon: 💡
     title: Feature B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit

@@ -2,7 +2,7 @@
 
 Summarizing what I've learned about Javascript..✍🏼
 
-## 변수
+## 변수 (Variable)
 
 프로그램이 실행되는 도중에 변경되는 값을 저장하기 위한 '이름을 가진 저장소'
 
@@ -98,7 +98,7 @@ console.log(typeof nowType); //number
 
 <br>
 
-## 상수
+## 상수 (Constant)
 
 변화하지 않는 변수 <br>
 (상수를 선언할 때에는 let이 아닌 const 사용)
@@ -624,7 +624,8 @@ if (isLoggedIn && hasPermission) {
 자바스크립트에서 비교 연산자는 두 값이 같은지, 다른지, 크거나 작은지를 비교하는 연산자
 
 - 일치 연산자 <code>==</code>, <code>===</code> <br>
-  <code>==</code> 타입 변환을 수행하며 비교, <code>===</code> 타입이 다르면 무조건 false 반환
+  <code>==</code> (loose equality 느슨한 비교): 값이 같으면 <code>true</code>를 반환하지만, 필요하면 타입 변환(type coercion)을 수행 <br>
+  <code>===</code> (엄격한 비교, strict equality): 타입 변환 없이 값과 타입이 모두 같을 때만 <code>true</code> 를 반환함
 
 ```js
 let num1 = 10;
@@ -730,3 +731,394 @@ console.log(result); // "홀수"
 ```
 
 <br>
+
+## 조건문 (Conditionals)
+
+특정 조건이 충족될 때 해당하는 코드를 실핼하는 문법 <br>
+<code>if</code>문, <code>if - else</code>문 , <code>if - else if</code>문, <code>switch/case</code>문
+
+<br>
+
+### <code>if</code>문 <br>
+
+조건이 <code>true</code>일 때 코드 블록 실행
+
+```js
+let num = 10;
+
+if (num === 10) {
+  console.log("num의 값은 10 입니다."); // num의 값은 10 입니다.
+}
+```
+
+<br>
+
+### <code>if - else</code>문 <br>
+
+조건이 <code>true</code>이면 첫 번째 코드 블록 실행, <code>false</code>이면 두 번째 코드 블록 실행
+
+```js
+let num = 5;
+
+if (num === 10) {
+  console.log("num값은 10입니다.");
+} else {
+  console.log(`num값은 ${num}입니다.`); // ${}템플릿 리터럴 활용을 위해 ``으로 문자열 감싸줌
+}
+//num값은 5입니다.
+```
+
+  <br>
+
+### <code>if - else if</code>문 <br>
+
+여러 조건을 순차적으로 검사하여 해당하는 코드 블록 실행
+
+```js
+let num = 5;
+
+if (num === 10) {
+  console.log("num값은 10입니다.");
+} else if (num < 10) {
+  console.log("num값은 10보다 작습니다.");
+} else {
+  console.log("num값은 10보다 큽니다.");
+}
+
+// num값은 10보다 작습니다.
+```
+
+<br>
+
+### <code>switch/case</code>문 <br>
+
+변수의 값에 따라 여러 가지 조건을 처리하는 조건문, 주로 값이 여러 개로 나뉘는 경우에 사용됨.
+
+<br>
+
+- 기본 구조
+
+```js
+let 변수명 = 값;
+
+switch (변수명) {
+  case 값1:
+    // 실행할 코드1
+    break;
+  case 값2:
+    // 실행할 코드2
+    break;
+  case 값3:
+    // 실행할 코드3
+    break;
+  default:
+  // 모든 case가 일치하지 않을 때 실행할 코드
+}
+```
+
+- case 값: 각 조건을 나타내는 값. 변수의 값이 이 값들과 일치할 경우 그에 맞는 코드 실행 <br>
+- break: 조건에 맞는 코드 실행 후 switch 문을 빠져나오도록 하는 역할 <br>
+- default: 모든 case 조건이 일치하지 않을 때 실행되는 코드
+
+<br>
+
+- 예제
+
+```js
+let fruit = "apple";
+
+switch (fruit) {
+  case "banana":
+    console.log("바나나");
+    break;
+  case "orange":
+    console.log("오렌지");
+    break;
+  case "apple":
+    console.log("사과");
+    break;
+  case "grape":
+    console.log("포도");
+    break;
+  default:
+    console.log("다른 과일");
+}
+// 사과
+```
+
+<br>
+
+- <code>break</code> 없이 실행 <br>
+  <code>break</code>를 생략하면, 해당 조건에 맞는 <code>case</code>이후 모든 조건이 실행됨. 이를 fall-through 현상이라고 함
+
+```js
+let fruit = "apple";
+
+switch (fruit) {
+  case "banana":
+    console.log("바나나");
+  case "apple":
+    console.log("사과");
+  case "grape":
+    console.log("포도");
+  default:
+    console.log("다른 과일");
+}
+
+// 사과
+// 포도
+// 다른 과일
+```
+
+<br>
+
+- 주의 사항 <br>
+  변수 값과 <code>case</code> 값의 일치 여부: <code>switch</code>문은 값이 정확히 일치해야 실행됨.
+  값이 엄격하게 비교되므로, 숫자, 문자열, 불리언 등의 타입도 정확히 일치해야함<br>
+  - 예: <code>case "10"</code>, <code>case 10</code>은 다르다.
+
+<br>
+
+## 함수 (Function)
+
+같은 동작을 반복해야 할 때 중복된 코드를 하나로 묶어 반복 없이 효울적으로 실행할 수 있도록 도와줌.
+코드의 재사용성과 가독성을 높여주기 때문에 유용함. (하나의 함수로 정의하고 필요할 때마다 호출하여 사용)
+
+<br>
+
+- 비효울적인 코드 예시
+
+```js
+let num1 = 10;
+let num2 = 15;
+let sum = num1 + num2;
+
+console.log(sum); // 25
+
+let num3 = 1;
+let num4 = 5;
+let sum2 = num3 + num4;
+
+console.log(sum2); // 6
+```
+
+<br>
+
+- 함수 사용하여 중복 제거
+
+```js
+function add(num1, num2) {
+  console.log(num1 + num2); // 두 숫자를 더한 값을 출력
+}
+
+add(10, 15); // 25 출력
+add(1, 5); // 6 출력
+```
+
+<code>function</code> 키워드 뒤에는 함수 이름 작성, 그 뒤에 매개변수를 괄호 안에 작성<br>
+<code>add</code> 함수는 두 숫잘르 더하는 기능 수행<br>
+
+매개변수란(Parameters), 함수를 호출할 때 외부에서 전달받을 값을 저장하는 변수<br>
+인수(Arguments) 함수를 호출할 때 실제로 전달하는 값 (add(10, 15)-> 10, 15가 인수)
+
+<br>
+
+- 함수의 반환값 (return) <br>
+  <code>return</code>문을 사용해 함수 실행 결과를 반환하여 다른 작업에 활용. 즉 함수 결과를 저장하거나 출력할 수 있도록 반환하는 역할. <code>return</code>이 없으면 함수 실행 후 값이 사라져버림
+
+```js
+function add(num1, num2) {
+  return num1 + num2; // 더한 값을 반환
+}
+
+console.log(`두 숫자를 더한 결과는 ${add(10, 14)} 입니다.`);
+// 두 숫자를 더한 결과는 24 입니다.
+```
+
+::: details return이 없는 경우
+
+- 출력은 되지만 결과값을 저장하거나 활용할 수 없음
+
+```js
+function add(num1, num2) {
+  console.log(num1 + num2); // 결과를 단순히 출력만 함
+}
+
+let result = add(10, 5); // 결과를 변수에 저장하려고 하지만 undefined
+console.log(result); // undefined 출력 (값을 반환하지 않음)
+```
+
+:::
+::: details return을 사용한 경우
+
+- 함수 실행 결과(15)를 return을 통해 반환했기 때문에, 이후에도 활용 가능
+
+```js
+function add(num1, num2) {
+  return num1 + num2; // 결과값을 반환
+}
+
+let result = add(10, 5); // 반환된 값을 변수에 저장
+console.log(result); // 15 출력
+```
+
+:::
+
+<br>
+
+### 얼리 리턴(Early Return) 패턴
+
+<code>얼리 리턴</code>패턴은 함수에서 불필요한 중첩을 줄이고, 가독성을 높이는 방법이다. 특정 조건을 만족하면 <code>return</code> 하여 함수 실행을 종료하기 때문에 코드가 더 단순해짐.
+
+<br>
+
+- 가독성이 떨어지는 예시 <br>
+
+```js
+function func(num) {
+  if (num > 0) {
+    if (num >= 10) {
+      console.log("num의 값이 10보다 크거나 같습니다.");
+    } else {
+      console.log("num의 값이 0보다 크고 10보다 작습니다.");
+    }
+  } else if (num === 0) {
+    console.log("num의 값이 0입니다.");
+  } else {
+    console.log("num의 값이 0보다 작습니다.");
+  }
+}
+
+func(15);
+
+// num의 값이 10보다 크거나 같습니다.
+```
+
+<br>
+
+- 얼리 리턴 패턴 적용
+
+```js
+function func(num) {
+  if (num === 0) return "num의 값이 0입니다.";
+  if (num < 0) return "num의 값이 0보다 작습니다.";
+  if (num >= 10) return "num의 값이 10보다 크거나 같습니다.";
+
+  return "num의 값이 0보다 크고 10보다 작습니다";
+}
+
+console.log(func(15));
+
+// num의 값이 10보다 크거나 같습니다.
+```
+
+<br>
+
+### 즉시 실행 함수(IIFE, Immediately Invoked Function Expression)
+
+즉시 실행 함수란 함수를 선언하자마자 즉시 실행되는 함수를 의미함, 따로 호출하지 않아도 자동으로 실행된다.
+
+<br>
+
+- 기본적인 함수 실행 방식
+
+```js
+function print() {
+  console.log("자바스크립트1");
+}
+
+print(); // 함수 호출
+```
+
+<br>
+
+- 즉시 실행 함수 (IIFE) <br>
+  함수 선언과 동시에 실행됨, 전역 범위를 오염시키지 않고 독립적인 실행 가능
+
+```js
+(function () {
+  console.log("자바스크립트2");
+})();
+```
+
+<br>
+
+- 코드 실행 순서 예시 <br>
+  함수는 선언된 위치가 아니라 호출된 순간 실행됨
+
+```js
+function func() {
+  console.log("2");
+  console.log("3");
+} // func함수를 선언했지만 호출은 되지 않음
+
+console.log("1");
+func();
+console.log("4");
+
+// 1
+// 2
+// 3
+// 4
+```
+
+<br>
+
+### 지역변수 (Local Variable)
+
+함수 내부에서 선언된 변수, 해당 함수의 블록 <code>{}</code> 내부에서만 유효하며 함수 외부에서는 접근 불가능
+
+```js
+function add(num1, num2) {
+  let sum = num1 + num2; // 지역변수 sum
+  return sum;
+}
+
+add(10, 15);
+console.log(sum); // sum is not defined (에러)
+```
+
+- <code>sum</code> 변수는 <code>add</code> 함수 내부에서 선언된 지역변수
+- 지역변수는 함수 내부에서만 접근 가능
+- 함수 외부에서 <code>console.log(sum);</code>을 실행하면 에러 발생
+- 즉, 지역변수는 함수가 실행될 때만 존재하고, 함수가 끝나면 사라짐
+
+<br>
+
+### 전역변수 (Global Variable) (=외부변수)
+
+함수 외부에서 선언된 변수, 스크립트 어디서든 접근 가능, 함수 내부에서도 사용 가능
+
+```js
+let sum = 0; // 전역변수 선언
+
+function add(num1, num2) {
+  sum = num1 + num2; // 전역변수 sum에 값을 할당
+}
+
+add(10, 15);
+console.log(sum); // 25
+```
+
+- <code>sum</code> 변수는 함수 외부에서 선언됨, <code>add</code> 함수 내부에서도 접근 가능
+- <code>add(10, 15);</code> 호출 시, <code>sum = 10 + 15;</code>로 값이 변경됨
+- 함수 종료 후에도 <code>sum</code> 변수는 여전히 존재하며, <code>console.log(sum);</code> 에서 25 출력
+- 즉, 전역변수는 어디서든 접근 가능하며 함수 내부에서도 수정할 수 있음
+
+<br>
+
+## 스코프(Scope)
+
+자바스크립트에서는 변수는 어디에서 선언되었는지에 따라 접근 가능 여부가 달라짐. 이러한 변수의 접근 범위를 스코프(Scope)라고 함
+
+### 스코프 종류
+
+### 전역 스코프 Global Scope
+
+어디에서든지 해당 변수에 접근 가능
+
+<br>
+
+### 지역 스코프 Local Scope
+
+지역을 벗어난 곳에서는 접근 불가능

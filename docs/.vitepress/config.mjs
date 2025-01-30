@@ -14,6 +14,7 @@ export default defineConfig({
 
     nav: [
       { text: "Home", link: "/" },
+      { text: "About", link: "/about" },
       { text: "Javascript", link: "/javascript" },
       { text: "Programmers", link: "/programmers-js" },
     ],
@@ -25,6 +26,10 @@ export default defineConfig({
           { text: "Markdown Examples", link: "/markdown-examples" },
           { text: "Runtime API Examples", link: "/api-examples" },
         ],
+      },
+      {
+        text: "About",
+        items: [{ text: "Intro", link: "/about" }],
       },
       {
         text: "Javascript",
