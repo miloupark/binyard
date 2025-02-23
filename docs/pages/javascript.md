@@ -1109,7 +1109,7 @@ console.log(sum); // 25
 
 ## 스코프(Scope)
 
-자바스크립트에서는 변수는 어디에서 선언되었는지에 따라 접근 가능 여부가 달라짐. 이러한 변수의 접근 범위를 스코프(Scope)라고 함
+변수, 함수가 갖게 되는 유효범위
 
 ### 스코프 종류
 
@@ -1117,8 +1117,118 @@ console.log(sum); // 25
 
 어디에서든지 해당 변수에 접근 가능
 
-<br>
-
 ### 지역 스코프 Local Scope
 
 지역을 벗어난 곳에서는 접근 불가능
+
+```js
+const num = 100; // 전역 스코프
+
+function print() {
+  const num = 1000; // 지역 스코프
+  console.log(`지역 스코프 ${num}`);
+}
+
+print(); // 지역 스코프 1000
+console.log(`전역 스코프${num}`); // 전역 스코프 100
+```
+
+<br>
+
+#### 블록 스코프 Block Scope
+
+- 같은 블록에서만 접근 가능한 범위
+- 블록이란 중괄호 내부를 의미하고 블록 내부에 선언된 변수는 해당 블록에서만 접근 가능
+- <code>let</code>, <code>const</code>는 블록 내부에서만 유효
+- <code>var</code>는 블록 스코프를 따르지 않고 함수 스코프를 따름
+
+```js
+function print() {
+  for (let i = 0; i < 10; i++) {
+    console.log(`블록 스코프 : ${i}`); // 블랙 스코프 : 0 ~ 9
+  }
+  console.log(i); // error
+}
+
+print();
+```
+
+<br>
+
+#### 함수 스코프 Function Scope
+
+- <code>var</code>는 함수 스코프를 따름<br>
+  <code>var</code>는 블록을 무시하고 함수 전체에서 접근 가능하므로 원치 않는 값 변경이나 예기치 못한 오류가 발생할 위험이 큼
+
+```js
+function print() {
+  for (var i = 0; i < 10; i++) {
+    console.log(`블록 스코프 : ${i}`); // 블랙 스코프 : 0 ~ 9
+  }
+  console.log(i); // 10
+}
+
+print();
+```
+
+<br>
+
+::: details let과 var는 어떤 차이 ?
+
+- 유사하게 동작하는 키워드
+
+```js
+let num1 = 10;
+var num2 = 20;
+
+num1 = 100; // 값 변경
+num2 = 200; // 값 변경
+
+console.log(num1); // 100
+console.log(num2); // 200
+```
+
+<code>var</code>는 오래된 변수 선언 키워드이며 <code>let</code>과 <code>const</code>를 사용하는 것이 권장됨
+
+<br>
+
+- 변수 선언 후 동일한 이름의 변수를 다시 선언
+
+```js
+// let
+let num1 = 10;
+let num1 = 100;
+
+console.log(num1); // error (num1 already been declared.)
+
+// var
+var num2 = 20;
+var num2 = 200;
+
+console.log(num2); // 200 (마지막 할당된 200 출력됨)
+```
+
+<code>var</code> 키워드로 변수 선언 시 같은 이름의 변수를 여러 번 다시 선언할 수 있음, 기존에 선언되었던 동일한 변수는 덮어씌워짐. 이로 인해 특정 변수가 이미 선언되었는지 판단하기 어렵고, 변수의 사용 범위를 명확히 파악하기 힘들어져 예상치 못한 오류가 발생할 가능성이 높아짐
+:::
+
+## 호이스팅 (Hoisting)
+
+변수와 함수 선언이 코드 실행 전에 먼저 메모리에 올라가는 동작을 의미.
+즉, 코드에서 선언된 변수나 함수가 해당 범위의 최상단으로 끌어올려진 것처럼 동작함
+
+<br>
+
+### 함수 호이스팅
+```js
+print() // hello world
+
+function print() {
+  console.log("hello world");
+}
+```
+- 함수 선언은 호이스팅되기 때문에, 함수가 정의된 위치와 관계없이 선언된 함수는 호출 전에 사용할 수 있음. 자바스크립트 엔진이 코드 실행 전에 함수 선언을 메모리에 올려놓기 때문. 그래서 <code>print()</code>를 호출할 때 이미 함수가 정의되어 있어서 <code>"hello wolrd"</code>가 정상적으로 출력됨
+
+
+<br>
+
+### 변수 호이스팅
