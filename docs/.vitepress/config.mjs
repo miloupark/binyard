@@ -32,10 +32,39 @@ export default defineConfig({
         items: [{ text: "Intro", link: "/about" }],
       },
       {
+        text: "HTML/CSS/SASS",
+        collapsed: true,
+        items: [{ text: "HTML", link: "/html" },
+          { text: "CSS", link: "/css" },
+          { text: "SASS", link: "/sass" },
+        ],
+      },
+      // {
+      //   text: "Javascript",
+      //   collapsed: true,
+      //   items: [
+      //     {
+      //       text: 'basic',
+      //       items: [
+      //         { text: "변수 Variable", link: "/javascript"},
+      //         // { text: "상수 Constant", link: "/javascript"},
+      //       ]
+      //     }
+      //   ]
+      // },
+      {
         text: "Javascript",
         collapsed: true,
         items: [
           { text: "Basic", link: "/javascript" },
+          // { text: "ex.js02", link: "/api-examples" },
+        ],
+      },
+      {
+        text: "React",
+        collapsed: true,
+        items: [
+          { text: "Basic", link: "/react" },
           // { text: "ex.js02", link: "/api-examples" },
         ],
       },

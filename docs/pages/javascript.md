@@ -1226,9 +1226,40 @@ function print() {
   console.log("hello world");
 }
 ```
-- 함수 선언은 호이스팅되기 때문에, 함수가 정의된 위치와 관계없이 선언된 함수는 호출 전에 사용할 수 있음. 자바스크립트 엔진이 코드 실행 전에 함수 선언을 메모리에 올려놓기 때문. 그래서 <code>print()</code>를 호출할 때 이미 함수가 정의되어 있어서 <code>"hello wolrd"</code>가 정상적으로 출력됨
-
+함수 선언은 호이스팅되기 때문에, 함수가 정의된 위치와 관계없이 선언된 함수는 호출 전에 사용할 수 있음. 자바스크립트 엔진이 코드 실행 전에 함수 선언을 메모리에 올려놓기 때문. 그래서 <code>print()</code>를 호출할 때 이미 함수가 정의되어 있어서 <code>"hello wolrd"</code>가 정상적으로 출력됨
 
 <br>
 
 ### 변수 호이스팅
+- 변수 호이스팅
+```js
+console.log(num) // undefined
+
+var num = 10;
+```
+- 자바스크립트 엔진이 위 코드를 아래와 같이 해석
+```js
+var num;
+console.log(num) // undefined
+
+num = 10; // 변수 초기화(값을 할당하는 과정)
+```
+변수 호이스팅은 자바스크립트 엔진이 코드 실행 전에 변수 선언을 최상단으로 끌어올리기 때문에, 변수 선언이 코드에 어디에 있든 실행 시 변수는 이미 존재하게 된다. 하지만 값 할당은 호이스팅 되지 않기 때문에, 변수는 <code>undefined</code>로 초기화된다.<br>
+<code>var num</code>이라는 변수 선언은 메모리 상에서 호이스팅되어, <code>num</code>변수는 메모리에 할당되지만, 값은 <code>undefined</code>로 초기화된다. 자바스크립트는 변수 선언문만 해당 스코프의 최상단으로 끌어올리고 값 할당은 끌어올리지 않는다.
+
+<br>
+
+- 동일 코드 <code>let</code>, <code>const</code>로 변경
+```js
+console.log(num); // undefined
+var num = 10;
+
+console.log(num1); // error
+let num1 = 10;
+
+console.log(num2); // error
+const num2 = 15;
+```
+TDZ, Temporal Dead Zone: 일시적 사각지대, 변수를 사용하는 것이 허용되지 않는 공간 <br>
+<code>let</code>, <code>const</code>는 변수 선언이 호이스팅되지만, 변수의 초기화가 완료될 때까지 <code>TDG</code>에 있기 때문에 호이스팅이 발생하지 않는 것처럼 보인다. <br>
+이유는 <code>var</code>는 변수 선언 시 메모리에 공간을 할당하지만, <code>let</code>, <code>const</code>는 변수가 초기화될 때까지 <code>TDZ</code>에 머무르며, 이 기간 동안 메모리 공간이 확보되지 않아 접근할 수 없다.
