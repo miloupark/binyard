@@ -1,1 +1,0 @@
-import{_ as a,c as e,o as t}from"./chunks/framework.CAo3paeA.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"Java.md","filePath":"Java.md"}'),r={name:"Java.md"};function o(s,c,n,p,_,d){return t(),e("div")}const f=a(r,[["render",o]]);export{m as __pageData,f as default};

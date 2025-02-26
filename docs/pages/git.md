@@ -3,8 +3,8 @@
 
 ## 내 브랜치에 최신 변경사항 반영하기
 
-![gitmerge](git1.png)
-![gitmerge](git2.png)
+<!-- ![gitmerge](/docs/public/git1.png) -->
+<!-- ![gitmerge](/docs/public/git2.png) -->
 
 ### 💡 상황 정리
 - 로컬 <code>dev</code>브랜치는 최신 상태 
@@ -45,8 +45,8 @@ git merge dev
 - 나중에 추가된 <code>dev</code> 변경 사항을 내 브랜치에 반영해야되는 상황
 
 #### Merge 
-![gitmerge](git5.png)
-![gitmerge](git6.png)
+<!-- ![gitmerge](/docs/public/git5.png) -->
+<!-- ![gitmerge](/docs/public/git6.png) -->
 
 ```md
 # 내 브랜치로 이동
@@ -57,8 +57,8 @@ $ git merge dev
 
 #### Rebase
 
-![gitmerge](git3.png)
-![gitmerge](git4.png)
+<!-- ![gitmerge](/docs/public/git3.png) -->
+<!-- ![gitmerge](/docs/public/git4.png) -->
 
 ```md
 # 내 브랜치로 이동

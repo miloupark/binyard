@@ -1,1 +1,0 @@
-import{_ as t,c as e,o}from"./chunks/framework.CAo3paeA.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"Python.md","filePath":"Python.md"}'),a={name:"Python.md"};function n(r,s,c,p,_,d){return o(),e("div")}const f=t(a,[["render",n]]);export{m as __pageData,f as default};
