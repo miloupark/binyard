@@ -74,12 +74,10 @@ export default defineConfig({
         items: [{ text: "Javascript.js", link: "/programmers-js" }],
       },
       {
-        text: "정보처리기사",
+        text: "Git",
         collapsed: true,
         items: [
-          { text: "C", link: "/C" },
-          { text: "Java", link: "/Java" },
-          { text: "Python", link: "/Python" },
+          { text: "git", link: "/git" },
         ],
       },
     ],

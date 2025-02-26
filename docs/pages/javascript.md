@@ -1263,3 +1263,69 @@ const num2 = 15;
 TDZ, Temporal Dead Zone: 일시적 사각지대, 변수를 사용하는 것이 허용되지 않는 공간 <br>
 <code>let</code>, <code>const</code>는 변수 선언이 호이스팅되지만, 변수의 초기화가 완료될 때까지 <code>TDG</code>에 있기 때문에 호이스팅이 발생하지 않는 것처럼 보인다. <br>
 이유는 <code>var</code>는 변수 선언 시 메모리에 공간을 할당하지만, <code>let</code>, <code>const</code>는 변수가 초기화될 때까지 <code>TDZ</code>에 머무르며, 이 기간 동안 메모리 공간이 확보되지 않아 접근할 수 없다.
+
+## 함수 표현식 (Function Declaration)
+
+- 함수 선언식
+```js
+function print() {
+  console.log("hello world");
+}
+```
+
+- 함수 표현식
+```js
+let print = function () {
+  console.log("hello world");
+};
+```
+<code>print</code>라는 변수에 hello world를 출력하는 함수를 하나의 값처럼 할당. <br>
+<code>print</code>는 변수지만 함수를 값으로 가지고 있기 때문에 <code>print()</code> 함수를 호출하는 것과 동일하게 호출 가능.
+
+<br>
+
+- 함수 선언식과 함수 표현식의 차이점
+```js
+// 함수 선언식: 호이스팅 O
+// print 함수를 함수 선언식을 통해 작성하고 print 함수 선언문 전에 함수를 호출
+
+print(); // hello world
+
+function print() {
+  console.log("hello world");
+}
+```
+```js
+// 함수 표현식: 호이스팅 X
+
+print(); // print is not a function
+
+let print = function () {
+  console.log("hello world");
+};
+
+
+// 표현식은 호이스팅의 대상에 해당되지 않기 때문에, 함수 표현식으로 
+// 생성된 함수들을 호출할 경우에는 함수의 선언문을 호출문보다 위쪽에 작성해주어야함 
+
+let print = function () {
+  console.log("hello world");
+};
+
+print(); // hello world
+```
+
+<br>
+
+- 함수 표현식을 화살표형 함수를 통해 더 간결하게 작성
+
+```js
+const print = () => {
+  console.log("hello world");
+};
+
+print(); // hello world
+```
+<code>=></code>를 통해 변수의 함수를 값처럼 저장 <br>
+화살표 함수는 함수 표현식처럼 변수의 이름을 통해 함수를 호출할 수 있고 또한 호이스팅의
+대상이 아니기 때문에 순서를 잘 지켜서 작성해야함
