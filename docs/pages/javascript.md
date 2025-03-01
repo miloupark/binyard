@@ -615,7 +615,7 @@ if (isLoggedIn && hasPermission) {
 - <code>!</code>: 값을 반전
 - <code>||</code>: 하나라도 true이면 true
 - <code>&&</code>: 모두 true일 때만 true
-  :::
+:::
 
 <br>
 
@@ -1137,11 +1137,6 @@ console.log(`전역 스코프${num}`); // 전역 스코프 100
 
 #### 블록 스코프 Block Scope
 
-- 같은 블록에서만 접근 가능한 범위
-- 블록이란 중괄호 내부를 의미하고 블록 내부에 선언된 변수는 해당 블록에서만 접근 가능
-- <code>let</code>, <code>const</code>는 블록 내부에서만 유효
-- <code>var</code>는 블록 스코프를 따르지 않고 함수 스코프를 따름
-
 ```js
 function print() {
   for (let i = 0; i < 10; i++) {
@@ -1152,14 +1147,15 @@ function print() {
 
 print();
 ```
+- 같은 블록에서만 접근 가능한 범위
+- 블록이란 중괄호 내부를 의미하고 블록 내부에 선언된 변수는 해당 블록에서만 접근 가능
+- <code>let</code>, <code>const</code>는 블록 내부에서만 유효
+- <code>var</code>는 블록 스코프를 따르지 않고 함수 스코프를 따름
+
 
 <br>
 
 #### 함수 스코프 Function Scope
-
-- <code>var</code>는 함수 스코프를 따름<br>
-  <code>var</code>는 블록을 무시하고 함수 전체에서 접근 가능하므로 원치 않는 값 변경이나 예기치 못한 오류가 발생할 위험이 큼
-
 ```js
 function print() {
   for (var i = 0; i < 10; i++) {
@@ -1170,6 +1166,8 @@ function print() {
 
 print();
 ```
+- <code>var</code>는 함수 스코프를 따름<br>
+  <code>var</code>는 블록을 무시하고 함수 전체에서 접근 가능하므로 원치 않는 값 변경이나 예기치 못한 오류가 발생할 위험이 큼
 
 <br>
 
@@ -1231,25 +1229,25 @@ function print() {
 <br>
 
 ### 변수 호이스팅
-- 변수 호이스팅
+#### 변수 호이스팅
 ```js
 console.log(num) // undefined
 
 var num = 10;
 ```
-- 자바스크립트 엔진이 위 코드를 아래와 같이 해석
+자바스크립트 엔진이 위 코드를 아래와 같이 해석
 ```js
 var num;
 console.log(num) // undefined
 
 num = 10; // 변수 초기화(값을 할당하는 과정)
 ```
-변수 호이스팅은 자바스크립트 엔진이 코드 실행 전에 변수 선언을 최상단으로 끌어올리기 때문에, 변수 선언이 코드에 어디에 있든 실행 시 변수는 이미 존재하게 된다. 하지만 값 할당은 호이스팅 되지 않기 때문에, 변수는 <code>undefined</code>로 초기화된다.<br>
-<code>var num</code>이라는 변수 선언은 메모리 상에서 호이스팅되어, <code>num</code>변수는 메모리에 할당되지만, 값은 <code>undefined</code>로 초기화된다. 자바스크립트는 변수 선언문만 해당 스코프의 최상단으로 끌어올리고 값 할당은 끌어올리지 않는다.
+- 변수 호이스팅은 자바스크립트 엔진이 코드 실행 전에 변수 선언을 최상단으로 끌어올리기 때문에, 변수 선언이 코드에 어디에 있든 실행 시 변수는 이미 존재하게 된다. 하지만 값 할당은 호이스팅 되지 않기 때문에, 변수는 <code>undefined</code>로 초기화된다.<br>
+- <code>var num</code>이라는 변수 선언은 메모리 상에서 호이스팅되어, <code>num</code>변수는 메모리에 할당되지만, 값은 <code>undefined</code>로 초기화된다. 자바스크립트는 변수 선언문만 해당 스코프의 최상단으로 끌어올리고 값 할당은 끌어올리지 않는다.
 
 <br>
 
-- 동일 코드 <code>let</code>, <code>const</code>로 변경
+#### 동일 코드 <code>let</code>, <code>const</code>로 변경
 ```js
 console.log(num); // undefined
 var num = 10;
@@ -1260,20 +1258,20 @@ let num1 = 10;
 console.log(num2); // error
 const num2 = 15;
 ```
-TDZ, Temporal Dead Zone: 일시적 사각지대, 변수를 사용하는 것이 허용되지 않는 공간 <br>
-<code>let</code>, <code>const</code>는 변수 선언이 호이스팅되지만, 변수의 초기화가 완료될 때까지 <code>TDG</code>에 있기 때문에 호이스팅이 발생하지 않는 것처럼 보인다. <br>
+- TDZ, Temporal Dead Zone: 일시적 사각지대, 변수를 사용하는 것이 허용되지 않는 공간 <br>
+- <code>let</code>, <code>const</code>는 변수 선언이 호이스팅되지만, 변수의 초기화가 완료될 때까지 <code>TDG</code>에 있기 때문에 호이스팅이 발생하지 않는 것처럼 보인다. <br>
 이유는 <code>var</code>는 변수 선언 시 메모리에 공간을 할당하지만, <code>let</code>, <code>const</code>는 변수가 초기화될 때까지 <code>TDZ</code>에 머무르며, 이 기간 동안 메모리 공간이 확보되지 않아 접근할 수 없다.
 
 ## 함수 표현식 (Function Declaration)
 
-- 함수 선언식
+### 함수 선언식
 ```js
 function print() {
   console.log("hello world");
 }
 ```
 
-- 함수 표현식
+### 함수 표현식
 ```js
 let print = function () {
   console.log("hello world");
@@ -1284,7 +1282,7 @@ let print = function () {
 
 <br>
 
-- 함수 선언식과 함수 표현식의 차이점
+### 함수 선언식과 함수 표현식의 차이점
 ```js
 // 함수 선언식: 호이스팅 O
 // print 함수를 함수 선언식을 통해 작성하고 print 함수 선언문 전에 함수를 호출
@@ -1317,15 +1315,110 @@ print(); // hello world
 
 <br>
 
-- 함수 표현식을 화살표형 함수를 통해 더 간결하게 작성
+### 함수 표현식을 화살표형 함수를 통해 더 간결하게 작성
 
 ```js
+// 기존 함수 표현식
+const print = function() {
+  console.log("hello world");
+};
+
+// 화살표 함수
 const print = () => {
   console.log("hello world");
 };
 
 print(); // hello world
 ```
-<code>=></code>를 통해 변수의 함수를 값처럼 저장 <br>
-화살표 함수는 함수 표현식처럼 변수의 이름을 통해 함수를 호출할 수 있고 또한 호이스팅의
-대상이 아니기 때문에 순서를 잘 지켜서 작성해야함
+- <code>=></code>를 통해 변수의 함수를 값으로 할당 <br>
+- 화살표 함수는 함수 표현식처럼 변수의 이름을 통해 함수를 호출할 수 있다.
+- 또한 호이스팅의 대상이 아니기 때문에 순서를 잘 지켜서 작성해야한다.
+
+<br>
+
+### 콜백함수
+다른 함수에 인자로 전달되어 나중에 특정 시점에 실행되는 함수<br>
+다시 말해, 어떤 함수의 실행이 끝난 후나 특정 이벤트가 발생했을 때 "나중에 호출될" 함수
+
+#### 콜백함수 특징
+- 함수를 다른 함수의 인자로 전달
+- 전달된 함수는 즉시 실행되지 않고, 특정 조건이 충족되면 나중에 호출됨
+- 자바스크립트에서 비동기 프로그래밍의 기본 패턴으로 사용됨
+
+예시 )
+```js
+// doSomething 함수는 작업을 수행한 후 콜백 함수를 호출합니다
+function doSomething(callback) {
+  console.log("작업 수행 중...");
+  // 작업이 완료된 후 콜백 함수 실행
+  callback();
+}
+
+// 콜백 함수를 전달하여 함수 호출
+doSomething(function() {
+  console.log("작업 완료 후 실행됨!");
+});
+```
+```js
+// console
+작업 수행 중...
+작업 완료 후 실행됨!
+```
+
+::: details 콜백 함수 이해하기
+인강을 들어도 이해가 어려워 gpt와 claude의 도움받기..
+
+1. 먼저 <code>doSomething</code>이라는 함수를 정의, 이 함수는 callback이라는 매개변수를 받음
+```js
+function doSomething(callback) {
+  // 함수 내용
+}
+```
+
+2. <code>doSomething</code> 함수 내부에서는 두 가지 일을 한다 :
+- "작업 수행 중..." 메시지를 콘솔에 출력
+- 매개변수로 받은 callback 함수를 실행
+```js
+console.log("작업 수행 중...");
+callback(); // 전달받은 함수를 여기서 실행
+```
+
+3. 그 다음, <code>doSomething</code> 함수를 호출하면서 익명 함수(anonymous function)를 인자로 전달. 이 익명 함수는 <code>doSomething</code> 함수의 <code>callback</code> 매개변수로 전달
+```js
+doSomething(function() {
+  console.log("작업 완료 후 실행됨!");
+});
+```
+
+4. 실행 순서
+<code>doSomething</code> 함수가 호출 > "작업 수행 중..." 메시지 콘솔에 출력 > <code>callback</code>이 실행되어 "작업 완료 후 실행됨!" 메시지 콘솔에 출력
+
+실행 결과:
+```js
+// console
+작업 수행 중...
+작업 완료 후 실행됨!
+```
+:::
+
+```js
+function add(num1, num2) {
+  console.log(num1+num2);
+}
+
+add(10, 15); // 25
+```
+
+```js
+function intro(name, callback) {
+  console.log(`안녕하세요 ${name} 입니다.`);
+  callback(); //finish();
+}
+
+function finish() {
+  console.log("감사합니다.");
+}
+
+start("혜빙", finish);
+```
+- finish 함수처럼 다른 함수의 인수로 전달된 함수를 콜백 함수라고 부른다.

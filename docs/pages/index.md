@@ -20,7 +20,7 @@ hero:
 features:
   - icon: 👩🏻‍💻
     title: Hyebin Park
-    details:
+    details: 
   - icon: 💡
     title: Feature B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
