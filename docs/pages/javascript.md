@@ -1614,6 +1614,7 @@ console.log(person);  // { name: "바켸빈", age: 20, pet: "cat" }
 참조는 객체가 저장되는 메모리 주소를 의미한다. 자바스크립트에서 객체와 배열은 참조 타입(비원시타입)이기 때문에, 변수에 객체나 배열을 할당하면 그 변수는 객체의 메모리 주소(참조)를 저장하게 된다. 
 
 <br>
+
 - 프로퍼티 삭제
 
 ```js
@@ -1631,6 +1632,8 @@ delete person["age"];
 
 console.log(person); // {name: "바켸빈"}
 ```
+
+<br>
 
 - 객체 프로퍼티의 값이 함수일 때 : 메서드
 
@@ -1688,4 +1691,180 @@ person.print(); // 제 이름은 바켸빈 입니다.
 
 - 메서드<br>
 객체의 프로퍼티 값이 함수인 경우, 이를 메서드라고 부른다.<br>
-메서드는 function 키워드를 사용하여 정의할 수 있으며, 객체의 다른 프로퍼티를 참조할 때는 this 키워드를 사용하여 해당 객체의 속성에 접근할 수 있습니다.
+메서드는 function 키워드를 사용하여 정의할 수 있으며, 객체의 다른 프로퍼티를 참조할 때는 this 키워드를 사용하여 해당 객체의 속성에 접근할 수 있다.
+
+
+## 배열 (Array)
+배열은 여러 개의 값을 하나의 변수에 저장할 수 있는 자료구조이다. 자바스크립트에서 배열은 값의 순서가 중요한 데이터 집합을 관리하는 데 사용된다. 배열은 숫자, 문자열, 객체 등 다양한 타입의 값을 저장할 수 있으며, 각 값은 <code>index</code>를 통해 접근할 수 있다.
+
+### 배열의 특징
+- 0부터 시작하는 인덱스: 배열의 인덱스는 항상 0부터 시작
+- 순서가 있는 데이터: 배열의 각 요소는 순서대로 저장되며, 그 순서를 유지
+- 동적 크기: 자바스크립트에서 배열은 크기가 고정되지 않으며, 필요에 따라 크기가 자동으로 조정
+
+### 배열 생성 
+- 생성자를 이용하여 배열 생성
+```js
+let arr = new Array();
+
+console.log(arr); // []
+```
+```js
+let array1 = new Array(1, 2, 3);
+let array2 = new Array(3);
+
+console.log(array1); // [1, 2, 3]
+console.log(array2); // [,,]
+```
+배열 생성자의 값을 할당할 때에는 특정 요소를 넣으려면 여러 개의 값을 넣고 원하는 크기의 공간을 할당하려면 원하는 공간의 크기를 괄호 안에 작성해야한다. 배열 생성자에 하나의 숫자만 넣으면, 그 숫자만큼 빈 공간을 가진 배열이 생성된다. 
+
+<br>
+
+- 배열 리터럴 사용하여 배열 생성
+```js
+let array1 = [];
+
+console.log(array1); // []
+```
+```js
+let array1 = [1, 2, 3];
+let array2 = [3];
+
+console.log(array1); // [1, 2, 3]
+console.log(array2); // [3]
+```
+배열 리터럴을 통해 배열을 생성하고 배열의 값을 넣게되면 그 값이 순서대로 배열 요소로 저장된다. 배열 요소들은 객체 프로퍼티 값과 마찬가지로 타입에 상관없이 모든 요소들을 넣어줄 수 있다. <br>
+
+::: details 배열 생성자와 배열 리터럴 차이
+- 배열 생성자
+```js
+let array1 = new Array(1, 2, 3);
+let array2 = new Array(3);
+
+console.log(array1); // [1, 2, 3]
+console.log(array2); // [,,]
+```
+크기만 지정할 때: <code>new Array(3)</code>처럼 숫자만 넣으면, 해당 숫자 크기의 빈 공간을 가진 배열이 생성된다. <br>
+값을 지정할 때: <code>new Array(1, 2, 3)</code>처럼 여러 값을 넣으면, 그 값들이 배열의 요소로 들어간다.
+
+- 배열 리터럴
+```js
+let array1 = [1, 2, 3];
+let array2 = [3];
+
+console.log(array1); // [1, 2, 3]
+console.log(array2); // [3]
+```
+배열 리터럴을 사용한 배열 생성은 배열 안에 요소를 바로 넣는 것과 같다. 즉 []안에 값을 넣으면 그 값들이 배열의 요소로 들어간다. 
+:::
+<br>
+
+- 배열 요소에 다양한 자료형 넣기
+```js
+let arr = [
+  { name: "바켸빈" },
+  1,
+  "array",
+  function () {
+    console.log("hello world!");
+  },
+  null,
+  undefined
+];
+
+console.log(arr); // [object, 1, "array", f (), null, undefined]
+```
+
+### 배열 요소 접근
+배열은 데이터가 위치한 순서인 인덱스를 통해 배열 요소에 접근한다.
+
+- 배열 요소 출력
+```js
+let arr = [1, "hello", null];
+
+console.log(arr[0]); // 1
+console.log(arr[1]); // "hello"
+console.log(arr[2]); // null
+```
+
+- 배열 요소 추가 <br>
+배열 내장 함수, 즉 <code>push()</code>메서드를 사용한다. push()는 배열의 이름 뒤에 작성되며 push()에 넘겨준 값을 해당 배열의 맨 마지막 요소로 추가하는 내장함수
+
+```js
+let arr = [1, "hello", null];
+
+arr.push(10);
+console.log(arr); // [1, "hello", null, 10]
+```
+<br>
+
+- 배열 요소 추가: 배열 요소의 가장 앞쪽에 특정 값을 추가하고 싶을 때 <br>
+<code>unshift()</code>
+
+```js
+let arr = [1, "hello", null];
+
+arr.unshift(5);
+console.log(arr); // [5, 1, "hello", null]
+```
+
+<br>
+
+- 배열 요소 수정<br>
+```js
+let arr = [1, "hello", null];
+
+arr[0] = 4;
+arr[2] = undefined;
+
+console.log(arr); // [4, "hello", undefined]
+```
+
+<br>
+
+- const로 선언된 배열의 요소 변경
+```js
+const arr = [1, "hello", null];
+
+arr[0] = 4;
+arr[2] = undefined;
+
+console.log(arr); // [4, "hello", undefined]
+```
+자바스크립트에서 배열은 객체로 분류되는 자료형으로 객체라고 볼 수 있기 때문에 객체와 동일하게 const로 선언된 배열의 요소를 수정하더라도 배열 자체의 참조를 수정하는 것이 아니어서 const로 선언된 배열의 요소 또한 수정 가능하다.<br>
+배열 자체를 다른 배열로 할당하는 것은 불가능하다. arr = [5, 6, 7]과 같은 재할당은 에러를 발생시킨다.
+
+<br>
+
+- 배열 요소 삭제 : 배열의 마지막 요소를 삭제하기 위해서는 <code>pop()</code>이라는 배열 내장함수를 사용
+```js
+const arr = [1, "hello", null];
+
+arr.pop();
+console.log(arr); // [1, "hello"]
+```
+<br>
+
+- 배열 요소 삭제 : 배열의 첫번째 요소를 삭제하기 위해서는 <code>shift()</code>이라는 배열 내장함수를 사용
+```js
+const arr = [1, "hello", null];
+
+arr.shift();
+console.log(arr); // ["hello", null]
+```
+
+<br>
+
+- 배열의 길이<br>
+배열은 <code>length</code>라는 프로퍼티에 자신의 크기를 가지고 있다.
+
+```js
+const arr = [1, "hello", null];
+
+console.log(arr.length); // 3
+```
+```js
+const arr = [1, "hello", null];
+
+console.log(arr.length); // 3
+```
