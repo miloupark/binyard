@@ -5,7 +5,7 @@ layout: home
 hero:
   name: Personal Growth Archives
   # text:
-  tagline: Just notes, not a blog 🐣
+  tagline: 앎과 모름을 기록하는 아카이브 🐣
   actions:
     - theme: brand
       text: About

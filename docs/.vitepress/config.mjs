@@ -21,13 +21,6 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: "Examples",
-        items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
-        ],
-      },
-      {
         text: "About",
         items: [{ text: "Intro", link: "/about" }],
       },
@@ -39,19 +32,6 @@ export default defineConfig({
           { text: "SASS", link: "/sass" },
         ],
       },
-      // {
-      //   text: "Javascript",
-      //   collapsed: true,
-      //   items: [
-      //     {
-      //       text: 'basic',
-      //       items: [
-      //         { text: "변수 Variable", link: "/javascript"},
-      //         // { text: "상수 Constant", link: "/javascript"},
-      //       ]
-      //     }
-      //   ]
-      // },
       {
         text: "Javascript",
         collapsed: true,
@@ -80,6 +60,26 @@ export default defineConfig({
           { text: "git", link: "/git" },
         ],
       },
+      {
+        text: "Examples",
+        items: [
+          { text: "Markdown Examples", link: "/markdown-examples" },
+          { text: "Runtime API Examples", link: "/api-examples" },
+        ],
+      },
+      // {
+      //   text: "Javascript",
+      //   collapsed: true,
+      //   items: [
+      //     {
+      //       text: 'basic',
+      //       items: [
+      //         { text: "변수 Variable", link: "/javascript"},
+      //         // { text: "상수 Constant", link: "/javascript"},
+      //       ]
+      //     }
+      //   ]
+      // },
     ],
 
     socialLinks: [
