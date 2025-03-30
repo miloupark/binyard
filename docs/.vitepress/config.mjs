@@ -49,6 +49,14 @@ export default defineConfig({
         ],
       },
       {
+        text: "React Native",
+        collapsed: true,
+        items: [
+          { text: "install", link: "/react-native01" },
+          { text: "basic", link: "/react-native02" },
+        ],
+      },
+      {
         text: "Programmers",
         collapsed: true,
         items: [{ text: "Javascript.js", link: "/programmers-js" }],

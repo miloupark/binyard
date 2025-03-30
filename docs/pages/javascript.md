@@ -1868,3 +1868,198 @@ const arr = [1, "hello", null];
 
 console.log(arr.length); // 3
 ```
+
+## 반복문 (Loop)
+특정 작업을 반복적으로 수행할 때 사용
+
+### for문
+조건에 따라 일정 횟수만큼 같은 코드를 반복 실행해야할 때 사용 <br>
+
+#### 문법
+```js
+for (초기화식; 조건식; 증감식) {
+  // 실행할 코드
+}
+```
+
+#### ex)
+```js
+for(let i = 1; i < 6; i++) {
+  console.log(i);
+}
+
+// 1
+// 2
+// 3
+// 4
+// 5
+```
+- 초기화식: <code>i</code>의 초기값을 <code>1</code>로 할당
+- 조건식: <code>i < 6</code>이 참이면 <code>console.log(i)</code> 실행하여 현재 i값 출력
+- 증감식: <code>i++</code>로 <code>i</code>값을 1증가
+- 조건을 만족하는 동안 위 과정 반복, <code>i</code>가 6이 되면 조건을 만족하지 않으므로 반복문 종료
+
+#### ex) 숫자 5부터 1까지 순서대로 출력
+```js
+for (let i = 5; i > 0; i-- ) {
+  console.log(i)
+}
+
+// 5
+// 4
+// 3
+// 2
+// 1 
+```
+
+### while문
+특정 조건이 참인 동안 반복적으로 코드를 실행한느 반복문
+
+#### 문법
+```js
+while (조건식) {
+ // 실행할 코드
+}
+```
+- 조건식이 <code>true</code>인 동안 <code>{}</code>안의 코드가 반복 실행
+- 조건식이 <code>false</code>가 되면 반복문 종료
+
+#### ex) 숫자 5부터 1까지 순서대로 출력
+```js
+let i = 1;
+
+while (i < 6) { 
+  console.log(i);
+  i++;
+}
+
+// 1
+// 2
+// 3
+// 4
+// 5
+```
+
+while문 괄호 안의 조건이 참인 동안 내부의 코드가 계속 실행되므로, 반복 횟수를 결정하는 변수를 직접 변경해야 한다. 또한 조건이 false(거짓)가 되어 반복이 정상적으로 종료될 수 있도록 주의하여 작성해야한다.
+
+<code>for문</code>, <code>while문</code>은 자바스크립트에서 배열의 모든 요소들에 접근해야 할 때 유용하게 사용됨
+
+- <code>for문</code>은 특정 변수의 초기값과 조건문을 설정한 후, 조건문을 비교하여 참이면 변수의 값을 증감시키며 코드를 반복 수행한다. 
+- <code>white문</code>은 단순히 괄호 안의 조건문을 확인하여 코드를 반복 수행한다.
+
+<br>
+
+#### for문을 사용한 배열의 모든 요소 순회
+```js
+let arr = [1, 2, 3, 4, 5];
+
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+```
+
+#### 객체의 프로퍼티 반복문을 활용해 순회 가능 
+#### 1. 객체를 배열로 변경하는 방법
+
+```js
+let person = {
+  name: "홍길동",
+  age: 30,
+  height: 180
+};
+
+console.log(object.keys(person)); // ["name", "age", "height"]
+```
+- 객체를 배열로 변경 object.keys 사용, 자바스크립트의 Object라는 객체 메서드로 매개 변수로 받은 객체의 키들을 모두 찾아 배열의 형태로 반환하는 객체 메서드
+- 객체를 키값들로만 이루어진 배열로 변환
+
+
+#### for문을 사용해 객체의 프로퍼티들 모두 순회 
+```js
+let person = {
+  name: "홍길동",
+  age: 30,
+  height: 180
+};
+
+let newArray = object.keys(person);
+
+for(let i = 0; i < newArray.length; i++) {
+  let nowKey = newArray[i]; // person 객체의 key 값을 nowKey라는 변수를 통해 얻을 수 있음
+  console.log(`key: ${nowkey}, value: ${person[nowKey]}`); 
+  // key: name, value: 홍길동
+  // key: age, value: 30
+  // key: height, value: 180
+}
+
+  console.log(object.keys(person)); // ["name", "age", "height"]
+```
+
+- <code>newArray</code>라는 배열의 요소, 즉 person객체의 키값을 알고 있기 때문에 객체의 프로퍼티들을 모두 출력할 수 있다.
+
+#### 2. 객체를 배열로 변경하는 방법 <code>Object.values</code>
+
+ <code>Object.values</code> 메서드는 매개변수로 객체를 넘기면 해당 객체의 values들을 모두 찾아 배열로 반환함
+
+```js
+let person = {
+  name: "홍길동",
+  age: 30,
+  height: 180
+};
+
+let newArray = Object.valuse(person);
+
+for (let i = 0; i < newArray.length; i++) {
+  console.log(`value: ${newArray[i]}`);
+  // value: 홍길동
+  // value: 30
+  // value: 180
+}
+
+console.log(object.values(person)); // ["홍길동", 30, 180]
+```
+
+#### 3. 객체를 배열로 변경하는 방법 <code>Object.entries</code>
+<code>Object.entries</code> 메서드는 객체를 받으면 키와 value 쌍의 형태로 배열을 반환함
+
+```js
+let person = {
+  name: "홍길동",
+  age: 30,
+  height: 180
+};
+
+// 객체를 배열로 변환
+let newArray = Object.entries(person);
+
+for (let i = 0; i < newArray.length; i++ ) {
+  console.log(`key: ${newArray[i][0]}, value: ${newArray[i][1]}`)
+  // console.log() -> 반복문 안에서 실행 (newArray 안에 있는 값을 하나씩 꺼내서 보여줌)
+  // key: name, value: 홍길동
+  // key: age, value: 30
+  // key: height, value: 180
+}
+
+// console.log() -> 배열 전체 출력 (Object.entries(person)를 한 번에 출력하는 코드)
+console.log(Object.entries(person)); 
+// [
+//   ["name", "홍길동"],
+//   ["age", 30],
+//   ["height", 180]
+// ]
+```
+
+#### for of문 
+```js
+let arr = [1, 2, 3, 4, 5];
+
+for (let i of arr) {
+  console.log(i);
+  // 1
+  // 2
+  // 3
+  // 4
+  // 5
+}
+```
