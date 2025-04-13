@@ -117,7 +117,13 @@ ex 예시
   name="index"
   options={{
     title: "홈",
-    tabBarIcon: ({ color, focused }) => <Ionicons name={focused ? "home-sharp" : "home-outline"} size={24} color={color} />,
+    tabBarIcon: ({ color, focused }) => (
+      <Ionicons
+        name={focused ? "home-sharp" : "home-outline"}
+        size={24}
+        color={color}
+      />
+    ),
   }}
 />
 ```
@@ -155,7 +161,88 @@ iOS: Missing bundleIdentifier
 
 Android: Missing package name
 
+```
+
 해결 방법은 간단하다. app.json 파일에서 아래와 같이 앱의 고유 식별자를 추가하면 된다:
+
+```json
+"ios": {
+  "bundleIdentifier": "com.사용자이름.앱이름"
+},
+"android": {
+  "package": "com.사용자이름.앱이름"
+}
 ```
 
 iOS 시뮬레이터나 Android Emulator에서 앱을 실행하려 할 때, bundleIdentifier (iOS)와 package (Android) 값이 설정되지 않으면 시뮬레이터가 앱을 실행하지 못하는 오류가 발생한다. 이 값들은 앱의 고유 식별자 역할을 하며, 실제 디바이스나 시뮬레이터에서 앱을 실행하려면 반드시 설정해줘야 한다.
+
+### TypeScript <code>interface</code>와 <code>type</code>
+
+<code>interface</code>, <code>type</code>은 둘 다 데이터의 구조를 설명해주는 설명서와 같음
+
+```ts
+// 친구의 정보를 담은 object가 있다면, 이 friend애가 어떤 구조를 갖는지 설명할 수 있음
+
+const friend = {
+  name: "훈이",
+  age: 30,
+};
+```
+
+- interface 사용 예시 :
+
+```ts
+interface Friend {
+  name: string;
+  age: number;
+}
+```
+
+- interface는 중복 선언 가능
+
+```ts
+interface Animal {
+  name: string;
+}
+
+interface Animal {
+  age: number;
+}
+
+// 이렇게 두 번 선언하면 합쳐져서 아래처럼 작동함
+// Animal = { name: string; age: number }
+```
+
+- Type Alias 사용 예시 :
+
+```ts
+type Friend = {
+  name: string;
+  age: number;
+};
+```
+
+- type은 중복 선언 안 됨
+
+```ts
+type Animal = {
+  name: string;
+};
+
+type Animal = {
+  age: number;
+}; // 에러, 같은 이름으로 두 번 선언하면 안됨
+```
+
+- type은 유니온, 튜플 등 더 다양한 걸 표현 가능
+
+```ts
+type Status = "success" | "error"; // 유니온
+// 여러 선택지를 만들 수 있음
+
+type Point = [number, number]; // 튜플
+```
+
+- 그래서 어떤 것을 써야 할까..?
+- 단순한 객체 구조만 필요하고 확장할 가능성이 있다면 <code>interface</code>
+- 다양한 타입 조합(유니온, 튜플 등)이나 복잡한 구조가 필요하다면 <code>type</code>
