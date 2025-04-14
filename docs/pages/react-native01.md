@@ -130,6 +130,17 @@ ex 예시
 
 매개변수 focused의 값에 따라 아이콘을 다르게 보여주기 위해 삼항 연산자를 사용. focused가 true면 "home-sharp", false면 "home-outline"을 반환.
 
+### FlatList
+
+- https://reactnative.dev/docs/flatlist <br>
+  FlatList는 React Native에서 스크롤 가능한 목록을 효율적으로 렌더링할 수 있도록 도와주는 컴포넌트. 특히 데이터가 많거나 항목의 길이가 가변적인 경우, 최적화된 성능을 제공하기 때문에 ScrollView보다 권장됨
+- 무한 스크롤 (Infinite Scroll) <br>
+  스크롤이 바닥에 닿았을 때 onEndReached 이벤트를 활용해 다음 데이터를 가져오는 방식을 구현할 수 있다. 이는 페이징 처리나 서버에서 데이터를 나눠서 가져올 때 유용함
+- 렌더링 최적화 <br>
+  모든 데이터를 한 번에 렌더링하지 않고, 화면에 보이는 항목만 렌더링하기 때문에 퍼포먼스가 훨씬 좋다..고함
+- 고정된 레이아웃 or 동적 레이아웃 모두 가능 <br>
+  항목의 높이나 길이가 일정하지 않아도 사용할 수 있으며, getItemLayout을 사용하면 성능을 더 향상시킬 수 있다.
+
 ## 오류들
 
 #### CoreSimulator 서비스 버전 불일치로 인한 시뮬레이터 통신 오류
