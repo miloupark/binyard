@@ -265,3 +265,72 @@ type Point = [number, number]; // 튜플
 - 그래서 어떤 것을 써야 할까..?
 - 단순한 객체 구조만 필요하고 확장할 가능성이 있다면 <code>interface</code>
 - 다양한 타입 조합(유니온, 튜플 등)이나 복잡한 구조가 필요하다면 <code>type</code>
+
+<br>
+
+### 이메일 검증
+
+- <code>이메일 regex</code> <code>이메일 정규식</code> 등의 키워드로 서치
+
+### ios키보드
+
+- ios 시뮬레이터에서 키보드가 안 보일 경우 <code>Command + K</code>
+- <code>TextInput</code> 컴포넌트를 사용하여 사용자에게 다양한 형태의 데이터를 입력받을 때, 키보드가 자동으로 적합한 형태로 나타나도록 할 수 있다. 예시로, 이메일을 입력받을 때 이메일 전용 키보드를 띄우거나, 숫자 키보드를 띄울 수 있고, 키보드의 대문자 활성을 끌 수 있다!
+- https://reactnative.dev/docs/textinput
+- https://www.lefkowitz.me/visual-guide-to-react-native-textinput-keyboardtype-options/
+- 키보드 위쪽에 스펠체크, 자동완성 같이 뜨는 부분도
+
+```js
+<TextInput
+  placeholderTextColor={colors.GRAY_500}
+  style={styles.input}
+  autoCapitalize="none"
+  spellCheck={false}
+  autoCorrect={false}
+  submitBehavior="submit" // 인풋 입력 후에도 키보드 내려가지 않음
+  {...props}
+/>
+```
+
+### 백엔드 서버 실행하기
+
+#### PgAdmin (https://www.pgadmin.org/)
+
+- servers > register > server 등록
+- 등록한 서버에 database create <br>
+  등록 시 .env의 DB_DATABASE와 같은 데이터베이스명 입력
+
+```shell
+// 서버 실행
+$ npm run start:dev
+```
+
+#### Postgresql (brew) (https://formulae.brew.sh/formula/postgresql@14)
+
+```shell
+// 설치
+$ brew install postgresql@14
+
+// 설치 확인
+$ brew list
+
+// 실행 명령어
+$ brew services start postgresql@14
+```
+
+### 로그인 api 만들기
+
+#### axios 설치
+
+```shell
+npm i axios
+```
+
+#### expo secure store 설치
+
+https://docs.expo.dev/versions/latest/sdk/securestore/
+
+```shell
+// 토큰 암호화해서 저장
+npx expo install expo-secure-store
+```
