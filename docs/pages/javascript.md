@@ -260,6 +260,15 @@ console.log(greeting); //제 이름은 bin입니다.
 
 <br>
 
+이스케이프 표현
+
+- <code>\\'</code> 작은따옴표
+- <code>\\"</code> 큰따옴표
+- <code>\\n</code> 줄바꿈
+- <code>\\t</code> 탭
+
+<br>
+
 #### Boolean
 
 <code>true</code>, <code>false</code> 두 가지 값을 가질 수 있는 자료형. 주로 조건문에서 참과 거짓을 판단할 때 사용되며, 코드에서 참/거짓을 분별하는데 필요한 값을 저장하는데 사용된다.
@@ -615,7 +624,7 @@ if (isLoggedIn && hasPermission) {
 - <code>!</code>: 값을 반전
 - <code>||</code>: 하나라도 true이면 true
 - <code>&&</code>: 모두 true일 때만 true
-:::
+  :::
 
 <br>
 
@@ -1147,15 +1156,16 @@ function print() {
 
 print();
 ```
+
 - 같은 블록에서만 접근 가능한 범위
 - 블록이란 중괄호 내부를 의미하고 블록 내부에 선언된 변수는 해당 블록에서만 접근 가능
 - <code>let</code>, <code>const</code>는 블록 내부에서만 유효
 - <code>var</code>는 블록 스코프를 따르지 않고 함수 스코프를 따름
 
-
 <br>
 
 #### 함수 스코프 Function Scope
+
 ```js
 function print() {
   for (var i = 0; i < 10; i++) {
@@ -1166,6 +1176,7 @@ function print() {
 
 print();
 ```
+
 - <code>var</code>는 함수 스코프를 따름<br>
   <code>var</code>는 블록을 무시하고 함수 전체에서 접근 가능하므로 원치 않는 값 변경이나 예기치 못한 오류가 발생할 위험이 큼
 
@@ -1217,37 +1228,45 @@ console.log(num2); // 200 (마지막 할당된 200 출력됨)
 <br>
 
 ### 함수 호이스팅
+
 ```js
-print() // hello world
+print(); // hello world
 
 function print() {
   console.log("hello world");
 }
 ```
+
 함수 선언은 호이스팅되기 때문에, 함수가 정의된 위치와 관계없이 선언된 함수는 호출 전에 사용할 수 있음. 자바스크립트 엔진이 코드 실행 전에 함수 선언을 메모리에 올려놓기 때문. 그래서 <code>print()</code>를 호출할 때 이미 함수가 정의되어 있어서 <code>"hello wolrd"</code>가 정상적으로 출력됨
 
 <br>
 
 ### 변수 호이스팅
+
 #### 변수 호이스팅
+
 ```js
-console.log(num) // undefined
+console.log(num); // undefined
 
 var num = 10;
 ```
+
 자바스크립트 엔진이 위 코드를 아래와 같이 해석
+
 ```js
 var num;
-console.log(num) // undefined
+console.log(num); // undefined
 
 num = 10; // 변수 초기화(값을 할당하는 과정)
 ```
+
 - 변수 호이스팅은 자바스크립트 엔진이 코드 실행 전에 변수 선언을 최상단으로 끌어올리기 때문에, 변수 선언이 코드에 어디에 있든 실행 시 변수는 이미 존재하게 된다. 하지만 값 할당은 호이스팅 되지 않기 때문에, 변수는 <code>undefined</code>로 초기화된다.<br>
 - <code>var num</code>이라는 변수 선언은 메모리 상에서 호이스팅되어, <code>num</code>변수는 메모리에 할당되지만, 값은 <code>undefined</code>로 초기화된다. 자바스크립트는 변수 선언문만 해당 스코프의 최상단으로 끌어올리고 값 할당은 끌어올리지 않는다.
 
 <br>
 
 #### 동일 코드 <code>let</code>, <code>const</code>로 변경
+
 ```js
 console.log(num); // undefined
 var num = 10;
@@ -1258,13 +1277,15 @@ let num1 = 10;
 console.log(num2); // error
 const num2 = 15;
 ```
+
 - TDZ, Temporal Dead Zone: 일시적 사각지대, 변수를 사용하는 것이 허용되지 않는 공간 <br>
 - <code>let</code>, <code>const</code>는 변수 선언이 호이스팅되지만, 변수의 초기화가 완료될 때까지 <code>TDG</code>에 있기 때문에 호이스팅이 발생하지 않는 것처럼 보인다. <br>
-이유는 <code>var</code>는 변수 선언 시 메모리에 공간을 할당하지만, <code>let</code>, <code>const</code>는 변수가 초기화될 때까지 <code>TDZ</code>에 머무르며, 이 기간 동안 메모리 공간이 확보되지 않아 접근할 수 없다.
+  이유는 <code>var</code>는 변수 선언 시 메모리에 공간을 할당하지만, <code>let</code>, <code>const</code>는 변수가 초기화될 때까지 <code>TDZ</code>에 머무르며, 이 기간 동안 메모리 공간이 확보되지 않아 접근할 수 없다.
 
 ## 함수 표현식 (Function Declaration)
 
 ### 함수 선언식
+
 ```js
 function print() {
   console.log("hello world");
@@ -1272,17 +1293,20 @@ function print() {
 ```
 
 ### 함수 표현식
+
 ```js
 let print = function () {
   console.log("hello world");
 };
 ```
+
 <code>print</code>라는 변수에 hello world를 출력하는 함수를 하나의 값처럼 할당. <br>
 <code>print</code>는 변수지만 함수를 값으로 가지고 있기 때문에 <code>print()</code> 함수를 호출하는 것과 동일하게 호출 가능.
 
 <br>
 
 ### 함수 선언식과 함수 표현식의 차이점
+
 ```js
 // 함수 선언식: 호이스팅 O
 // print 함수를 함수 선언식을 통해 작성하고 print 함수 선언문 전에 함수를 호출
@@ -1293,6 +1317,7 @@ function print() {
   console.log("hello world");
 }
 ```
+
 ```js
 // 함수 표현식: 호이스팅 X
 
@@ -1302,9 +1327,8 @@ let print = function () {
   console.log("hello world");
 };
 
-
-// 표현식은 호이스팅의 대상에 해당되지 않기 때문에, 함수 표현식으로 
-// 생성된 함수들을 호출할 경우에는 함수의 선언문을 호출문보다 위쪽에 작성해주어야함 
+// 표현식은 호이스팅의 대상에 해당되지 않기 때문에, 함수 표현식으로
+// 생성된 함수들을 호출할 경우에는 함수의 선언문을 호출문보다 위쪽에 작성해주어야함
 
 let print = function () {
   console.log("hello world");
@@ -1319,7 +1343,7 @@ print(); // hello world
 
 ```js
 // 기존 함수 표현식
-const print = function() {
+const print = function () {
   console.log("hello world");
 };
 
@@ -1330,6 +1354,7 @@ const print = () => {
 
 print(); // hello world
 ```
+
 - <code>=></code>를 통해 변수의 함수를 값으로 할당 <br>
 - 화살표 함수는 함수 표현식처럼 변수의 이름을 통해 함수를 호출할 수 있다.
 - 또한 호이스팅의 대상이 아니기 때문에 순서를 잘 지켜서 작성해야한다.
@@ -1337,15 +1362,18 @@ print(); // hello world
 <br>
 
 ### 콜백함수
+
 다른 함수에 인자로 전달되어 나중에 특정 시점에 실행되는 함수<br>
 다시 말해, 어떤 함수의 실행이 끝난 후나 특정 이벤트가 발생했을 때 "나중에 호출될" 함수
 
 #### 콜백함수 특징
+
 - 함수를 다른 함수의 인자로 전달
 - 전달된 함수는 즉시 실행되지 않고, 특정 조건이 충족되면 나중에 호출됨
 - 자바스크립트에서 비동기 프로그래밍의 기본 패턴으로 사용됨
 
 예시 )
+
 ```js
 // doSomething 함수는 작업을 수행한 후 콜백 함수를 호출합니다
 function doSomething(callback) {
@@ -1355,10 +1383,11 @@ function doSomething(callback) {
 }
 
 // 콜백 함수를 전달하여 함수 호출
-doSomething(function() {
+doSomething(function () {
   console.log("작업 완료 후 실행됨!");
 });
 ```
+
 ```js
 // console
 작업 수행 중...
@@ -1369,6 +1398,7 @@ doSomething(function() {
 인강을 들어도 이해가 어려워 gpt와 claude의 도움받기..
 
 1. 먼저 <code>doSomething</code>이라는 함수를 정의, 이 함수는 callback이라는 매개변수를 받음
+
 ```js
 function doSomething(callback) {
   // 함수 내용
@@ -1376,34 +1406,39 @@ function doSomething(callback) {
 ```
 
 2. <code>doSomething</code> 함수 내부에서는 두 가지 일을 한다 :
+
 - "작업 수행 중..." 메시지를 콘솔에 출력
 - 매개변수로 받은 callback 함수를 실행
+
 ```js
 console.log("작업 수행 중...");
 callback(); // 전달받은 함수를 여기서 실행
 ```
 
 3. 그 다음, <code>doSomething</code> 함수를 호출하면서 익명 함수(anonymous function)를 인자로 전달. 이 익명 함수는 <code>doSomething</code> 함수의 <code>callback</code> 매개변수로 전달
+
 ```js
-doSomething(function() {
+doSomething(function () {
   console.log("작업 완료 후 실행됨!");
 });
 ```
 
 4. 실행 순서
-<code>doSomething</code> 함수가 호출 > "작업 수행 중..." 메시지 콘솔에 출력 > <code>callback</code>이 실행되어 "작업 완료 후 실행됨!" 메시지 콘솔에 출력
+   <code>doSomething</code> 함수가 호출 > "작업 수행 중..." 메시지 콘솔에 출력 > <code>callback</code>이 실행되어 "작업 완료 후 실행됨!" 메시지 콘솔에 출력
 
 실행 결과:
+
 ```js
 // console
 작업 수행 중...
 작업 완료 후 실행됨!
 ```
+
 :::
 
 ```js
 function add(num1, num2) {
-  console.log(num1+num2);
+  console.log(num1 + num2);
 }
 
 add(10, 15); // 25
@@ -1421,51 +1456,60 @@ function finish() {
 
 start("혜빙", finish);
 ```
+
 - finish 함수처럼 다른 함수의 인수로 전달된 함수를 콜백 함수라고 부른다.
 
-
 ## 객체 (Object)
-- 비원시 타입 자료형으로 한 번에 여러 개의 데이터를 <code>키-값(Key-Value)</code> 쌍으로 저장할 수 있는 자료구조이다. 객체는 변수와 배열과 달리 속성(property)과 메서드(method)를 가질 수 있다. 
 
+- 비원시 타입 자료형으로 한 번에 여러 개의 데이터를 <code>키-값(Key-Value)</code> 쌍으로 저장할 수 있는 자료구조이다. 객체는 변수와 배열과 달리 속성(property)과 메서드(method)를 가질 수 있다.
 
 ### 객체 생성 방법
+
 - 객체 생성자 사용
+
 ```js
 let animal = new dog();
 
 console.log(animal); // {}
 ```
+
 <code>new</code>라는 키워드를 이용해 객체 생성할 수 있다.
 
 <br>
 
 - 객체 리터럴 방식
+
 ```js
 let animal = {};
 
 console.log(animal); // {}
 ```
+
 <code>{}</code> 중괄호를 이용해 객체를 생성하며 가장 많이 사용되는 방식이다.
 
 <br>
 
 ### 객체의 속성 (property)
+
 객체의 중괄호 내부에 들어갈 데이터로 <code>키-값(Key-Value)</code> 쌍으로 이루어져 있는 데이터
 
 #### 객체의 속성 <code>key : value</code>
+
 ```js
 let person = {
   name: "바켸빈", // 객체의 프로퍼티
-  age: 20 // 객체의 프로퍼티
+  age: 20, // 객체의 프로퍼티
 };
 
 console.log(person); // {name: "바켸빈", age: 20}
 ```
+
 - <code>person</code>이라는 이름의 객체 안에 프로퍼티 즉 속성 작성, key <code>:</code> value
 
 <br>
 
 #### 객체의 속성에 여러 개의 값 추가 가능, key는 고유해야 한다.
+
 ```js
 let person = {
   name: "바켸빈",
@@ -1476,18 +1520,20 @@ let person = {
   },
 };
 ```
-  - 객체에는 속성을 몇 개를 넣어도 value 값으로 어떠한 자료형을 넣어도 상관 없다. 하지만 이 객체의 값을 찾을 때에는 key 값을 통해 찾기 때문에 속성의 key 값은 고유해야한다. 
 
+- 객체에는 속성을 몇 개를 넣어도 value 값으로 어떠한 자료형을 넣어도 상관 없다. 하지만 이 객체의 값을 찾을 때에는 key 값을 통해 찾기 때문에 속성의 key 값은 고유해야한다.
 
 <br>
 
 #### 객체의 속성 접근 방법 (객체의 값 꺼내기)
+
 - 점 표기법
+
 ```js
 let person = {
   name: "바켸빈",
   age: 20,
-  pet: "dog"
+  pet: "dog",
 };
 
 console.log(person.name); // 바켸빈
@@ -1498,14 +1544,14 @@ console.log(person.pet); // dog
 <br>
 
 - 괄호 표기법 (동적 접근 가능)<br>
-객체의 속성에 동적으로 접근할 때 사용한다. 키 값이 고정적이지 않고 변수나 함수의 매개변수 값에 의해 결정될 때 유용하다.<br>
-대괄호 안에 문자열을 넣을 때는 큰 따옴표나 작은 따옴표를 써서 문자열임을 명시해야 한다.
+  객체의 속성에 동적으로 접근할 때 사용한다. 키 값이 고정적이지 않고 변수나 함수의 매개변수 값에 의해 결정될 때 유용하다.<br>
+  대괄호 안에 문자열을 넣을 때는 큰 따옴표나 작은 따옴표를 써서 문자열임을 명시해야 한다.
 
 ```js
 let person = {
   name: "바켸빈",
   age: 20,
-  pet: "dog"
+  pet: "dog",
 };
 
 console.log(person["name"]); // 바켸빈
@@ -1518,27 +1564,30 @@ console.log(person["pet"]); // dog
 let person = {
   name: "바켸빈",
   age: 20,
-  pet: "dog"
+  pet: "dog",
 };
 
 const getValue = (key) => {
   console.log(person[key]);
-}
+};
 
 getValue("name"); // 바켸빈
 
-// getValue 함수의 인수로 person 객체의 속성 키 값인 name을 넘겨주게 되면 
+// getValue 함수의 인수로 person 객체의 속성 키 값인 name을 넘겨주게 되면
 // 출력 결과 name에 해당하는 바켸빈이라는 값이 출력
 ```
+
 <br>
 
 #### 객체 프로퍼티 추가, 수정, 삭제
+
 - 객체 프로퍼티 추가
+
 ```js
 let person = {
   name: "바켸빈",
   age: 20,
-  pet: "dog"
+  pet: "dog",
 };
 
 // 점 표기법으로 전화번호 프로퍼티 추가
@@ -1547,17 +1596,19 @@ person.phone = "010-0000-0000";
 // 괄호 표기법으로 키 프로퍼티 추가
 person["height"] = 160;
 
-console.log(person); 
-// {name: "바켸빈", age: 20, pet: "dog", phone: "010-0000-0000", height: 160} 
+console.log(person);
+// {name: "바켸빈", age: 20, pet: "dog", phone: "010-0000-0000", height: 160}
 ```
+
 <br>
 
 - 객체 프로퍼티 추가
+
 ```js
 let person = {
   name: "바켸빈",
   age: 20,
-  pet: "dog"
+  pet: "dog",
 };
 
 // 점 표기법으로 나이 프로퍼티 수정
@@ -1566,31 +1617,35 @@ person.age = 30;
 // 괄호 표기법으로 펫 프로퍼티 수정
 person["pet"] = "cat";
 
-console.log(person); 
-// {name: "바켸빈", age: 30, pet: "cat"} 
+console.log(person);
+// {name: "바켸빈", age: 30, pet: "cat"}
 ```
+
 <br>
 
-- 상수로 선언된 객체 프로퍼티 수정 
+- 상수로 선언된 객체 프로퍼티 수정
+
 ```js
 const person = {
   name: "바켸빈",
   age: 20,
-  pet: "dog"
+  pet: "dog",
 };
 
 person.age = 30;
 person["pet"] = "cat";
 
-console.log(person); 
-// {name: "바켸빈", age: 30, pet: "cat"} 
+console.log(person);
+// {name: "바켸빈", age: 30, pet: "cat"}
 ```
+
 <code>const</code>로 선언된 객체의 프로퍼티 값 수정 가능 이유 <br>
 <code>const</code>로 선언된 상수는 값이 변경되지 않는다고 배웠지만, 객체의 프로퍼티 값은 수정할 수 있다. 이는 객체 프로퍼티 값을 수정하는 것이 객체 자체를 수정하는 행위가 아니기 때문. 객체는 생성될 때 고유한 참조 ID를 갖게 되며, 객체의 프로퍼티 값을 변경하는 것은 이 참조 ID를 변경하는 것이 아니다. 따라서, 객체의 프로퍼티 값은 <code>const</code>로 선언된 객체에서도 변경이 가능하다.
 
 <br>
 
 - 객체의 고유한 아이디까지 변경하는 경우 오류발생
+
 ```js
 const person = {
   name: "바켸빈",
@@ -1607,11 +1662,12 @@ person = {
 person.pet = "cat";  // 오류 없이 동작
 console.log(person);  // { name: "바켸빈", age: 20, pet: "cat" }
 ```
+
 위와 같이 <code>person</code>객체 자체에 새로운 프로퍼티를 저장하려 한다면 이것은 객체의 고유한 아이디를 변경하게 되는 것이므로 <code>person</code>은 읽기 전용이라는 에러가 발생하게 된다. <br>
 <code>const</code>로 선언된 객체는 객체 자체의 참조를 변경할 수 없다. 즉, <code>person</code> 객체가 참조하고 있는 메모리 주소를 다른 객체로 변경하려고 하면 오류 발생. 하지만 객체의 프로퍼티 값 수정은 참조를 변경하는 게 아니라 객체 내부의 내용을 바꾸는 것이므로 가능.
 
 그래서 <code>참조</code>가 뭐지?<br>
-참조는 객체가 저장되는 메모리 주소를 의미한다. 자바스크립트에서 객체와 배열은 참조 타입(비원시타입)이기 때문에, 변수에 객체나 배열을 할당하면 그 변수는 객체의 메모리 주소(참조)를 저장하게 된다. 
+참조는 객체가 저장되는 메모리 주소를 의미한다. 자바스크립트에서 객체와 배열은 참조 타입(비원시타입)이기 때문에, 변수에 객체나 배열을 할당하면 그 변수는 객체의 메모리 주소(참조)를 저장하게 된다.
 
 <br>
 
@@ -1621,7 +1677,7 @@ console.log(person);  // { name: "바켸빈", age: 20, pet: "cat" }
 const person = {
   name: "바켸빈",
   age: 20,
-  pet: "dog"
+  pet: "dog",
 };
 
 // 점 표기법으로 삭제
@@ -1642,9 +1698,9 @@ const person = {
   name: "바켸빈",
   age: 20,
   pet: "dog",
-  print: function() {
+  print: function () {
     console.log("hello world");
-  } 
+  },
 };
 
 person.print(); // hello world
@@ -1652,23 +1708,26 @@ person["print"]; // hello world
 
 console.log(person);
 ```
+
 객체의 프로퍼티 값이 함수일 때, 이를 메서드라고 부른다. 메서드는 객체 내부의 다른 프로퍼티나 값을 다룰 수 있는 기능이 있다.
 
 <br>
 
 - 객체 메서드에서 this 사용하기
+
 ```js
 const person = {
   name: "바켸빈",
   age: 20,
   pet: "dog",
-  print: function() {
+  print: function () {
     console.log(`제 이름은 ${this.name} 입니다.`); // person 객체의 name 프로퍼티를 가리킨다.
-  } 
+  },
 };
 
 person.print(); // 제 이름은 바켸빈 입니다.
 ```
+
 객체의 메서드에서 <code>this</code>라는 키워드를 사용하여, 메서드 내부에서 객체 자신을 참조할 수 있다.
 출력 결과 this.name 값이 person 객체의 네임에 해당하는 값이 할당되어 제 이름은 바켸빈 입니다. 라는 문장이 출력된다.<br>
 <code>this</code>키워드 역할은 메서드가 속한 객체를 가리키고, 객체 내에서 메서드를 호출할 때 <code>this</code>는 해당 메서드를 호출한 객체를 자동으로 참조하게 된다.
@@ -1676,39 +1735,42 @@ person.print(); // 제 이름은 바켸빈 입니다.
 <br>
 
 #### 객체 정리
+
 - 객체 생성 방법 <br>
-자바스크립트에서 객체는 두 가지 방법으로 생성할 수 있다:<br>
--객체 리터럴: {} (일반적으로 더 많이 사용)
--객체 생성자: new Object() <br>
+  자바스크립트에서 객체는 두 가지 방법으로 생성할 수 있다:<br> -객체 리터럴: {} (일반적으로 더 많이 사용) -객체 생성자: new Object() <br>
 
 - 객체의 프로퍼티 <br>
-객체의 중괄호 {} 안에 있는 값들은 프로퍼티(혹은 속성)이라고 부른다.<br>
-각 프로퍼티는 키와 값(밸류)로 이루어져 있다.
+  객체의 중괄호 {} 안에 있는 값들은 프로퍼티(혹은 속성)이라고 부른다.<br>
+  각 프로퍼티는 키와 값(밸류)로 이루어져 있다.
 
 - 프로퍼티의 키와 밸류 <br>
-객체의 프로퍼티 키는 고유해야 한다. 즉, 같은 객체 내에서 두 개 이상의 프로퍼티가 동일한 키 값을 가질 수 없다.<br>
-반면, 밸류(값)는 어떠한 자료형으로 작성해도 상관 없다. 예를 들어, 숫자, 문자열, 배열, 객체 등 다양한 자료형을 사용할 수 있다.
+  객체의 프로퍼티 키는 고유해야 한다. 즉, 같은 객체 내에서 두 개 이상의 프로퍼티가 동일한 키 값을 가질 수 없다.<br>
+  반면, 밸류(값)는 어떠한 자료형으로 작성해도 상관 없다. 예를 들어, 숫자, 문자열, 배열, 객체 등 다양한 자료형을 사용할 수 있다.
 
 - 메서드<br>
-객체의 프로퍼티 값이 함수인 경우, 이를 메서드라고 부른다.<br>
-메서드는 function 키워드를 사용하여 정의할 수 있으며, 객체의 다른 프로퍼티를 참조할 때는 this 키워드를 사용하여 해당 객체의 속성에 접근할 수 있다.
-
+  객체의 프로퍼티 값이 함수인 경우, 이를 메서드라고 부른다.<br>
+  메서드는 function 키워드를 사용하여 정의할 수 있으며, 객체의 다른 프로퍼티를 참조할 때는 this 키워드를 사용하여 해당 객체의 속성에 접근할 수 있다.
 
 ## 배열 (Array)
+
 배열은 여러 개의 값을 하나의 변수에 저장할 수 있는 자료구조이다. 자바스크립트에서 배열은 값의 순서가 중요한 데이터 집합을 관리하는 데 사용된다. 배열은 숫자, 문자열, 객체 등 다양한 타입의 값을 저장할 수 있으며, 각 값은 <code>index</code>를 통해 접근할 수 있다.
 
 ### 배열의 특징
+
 - 0부터 시작하는 인덱스: 배열의 인덱스는 항상 0부터 시작
 - 순서가 있는 데이터: 배열의 각 요소는 순서대로 저장되며, 그 순서를 유지
 - 동적 크기: 자바스크립트에서 배열은 크기가 고정되지 않으며, 필요에 따라 크기가 자동으로 조정
 
-### 배열 생성 
+### 배열 생성
+
 - 생성자를 이용하여 배열 생성
+
 ```js
 let arr = new Array();
 
 console.log(arr); // []
 ```
+
 ```js
 let array1 = new Array(1, 2, 3);
 let array2 = new Array(3);
@@ -1716,16 +1778,19 @@ let array2 = new Array(3);
 console.log(array1); // [1, 2, 3]
 console.log(array2); // [,,]
 ```
-배열 생성자의 값을 할당할 때에는 특정 요소를 넣으려면 여러 개의 값을 넣고 원하는 크기의 공간을 할당하려면 원하는 공간의 크기를 괄호 안에 작성해야한다. 배열 생성자에 하나의 숫자만 넣으면, 그 숫자만큼 빈 공간을 가진 배열이 생성된다. 
+
+배열 생성자의 값을 할당할 때에는 특정 요소를 넣으려면 여러 개의 값을 넣고 원하는 크기의 공간을 할당하려면 원하는 공간의 크기를 괄호 안에 작성해야한다. 배열 생성자에 하나의 숫자만 넣으면, 그 숫자만큼 빈 공간을 가진 배열이 생성된다.
 
 <br>
 
 - 배열 리터럴 사용하여 배열 생성
+
 ```js
 let array1 = [];
 
 console.log(array1); // []
 ```
+
 ```js
 let array1 = [1, 2, 3];
 let array2 = [3];
@@ -1733,10 +1798,13 @@ let array2 = [3];
 console.log(array1); // [1, 2, 3]
 console.log(array2); // [3]
 ```
+
 배열 리터럴을 통해 배열을 생성하고 배열의 값을 넣게되면 그 값이 순서대로 배열 요소로 저장된다. 배열 요소들은 객체 프로퍼티 값과 마찬가지로 타입에 상관없이 모든 요소들을 넣어줄 수 있다. <br>
 
 ::: details 배열 생성자와 배열 리터럴 차이
+
 - 배열 생성자
+
 ```js
 let array1 = new Array(1, 2, 3);
 let array2 = new Array(3);
@@ -1744,10 +1812,12 @@ let array2 = new Array(3);
 console.log(array1); // [1, 2, 3]
 console.log(array2); // [,,]
 ```
+
 크기만 지정할 때: <code>new Array(3)</code>처럼 숫자만 넣으면, 해당 숫자 크기의 빈 공간을 가진 배열이 생성된다. <br>
 값을 지정할 때: <code>new Array(1, 2, 3)</code>처럼 여러 값을 넣으면, 그 값들이 배열의 요소로 들어간다.
 
 - 배열 리터럴
+
 ```js
 let array1 = [1, 2, 3];
 let array2 = [3];
@@ -1755,11 +1825,13 @@ let array2 = [3];
 console.log(array1); // [1, 2, 3]
 console.log(array2); // [3]
 ```
-배열 리터럴을 사용한 배열 생성은 배열 안에 요소를 바로 넣는 것과 같다. 즉 []안에 값을 넣으면 그 값들이 배열의 요소로 들어간다. 
+
+배열 리터럴을 사용한 배열 생성은 배열 안에 요소를 바로 넣는 것과 같다. 즉 []안에 값을 넣으면 그 값들이 배열의 요소로 들어간다.
 :::
 <br>
 
 - 배열 요소에 다양한 자료형 넣기
+
 ```js
 let arr = [
   { name: "바켸빈" },
@@ -1769,16 +1841,18 @@ let arr = [
     console.log("hello world!");
   },
   null,
-  undefined
+  undefined,
 ];
 
 console.log(arr); // [object, 1, "array", f (), null, undefined]
 ```
 
 ### 배열 요소 접근
+
 배열은 데이터가 위치한 순서인 인덱스를 통해 배열 요소에 접근한다.
 
 - 배열 요소 출력
+
 ```js
 let arr = [1, "hello", null];
 
@@ -1788,7 +1862,7 @@ console.log(arr[2]); // null
 ```
 
 - 배열 요소 추가 <br>
-배열 내장 함수, 즉 <code>push()</code>메서드를 사용한다. push()는 배열의 이름 뒤에 작성되며 push()에 넘겨준 값을 해당 배열의 맨 마지막 요소로 추가하는 내장함수
+  배열 내장 함수, 즉 <code>push()</code>메서드를 사용한다. push()는 배열의 이름 뒤에 작성되며 push()에 넘겨준 값을 해당 배열의 맨 마지막 요소로 추가하는 내장함수
 
 ```js
 let arr = [1, "hello", null];
@@ -1796,10 +1870,11 @@ let arr = [1, "hello", null];
 arr.push(10);
 console.log(arr); // [1, "hello", null, 10]
 ```
+
 <br>
 
 - 배열 요소 추가: 배열 요소의 가장 앞쪽에 특정 값을 추가하고 싶을 때 <br>
-<code>unshift()</code>
+  <code>unshift()</code>
 
 ```js
 let arr = [1, "hello", null];
@@ -1811,6 +1886,7 @@ console.log(arr); // [5, 1, "hello", null]
 <br>
 
 - 배열 요소 수정<br>
+
 ```js
 let arr = [1, "hello", null];
 
@@ -1823,6 +1899,7 @@ console.log(arr); // [4, "hello", undefined]
 <br>
 
 - const로 선언된 배열의 요소 변경
+
 ```js
 const arr = [1, "hello", null];
 
@@ -1831,21 +1908,25 @@ arr[2] = undefined;
 
 console.log(arr); // [4, "hello", undefined]
 ```
+
 자바스크립트에서 배열은 객체로 분류되는 자료형으로 객체라고 볼 수 있기 때문에 객체와 동일하게 const로 선언된 배열의 요소를 수정하더라도 배열 자체의 참조를 수정하는 것이 아니어서 const로 선언된 배열의 요소 또한 수정 가능하다.<br>
 배열 자체를 다른 배열로 할당하는 것은 불가능하다. arr = [5, 6, 7]과 같은 재할당은 에러를 발생시킨다.
 
 <br>
 
 - 배열 요소 삭제 : 배열의 마지막 요소를 삭제하기 위해서는 <code>pop()</code>이라는 배열 내장함수를 사용
+
 ```js
 const arr = [1, "hello", null];
 
 arr.pop();
 console.log(arr); // [1, "hello"]
 ```
+
 <br>
 
 - 배열 요소 삭제 : 배열의 첫번째 요소를 삭제하기 위해서는 <code>shift()</code>이라는 배열 내장함수를 사용
+
 ```js
 const arr = [1, "hello", null];
 
@@ -1856,13 +1937,14 @@ console.log(arr); // ["hello", null]
 <br>
 
 - 배열의 길이<br>
-배열은 <code>length</code>라는 프로퍼티에 자신의 크기를 가지고 있다.
+  배열은 <code>length</code>라는 프로퍼티에 자신의 크기를 가지고 있다.
 
 ```js
 const arr = [1, "hello", null];
 
 console.log(arr.length); // 3
 ```
+
 ```js
 const arr = [1, "hello", null];
 
@@ -1870,21 +1952,23 @@ console.log(arr.length); // 3
 ```
 
 ## 반복문 (Loop)
+
 특정 작업을 반복적으로 수행할 때 사용
 
 ### for문
+
 조건에 따라 일정 횟수만큼 같은 코드를 반복 실행해야할 때 사용 <br>
 
 #### 문법
+
 ```js
 for (초기화식; 조건식; 증감식) {
   // 실행할 코드
 }
 ```
 
-#### ex)
 ```js
-for(let i = 1; i < 6; i++) {
+for (let i = 1; i < 6; i++) {
   console.log(i);
 }
 
@@ -1894,41 +1978,47 @@ for(let i = 1; i < 6; i++) {
 // 4
 // 5
 ```
+
 - 초기화식: <code>i</code>의 초기값을 <code>1</code>로 할당
 - 조건식: <code>i < 6</code>이 참이면 <code>console.log(i)</code> 실행하여 현재 i값 출력
 - 증감식: <code>i++</code>로 <code>i</code>값을 1증가
 - 조건을 만족하는 동안 위 과정 반복, <code>i</code>가 6이 되면 조건을 만족하지 않으므로 반복문 종료
 
 #### ex) 숫자 5부터 1까지 순서대로 출력
+
 ```js
-for (let i = 5; i > 0; i-- ) {
-  console.log(i)
+for (let i = 5; i > 0; i--) {
+  console.log(i);
 }
 
 // 5
 // 4
 // 3
 // 2
-// 1 
+// 1
 ```
 
 ### while문
+
 특정 조건이 참인 동안 반복적으로 코드를 실행한느 반복문
 
 #### 문법
+
 ```js
 while (조건식) {
- // 실행할 코드
+  // 실행할 코드
 }
 ```
+
 - 조건식이 <code>true</code>인 동안 <code>{}</code>안의 코드가 반복 실행
 - 조건식이 <code>false</code>가 되면 반복문 종료
 
 #### ex) 숫자 5부터 1까지 순서대로 출력
+
 ```js
 let i = 1;
 
-while (i < 6) { 
+while (i < 6) {
   console.log(i);
   i++;
 }
@@ -1944,12 +2034,13 @@ while문 괄호 안의 조건이 참인 동안 내부의 코드가 계속 실행
 
 <code>for문</code>, <code>while문</code>은 자바스크립트에서 배열의 모든 요소들에 접근해야 할 때 유용하게 사용됨
 
-- <code>for문</code>은 특정 변수의 초기값과 조건문을 설정한 후, 조건문을 비교하여 참이면 변수의 값을 증감시키며 코드를 반복 수행한다. 
+- <code>for문</code>은 특정 변수의 초기값과 조건문을 설정한 후, 조건문을 비교하여 참이면 변수의 값을 증감시키며 코드를 반복 수행한다.
 - <code>white문</code>은 단순히 괄호 안의 조건문을 확인하여 코드를 반복 수행한다.
 
 <br>
 
 #### for문을 사용한 배열의 모든 요소 순회
+
 ```js
 let arr = [1, 2, 3, 4, 5];
 
@@ -1958,54 +2049,56 @@ for (let i = 0; i < arr.length; i++) {
 }
 ```
 
-#### 객체의 프로퍼티 반복문을 활용해 순회 가능 
+#### 객체의 프로퍼티 반복문을 활용해 순회 가능
+
 #### 1. 객체를 배열로 변경하는 방법
 
 ```js
 let person = {
   name: "홍길동",
   age: 30,
-  height: 180
+  height: 180,
 };
 
 console.log(object.keys(person)); // ["name", "age", "height"]
 ```
+
 - 객체를 배열로 변경 object.keys 사용, 자바스크립트의 Object라는 객체 메서드로 매개 변수로 받은 객체의 키들을 모두 찾아 배열의 형태로 반환하는 객체 메서드
 - 객체를 키값들로만 이루어진 배열로 변환
 
+#### for문을 사용해 객체의 프로퍼티들 모두 순회
 
-#### for문을 사용해 객체의 프로퍼티들 모두 순회 
 ```js
 let person = {
   name: "홍길동",
   age: 30,
-  height: 180
+  height: 180,
 };
 
 let newArray = object.keys(person);
 
-for(let i = 0; i < newArray.length; i++) {
+for (let i = 0; i < newArray.length; i++) {
   let nowKey = newArray[i]; // person 객체의 key 값을 nowKey라는 변수를 통해 얻을 수 있음
-  console.log(`key: ${nowkey}, value: ${person[nowKey]}`); 
+  console.log(`key: ${nowkey}, value: ${person[nowKey]}`);
   // key: name, value: 홍길동
   // key: age, value: 30
   // key: height, value: 180
 }
 
-  console.log(object.keys(person)); // ["name", "age", "height"]
+console.log(object.keys(person)); // ["name", "age", "height"]
 ```
 
 - <code>newArray</code>라는 배열의 요소, 즉 person객체의 키값을 알고 있기 때문에 객체의 프로퍼티들을 모두 출력할 수 있다.
 
 #### 2. 객체를 배열로 변경하는 방법 <code>Object.values</code>
 
- <code>Object.values</code> 메서드는 매개변수로 객체를 넘기면 해당 객체의 values들을 모두 찾아 배열로 반환함
+<code>Object.values</code> 메서드는 매개변수로 객체를 넘기면 해당 객체의 values들을 모두 찾아 배열로 반환함
 
 ```js
 let person = {
   name: "홍길동",
   age: 30,
-  height: 180
+  height: 180,
 };
 
 let newArray = Object.valuse(person);
@@ -2021,20 +2114,21 @@ console.log(object.values(person)); // ["홍길동", 30, 180]
 ```
 
 #### 3. 객체를 배열로 변경하는 방법 <code>Object.entries</code>
+
 <code>Object.entries</code> 메서드는 객체를 받으면 키와 value 쌍의 형태로 배열을 반환함
 
 ```js
 let person = {
   name: "홍길동",
   age: 30,
-  height: 180
+  height: 180,
 };
 
 // 객체를 배열로 변환
 let newArray = Object.entries(person);
 
-for (let i = 0; i < newArray.length; i++ ) {
-  console.log(`key: ${newArray[i][0]}, value: ${newArray[i][1]}`)
+for (let i = 0; i < newArray.length; i++) {
+  console.log(`key: ${newArray[i][0]}, value: ${newArray[i][1]}`);
   // console.log() -> 반복문 안에서 실행 (newArray 안에 있는 값을 하나씩 꺼내서 보여줌)
   // key: name, value: 홍길동
   // key: age, value: 30
@@ -2042,7 +2136,7 @@ for (let i = 0; i < newArray.length; i++ ) {
 }
 
 // console.log() -> 배열 전체 출력 (Object.entries(person)를 한 번에 출력하는 코드)
-console.log(Object.entries(person)); 
+console.log(Object.entries(person));
 // [
 //   ["name", "홍길동"],
 //   ["age", 30],
@@ -2050,7 +2144,10 @@ console.log(Object.entries(person));
 // ]
 ```
 
-#### for of문 
+<br>
+
+#### for of문
+
 ```js
 let arr = [1, 2, 3, 4, 5];
 
@@ -2063,3 +2160,413 @@ for (let i of arr) {
   // 5
 }
 ```
+
+<br>
+
+#### for in 반복문
+
+<code>for in 반복문</code>은 객체를 순회할 때 사용하는 문법으로, 객체의 프로퍼티를 하나씩 꺼내서 반복할 수 있게 도와준다.
+<code>for문</code>과는 달리 객체를 배열로 따로 변환하지 않아도 바로 프로퍼티에 접근할 수 있는 것이 특징.
+
+```js
+let person = {
+  name: "홍길동",
+  age: 25,
+  height: 180,
+};
+
+for (let key in person) {
+  console.log(`key ${key}, value: ${person[key]}`);
+}
+
+// key name, value: 홍길동
+// key age, value: 25
+// key height, value: 180
+```
+
+## 배열 내장함수 (Array Methods)
+
+### 배열의 요소들을 순회할 수 있는 메서드
+
+#### <code>for문</code>을 사용해서 배열의 모든 요소에 접근
+
+```js
+let arr = [1, 2, 3, 4, 5];
+
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+
+// 1
+// 2
+// 3
+// 4
+// 5
+```
+
+<br>
+
+#### <code>forEach</code> 내장함수를 사용해 배열 요소에 접근
+
+```js
+let arr = [1, 2, 3, 4, 5];
+
+arr.forEach((item) => {
+  console.log(item);
+});
+
+// 콜백 함수의 매개변수 item은 arr배열의 각 요소를 가리키기 때문에
+// forEach 메서드를 사용하여 단순하게 코드를 작성할 수 있다.
+
+// 1
+// 2
+// 3
+// 4
+// 5
+```
+
+- <code>forEach</code>는 배열 전용 메서드 (배열 객체 Array.prototype에 정의된 메서드)이기 때문에 , 배열 이름 뒤에 점(.)을 찍고 사용한다.
+
+- <code>forEach</code>메서드는 배열의 각 요소에 대해 실행할 함수를 매개변수로 받는다. 즉, 함수를 인자로 전달하여 반복 작업을 수행할 수 있다. <code>for문</code>을 더 간결하게 대체할 수 있다. 단, <code>break</code>, <code>continue</code>를 사용할 수 없다는 점은 주의해야 한다.
+
+```js
+array.forEach((element, index, array) => {
+  // 반복 실행할 코드
+});
+```
+
+- <code>forEach</code>메서드에 전달하는 콜백 함수는 최대 3개의 매개변수를 받을 수 있다. 이 매개변수들은 각각 현재 요소의 값, 해당 요소의 인덱스, 원본 배열을 의미하며 필요한 것만 골라서 사용할 수 있다.
+
+<br>
+
+```js
+let arr = [1, 2, 3, 4, 5];
+
+arr.forEach((item, idx) => {
+  console.log(`${idx}번째 요소는 ${item}입니다.`);
+});
+
+// 0번째 요소는 1입니다.
+// 1번째 요소는 2입니다.
+// 2번째 요소는 3입니다.
+// 3번째 요소는 4입니다.
+// 4번째 요소는 5입니다.
+```
+
+- 콜백함수의 두 번째 매개변수는 배열 요소의 인덱스를 나타낸다.
+- <code>idx</code> 인덱스 매개변수는 선택적인 매개변수(함수가 받을 수는 있지만, 반드시 전달하지 않아도 되는 매개변수)로 첫 번째 매개변수의 옆에 두 번째 매개변수로 작성
+
+<br>
+
+```js
+let arr = [1, 2, 3, 4, 5];
+
+arr.forEach((item, idx, array) => {
+  console.log(`${idx}번째 요소는 ${item}입니다.`);
+  console.log(array);
+});
+
+// 0번째 요소는 1입니다.
+// [1, 2, 3, 4, 5]
+// 1번째 요소는 2입니다.
+// [1, 2, 3, 4, 5]
+// 2번째 요소는 3입니다.
+// [1, 2, 3, 4, 5]
+// 3번째 요소는 4입니다.
+// [1, 2, 3, 4, 5]
+// 4번째 요소는 5입니다.
+// [1, 2, 3, 4, 5]
+```
+
+- 콜백함수의 세 번째 매개변수는 배열 요소의 수만큼 동일한 배열을 출력하는 매개변수.
+
+<br>
+
+#### <code>map</code> 내장함수
+
+```js
+let arr = [1, 2, 3, 4, 5];
+
+let newArray = [];
+
+for (let i = 0; i < arr.length; i++) {
+  newArray.push(arr[i] * 10);
+}
+
+console.log(newArray);
+
+//[10, 20, 30, 40, 50]
+```
+
+- 위 코드는 배열의 모든 요소에 10을 곱한 값을 새로운 배열에 저장한다. 이처럼 배열을 변형하는 작업은<code>map</code> 메서드를 사용하면 짧고 직관적인 코드로 구현할 수 있다.
+
+<br>
+
+```js
+let arr = [1, 2, 3, 4, 5];
+
+let newArray = arr.map((element) => {
+  return element * 10;
+});
+
+console.log(newArray);
+
+//[10, 20, 30, 40, 50]
+```
+
+- <code>map</code>은 배열의 모든 요소를 일정한 방식으로 변환할 때 유용한 메서드
+- 콜백함수의 매개변수인 <code>element</code>는 arr 배열의 각 요소 값을 의미
+- <code>map</code> 메서드는 원본 배열은 변경하지 않고, 새로운 배열을 반환함
+
+```js
+array.map((element, index, array) => {
+  // 반환값
+});
+```
+
+- <code>map</code> 메서드는 최대 3개의 매개변수를 콜백 함수에 전달할 수 있다.
+- 현재 요소의 값, 현재 요소의 인덱스, 현재 실행중인 원본 배열
+
+<br>
+
+### 배열에서 특정 요소를 찾는 메서드
+
+#### <code>at</code>
+
+```js
+let colors = ["green", "blue", "purple"];
+console.log(colors[2]); // purple
+```
+
+- 배열에서 특정 위치의 값을 가져올 때 인덱스 번호를 이용한 대괄호 표기법 <code>[]</code>
+- <code>at</code> 메서드를 사용하면 더 유연하게 특정 요소를 가져올 수 있다.
+
+```js
+let colors = ["green", "blue", "purple"];
+console.log(colors.at(1)); // blue
+console.log(colors.at(-1)); // purple
+console.log(colors.at(-2)); // blue
+```
+
+- <code>at</code> 메서드를 활용하면 배열의 맨 마지막에 위치한 값을 불러올 수 있다.
+- 정수형 인덱스를 인자로 받고 음수 인덱스도 지원하여, 배열의 뒤쪽에서부터 요소를 쉽게 가져올 수 있다.
+
+<br>
+
+#### <code>includes</code> 메서드
+
+```js
+array.includes(searchElement, fromIndex);
+```
+
+- <code>includes</code>는 배열에 특정 요소가 포함되어 있는지 확인하고, 결과를 <code>boolean</code> 값으로 반환한다.
+- <code>includes</code>는 최대 2개의 매개변수를 받음
+- searchElement: 포함되어 있는지 찾고 싶은 값(필수)
+- fromIndex: 검색을 시작할 인덱스(선택)
+
+<br>
+
+```js
+let colors = ["green", "blue", "purple"];
+console.log(colors.includes("blue")); // true
+console.log(colors.includes("black")); // false
+```
+
+- 배열에 해당 값이 있으면 true, 없으면 false를 반환
+
+<br>
+
+```js
+let colors = ["green", "blue", "purple"];
+console.log(colors.includes("green", 1)); // false
+// 인덱스 1부터 검색, green은 인덱스 0이라 무시됨
+console.log(colors.includes("purple", 1)); // true
+```
+
+- 두 번째 매개변수를 사용하면 배열의 앞쪽 일부를 건너뛰고 검색할 수 있다.
+
+<br>
+
+#### <code>indexOf</code> 메서드
+
+```js
+array.indexOf(searchElement, fromIndex);
+```
+
+- 배열에서 지정한 값이 처음으로 나타내는 위치(인덱스)를 반환하는 함수. 만약 배열에 해당 값이 없으면 -1을 반환함
+- <code>indexOf</code>는 문자열, 숫자 등 기본 자료형 값만 찾을 수 있고, 객체나 배열처럼 참조형 값은 인덱스를 찾지 못한다.
+  이는 내부적으로 <code>===</code>엄격한 비교를 사용하기 때문이며, 내용이 같아도 참조가 다르면 -1을 반환한다.
+- <code>indexOf</code>는 최대 2개의 매개변수를 받음
+- searchElement: 찾고 싶은 값 (필수)
+- fromIndex: 검색을 시작할 인덱스 (선택, 기본값은 0)
+
+<br>
+
+```js
+let colors = ["green", "blue", "purple"];
+console.log(colors.indexOf("purple")); // 2
+console.log(colors.indexOf("black")); // -1
+```
+
+- 배열에서 지정한 값이 처음으로 나타나는 위치(인덱스)를 반환함
+- 배열에 해당 값이 없으면 -1을 반환함
+
+<br>
+
+```js
+let colors = ["green", "blue", "purple"];
+console.log(colors.indexOf("blue", 1)); // 1
+```
+
+- 두 번째 매개변수 fromIndex를 사용하면, 지정한 인덱스부터 검색을 시작할 수 있음
+
+<br>
+
+#### <code>findIndex</code> 메서드
+
+```js
+array.findIndex(callback(element, index, array), thisArg);
+```
+
+- <code>findIndex</code>는 배열의 모든 요소에 대해 순차적으로 콜백함수를 수행하며, 조건에 가장 먼저 만족하는 배열 요소의 index를 반환한다.
+- 최대 3개의 매개변수를 콜백 함수에 전달할 수 있다.
+- element: 현재 처리중인 요소
+- index: 현재 요소의 인덱스 (선택)
+- array: 현재 처리 중인 배열 전체 (선택)
+- thisArg: callback을 실행할 때 this로 사용할 값 (선택, 일반적으로 자주 쓰이지 않음)
+
+<br>
+
+```js
+let colors = [
+  { id: 1, color: "green" },
+  { id: 2, color: "blue" },
+  { id: 3, color: "purple" },
+];
+
+let idx = colors.findIndex((element) => element.color === "purple");
+
+console.log(idx); // 2
+```
+
+- 배열 요소의 값이 객체라면 color가 purple인 객체가 배열의 몇 번째 요소인지 찾기 위해서는 <code>indexOf</code>가 아닌
+  <code>findIndex</code>메서드를 사용해야한다.
+
+<br>
+
+```js
+let colors = [
+  { id: 1, color: "green" },
+  { id: 2, color: "blue" },
+  { id: 3, color: "purple" },
+];
+
+colors.findIndex((element, idx, array) =>
+  console.log(`${idx}번째 값은 id: ${element.id}, color: ${element.color} `)
+);
+colors.findIndex((element, idx, array) => console.log(array));
+
+// 0번째 값은 id: 1, color: green
+// 1번째 값은 id: 2, color: blue
+// 2번째 값은 id: 3, color: purple
+// [ { id: 1, color: "green" }, { id: 2, color: "blue" }, { id: 3, color: "purple" }]
+// [ { id: 1, color: "green" }, { id: 2, color: "blue" }, { id: 3, color: "purple" }]
+// [ { id: 1, color: "green" }, { id: 2, color: "blue" }, { id: 3, color: "purple" }]
+```
+
+<br>
+
+#### 화살표 함수의 반환 방식
+
+```js
+(element) => element.color === "purple";
+
+// 암시적 반환 (중괄호 없이)
+colors.findIndex((el) => el.color === "purple");
+
+// 명시적 반환 (중괄호 + return 사용)
+colors.findIndex((el) => {
+  return el.color === "purple";
+});
+```
+
+- 중괄호 없이 바로 조건식을 쓰는 방식으로 암시적 반환이라고 한다. 중괄호 없이 작성하면 return 키워드를 생략해도 자동으로 값이 반환된다.
+
+#### <code>find</code> 메서드
+
+```js
+array.find(callback(element, index, array), thisArg);
+```
+
+<br>
+
+```js
+let colors = [
+  { id: 1, color: "green" },
+  { id: 2, color: "blue" },
+  { id: 3, color: "purple" },
+];
+
+let idx = colors.find((element) => element.color === "purple");
+
+console.log(idx); // { id: 3, color: "purple" }
+```
+
+- 배열에서 조건을 만족하는 첫 번째 요소를 찾아 그 값을 반환하는 메서드, 조건을 만족하는 요소가 없다면 undefined 반환
+
+<br>
+
+::: tip
+
+특정 요소를 찾는 내장함수
+
+- <code>at</code>메서드<br>
+  : 배열의 가장 마지막 요소에 쉽게 접근할 수 있게 해주는 메서드
+- <code>includes</code>메서드<br>
+  : 배열 요소에 특정 값이 있는지 없는지 판별하는 내장함수
+- <code>indexOf</code>메서드<br>
+  : 특정 값을 지닌 요소가 몇 번째에 위치하는지 반환하는 함수
+- <code>findIndex</code>메서드<br>
+  : 배열의 요소가 객체로 이루어져 있을 경우 특정 값을 지닌 요소가 몇 번째에 위치하는지를 반환하는 함수
+- <code>find</code>메서드<br>
+  : 특정 값이 있는 요소의 그 값 자체를 반환하는 내장함수
+  :::
+
+### 특정 요소들의 값을 추출하는 메서드
+
+#### <code>filter</code> 메서드
+
+```js
+let colors = [
+  { id: 1, color: "green" },
+  { id: 2, color: "blue" },
+  { id: 3, color: "purple" },
+];
+
+let filterArray = colors.filter((element, idx, array) => element.id > 1);
+
+console.log(filterArray);
+// [{ id: 2, color: "blue" }, { id: 3, color: "purple" }]
+```
+
+- 배열에서 특정 조건을 만족하는 모든 요소를 새로운 배열로 반환하는 메서드
+- 조건을 만족하지 않으면 빈 배열을 반환함, 원본 배열은 변경되지 않는다.
+
+#### <code>slice</code> 메서드
+
+```js
+let colors = [
+  { id: 1, color: "green" },
+  { id: 2, color: "blue" },
+  { id: 3, color: "purple" },
+  { id: 4, color: "yellow" },
+];
+
+let sliceArray = colors.slice(1, 3);
+
+console.log(sliceArray);
+// [{ id: 2, color: "blue" }, { id: 3, color: "purple" }]
+```
+
+- 시작 인덱스부터 끝 인덱스 직전까지의 요소를 잘라 새로운 배열로 반환함, 원본 배열은 변경되지 않는다.
+- 두 개의 매개변수 (start, end)를 전달받으며, start부터 end -1 꺼지의 요소를 복사해 반환한다.

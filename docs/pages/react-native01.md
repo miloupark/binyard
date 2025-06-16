@@ -334,3 +334,7 @@ https://docs.expo.dev/versions/latest/sdk/securestore/
 // 토큰 암호화해서 저장
 npx expo install expo-secure-store
 ```
+
+### 로그인 연동하기
+
+- React-Query는 서버 상태를 가져오고 캐싱하고 동기화하거나 업데이트하는 작업을
