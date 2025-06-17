@@ -5,7 +5,7 @@ export default defineConfig({
   title: "Binyard",
   description: "Hyebin Vitepress Blog",
   srcDir: "./pages/",
-  base: "/binyard/",
+  base: "/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
@@ -27,7 +27,8 @@ export default defineConfig({
       {
         text: "HTML/CSS/SASS",
         collapsed: true,
-        items: [{ text: "HTML", link: "/html" },
+        items: [
+          { text: "HTML", link: "/html" },
           { text: "CSS", link: "/css" },
           { text: "SASS", link: "/sass" },
         ],
@@ -64,9 +65,7 @@ export default defineConfig({
       {
         text: "Git",
         collapsed: true,
-        items: [
-          { text: "git", link: "/git" },
-        ],
+        items: [{ text: "git", link: "/git" }],
       },
       {
         text: "Examples",

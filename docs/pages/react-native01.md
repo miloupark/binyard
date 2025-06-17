@@ -112,7 +112,7 @@ npx expo start
 
 ex 예시
 
-```jsx
+```shell
 <Tabs.Screen
   name="index"
   options={{
