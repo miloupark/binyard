@@ -2570,3 +2570,181 @@ console.log(sliceArray);
 
 - 시작 인덱스부터 끝 인덱스 직전까지의 요소를 잘라 새로운 배열로 반환함, 원본 배열은 변경되지 않는다.
 - 두 개의 매개변수 (start, end)를 전달받으며, start부터 end -1 꺼지의 요소를 복사해 반환한다.
+
+<br>
+
+#### <code>concat</code> 메서드
+
+```js
+const newArray = array1.concat(array2, array3, ...);
+
+```
+
+```js
+let array1 = ["green", "blue"];
+let array2 = ["purple", "yellow"];
+
+console.log(array1.concat(array2));
+
+// ['green', 'blue', 'purple', 'yellow']
+```
+
+- 두 개의 배열을 하나로 합쳐 새로운 배열로 반환하는 메서드
+- 기존 배열은 변경되지 않음(불변성 유지)
+
+<br>
+
+#### <code>join</code> 메서드
+
+```js
+let array1 = ["green", "blue", "purple", "yellow"];
+
+console.log(array1.join()); // green,blue,purple,yellow
+// 매개변수를 넣지 않으면 쉼표가 기본적인 구분자로 출력
+
+console.log(array1.join(" ")); // green blue purple yellow
+// space를 매개변수로 넣으면 공백 문자열이 구분자로 출력
+```
+
+- 배열을 하나로 합치는 메서드
+- <code>concat</code>과 다른점은, <code>join</code> 메서드는 하나의 배열에서 배열 요소들의 값을 문자열로 이어주는 메서드
+- <code>join</code> 메서드 내부에 들어가는 매개변수는 구분자로, 요소들을 합칠 때 사이에 어떤 문자를 넣을 것인지 결정할 수 있다. 매개변수를 넣어주지 않으면 쉼표(,)가 기본적으로 구분자로 출력됨
+
+<br>
+
+#### <code>sort</code> 메서드
+
+```js
+let colors = ["green", "blue", "purple"];
+colors.sort();
+
+console.log(colors); // ['blue', 'green', 'purple']
+```
+
+- 배열의 요소를 정렬하고 정렬된 배열을 반환하는 메서드
+- 정렬 기준을 지정하지 않으면 기본적으로 오름차순으로 정렬하며, 원본 배열을 직접 변경한다.
+
+```js
+const compare = (a, b) => {
+  if (a > b) return -1;
+  else if (a < b) return 1;
+  else return 0;
+};
+
+let colors = ["green", "blue", "purple"];
+colors.sort(compare);
+
+console.log(colors); // ['purple', 'green', 'blue']
+
+// 매개변수 a: 배열의 다음 요소, b: 배열의 이전 요소
+// 0보다 작은 값(-1 음수): a가 b보다 앞에 있어야 함
+// 0보다 큰 값(1 양수): b가 a보다 앞에 있어야 함
+// 0: 순서 유지
+```
+
+- 내림차순으로 정렬
+- 매개변수로 함수를 전달할 수 있다.
+
+<br>
+
+```js
+let numbers = [1, 100, 25, 50, 120, 3];
+numbers.sort();
+
+console.log(numbers); // [1, 100, 120, 25, 3, 50]
+```
+
+- 아무 인자 없이 호출하면, 배열 요소들을 문자열로 변환해서 유니코드(문자 코드) 순서로 정렬한다.
+- 즉, 숫자의 크기가 아니라 "문자열" 기준으로 정렬해서 이상한 순서로 나옴
+- 예를들어, 100은 25보다 유니코드 기준에서 앞서기 때문에 100이 먼저 나옴
+
+<br>
+
+```js
+// 오름차순 정렬
+const compare = (a, b) => {
+  return a - b;
+};
+
+let numbers = [1, 100, 25, 50, 120, 3];
+numbers.sort(compare);
+console.log(numbers); // [1, 3, 25, 50, 100, 120]
+```
+
+```js
+// 내림차순 정렬
+const compare = (a, b) => {
+  return b - a;
+};
+
+let numbers = [1, 100, 25, 50, 120, 3];
+numbers.sort(compare);
+console.log(numbers); // [120, 100, 50, 25, 3, 1]
+```
+
+- 숫자의 크기를 비교하는 함수를 만들어 sort메서드에 전달
+
+<br>
+
+#### <code>reduce</code> 메서드
+
+```js
+array.reduce(callback, initialValue);
+
+// callback: 배열의 각 요소를 처리하는 함수
+// initialValue: accumulator의 초기값 (선택)
+```
+
+```js
+// 콜백함수의 매개변수
+(accumulator, currentValue, currentIndex, array) => { ... }
+
+// accumulator: 콜백함수의 반환 값을 누적하는 매개변수
+// currentValue: 현재 처리할 요소의 값
+// currentIndex: 현재 처리할 배열 요소의 인덱스(선택)
+```
+
+- 배열의 각 요소를 순서대로 처리해, 하나의 결과 값으로 누적하여 반환하는 메서드
+
+```js
+let numbers = [1, 100, 25, 50];
+let sum = numbers.reduce((acc, cur, idx) => {
+  console.log(acc, cur, idx);
+  return acc + cur;
+}, 0);
+
+console.log(sum);
+
+// 0 1 0
+// 1 100 1
+// 101 25 2
+// 126 50 3
+// 176
+```
+
+<br>
+
+#### <code>isArray</code> 메서드
+
+```js
+Array.isArray(value);
+
+// value: 배열인지 확인하고 싶은 값
+```
+
+```js
+let a = Array.isArray([1, 100, 50]);
+let b = Array.isArray({ id: 3, color: "purple" });
+let c = Array.isArray("string");
+let d = Array.isArray(undefined);
+
+console.log(a, b, c, d); // true false false false
+```
+
+- 어떤 값이 배열인지 아닌지를 확인할 때 사용하는 메서드
+- 반환값은 배열이면 true, 배열이 아니면 false
+
+## 구조 분해 할당 (Destructuring Assignment)
+
+- 배열이나 객체의 요소 및 프로퍼티들을 분해해, 그 값들을 각각의 변수에 할당하는 자바스크립트 표현식
+- 왜 쓰는지? 코드를 간결하게 만들고 필요한 값만 빠르게 추출하기 위해
