@@ -2748,3 +2748,242 @@ console.log(a, b, c, d); // true false false false
 
 - 배열이나 객체의 요소 및 프로퍼티들을 분해해, 그 값들을 각각의 변수에 할당하는 자바스크립트 표현식
 - 왜 쓰는지? 코드를 간결하게 만들고 필요한 값만 빠르게 추출하기 위해
+
+<br>
+
+### 배열의 구조 분해 할당
+
+#### 일반적인 형태
+
+```js
+let colors = ["green", "blue", "purple"];
+
+let c1 = colors[0];
+let c2 = colors[1];
+let c3 = colors[2];
+
+console.log(c1); // green
+console.log(c2); // blue
+console.log(c3); // purple
+```
+
+- 위 작성한 코드를 구조 분해 할당을 사용해 간편하게 변경
+
+<br>
+
+```js
+let colors = ["green", "blue", "purple"];
+let [c1, c2, c3] = colors;
+
+console.log(c1); // green
+console.log(c2); // blue
+console.log(c3); // purple
+```
+
+- 배열의 구조 분해 할당은 배열의 요소들을 순서대로 분해하여 각 값을 변수에 할당하는 문법.
+- 대괄호 <code>[]</code> 안에 변수들을 나열하고, 오른쪽에 할당할 배열의 이름을 작성.
+- 위 코드를 선언 분리 할당으로 더 간편하게 변경
+
+<br>
+
+#### 선언 분리 구조 분해 할당
+
+```js
+let c1, c2, c3; // 변수만 먼저 선언
+[c1, c2, c3] = ["green", "blue", "purple"]; // 나중에 값 할당
+
+console.log(c1); // green
+console.log(c2); // blue
+console.log(c3); // purple
+```
+
+- 선언 분리 할당: 변수의 선언을 분리해서 배열의 값을 할당하는 방법
+- 왜 쓰는지? 변수를 먼저 선언해 놓고, 나중에 어떤 조건이나 상황에 따라 할당할 수도 있기 때문
+
+<br>
+
+#### 배열 요소 일부만 구조 분해 할당
+
+```js
+// 배열의 길이보다 적은 변수의 배열 요소 할당
+
+let c1, c2; // 선언 분리 할당
+[c1, c2] = ["green", "blue", "purple"];
+
+console.log(c1); // green
+console.log(c2); // blue
+```
+
+- 배열의 요소가 3개이지만, 변수는 2개만 선언된 경우 앞에서부터 순서대로 두 개의 값만 구조 분해되어 변수에 할당된다.
+
+<br>
+
+#### 기본값 설정
+
+```js
+let c1, c2, c3, c4; // 선언 분리 할당
+[c1, c2, c3, c4] = ["green", "blue", "purple"];
+
+console.log(c1); // green
+console.log(c2); // blue
+console.log(c3); // purple
+console.log(c4); // undefined
+```
+
+- 배열 구조 분해 할당에서 변수의 개수가 배열의 길이보다 많을 경우,
+  남는 변수에는 자동으로 undefined가 할당된다. 이러한 undefined라는 값이 할당되는 것을 원하지 않는다면, 변수에 기본값을 지정해 줄 수 있다.
+
+<br>
+
+```js
+let c1, c2, c3, c4;
+[c1, c2, c3, c4 = "yellow"] = ["green", "blue", "purple"];
+
+console.log(c1); // "green"
+console.log(c2); // "blue"
+console.log(c3); // "purple"
+console.log(c4); // "yellow"
+```
+
+- 변수에 기본값(yellow)을 지정하면, 할당할 배열 요소가 없을 경우 undefined가 아닌 해당 기본값이 출력된다.
+
+<br>
+
+#### 변수 값 교환하기
+
+```js
+let a = 10;
+let b = 5;
+
+[a, b] = [b, a];
+
+console.log(a, b); // 5 10
+```
+
+- 배열의 구조분해는 배열의 요소의 값을 추출할 때 자주 사용하지만, 두 개의 변수 값을 서로 바꿀 때 사용되기도 한다.
+- 자바스크립트는 평가 순서에 따라 오른쪽을 평가하여 값을 계산한 뒤, 그 결과를 왼쪽 변수애 할당한다. 즉, 오른쪽 [b, a]는 현재 값[5, 10]으로 평가되고, 이 배열의 요소들이 왼쪽의 [a, b] 변수에 차례로 할당된다.
+
+<br>
+
+### 객체의 구조 분해 할당
+
+#### 기본 할당
+
+```js
+let colors = {
+  c1: "green",
+  c2: "blue",
+  c3: "purple",
+};
+
+let c1 = colors.c1;
+let c2 = colors.c2;
+let c3 = colors.c3;
+
+console.log(c1); // green
+console.log(c2); // blue
+console.log(c3); // purple
+```
+
+- 위 코드는 구조 분해 할당을 사용하면 더 간단하게 작성할 수 있다.
+
+<br>
+
+```js
+let colors = {
+  c1: "green",
+  c2: "blue",
+  c3: "purple",
+};
+
+let { c1, c2, c3 } = colors;
+
+console.log(c1); // green
+console.log(c2); // blue
+console.log(c3); // purple
+```
+
+- 객체의 구조 분해 할당은 대괄호가 아닌, 중괄호를 사용한다.
+- 객체의 key 값을 기준으로 해당 값을 같은 이름의 변수에 할당한다.
+
+<br>
+
+#### 새로운 변수 이름으로 할당하기
+
+```js
+let colors = {
+  c1: "green",
+  c2: "blue",
+  c3: "purple",
+};
+
+let color1 = colors.c1;
+let color2 = colors.c2;
+let color3 = colors.c3;
+
+console.log(color1); //green
+console.log(color2); //blue
+console.log(color3); //purple
+```
+
+- 위 코드는 구조 분해 할당을 사용하면 더 간단하게 작성할 수 있다.
+
+<br>
+
+```js
+let colors = {
+  c1: "green",
+  c2: "blue",
+  c3: "purple",
+};
+
+let { c1: color1, c2: color2, c3: color3 } = colors;
+// colors는 객체를 담고 있는 변수이고,
+// 그 안의 프로퍼티 key인 c1, c2, c3의 값을
+// 새로운 변수 color1, color2, color3에 할당
+
+console.log(color1); // green
+console.log(color2); // blue
+console.log(color3); // purple
+```
+
+- 객체의 key 값을 변수의 이름으로 사용하지 않고, 다른 이름을 갖는 변수에 할당하는 방법
+- 객체의 프로퍼티 이름과 다른 변수 이름으로 값을 할당하고 싶을 때는 <code>:(콜론)</code>을 사용해, 다른 이름의 변수명으로 구조 분해할 수 있다.
+- 객체의 key <code>:</code> 새로운 변수 이름
+
+#### 기본값 설정
+
+```js
+let colors = {
+  c1: "green",
+  c2: "blue",
+  c3: "purple",
+};
+
+let { c1, c2, c3, c4 } = colors;
+
+console.log(c1); // green
+console.log(c2); // blue
+console.log(c3); // purple
+console.log(c4); // undefined
+```
+
+- 객체에 존재하지 않는 프로퍼티 c4를 구조 분해 할당하면, 해당 변수에는 undefined가 할당된다.
+
+```js
+let colors = {
+  c1: "green",
+  c2: "blue",
+  c3: "purple",
+};
+
+let { c1, c2, c3, c4 = "yellow" } = colors;
+
+console.log(c1); // green
+console.log(c2); // blue
+console.log(c3); // purple
+console.log(c4); // yellow
+```
+
+- 변수의 수가 객체 프로퍼티의 수보다 클 경우, undefined가 할당되는 변수에 기본값을 설정할 수 있다.
+- 위 예제에서는 c4가 colors 객체에 존재하지 않기 때문에, 기본값으로 설정한 yellow가 c4에 할당된다.
