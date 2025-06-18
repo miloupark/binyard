@@ -2987,3 +2987,223 @@ console.log(c4); // yellow
 
 - 변수의 수가 객체 프로퍼티의 수보다 클 경우, undefined가 할당되는 변수에 기본값을 설정할 수 있다.
 - 위 예제에서는 c4가 colors 객체에 존재하지 않기 때문에, 기본값으로 설정한 yellow가 c4에 할당된다.
+
+## Spread / Rest 문법
+
+### spread 문법
+
+- <code>...</code> 을 사용해 배열이나 객체의 값을 펼쳐서 나열하는 문법
+- <code>spread</code>문법은 객체 뿐만 아니라 배열에서도 사용 가능하다.
+
+#### 객체
+
+```js
+const toy = {
+  type: "bear",
+  price: 15000,
+};
+
+const blueToy = {
+  type: "bear",
+  price: 15000,
+  color: "blue",
+};
+
+const yellowToy = {
+  type: "bear",
+  price: 15000,
+  color: "yellow",
+};
+```
+
+- blueToy, yellowToy 객체와 toy의 객체 프로퍼티 중 type, price 값이 동일하다.
+- spread 문법을 사용해 간단하게 작성할 수 있다.
+
+<br>
+
+```js
+const toy = {
+  type: "bear",
+  price: 15000,
+};
+
+const blueToy = {
+  ...toy,
+  color: "blue",
+};
+
+const yellowToy = {
+  ...toy,
+  color: "yellow",
+};
+
+console.log(blueToy); // {type: 'bear', price: 15000, color: 'blue'}
+console.log(yellowToy); // {type: 'bear', price: 15000, color: 'yellow'}
+```
+
+- 반복되는 프로퍼티들을 포함하는 객체의 이름을 <code>...</code> 뒤에 작성
+- blueToy, yellowToy의 프로퍼티에 toy의 객체 프로퍼티인 type: "bear", price: 15000가 할당된다.
+
+<br>
+
+#### 배열
+
+```js
+const color1 = ["red", "orange", "yellow"];
+const color2 = ["blue", "navy", "purple"];
+
+const rainbow = [...color1, "green", ...color2];
+
+console.log(rainbow);
+// ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple']
+```
+
+### rest 문법
+
+- <code>...</code> 기호를 사용해서 남은 값들을 하나의 배열이나 객체로 모아서 저장하는 문법.
+- 나머지 변수라고도 한다.
+
+<br>
+
+#### 객체
+
+```js
+const blueToy = {
+  type: "bear",
+  price: 15000,
+  color: "blue",
+};
+
+const { type, price, color } = blueToy;
+
+console.log(type); // bear
+console.log(price); // 15000
+console.log(color); // blue
+```
+
+- 객체에서 rest는 구조 분해 할당과 함께 사용된다.
+
+<br>
+
+```js
+const blueToy = {
+  type: "bear",
+  price: 15000,
+  color: "blue",
+};
+
+const { type, ...rest } = blueToy;
+
+console.log(type); // bear
+console.log(rest); // {price: 15000, color: 'blue'}
+```
+
+- <code>rest</code> 문법을 사용하면, 구조 분해 할당에서 원하는 값들을 추출하고 나머지 값들을 별도의 객체로 묶어서 할당할 수 있다.
+- 위 예제에서 type 프로퍼티를 분해해 변수로 꺼내고, 나머지 프로퍼티들인 price, color은 <code>rest</code> 객체에 묶여 할당했다.
+- <code>rest</code> 변수는 객체의 형태로 출력되고 객체 안에는 blueToy 객체 프로퍼티 중 type 값을 제외한 나머지 값들이 출력된다.
+
+  <br>
+
+```js
+const blueToy = {
+  type: "bear",
+  price: 15000,
+  color: "blue",
+};
+
+const { ...rest, type } = blueToy;
+
+console.log(type);
+console.log(rest);
+// Uncaught SyntaxError: Rest element must be last element
+```
+
+- <code>rest 문법은</code> 구조 분해에서 한 번만 사용 가능하고, 반드시 마지막에 위치해야한다.
+- 이는 구조 분해 할당에서 남은 값을 모아 하나의 객체로 할당하는 방식이기 때문에, 이후에 또 다른 프로퍼티를 분해하려하면 어떤 값이 남은 값인지 판단할 수 없게 되기 때문이다.
+
+<br>
+
+#### 배열
+
+```js
+const color = ["red", "orange", "yellow", "green"];
+const [c1, c2, ...rest] = color;
+
+console.log(c1); // red
+console.log(c2); // orange
+console.log(rest); // ['yellow', 'green']
+```
+
+- <code>rest 문법을</code> 사용해 color 배열에서 c1, c2에 값을 먼저 할당하고, 나머지 요소들은 rest라는 변수에 배열 형태로 담음
+
+<br>
+
+### 함수에서의 spread / rest 문법
+
+#### rest 문법을 함수의 매개변수에서 사용하는 방법
+
+```js
+const print = (a, b, c, d, e, f) => {
+  console.log([c, d, e, f]);
+};
+
+print(1, 2, 3, 4, 5, 6); // [3, 4, 5, 6]
+```
+
+<br>
+
+```js
+const print = (a, b, ...rest) => {
+  console.log(a, b, rest);
+};
+
+print(1, 2, 3, 4, 5, 6); // 1 2 [3, 4, 5, 6]
+```
+
+- 함수의 매개변수에 <code>...rest</code> 문법을 사용하면, 넘겨받은 여러 개의 인자 중 나머지 값들이 rest라는 배열 형태의 변수에 담긴다.
+- <code>rest</code> 매개변수는 함수에 전달되는 인자의 수가 많거나, 몇 개인지 정확히 모를 때 사용할 수 있는 문법
+
+<br>
+
+#### 함수에서 spread, rest 문법 모두 사용
+
+```js
+const print = (a, b, c, d, e, f) => {
+  console.log(a, b, c, d, e, f); // 1, 2, 3, 4, 5, 6
+};
+
+const numbers = [1, 2, 3, 4, 5, 6];
+
+print(numbers[0], numbers[1], numbers[2], numbers[3], numbers[4], numbers[5]);
+```
+
+- print 함수에 6개의 매개변수를 직접 작성하면, 배열의 요소가 변할 때마다 코드 수정과 오류 위험이 생김.
+- 아래와 같이 rest 문법을 사용해 가변적인 인수를 한 번에 처리할 수 있다.
+
+  <br>
+
+```js
+const print = (...rest) => {
+  // rest
+  console.log(rest); // [1, 2, 3, 4, 5, 6]
+};
+
+const numbers = [1, 2, 3, 4, 5, 6];
+print(...numbers); // spread
+```
+
+- ...rest는 함수 매개변수에서 사용되며, 전달받은 인수들을 하나의 배열로 묶는다.
+- ...number는 spread 문법으로 배열의 요소들을 각각 개별 인수처럼 펼쳐서 함수에 전달한다.
+
+::: tip
+<code>spread 문법</code>
+
+- 배열이나 객체의 값을 퍼트릴 때 사용
+- 함수 호출 시, 인수를 펼쳐서 전달할 때 사용
+
+<br>
+<code>rest 문법</code>
+
+- 구조 분해 시, 나머지 값을 하나로 묶을 때 사용
+- 함수의 매개변수에서 가변 인자를 배열로 받을 때 사용
+  :::
