@@ -3306,3 +3306,198 @@ work(() => {
 
 - <code>console.log("종료");</code> 명령을 콜백 함수로 만들어 <code>work</code>라는 비동기 함수에 인자로 넘겨줌. <code>work</code> 함수 내부에서 비동기 작업이 끝난 후, 전달한 콜백 함수가 실행되어 종료가 출력된다.
 
+## Promise 객체
+
+- 비동기 작업을 편리하게 처리하는 자바스크립트 내장 객체
+- 콜백 지옥 문제를 줄여주고, 가독성을 높여준다.
+
+#### Promise 객체 생성법
+
+```js
+const executor = (resolve, reject) => {
+  // 비동기 작업을 수행하고 성공 시 resolve(), 실패 시 reject()를 호출
+};
+
+const promise = new Promise(executor);
+// new 키워드를 통해  Promise 객체를 생성하고 executor 함수를 인수로 전달
+```
+
+- Promise 객체를 생성할 때 <code>executor</code>실행함수를 인수로 전달해야 한다.
+- <code>executor</code> 함수는 반드시 두 개의 매개변수 resolve, reject를 받아야 한다.
+- 이 실행함수는 Promise가 생성되자마자 자동으로 실행되며, 내부에서 비동기 작업을 처리한 후 결과에 따라 resolve() 또는 reject()를 호출한다.
+- 즉, <code>executor</code>는 비동기 작업의 흐름을 제어하는 함수이며, Promise의 핵심 역할을 담당한다.
+
+<br>
+
+#### Promise 내부 프로퍼티
+
+- 프로미스는 객체는 state, result 두 개의 내부 프로퍼티를 갖는다.
+- new Promise(executor) 객체는 초기에 state: pending, result: undefined 값을 가진다.
+- 이후 resolve(value)가 호출되면 state: fulfilled, result: value로 변경된다.
+- 반대로 reject(error)가 호출되면 state: rejected, result: error로 변경된다.
+- 프로미스는 상태가 정해지면 그 이후의 resolve와, reject는 무시된다.
+
+<br>
+
+#### resolve() / reject()
+
+```js
+// 3초 후에 실행되는 비동기 함수를 Promise 객체를 이용해 구현
+const executor = (resolve, reject) => {
+  setTimeout(() => {
+    console.log("3초만 기다리세요");
+  }, 3000);
+};
+const promise = new Promise(executor);
+```
+
+- 두 함수는 자바스크립트가 자동으로 <code>executor</code> 함수에 전달해주는 함수들이다. <code>executor</code>가 호출될 때, 매개변수로 들어간다.
+- <code>resolve()</code> : 비동기 처리 성공 시 호출
+- <code>reject()</code> : 비동기 처리 실패 시 호출
+
+<br>
+
+#### .then()
+
+```js
+// 3초 후에 성공을 출력하는 비동기 함수
+const executor = (resolve, reject) => {
+  setTimeout(() => {
+    resolve("성공");
+  }, 3000);
+};
+
+const promise = new Promise(executor);
+promise.then((result) => {
+  console.log(result); // 성공
+});
+```
+
+- <code>.then()</code> 메서드는 Promise 작업이 성공했을 때 실행되는 메서드
+- executor 함수에서 비동기 처리된 결과를 반환할 때는, 매개변수로 받은 resolve 콜백함수에 결과값을 전달하면 된다.
+- 이렇게 resolve에 전달한 값은 Promise 객체의 <code>.then()</code> 메서드에서 사용할 수 있고,
+  <code>.then()</code>의 콜백함수는 이 값을 매개변수로 받아 처리하게 된다.
+
+<br>
+
+#### .catch()
+
+```js
+// 비동기 작업이 성공했을 때와 실패했을 때 처리하는 방법
+const executor = (resolve, reject) => {
+  setTimeout(() => {
+    reject("실패");
+  }, 3000);
+};
+
+const promise = new Promise(executor);
+promise
+  .then((result) => {
+    console.log(result); // 성공
+  })
+  .catch((result) => {
+    console.log(result); // 실패
+  });
+```
+
+- <code>.catch()</code> 메서드는 Promise 작업이 실패했을 때 실행되는 메서드
+- 작업이 실패하면, <code>.then()</code> 메서드는 실행되지 않고, <code>.catch()</code> 메서드만 실행된다.
+
+#### 콜백 지옥을 해결하는 Promise 객체
+
+```js
+// executor 함수를 별도로 작성하지 않고 바로 콜백함수로 넣어줌
+
+const workA = (value) => {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(value + 5);
+    }, 5000);
+  });
+  return promise;
+};
+
+const workB = (value) => {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(value - 3);
+    }, 3000);
+  });
+  return promise;
+};
+
+const workC = (value) => {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(value + 10);
+    }, 10000);
+  });
+  return promise;
+};
+
+workA(10).then((resultA) => {
+  console.log(`1. ${resultA}`);
+  workB(resultA).then((resultB) => {
+    console.log(`2. ${resultB}`);
+    workC(resultB).then((resultC) => {
+      console.log(`3. ${resultC}`);
+    });
+  });
+});
+
+// 1. 15
+// 2. 12
+// 3. 22
+```
+
+#### 프로미스 체이닝
+
+```js
+const workA = (value) => {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(value + 5);
+    }, 5000);
+  });
+  return promise;
+};
+
+const workB = (value) => {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(value - 3);
+    }, 3000);
+  });
+  return promise;
+};
+
+const workC = (value) => {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(value + 10);
+    }, 10000);
+  });
+  return promise;
+};
+
+workA(10)
+  .then((resultA) => {
+    console.log(`1. ${resultA}`);
+    return workB(resultA);
+  })
+  .then((resultB) => {
+    console.log(`2. ${resultB}`);
+    return workC(resultB);
+  })
+  .then((resultC) => {
+    console.log(`3. ${resultC}`);
+  });
+
+// 1. 15
+// 2. 12
+// 3. 22
+```
+
+- 프로미스 체이닝이란 프로미스 객체를 반환하며 <code>.then()</code> 메서드를 연속으로 사용하는 것
+- .then 메서드의 콜백함수 안에서, WorkB 함수를 리턴하는 방식
+- workB 함수가 반환되게 되면, workB 함수의 반환값인 Promise 객체가 반환되는 것이기 때문에 다시 한번 .then을 사용할 수 있게된다.
