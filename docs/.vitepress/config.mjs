@@ -14,7 +14,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "About", link: "/study/about" },
-      { text: "OZ", link: "/OZ/warmingup01" },
+      { text: "OZ", link: "/OZ/intro" },
       { text: "Javascript", link: "/study/javascript" },
     ],
 
