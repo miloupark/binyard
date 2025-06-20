@@ -4149,3 +4149,100 @@ buttonElement.addEventListener("click", () => {
 - addEventListener 메서드는 이벤트 종류 외에 listener라는 함수도 매개변수로 받는다. 이 함수는 지정한 이벤트가 발생했을 때 실행된다.
   위 예시에서 버튼을 클릭하면 window.alert 메서드를 호출해 경고창을 띄우는 함수를 전달한다.
 - window 객체는 현재 사용하고 있는 웹 브라우저의 창을 나타내며, 경고창을 띄우는 alert, 확인과 취소의 버튼이 있는 confirm과 같은 다양한 메서드들을 포함한다.
+
+## Date 객체
+
+- <code>Date</code>는 날짜와 시간을 다루기 위한 자바스크립트의 내장 객체
+- 현재 날짜와 시간, 혹은 특정 날짜와 시간을 생성하고 조작할 수 있다.
+
+```js
+// YYYY-MM-DD
+
+let birth = new Date("1996-04-07");
+
+console.log(birth);
+// Sun Apr 07 1996 09:00:00 GMT+0900 (한국 표준시)
+```
+
+- Date 객체에 특정 날짜를 전달하면, 해당 날짜의 연도, 월 일, 요일을 알 수 있다.
+- 날짜만 넣으면 시간은 00:00:00(자정)으로 자동 설정된다.
+- 다만, 09:00:00으로 출력된 이유는 타임존(Timezone) 때문이다. 자바스크립트가 입력된 날짜를 UTC(협정 세계시) 기준 자정(00:00:00)으로 해석하고, 이후 브라우저가 실행되는 컴퓨터 시간대(GMT+9, 한국 표준시)를 적용해서 출력하기 때문이다. (한국 표준시는 UTC보다 9시간 빠르다)
+
+<br>
+
+```js
+let nowDate = new Date();
+console.log(nowDate);
+// Sat Jun 21 2025 00:13:27 GMT+0900 (한국 표준시)
+```
+
+- Date 객체에 아무런 값도 전달하지 않으면 오늘의 연도, 월 일, 요일, 시간이 출력된다.
+
+<br>
+
+#### Date의 메서드
+
+#### 날짜
+
+```js
+let nowDate = new Date();
+let month = nowDate.getMonth();
+let date = nowDate.getDate();
+let day = nowDate.getDay();
+
+console.log(`${month}월 ${date}일 ${day}요일`);
+// 5월 21일 6요일
+```
+
+```js
+const week = ["일", "월", "화", "수", "목", "금", "토"];
+let nowDate = new Date();
+let month = nowDate.getMonth() + 1;
+let date = nowDate.getDate();
+let day = nowDate.getDay();
+
+console.log(`${month}월 ${date}일 ${week[day]}요일`);
+// 6 월 21일 토요일
+```
+
+#### <code>getMonth</code>
+
+- Date 객체에서 월(0~11)을 반환하는 메서드
+- Date 객체에서는 반환값은 0부터 시작하므로, 1월을 0, 12월을 11로 표기한다.
+- 따라서 getMonth()의 결과를 사람이 이해하는 월로 표현하려면, 결과값에 1을 더해야 한다.
+
+#### <code>getDate</code>
+
+- 해당 날짜의 일(1~31) 을 반환하는 메서드
+- getMonth()와는 달리, getDate()는 우리가 흔히 사용하는 날짜(1일부터 시작)를 그대로 반환한다.
+
+#### <code>getDay</code>
+
+- 특정 날짜의 요일 정보를 숫자로 반환하는 메서드
+- 일요일부터 토요일까지 순서대로 0 부터 6까지의 숫자로 요일을 반환하기 때문에 우리가 익숙한 요일 이름으로 나타내고 싶다면, 요일 이름이 담긴 배열과 함께 사용해야 한다.
+
+<br>
+
+#### 시간
+
+```js
+let nowDate = new Date();
+let hours = nowDate.getHours();
+let minutes = nowDate.getMinutes();
+
+console.log(`${hours}:${minutes}`);
+
+// 현재 시간 출력
+```
+
+#### <code>getHours</code>
+
+- Date 객체에서 시간(0~23) 을 반환한다.
+
+#### <code>getMinutes</code>
+
+- Date 객체에서 분(0~59) 을 반환한다.
+
+#### <code>getSeconds</code>
+
+-Date 객체에서 초(0~59) 를 반환한다.
