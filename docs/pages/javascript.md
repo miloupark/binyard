@@ -4012,3 +4012,140 @@ clockElement.textContent = "12:00";
 
 - <code>textContent</code>는 해당 요소 내부의 모든 텍스트 콘텐츠를 가져오거나 변경할 수 있는 속성
 - 즉, HTML 태그를 제외한 순수한 텍스트만을 다루고 싶을 때 사용
+
+<br>
+
+#### 3. 요소 노드 생성
+
+#### createElement(tagName)
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="today-info">
+      <div class="date" id="date">02.10.금요일</div>
+      <div class="clock" id="clock">15:03</div>
+      <!-- <div class="season">spring</div> -->
+    </div>
+  </body>
+</html>
+```
+
+```less
+Document
+└── html
+    └── body
+        └── div.today-info
+            ├── div.date (#date)
+            ├── div.clock (#clock)
+            // └── div.season (#season)
+```
+
+```js
+// 1. textContent를 사용해 spring 텍스트 추가
+
+const seasonElement = document.createElement("div"); // div 요소 생성
+seasonElement.classList.add("season"); // div에 season 클래스 추가
+
+seasonElement.textContent = "spring";
+
+// 결과: <div class="season">spring</div>
+```
+
+- <code>createElement</code> 메서드를 통해 새로운 요소 노드를 생성하고, <code>textContent</code>로 텍스트 추가
+- 이 방식은 간단하고 직관적이며, 텍스트가 복잡하지 않을 때 많이 쓰인다.
+
+<br>
+
+```js
+// 2. createTextNode 메서드를 사용해 spring 텍스트 노드 생성
+
+const seasonElement = document.createElement("div"); // div 요소 생성
+seasonElement.classList.add("season"); // div에 season 클래스 추가
+
+const seasonText = document.createTextNode("spring");
+
+// 결과: <div class="season">spring</div>
+```
+
+- <code>createElement</code> 메서드를 사용해 새로운 요소 노드를 생성
+- <code>createTextNode</code>는 텍스트만 담긴 별도의 텍스트 노드를 생성하며, 아직 DOM Tree에 추가된 것은 아니다. 이 텍스트 노드는 <code>appendChild()</code>등을 통해 부모 요소에 추가해야한다.
+- 이 방식은 텍스트 노드를 더 세밀하게 제어하거나, 여러 텍스트 노드를 합성하는 등 더 유연한 조작이 필요할 때 유용하다.
+
+<br>
+
+```js
+const seasonElement = document.createElement("div"); // div 요소 생성
+seasonElement.classList.add("season"); // div에 season 클래스 추가
+
+const seasonText = document.createTextNode("spring"); // 텍스트 노드 생성
+seasonElement.appendChild(seasonText); // 텍스트 노드를 <div class="season">에 추가
+
+const todayInfoElement = document.querySelector("div.today-info"); // 기존 html의 안에
+todayInfoElement.appendChild(seasonElement); // 완성된 div를 DOM에 추가
+
+// <div class="season">spring</div>가 추가된 것을 확인할 수 있음
+```
+
+- createElement와 createTextNode는 실제로 DOM에 바로 추가되는 것이 아니라, 브라우저 메모리 상에 임시로 만들어진 노드들이다.
+- 이 노드들은 appendChild()를 호출해야 실제로 DOM에 삽입되고, 브라우저 화면에도 렌더링된다.
+- appendChild()는 지정한 요소의 마지막 자식으로 노드를 추가한다. 따라서 이미 자식이 있는 요소에 추가하면, 그 맨 끝에 붙게 된다.
+- 따라서 이미 자식 노드가 있을 경우, 새 노드는 맨 뒤에 붙는다.
+
+<br>
+
+```js
+// 추가 예시
+const buttonElement = document.createElement("div"); // div 생성
+buttonElement.classList.add("button"); // div에 button 클래스 추가
+buttonElement.textContent = "버튼"; // 텍스트 버튼 추가
+
+// DOM에 추가
+const todayInfoElement = document.querySelector("div.today-info"); // 기존 요소 선택
+todayInfoElement.appendChild(buttonElement); // 새로 만든 div를 DOM에 추가
+
+// 문서 내 모든 div 요소를 HTMLCollection 형태로 출력
+console.log(document.getElementsByTagName("div"));
+```
+
+- createElement로 새로운 div 요소를 생성하고, classList.add로 button 클래스를 추가
+- textContent를 사용해 내부 텍스트를 "버튼"으로 설정
+- querySelector로 기존 문서에서 .today-info 클래스를 가진 요소를 선택하고, appendChild를 이용해 새로 만든 버튼 요소를 자식으로 추가
+- 마지막으로 getElementsByTagName("div")를 호출해 현재 문서 내 모든 div 요소를 가져오며, 새로 추가된 buttonElement도 포함되어 출력
+- getElementsByTagName은 실시간 컬렉션을 반환하므로, DOM 변경 사항이 즉시 반영된다.
+
+<br>
+
+#### addEventListener
+
+```js
+element.addEventListener(eventType, listenerFunction);
+```
+
+- addEventListener는 DOM 요소에 이벤트를 등록할 수 있는 메서드이다.
+- eventType (문자열): 등록할 이벤트 종류
+- listenerFunction 함수: 이벤트가 발생했을 때 실행될 함수
+
+<br>
+
+```js
+// 추가 예시
+const buttonElement = document.createElement("div");
+buttonElement.classList.add("button");
+buttonElement.textContent = "버튼";
+
+// DOM에 추가
+const todayInfoElement = document.querySelector("div.today-info");
+todayInfoElement.appendChild(buttonElement);
+
+buttonElement.addEventListener("click", () => {
+  window.alert("클릭");
+});
+
+// 결과: 버튼 텍스트를 누르면, 클릭이라는 단어가 적힌 경고창이 실행된다.
+```
+
+- addEventListener 메서드는 이벤트 종류 외에 listener라는 함수도 매개변수로 받는다. 이 함수는 지정한 이벤트가 발생했을 때 실행된다.
+  위 예시에서 버튼을 클릭하면 window.alert 메서드를 호출해 경고창을 띄우는 함수를 전달한다.
+- window 객체는 현재 사용하고 있는 웹 브라우저의 창을 나타내며, 경고창을 띄우는 alert, 확인과 취소의 버튼이 있는 confirm과 같은 다양한 메서드들을 포함한다.
