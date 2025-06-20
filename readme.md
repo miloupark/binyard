@@ -1,3 +1,3 @@
 # Personal Growth Archives
 
-[Binyard 아카이빙](https://binyard.me/binyard/)
+### [🐣 FE 공부 기록 블로그](https://binyard.me/)
