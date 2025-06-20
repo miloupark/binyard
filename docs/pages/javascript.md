@@ -3044,8 +3044,6 @@ console.log(yellowToy); // {type: 'bear', price: 15000, color: 'yellow'}
 - 반복되는 프로퍼티들을 포함하는 객체의 이름을 <code>...</code> 뒤에 작성
 - blueToy, yellowToy의 프로퍼티에 toy의 객체 프로퍼티인 type: "bear", price: 15000가 할당된다.
 
-<br>
-
 #### 배열
 
 ```js
@@ -3102,7 +3100,7 @@ console.log(rest); // {price: 15000, color: 'blue'}
 - 위 예제에서 type 프로퍼티를 분해해 변수로 꺼내고, 나머지 프로퍼티들인 price, color은 <code>rest</code> 객체에 묶여 할당했다.
 - <code>rest</code> 변수는 객체의 형태로 출력되고 객체 안에는 blueToy 객체 프로퍼티 중 type 값을 제외한 나머지 값들이 출력된다.
 
-  <br>
+<br>
 
 ```js
 const blueToy = {
@@ -3747,26 +3745,270 @@ getData();
 
 ### DOM(Document Object Model)
 
-- HTML 문서를 브라우저가 객체 형태로 변환한 구조입니다. 자바스크립트가 이 구조를 통해 웹 페이지를 읽고, 수정하고, 조작할 수 있다.
+- 문서 객체 모델
+- HTML을 브라우저가 객체 형태로 변환한 구조입니다. 자바스크립트가 이 구조를 통해 웹 페이지를 읽고, 수정하고, 조작할 수 있다.
   즉, 브라우저가 우리가 작성한 HTML을 자바스크립트가 이해할 수 있도록 구조화한 객체 모델입니다.
 
 - DOM이란 Document Object Model 문서 객체 모델로, HTML로 작성된 여러 요소들에 자바스크립트가 접근할 수 있도록 브라우저가 변환시킨 객체이다. 브라우저가 우리가 작성한 HTML을 자바스크립트가 이해하고 조작할 수 있게 객체로 변환한 것이다.
 
 ```less
 // HTML
-<body>
-  <h1>Hello</h1>
-  <p>World</p>
-</body>
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <h1>Hello</h1>
+    </div>
+    <div>
+      <p>World</p>
+    </div>
+  </body>
+</html>
 
 // 브라우저 내부의 DOM 구조
 Document
 └── html
     └── body
-        ├── h1 ("Hello")
-        └── p("World")
+        ├── div
+        │   └── h1 ("Hello")
+        └── div
+            └── p("World")
+
 ```
 
 - 웹 브라우저는 HTML 문서를 로드한 뒤, 이를 계층 구조(트리 구조)로 표현합니다. 이 구조를 DOM 트리(DOM Tree)라고 부른다.
 - DOM 트리에서 각각의 항목은 노드(Node)라고 하며, 이 노드들은 모두 자바스크립트 객체로 구성되어 있다.
 - 자바스크립트는 DOM이 제공하는 DOM API를 통해 이 노드들에 접근하여 내용 수정, 삭제, 추가 등의 작업을 할 수 있다.
+
+## DOM API
+
+### DOM Tree
+
+```less
+// DOM Tree
+
+Document // 문서노드
+└── html
+    └── body // 요소노드
+        ├── div // 요소노드, 어트리뷰트 노드(태그에 붙는 속성)
+        │   └── h1 ("Hello") // 텍스트 노드
+        └── div
+            └── p("World")
+```
+
+- DOM API를 통해 요소에 접근할 때, 문서 노드 → 요소 노드 → 어트리뷰트 → 텍스트 노드 순서로 각 노드에 접근한다.
+- 문서 노드는 DOM 트리의 가장 최상위에 위치하기 때문에, 어떤 요소에 접근하더라도 항상 먼저 문서 노드를 통해 시작해야 한다.
+
+<br>
+
+### 요소를 찾고 선택하는 DOM API
+
+#### 1. attribute 노드(속성) 변경
+
+#### document.getElementById(id)
+
+```html
+<div class="today-info">
+  <div class="date" id="date">02.10.금요일</div>
+  <div class="clock" id="clock">15:03</div>
+</div>
+```
+
+```js
+console.log(document.getElementById("date"));
+// <div class="date" id="date">02.10.금요일</div>
+```
+
+- <code>getElementById</code>는 DOM API가 제공하는 메서드 중 하나로, 특정 id 값을 가진 요소를 찾고 조작할 수 있게 해준다.
+- 문서 내에서 id가 같은 요소가 여러 개여도 가장 위에 있는(트리 위쪽에 있는) 첫번째 요소만 반환한다. 하지만 HTML 표준상 id는 문서 내에서 유일(unique)해야 하므로, 보통은 id가 중복되지 않도록 사용하는 것이 맞다.
+
+<br>
+
+#### document.querySelector(cssSelector)
+
+```html
+<div class="today-info">
+  <div class="date" id="date">02.10.금요일</div>
+  <div class="clock" id="clock">15:03</div>
+</div>
+```
+
+```js
+console.log(document.querySelector(".date"));
+console.log(document.querySelector("div.date"));
+// <div class="date" id="date">02.10.금요일</div>
+```
+
+- <code>querySelector</code> CSS 선택자를 이용해 DOM 요소를 찾는 메서드
+- <code>.date</code> 클래스 이름이 date인 요소를 가져온다. 같은 의미이지만, 구체적으로 <code>div.date</code>처럼 div 태그 중에 클래스가 date인 요소라고 작성할 수도 있음.
+
+<br>
+
+#### document.querySelectorAll(cssSelector)
+
+```html
+<div class="today-info">
+  <div class="date" id="date">02.10.금요일</div>
+  <div class="date" id="date">15:03</div>
+</div>
+```
+
+```js
+console.log(document.querySelectorAll("div.date"));
+```
+
+- <code>querySelectorAll</code>은 CSS 선택자를 사용해서 조건에 맞는 모든 요소를 한 번에 가져오는 메서드
+- 반환값은 NodeList라는 유사 배열 형태로, 여러 요소가 포함될 수 있다.
+
+<br>
+
+#### document.getElementsByClassName(class)
+
+```html
+<div class="today-info">
+  <div class="date" id="date">02.10.금요일</div>
+  <div class="date" id="date">15:03</div>
+</div>
+```
+
+```js
+console.log(document.getElementsByClassName("date"));
+```
+
+- <code>getElementsByClassName</code>은 동일한 클래스 이름을 가진 모든 요소들을 찾아 반환하는 메서드
+- 단순 클래스 이름을 문자로 전달하기 때문에 클래스 이름 앞에 <code>.</code>을 붙이면 안된다.
+- 반환되는 값은 HTMLCollection이라는 유사 배열 객체이며, 여러 요소가 있을 경우 인덱스를 통해 접근할 수 있다.
+
+<br>
+
+#### document.getElementsByTagName
+
+```js
+console.log(document.getElementsByTagName("div"));
+```
+
+- <code>getElementsByTagName</code> 특정 태그 이름을 가진 모든 요소를 찾아 반환하는 메서드
+- 예를 들어 "div"를 넣으면, 문서 안에 있는 모든 div 요소들을 찾아서 반환한다. 반환값은 HTMLCollection이라는 유사 배열 객체이다.
+
+<br>
+
+### 요소 조작하기
+
+#### className
+
+```html
+<div class="today-info">
+  <div class="date" id="date">02.10.금요일</div>
+  <div class="clock" id="clock">15:03</div>
+</div>
+```
+
+```js
+console.log(document.getElementById("date").className); // date
+```
+
+- className은 요소의 class 속성 값을 문자열로 반환하는 속성
+
+```js
+const dateElement = document.getElementById("date");
+dateElement.className = "change";
+
+console.log(dateElement); // <div class="change" id="date">02.10.금요일</div>
+console.log(dateElement.className); // change
+```
+
+- 클래스 이름을 change로 변경
+- 변수에 값을 할당하듯이, 원하는 클래스명을 직접 넣으면 된다.
+
+<br>
+
+#### id
+
+```html
+<div class="today-info">
+  <div class="date" id="date">02.10.금요일</div>
+  <div class="clock" id="clock">15:03</div>
+</div>
+```
+
+```js
+console.log(document.querySelector("div.date").id); // date
+```
+
+- id는 요소의 id 속성 값을 문자열로 가져오는 속성
+- div 태그 중 클래스가 date인 요소를 선택해서, 해당 요소의 id값인 date를 콘솔에 출력
+
+```js
+const dateElement = document.querySelector("div.date");
+dateElement.id = "change";
+
+console.log(dateElement); // <div class="date" id="change">02.10.금요일</div>
+```
+
+- id 값을 change로 변경
+
+<br>
+
+#### classList
+
+```html
+<div class="today-info">
+  <div class="date" id="date">02.10.금요일</div>
+  <div class="clock" id="clock">15:03</div>
+</div>
+```
+
+```js
+console.log(document.getElementById("date").classList);
+// DOMTokenList ['date', value: 'date']
+```
+
+- classList는 요소의 클래스 목록을 토큰(문자열) 리스트 형태로 반환하는 속성
+- 배열처럼 인덱스로 접근할 수 있고, 다양한 메서드를 제공한다.
+- className처럼 특정 요소의 class 속성에 접근하지만, 더 다양한 메서드를 제공하여 클래스를 유연하게 조작할 수 있다.
+- add, remove, item, toggle, contains, replace 등의 메서드를 제공하며, 이 중 add와 remove는 가장 많이 사용된다.
+- className은 클래스 이름 전체가 변경되지만 classList는 기존의 클래스 값에 특정 값을 추가, 제거, 변경이 가능하다.
+
+<br>
+
+```js
+const dateElement = document.getElementById("date");
+dateElement.classList.add("change");
+console.log(dateElement); // <div class="date change" id="date">02.10.금요일</div>
+```
+
+- add 메서드를 사용해 change 클래스 추가
+
+<br>
+
+```js
+const dateElement = document.getElementById("date");
+dateElement.classList.add("change");
+dateElement.classList.remove("date");
+console.log(dateElement); // <div class="change" id="date">02.10.금요일</div>
+```
+
+- remove 메서드를 통해 date 클래스 제거
+
+<br>
+
+#### 2. text 노드 변경
+
+#### textContent
+
+```html
+<div class="today-info">
+  <div class="date" id="date">02.10.금요일</div>
+  <div class="clock" id="clock">15:03</div>
+</div>
+```
+
+```js
+const clockElement = document.getElementById("clock");
+clockElement.textContent = "12:00";
+
+// 15:03이 12:00로 변경된다.
+```
+
+- <code>textContent</code>는 해당 요소 내부의 모든 텍스트 콘텐츠를 가져오거나 변경할 수 있는 속성
+- 즉, HTML 태그를 제외한 순수한 텍스트만을 다루고 싶을 때 사용
