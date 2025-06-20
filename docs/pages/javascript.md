@@ -3612,3 +3612,127 @@ start();
 
 - try의 블록 안의 코드가 실행되고, 해당 코드에서 에러가 발생한다면 catch 블록 안의 코드가 실행된다.
 - 발견된 에러는 catch(error)의 error 객체에 담기며,이를 통해 에러의 원인을 확인할 수 있다.
+
+## API 호출
+
+#### API (Application Programming Interface)란?
+
+- 컴퓨터나 컴퓨터 프로그램 사이의 연결
+- 웹브라우저(클라이언트)와 서버 사이에서, 필요한 데이터를 요청하고 응답받기 위한 통신 방법 또는 약속된 규칙
+
+<br>
+
+#### 클라이언트-서버 통신 구조
+
+- <code>Client</code>: 사용자가 직접 조작하는 프로그램으로, 서버에 요청을 보내고 응답을 받아 화면에 보여주는 역할을 한다. (ex 웹브라우저, 모바일 앱)
+- <code>Server</code>: 클라이언트의 요청을 받아 처리하고, 필요한 데이터를 데이터베이스에서 가져와 응답을 보내주는 중간 관리자 역할을 한다.
+- <code>Database</code>: 필요한 정보를 구조화된 형태로 저장하고, 서버의 요청에 따라 데이터를 제공하는 저장소
+
+<br>
+
+#### 클라이언트-서버 통신 흐름
+
+```js
+client -> server -> database
+client <- server <- database
+```
+
+1. 사용자가 웹브라우저(클라이언트)에서 서버에게 원하는 데이터를 요청한다.
+2. 서버는 데이터베이스에서 접근하여 요청받은 데이터를 조회한다.
+3. 데이터베이스에서 해당 데이터를 찾아 서버에게 전달한다.
+4. 서버는 받은 데이터를 클라이언트에게 응답으로 보낸다.
+
+<br>
+
+#### JSON
+
+```json
+{
+  "id": 1,
+  "title": "Hello JSON",
+  "completed": false
+}
+```
+
+- JSON(JavaScript Object Notation)은 자바스크립트에서 객체 형태의 데이터를 가독성 좋게 나타내기 위한 표기법
+- key:value 쌍으로 구성되며, 보통 웹 애플리케이션에서 서버와 클라이언트 간에 데이터를 주고받을 때 사용된다.
+
+<br>
+
+#### API 호출 예시
+
+- <code>https://jsonplaceholder.typicode.com/posts</code>는 테스트 용으로 자주 사용되는 가짜 API 주소이다.
+- 이 주소를 브라우저에서 열거나 fetch 요청을 보내면, JSON 형식의 데이터 목록이 반환된다.
+- 이런 방식으로, 클라이언트는 API를 통해 서버에 데이터를 요청하고, 서버는 JSON 형태로 응답을 반환한다.
+
+<br>
+
+#### fetch()
+
+- 자바스크립트에서 API를 호출할 때는 fetch 내장함수를 사용한다.
+- 서버로 비동기 HTTP 요청을 보낼 수 있다.
+- 결과로 Promise 객체를 반환한다.
+
+#### fetch 기본 사용 예시
+
+```js
+const response = fetch("https://jsonplaceholder.typicode.com/posts");
+
+console.log(response); // Promise {<pending>}
+```
+
+- fetch()는 비동기 함수로, 실행 즉시 Promise 객체를 반환한다.
+- 응답이 도착하기 전에 console.log()가 먼저 실행되므로, pending 상태의 Promise가 출력된다.
+
+#### .then() / .catch()로 응답 처리
+
+```js
+const response = fetch("https://jsonplaceholder.typicode.com/posts")
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error));
+
+console.log(response);
+```
+
+- fetch()는 Promise를 반환하므로, .then()과 .catch()로 결과와 에러를 처리할 수 있다.
+- console.log(response)는 즉시 실행되어 Promise 객체 자체를 출력한다.
+- 이후 promise에서 resolve 함수를 통해 전달된 결과값을 then 메서드에서 매개변수로 받아 api호출의 결과값이 출력된다.
+- 콘솔에 Response 객체가 찍히는 이유는, fetch()는 처음에 JSON 데이터가 아닌 Response 객체 자체를 반환하기 때문이다.
+
+<br>
+
+#### async/await로 더 직관적인 코드 작성
+
+```js
+const getData = async () => {
+  const result = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const data = await result.json();
+  console.log(data);
+};
+
+getData();
+```
+
+- await fetch()는 응답이 올 때까지 기다렸다가 Response 객체를 반환한다.
+- fetch()로 받은 응답은 JSON 형식의 문자열 데이터이기 때문에, 이를 자바스크립트 객체로 변환하려면 .json() 메서드를 사용해야한다.
+
+<br>
+
+#### try...catch를 사용한 API 호출 에러 처리
+
+```js
+const getData = async () => {
+  try {
+    const result = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const data = await result.json();
+    console.log(data); // 정상 응답 시 JSON 데이터 출력
+  } catch (error) {
+    console.log(error); // 네트워크 오류 또는 JSON 파싱 오류 처리
+  }
+};
+
+getData();
+```
+
+- fetch()로 요청을 보낸 뒤, 응답을 .json()으로 변환해 데이터를 출력한다.
+- 네트워크 연결 실패, 주소 오류, 파싱 실패 등의 상황에 대비해 try..catch 구문으로 에러를 안전하게 처리할 수 있다.
