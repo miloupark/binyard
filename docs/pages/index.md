@@ -15,7 +15,7 @@ hero:
       link: /study/javascript.md
     - theme: alt
       text: OZ
-      link: /OZ/warmingup01.md
+      link: /OZ/intro.md
 
 features:
   - icon: 👩🏻‍💻
