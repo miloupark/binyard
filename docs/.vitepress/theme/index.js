@@ -1,7 +1,9 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
-import DefaultTheme from 'vitepress/theme'
-import './style.css'
+import { h } from "vue";
+import DefaultTheme from "vitepress/theme";
+
+import Comment from "../components/Comment.vue";
+import "./style.css";
 
 /** @type {import('vitepress').Theme} */
 export default {
@@ -9,9 +11,9 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    })
+    });
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
-  }
-}
+    app.component("Comment", Comment); // 댓글 컴포넌트 등록
+  },
+};
