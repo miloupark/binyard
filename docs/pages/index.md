@@ -5,26 +5,26 @@ layout: home
 hero:
   name: Personal Growth Archives
   # text:
-  tagline: 🐣
+  tagline: 🐣 FE 공부 기록 블로그
   actions:
     - theme: brand
       text: About
-      link: /about.md
+      link: /study/about.md
     - theme: alt
       text: Javascript
-      link: /javascript.md
+      link: /study/javascript.md
     - theme: alt
-      text: Programmers
-      link: /programmers-js.md
+      text: OZ
+      link: /OZ/warmingup01.md
 
 features:
   - icon: 👩🏻‍💻
     title: Hyebin Park
     details:
   - icon: 💡
-    title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    title: FE
+    details:
   - icon: ✍🏼
-    title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    title: Blog
+    details:
 ---
