@@ -78,7 +78,7 @@ export default defineConfig({
               text: "워밍업 칼럼",
               items: [
                 { text: "01. 뇌 가소성", link: "/OZ/warmingup01" },
-                // { text: "02. 메타인지", link: "OZ//warmingup02" },
+                { text: "02. 메타인지", link: "OZ//warmingup02" },
                 // { text: "03. 아토믹 해빗", link: "OZ//warmingup03" },
                 // { text: "04. 그릿(Grit)", link: "OZ//warmingup04" },
               ],
