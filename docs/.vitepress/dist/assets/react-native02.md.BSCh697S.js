@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.CJ72e6E2.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"react-native02.md","filePath":"react-native02.md"}'),r={name:"react-native02.md"};function c(n,o,s,i,p,_){return a(),t("div")}const f=e(r,[["render",c]]);export{m as __pageData,f as default};
