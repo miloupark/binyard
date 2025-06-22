@@ -77,10 +77,20 @@ export default defineConfig({
             {
               text: "워밍업 칼럼",
               items: [
-                { text: "01. 뇌 가소성", link: "/OZ/warmingup01" },
-                { text: "02. 메타인지", link: "OZ//warmingup02" },
-                // { text: "03. 아토믹 해빗", link: "OZ//warmingup03" },
-                // { text: "04. 그릿(Grit)", link: "OZ//warmingup04" },
+                { text: "01. 뇌 가소성", link: "/OZ/warmingup/warmingup01" },
+                { text: "02. 메타인지", link: "OZ/warmingup/warmingup02" },
+              ],
+            },
+            {
+              text: "비기너 트랙",
+              items: [
+                { text: "CLI환경 알아보기", link: "/OZ/beginner/beginner01" },
+                // { text: "git과 github", link: "OZ//beginner02" },
+                // { text: "HTML 이론", link: "OZ//beginner03" },
+                // { text: "CSS 이론", link: "OZ//beginner04" },
+                // { text: "JavaScript 이론", link: "OZ//beginner05" },
+                // { text: "언어의 기초 & 코드", link: "OZ//beginner06" },
+                // { text: "더덕마켓", link: "OZ//beginner07" },
               ],
             },
           ],
