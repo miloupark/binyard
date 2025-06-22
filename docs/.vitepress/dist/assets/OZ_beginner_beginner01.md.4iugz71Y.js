@@ -1,1 +1,0 @@
-import{_ as e,c as n,o as r}from"./chunks/framework.CJ72e6E2.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"OZ/beginner/beginner01.md","filePath":"OZ/beginner/beginner01.md"}'),t={name:"OZ/beginner/beginner01.md"};function a(i,o,s,c,p,_){return r(),n("div")}const f=e(t,[["render",a]]);export{m as __pageData,f as default};

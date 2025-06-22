@@ -120,4 +120,4 @@
 
 ## 실습 과제
 
-![beginner01](./images/beginner01.png)
+![beginner01](./beginner01.png)
