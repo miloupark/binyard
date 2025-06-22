@@ -97,11 +97,17 @@ export default defineConfig({
         },
       ],
     },
-
     socialLinks: [
       { icon: "github", link: "https://github.com/miloupark" },
       { icon: "linkedin", link: "https://www.linkedin.com/in/hyebinparkfe" },
       { icon: "instagram", link: "https://www.instagram.com/parkjujeop/#" },
     ],
+    lastUpdated: {
+      text: "마지막 업데이트 날짜",
+      formatOptions: {
+        dateStyle: "short",
+        timeStyle: "short",
+      },
+    },
   },
 });
