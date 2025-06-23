@@ -86,7 +86,7 @@ export default defineConfig({
               items: [
                 { text: "CLI 환경 알아보기", link: "/OZ/beginner/beginner01" },
                 { text: "Git과 GitHub", link: "OZ/beginner/beginner02" },
-                // { text: "HTML 이론", link: "OZ/beginner/beginner03" },
+                { text: "HTML 이론", link: "OZ/beginner/beginner03" },
                 // { text: "CSS 이론", link: "OZ/beginner/beginner04" },
                 // { text: "JavaScript 이론", link: "OZ/beginner/beginner05" },
                 // { text: "언어의 기초 & 코드", link: "OZ/beginner/beginner06" },
