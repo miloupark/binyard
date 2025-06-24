@@ -269,3 +269,139 @@
   <code>src</code>: 이미지 파일의 경로를 지정 (필수) <br>
   <code>alt</code>: 이미지가 로드되지 않거나, 시각장애인용 스크린리더를 위해 대체 텍스트 제공 <br>
   <code>width, height</code>: 이미지의 너비와 높이를 지정할 수 있음, 단위 없이 정수 값만 지정(적용 시에는 px 단위로 적용됨) <br>
+
+## 9. 링크 표시하기
+
+#### <code>링크</code>
+
+- HTML에서 링크는 현재 문서에서 다른 문서나 외부 리소스로 이동할 수 있는 수단
+- 주로 페이지 이동, 파일 다운로드, 전화 연결, 이메일 전송 등 다양한 목적에 사용된다.
+
+#### <code>a 태그</code>
+
+```html
+<a href="https://example.com">이동하기</a>
+```
+
+- a 태그는 anchor의 약자로, 하이퍼링크를 생성할 때 사용한다.
+- 링크로 연결할 주소를 href 속성에 지정할 수 있다.
+- 텍스트 또는 이미지 등 어떤 콘텐츠도 링크로 만들 수 있다.
+
+#### <code>새 탭에서 열기</code>
+
+```html
+<!-- 현재 탭에서 열기(기본값) -->
+<a href="https://www.naver.com" target="_self">현재 탭에서 열기</a>
+
+<!-- 새 창에서 열기 -->
+<a href="https://www.naver.com" target="_blank">새 탭에서 열기</a>
+```
+
+## 10. 목록 만들기
+
+- 목록이란, 연관된 항목(item)들을 나열한 구조
+- HTML에서는 목록을 크게 두 가지로 구분한다:
+  - 순서 없는 목록(Unordered List): <code>ul 태그</code>
+  - 순서 있는 목록(Ordered List): <code>ol 태그</code>
+- 두 목록 모두 항목을 표현할 때는 공통적으로 <code>li 태그</code> 사용
+- ol 태그는 type 속성을 활용해서 목록번호를 표시할 수 있다. (1, A, a, I, i)
+
+## 11. 표 만들기
+
+- 표란, 행(Row)과 열(Column)로 이루어진 구조이며, 이들이 교차하는 지점을 셀이이라고 한다. 셀은 콘텐츠를 나타내는 최소 단위다.
+
+```html
+<table border="1">
+  <caption>
+    월간 판매 보고서
+  </caption>
+
+  <thead>
+    <tr>
+      <th>상품명</th>
+      <th>단가</th>
+      <th>수량</th>
+      <th>합계</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>노트북</td>
+      <td>1,000,000</td>
+      <td>3</td>
+      <td>3,000,000</td>
+    </tr>
+    <tr>
+      <td>모니터</td>
+      <td>300,000</td>
+      <td>5</td>
+      <td>1,500,000</td>
+    </tr>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="3">총합</td>
+      <td>4,500,000</td>
+    </tr>
+  </tfoot>
+</table>
+```
+
+- <code>table</code>: 하나의 표 전체를 감싸는 태그
+- <code>caption</code>: 표의 제목이나 설명을 나타냄, 가운데 정렬, 접근성 향상에 도움이 된다.
+- <code>thead</code>: 표의 제목이나 주제를 나타내는 영역
+- <code>tbody</code>: 표의 본문 영역
+- <code>tfoot</code>: 표의 꼬리말 영역, 합계나 요약 등의 정보를 나타냄
+- <code>tr</code>: 행(Row), 각 행은 하나 이상의 셀을 포함
+- <code>th</code>: 제목(헤더) 셀, 기본적으로 굵게, 가운데 정렬됨
+- <code>td</code>: 행 안의 일반적인 데이터 셀. 텍스트, 숫자 등 다양한 콘텐츠를 포함할 수 있음
+- thead, tbody, tfoot 태그는 HTML 표를 논리적으로 나누기 위한 시맨틱 요소로, 유지보수성과 접근성을 높여주는 중요한 구조이다.
+
+## 12. 입력 태그
+
+#### <code>input</code>
+
+```html
+<input type="데이터 유형" />
+```
+
+- input 태그는 사용자로부터 텍스트, 숫자, 날짜, 비밀번호, 파일 등 다양한 형태의 데이터를 입력받을 수 있도록 한다.
+- 닫는 태그 없이 사용하는 단일(Self-closing) 태그
+- type 속성의 값에 따라 입력 방식이 달라진다.
+  - <code>text</code>: 기본값, 텍스트를 입력받음
+  - <code>email</code>: 이메일 입력
+  - <code>password</code>: 비밀번호 입력
+  - <code>search</code>: 검색할 텍스트를 입력받음
+  - <code>date</code>: 날짜와 시간 지정
+  - <code>color</code>: 색깔을 선택할 수 있음
+  - <code>number</code>: 수치를 선택할 수 있음
+  - <code>range</code>: 수준(달성도)를 선택할 수 있음
+
+<br>
+
+#### <code>label</code>
+
+```js
+// for 속성 사용
+// label의 for 속성값과 input의 id 속성값을 일치시킨다.
+<label for="username">아이디</label>
+<input type="text" id="username" name="username" />
+
+// for 속성 없이 감싸는 방식
+<label>
+  아이디
+  <input type="text" name="username" />
+</label>
+
+```
+
+- 입력 요소에 설명 또는 이름을 정의한다. 사용자가 어떤 입력을 해야 하는지 명확하게 알려주며, 스크린 리더 같은 보조기술에서 중요하다.
+- label을 클릭하면 연결된 입력 요소에 포커스가 자동으로 이동한다.
+
+<!-- ## 13. 양식을 만들고 값 전송하기 -->
+
+<!-- ## 14. 시멘틱 태그 - 의미론적인 코드 -->
+
+<!-- ## 15. 메타 데이터 - 문서 정보 관리하기 -->
