@@ -133,3 +133,6 @@ Git은 커밋할 때 "누가 작성했는지" 기록하기 위해 사용자 정�
 
 - <code>GitHub Repository</code>
   ![beginner02-2](./beginner-images/beginner02-2.png)
+
+<br>
+<Comment/>

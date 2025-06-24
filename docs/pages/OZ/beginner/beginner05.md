@@ -65,3 +65,6 @@ console.log(appleCount + bananaCount); // 5
 
 - 함수의 반환값은 변수에 저장할 수 있다.
 - console.log는 콘솔에 값을 출력하는 함수이다. 개발 중에 값을 확인하거나 디버깅할 때 주로 사용됨
+
+<br>
+<Comment/>

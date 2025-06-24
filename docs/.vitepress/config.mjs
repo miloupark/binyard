@@ -14,7 +14,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "About", link: "/hyebin/about" },
-      { text: "Frontend", link: "/frontend/react" },
+      { text: "Frontend", link: "/frontend/javascript" },
       { text: "OZ", link: "/OZ/intro" },
       { text: "Javascript", link: "/javascript/javascript" },
     ],

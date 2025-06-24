@@ -214,3 +214,6 @@ p {
   <br>
 - <code>CSS 02</code>
   ![beginner04-2](./beginner-images/beginner04-2.png)
+
+<br>
+<Comment/>
