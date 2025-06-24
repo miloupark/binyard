@@ -16,7 +16,7 @@ export default defineConfig({
       { text: "About", link: "/hyebin/about" },
       { text: "Frontend", link: "/frontend/javascript" },
       { text: "OZ", link: "/OZ/intro" },
-      { text: "Javascript", link: "/javascript/javascript" },
+      { text: "Javascript", link: "/javascript/basic/js01" },
     ],
 
     sidebar: {
@@ -115,11 +115,62 @@ export default defineConfig({
       "/javascript/": [
         {
           text: "JavaScript",
+          collapsed: false,
           items: [
+            { text: "자바스크립트의 실행 환경", link: "" },
             {
-              text: "Basic",
+              text: "기초 문법",
               collapsed: false,
-              items: [{ text: "Basic", link: "javascript/javascript" }],
+              items: [
+                { text: "변수와 상수", link: "javascript/basic/js01" },
+                { text: "자료형과 형변환", link: "" },
+                { text: "연산자", link: "" },
+                { text: "조건문", link: "" },
+                { text: "반복문", link: "" },
+              ],
+            },
+            {
+              text: "함수와 실행 컨텍스트",
+              collapsed: false,
+              items: [
+                { text: "함수", link: "" },
+                { text: "함수 표현식", link: "" },
+                { text: "화살표 함수", link: "" },
+                { text: "스코프", link: "" },
+                { text: "호이스팅", link: "" },
+                { text: "this", link: "" },
+              ],
+            },
+            {
+              text: "데이터 구조",
+              collapsed: false,
+              items: [
+                { text: "객체", link: "" },
+                { text: "배열", link: "" },
+                { text: "배열 내장함수", link: "" },
+                { text: "생성자 함수", link: "" },
+                { text: "구조 분해 할당", link: "" },
+                { text: "Spread / Rest 문법", link: "" },
+              ],
+            },
+            {
+              text: "비동기와 API",
+              collapsed: false,
+              items: [
+                { text: "비동기 처리", link: "" },
+                { text: "Promise 객체", link: "" },
+                { text: "async / await", link: "" },
+                { text: "API 호출", link: "" },
+              ],
+            },
+            {
+              text: "DOM과 DOM API",
+              collapsed: false,
+              items: [
+                { text: "웹과 DOM", link: "" },
+                { text: "DOM API", link: "" },
+                { text: "이벤트 처리", link: "" },
+              ],
             },
           ],
         },
