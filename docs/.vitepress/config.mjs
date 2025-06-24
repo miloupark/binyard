@@ -76,6 +76,7 @@ export default defineConfig({
             { text: "사전 미션", link: "/OZ/intro" },
             {
               text: "워밍업 칼럼",
+              collapsed: false,
               items: [
                 { text: "01. 뇌 가소성", link: "/OZ/warmingup/warmingup01" },
                 { text: "02. 메타인지", link: "OZ/warmingup/warmingup02" },
@@ -83,6 +84,7 @@ export default defineConfig({
             },
             {
               text: "비기너 트랙",
+              collapsed: false,
               items: [
                 { text: "CLI 환경 알아보기", link: "/OZ/beginner/beginner01" },
                 { text: "Git과 GitHub", link: "OZ/beginner/beginner02" },
@@ -91,7 +93,14 @@ export default defineConfig({
                 { text: "JavaScript 이론", link: "OZ/beginner/beginner05" },
                 { text: "언어의 기초", link: "OZ/beginner/beginner06" },
                 { text: "간단한 코드", link: "OZ/beginner/beginner07" },
-                // { text: "더덕마켓", link: "OZ/beginner/beginner08" },
+
+                {
+                  text: "더덕마켓 클론코딩",
+                  collapsed: false,
+                  items: [
+                    { text: "HTML 기초", link: "OZ/beginner/beginner08" },
+                  ],
+                },
               ],
             },
           ],
