@@ -73,7 +73,7 @@ export default defineConfig({
           text: "OZ초격차캠프 FE",
           collapsed: false,
           items: [
-            { text: "Intro", link: "/OZ/intro" },
+            { text: "사전 미션", link: "/OZ/intro" },
             {
               text: "워밍업 칼럼",
               items: [
