@@ -9,10 +9,13 @@ hero:
   actions:
     - theme: brand
       text: About
-      link: /study/about.md
+      link: /hyebin/about.md
     - theme: alt
-      text: Javascript
-      link: /study/javascript.md
+      text: Resume
+      link: /hyebin/resume.md
+    - theme: alt
+      text: Frontend
+      link: /frontend/javascript.md
     - theme: alt
       text: OZ
       link: /OZ/intro.md

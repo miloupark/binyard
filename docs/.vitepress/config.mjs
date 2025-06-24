@@ -13,64 +13,66 @@ export default defineConfig({
     },
     nav: [
       { text: "Home", link: "/" },
-      { text: "About", link: "/study/about" },
+      { text: "About", link: "/hyebin/about" },
+      { text: "Frontend", link: "/frontend/react" },
       { text: "OZ", link: "/OZ/intro" },
-      { text: "Javascript", link: "/study/javascript" },
+      { text: "Javascript", link: "/javascript/javascript" },
     ],
 
     sidebar: {
-      "/study/": [
+      "/hyebin/": [
         {
-          text: "About",
-          items: [{ text: "Intro", link: "/study/about" }],
-        },
-        {
-          text: "HTML/CSS/SASS",
-          collapsed: true,
+          text: "Hyebin Park",
           items: [
-            { text: "HTML", link: "/study/html" },
-            { text: "CSS", link: "/study/css" },
-            { text: "SASS", link: "/study/sass" },
+            { text: "About", link: "/hyebin/about" },
+            { text: "Resume", link: "/hyebin/resume" },
           ],
         },
+      ],
+      "/frontend/": [
         {
-          text: "Javascript",
-          collapsed: true,
-          items: [{ text: "Basic", link: "/study/javascript" }],
+          text: "JavaScript",
+          items: [{ text: "Basic", link: "/frontend/javascript" }],
         },
         {
           text: "React",
-          collapsed: true,
-          items: [{ text: "Basic", link: "/study/react" }],
+          collapsed: false,
+          items: [{ text: "Basic", link: "/frontend/react" }],
         },
         {
           text: "React Native",
-          collapsed: true,
+          collapsed: false,
           items: [
-            { text: "install", link: "/study/react-native01" },
-            { text: "basic", link: "/study/react-native02" },
+            { text: "install", link: "/frontend/react-native01" },
+            { text: "basic", link: "/frontend/react-native02" },
           ],
         },
         {
           text: "Programmers",
-          collapsed: true,
-          items: [{ text: "Javascript.js", link: "/study/programmers-js" }],
+          collapsed: false,
+          items: [{ text: "Javascript.js", link: "/frontend/programmers-js" }],
         },
         {
           text: "Git",
-          collapsed: true,
-          items: [{ text: "git", link: "/study/git" }],
+          collapsed: false,
+          items: [{ text: "git", link: "/frontend/git" }],
         },
         {
-          text: "Examples",
+          text: "Vitepress",
+          collapsed: false,
           items: [
-            { text: "Markdown Examples", link: "/study/markdown-examples" },
+            { text: "Markdown Examples", link: "/frontend/markdown-examples" },
           ],
         },
       ],
       "/OZ/": [
         {
           text: "OZ초격차캠프 FE",
+          collapsed: true,
+          items: [{ text: "TIL", link: "OZ/til/til01" }],
+        },
+        {
+          text: "베이스 캠프 미션",
           collapsed: false,
           items: [
             { text: "사전 미션", link: "/OZ/intro" },
@@ -93,7 +95,6 @@ export default defineConfig({
                 { text: "JavaScript 이론", link: "OZ/beginner/beginner05" },
                 { text: "언어의 기초", link: "OZ/beginner/beginner06" },
                 { text: "간단한 코드", link: "OZ/beginner/beginner07" },
-
                 {
                   text: "더덕마켓 클론코딩",
                   collapsed: false,
@@ -102,6 +103,23 @@ export default defineConfig({
                   ],
                 },
               ],
+            },
+          ],
+        },
+        {
+          text: "회고",
+          collapsed: true,
+          items: [{ text: "01", link: "OZ/reflection/reflection01" }],
+        },
+      ],
+      "/javascript/": [
+        {
+          text: "JavaScript",
+          items: [
+            {
+              text: "Basic",
+              collapsed: false,
+              items: [{ text: "Basic", link: "javascript/javascript" }],
             },
           ],
         },
