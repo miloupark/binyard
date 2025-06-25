@@ -100,6 +100,7 @@ export default defineConfig({
                   collapsed: false,
                   items: [
                     { text: "HTML 기초", link: "OZ/beginner/beginner08" },
+                    { text: "CSS 기초", link: "OZ/beginner/beginner09" },
                   ],
                 },
               ],
