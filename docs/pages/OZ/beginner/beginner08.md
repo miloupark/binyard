@@ -400,11 +400,123 @@
 - 입력 요소에 설명 또는 이름을 정의한다. 사용자가 어떤 입력을 해야 하는지 명확하게 알려주며, 스크린 리더 같은 보조기술에서 중요하다.
 - label을 클릭하면 연결된 입력 요소에 포커스가 자동으로 이동한다.
 
-<!-- ## 13. 양식을 만들고 값 전송하기 -->
+<br>
 
-<!-- ## 14. 시멘틱 태그 - 의미론적인 코드 -->
+#### <code>select</code>
 
-<!-- ## 15. 메타 데이터 - 문서 정보 관리하기 -->
+```html
+<label for="fruit">과일을 선택하세요:</label>
+<select id="fruit" name="fruit">
+  <option value="apple">사과</option>
+  <option value="banana">바나나</option>
+  <option value="grape">포도</option>
+</select>
+```
+
+- select 태그는 여러 개의 option 태그와 함께 사용되며, 그 중 하나(또는 다수)를 선택할 수 있는 목록을 생성한다.
+- label의 for 속성 값은 select의 id와 일치시켜 접근성을 높인다.
+- option의 value 속성은 선택되었을 때 서버로 전송되는 값
+- option 태그의 내용은 화면에 표시되는 값
+
+<br>
+
+#### <code>textarea</code>
+
+```html
+<label for="message">메시지를 입력하세요:</label>
+<textarea id="message" name="message" rows="5" cols="30"></textarea>
+```
+
+- 여러 줄의 텍스트를 입력할 수 있도록 하는 입력 필드
+- row는 세로 줄 수, cols는 가로 글자 수 설정
+- textarea 시작 태그와 종료 태그 사이에 기본값을 넣을 수 있다.
+
+<br>
+
+#### <code>progress</code>
+
+```html
+<progress value="70" max="100">70%</progress>
+```
+
+- 작업의 진행 상태(진행률)을 시각적으로 표현할 때 사용
+- value는 현재 진행상태, max는 전체 작업량
+- 태그 사이에 텍스트는 브라우저가 progress를 지원하지 않을 경우 표시됨
+
+<br>
+
+#### <code>button</code>
+
+```js
+// 태그 사이에 콘텐츠 작성
+<button>PUSH</button>
+
+// value 속성에 콘텐츠 작성
+<input type="button" value="PUSH"/>
+```
+
+- button 태그는 사용자의 클릭 동작을 처리할 수 있는 버튼 요소를 생성
+- input 태그의 type 속성에 button을 지정하면 버튼을 만들 수 있다.(외형적 차이 없음) button 태그는
+  텍스트 외에도 아이콘이나 html 요소를 포함할 수 있어 커스터마이징과 접근성 향상에 유리하고, input button은 단순한 텍스트 버튼만 만들 수 있어 사용이 제한적이다.
+
+## 13. 양식을 만들고 값 전송하기
+
+#### <code>form</code>
+
+```html
+<form action="/submit" method="post">
+  <label for="name">이름:</label>
+  <input type="text" id="name" name="username" required />
+
+  <button type="submit">제출</button>
+</form>
+```
+
+- 사용자의 입력 데이터를 서버로 전송하기 위한 영역을 정의하는 태그
+- 텍스트 입력, 체크박스, 라디오 버튼, 드롭다운, 버튼 등 다양한 입력 필드를 포함할 수 있으며, 서버나 자바스크립트로 데이터를 전달하는 기본 구조를 제공한다.
+- form 태그가 서버에 입력 값을 전송하기 위해서는 action, method 속성을 사용해야한다.
+- <code>action</code>: 데이터를 전송할 서버의 URL 지정
+- <code>method</code>: 클라이언트가 입력한 데이터를 어떤 식으로 전송할지 (get or post)
+- <code>get</code>: 클라이언트가 입력 데이터를 URL 뒤에 붙여서 서버에 GET 요청을 보내면, 서버는 그에 맞는 정보를 응답해준다.
+- <code>post</code>: 클라이언트가 입력 데이터를 HTTP 요청 본문에 담아 서버에 POST 요청을 보내면, 서버는 그 데이터를 처리하고 결과를 응답해준다.
+
+#### <code>name 속성</code>
+
+- 입력 필드에 붙이는 이름표이다. form이 서버로 데이터를 전송할 때, 입력값을 이 name과 함께 짝지어 보낸다. 즉, 서버에서는 이 name을 통해 어떤 입력값이 어떤 항목인지 식별하게 된다.
+- input에 name이 없으면, 해당 필드의 값은 서버에 전송되지 않는다.
+
+```html
+<form action="/submit" method="post">
+  <input type="text" name="username" value="훈이" />
+  <input type="password" name="password" />
+  <button type="submit">로그인</button>
+</form>
+```
+
+- 위 폼이 제출되면 서버에는 다음과 같은 데이터가 전송됨
+
+```ini
+username=훈이&password=1234
+```
+
+- 서버는 username이라는 이름을 통해 이 값이 사용자 이름임을 알고,
+  password를 통해 이 값이 비밀번호임을 알 수 있다.
+
+## 14. 시멘틱 태그
+
+```less
+<의미>콘텐츠</의미>
+```
+
+- 시멘틱(Semantic)이란 "의미의"라는 뜻이다. 시멘틱 태그는 HTML 문서에 ‘의미’를 부여해주며, 접근성, 검색 최적화, 코드 관리 측면에서 매우 중요한 역할을 한다.
+- div는 어떤 의미도 없는 블록 요소이지만, header, nav, section, footer 같은 시멘틱 태그는 해당 영역의 용도와 목적을 설명해준다.
+
+## 15. 메타 데이터 - 문서 정보 관리하기
+
+- meta 태그는 HTML 문서의 메타데이터(데이터에 대한 데이터=정보)를 담는 태그이다.
+  즉, 페이지 자체에 대한 정보를 브라우저나 검색 엔진에 전달하기 위해 사용한다.
+- meta 태그는 눈에 보이는 콘텐츠가 아니라, 페이지의 속성이나 정보를 담는 비가시적 요소이고 주로 head 태그 안에 위치한다.
+- [MDN 메타데이터](https://developer.mozilla.org/ko/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata)
 
 <br>
 <Comment/>
