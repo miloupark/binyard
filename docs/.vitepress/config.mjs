@@ -123,6 +123,7 @@ export default defineConfig({
               text: "기초 문법",
               collapsed: false,
               items: [
+                { text: "index", link: "javascript/basic/jsindex" },
                 { text: "변수와 상수", link: "javascript/basic/js01" },
                 { text: "자료형과 형변환", link: "" },
                 { text: "연산자", link: "" },
