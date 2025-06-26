@@ -14,7 +14,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "About", link: "/hyebin/about" },
-      { text: "Frontend", link: "/frontend/javascript" },
+      { text: "Frontend", link: "/frontend/index" },
       { text: "OZ", link: "/OZ/intro" },
       { text: "Javascript", link: "/javascript/basic/js01" },
     ],
@@ -31,26 +31,21 @@ export default defineConfig({
       ],
       "/frontend/": [
         {
-          text: "JavaScript",
-          items: [{ text: "Basic", link: "/frontend/javascript" }],
+          items: [{ text: "intro", link: "/frontend/index" }],
         },
         {
-          text: "React",
-          collapsed: false,
-          items: [{ text: "Basic", link: "/frontend/react" }],
-        },
-        {
-          text: "React Native",
+          text: "Frontend",
           collapsed: false,
           items: [
-            { text: "install", link: "/frontend/react-native01" },
-            { text: "basic", link: "/frontend/react-native02" },
+            { text: "JavaScript", link: "/javascript/basic/js00" },
+            { text: "React", link: "/frontend/react" },
+            { text: "React Native", link: "/frontend/react-native01" },
           ],
         },
         {
           text: "Programmers",
           collapsed: false,
-          items: [{ text: "Javascript.js", link: "/frontend/programmers-js" }],
+          items: [{ text: "Javascript", link: "/frontend/programmers-js" }],
         },
         {
           text: "Git",
