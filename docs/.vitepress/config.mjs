@@ -136,10 +136,10 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: "함수", link: "javascript/basic/js06" },
+                { text: "스코프", link: "javascript/basic/js07" },
+                { text: "호이스팅", link: "" },
                 { text: "함수 표현식", link: "" },
                 { text: "화살표 함수", link: "" },
-                { text: "스코프", link: "" },
-                { text: "호이스팅", link: "" },
                 { text: "this", link: "" },
               ],
             },
