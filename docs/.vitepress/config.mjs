@@ -128,14 +128,14 @@ export default defineConfig({
                 { text: "자료형과 형변환", link: "javascript/basic/js02" },
                 { text: "연산자", link: "javascript/basic/js03" },
                 { text: "조건문", link: "javascript/basic/js04" },
-                { text: "반복문", link: "" },
+                { text: "반복문", link: "javascript/basic/js05" },
               ],
             },
             {
               text: "함수와 실행 컨텍스트",
               collapsed: false,
               items: [
-                { text: "함수", link: "" },
+                { text: "함수", link: "javascript/basic/js06" },
                 { text: "함수 표현식", link: "" },
                 { text: "화살표 함수", link: "" },
                 { text: "스코프", link: "" },

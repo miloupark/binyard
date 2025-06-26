@@ -1,191 +1,8 @@
-## 함수 (Function)
-
-같은 동작을 반복해야 할 때 중복된 코드를 하나로 묶어 반복 없이 효울적으로 실행할 수 있도록 도와줌.
-코드의 재사용성과 가독성을 높여주기 때문에 유용함. (하나의 함수로 정의하고 필요할 때마다 호출하여 사용)
-
 <br>
 
-- 비효울적인 코드 예시
+### 변수 스코프
 
-```js
-let num1 = 10;
-let num2 = 15;
-let sum = num1 + num2;
-
-console.log(sum); // 25
-
-let num3 = 1;
-let num4 = 5;
-let sum2 = num3 + num4;
-
-console.log(sum2); // 6
-```
-
-<br>
-
-- 함수 사용하여 중복 제거
-
-```js
-function add(num1, num2) {
-  console.log(num1 + num2); // 두 숫자를 더한 값을 출력
-}
-
-add(10, 15); // 25 출력
-add(1, 5); // 6 출력
-```
-
-<code>function</code> 키워드 뒤에는 함수 이름 작성, 그 뒤에 매개변수를 괄호 안에 작성<br>
-<code>add</code> 함수는 두 숫잘르 더하는 기능 수행<br>
-
-매개변수란(Parameters), 함수를 호출할 때 외부에서 전달받을 값을 저장하는 변수<br>
-인수(Arguments) 함수를 호출할 때 실제로 전달하는 값 (add(10, 15)-> 10, 15가 인수)
-
-<br>
-
-- 함수의 반환값 (return) <br>
-  <code>return</code>문을 사용해 함수 실행 결과를 반환하여 다른 작업에 활용. 즉 함수 결과를 저장하거나 출력할 수 있도록 반환하는 역할. <code>return</code>이 없으면 함수 실행 후 값이 사라져버림
-
-```js
-function add(num1, num2) {
-  return num1 + num2; // 더한 값을 반환
-}
-
-console.log(`두 숫자를 더한 결과는 ${add(10, 14)} 입니다.`);
-// 두 숫자를 더한 결과는 24 입니다.
-```
-
-::: details return이 없는 경우
-
-- 출력은 되지만 결과값을 저장하거나 활용할 수 없음
-
-```js
-function add(num1, num2) {
-  console.log(num1 + num2); // 결과를 단순히 출력만 함
-}
-
-let result = add(10, 5); // 결과를 변수에 저장하려고 하지만 undefined
-console.log(result); // undefined 출력 (값을 반환하지 않음)
-```
-
-:::
-::: details return을 사용한 경우
-
-- 함수 실행 결과(15)를 return을 통해 반환했기 때문에, 이후에도 활용 가능
-
-```js
-function add(num1, num2) {
-  return num1 + num2; // 결과값을 반환
-}
-
-let result = add(10, 5); // 반환된 값을 변수에 저장
-console.log(result); // 15 출력
-```
-
-:::
-
-<br>
-
-### 얼리 리턴(Early Return) 패턴
-
-<code>얼리 리턴</code>패턴은 함수에서 불필요한 중첩을 줄이고, 가독성을 높이는 방법이다. 특정 조건을 만족하면 <code>return</code> 하여 함수 실행을 종료하기 때문에 코드가 더 단순해짐.
-
-<br>
-
-- 가독성이 떨어지는 예시 <br>
-
-```js
-function func(num) {
-  if (num > 0) {
-    if (num >= 10) {
-      console.log("num의 값이 10보다 크거나 같습니다.");
-    } else {
-      console.log("num의 값이 0보다 크고 10보다 작습니다.");
-    }
-  } else if (num === 0) {
-    console.log("num의 값이 0입니다.");
-  } else {
-    console.log("num의 값이 0보다 작습니다.");
-  }
-}
-
-func(15);
-
-// num의 값이 10보다 크거나 같습니다.
-```
-
-<br>
-
-- 얼리 리턴 패턴 적용
-
-```js
-function func(num) {
-  if (num === 0) return "num의 값이 0입니다.";
-  if (num < 0) return "num의 값이 0보다 작습니다.";
-  if (num >= 10) return "num의 값이 10보다 크거나 같습니다.";
-
-  return "num의 값이 0보다 크고 10보다 작습니다";
-}
-
-console.log(func(15));
-
-// num의 값이 10보다 크거나 같습니다.
-```
-
-<br>
-
-### 즉시 실행 함수(IIFE, Immediately Invoked Function Expression)
-
-즉시 실행 함수란 함수를 선언하자마자 즉시 실행되는 함수를 의미함, 따로 호출하지 않아도 자동으로 실행된다.
-
-<br>
-
-- 기본적인 함수 실행 방식
-
-```js
-function print() {
-  console.log("자바스크립트1");
-}
-
-print(); // 함수 호출
-```
-
-<br>
-
-- 즉시 실행 함수 (IIFE) <br>
-  함수 선언과 동시에 실행됨, 전역 범위를 오염시키지 않고 독립적인 실행 가능
-
-```js
-(function () {
-  console.log("자바스크립트2");
-})();
-```
-
-<br>
-
-- 코드 실행 순서 예시 <br>
-  함수는 선언된 위치가 아니라 호출된 순간 실행됨
-
-```js
-function func() {
-  console.log("2");
-  console.log("3");
-} // func함수를 선언했지만 호출은 되지 않음
-
-console.log("1");
-func();
-console.log("4");
-
-// 1
-// 2
-// 3
-// 4
-```
-
-<br>
-
-### 지역변수 (Local Variable)
-
-함수 내부에서 선언된 변수, 해당 함수의 블록 <code>{}</code> 내부에서만 유효하며 함수 외부에서는 접근 불가능
+#### `지역변수 (Local Variable)`
 
 ```js
 function add(num1, num2) {
@@ -194,37 +11,32 @@ function add(num1, num2) {
 }
 
 add(10, 15);
-console.log(sum); // sum is not defined (에러)
+console.log(sum); //  ReferenceError: sum is not defined
 ```
 
-- <code>sum</code> 변수는 <code>add</code> 함수 내부에서 선언된 지역변수
-- 지역변수는 함수 내부에서만 접근 가능
-- 함수 외부에서 <code>console.log(sum);</code>을 실행하면 에러 발생
-- 즉, 지역변수는 함수가 실행될 때만 존재하고, 함수가 끝나면 사라짐
+- 지역 변수는 함수 내부에서 선언된 변수로, 해당 함수의 블록 {} 안에서만 유효하며 외부에서는 접근할 수 없다.
+  함수가 실행되는 동안에만 존재하고, 함수가 종료되면 사라진다.
+- `sum`은 함수 내부에서 선언된 지역 변수이기 때문에 함수 외부에서는 접근 불가능하다.
+- 함수 외부에서 <code>console.log(sum);</code>을 실행하면 에러가 발생한다.
 
 <br>
 
-### 전역변수 (Global Variable) (=외부변수)
-
-함수 외부에서 선언된 변수, 스크립트 어디서든 접근 가능, 함수 내부에서도 사용 가능
+#### `전역변수 (Global Variable) (=외부변수)`
 
 ```js
 let sum = 0; // 전역변수 선언
 
 function add(num1, num2) {
-  sum = num1 + num2; // 전역변수 sum에 값을 할당
+  sum = num1 + num2; // 전역변수 sum에 새로운 값을 재할당
 }
 
 add(10, 15);
 console.log(sum); // 25
 ```
 
-- <code>sum</code> 변수는 함수 외부에서 선언됨, <code>add</code> 함수 내부에서도 접근 가능
-- <code>add(10, 15);</code> 호출 시, <code>sum = 10 + 15;</code>로 값이 변경됨
-- 함수 종료 후에도 <code>sum</code> 변수는 여전히 존재하며, <code>console.log(sum);</code> 에서 25 출력
-- 즉, 전역변수는 어디서든 접근 가능하며 함수 내부에서도 수정할 수 있음
-
-<br>
+- 전역 변수는 함수 외부에서 선언된 변수로, 스크립트 어디서든 접근이 가능하며, 함수 내부에서도 사용하거나 수정할 수 있다.
+- `sum` 변수는 함수 외부에서 선언된 전역 변수이다. 함수 내부에서도 이 전역 변수에 접근하여 값을 변경할 수 있다.
+- 함수 실행 후에도 전역 변수는 계속 남아있으므로, 이후 다른 코드에서 참조할 수 있다.
 
 ## 스코프(Scope)
 
