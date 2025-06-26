@@ -190,5 +190,8 @@ export default defineConfig({
         timeStyle: "short",
       },
     },
+    outline: {
+      level: [1, 2], // On this page Heading
+    },
   },
 });
