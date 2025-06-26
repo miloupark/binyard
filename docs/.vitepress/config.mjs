@@ -126,7 +126,7 @@ export default defineConfig({
                 { text: "index", link: "javascript/basic/jsindex" },
                 { text: "변수와 상수", link: "javascript/basic/js01" },
                 { text: "자료형과 형변환", link: "javascript/basic/js02" },
-                { text: "연산자", link: "" },
+                { text: "연산자", link: "javascript/basic/js03" },
                 { text: "조건문", link: "" },
                 { text: "반복문", link: "" },
               ],
