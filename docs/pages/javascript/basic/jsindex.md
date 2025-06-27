@@ -1,83 +1,27 @@
-<br>
+## 화살표 함수 (Arrow Function)
 
-## 함수 표현식 (Function Expression)
-
-### 함수 선언식
-
-```js
-function print() {
-  console.log("hello world");
-}
-```
-
-### 함수 표현식
+화살표 함수란, ES6에서 도입된 간결한 함수 표현식의 문법이다. <br>
+function 키워드 대신 `=>` 기호를 사용해 함수를 정의하고, 코드가 짧아지고 this 바인딩 방식이 달라지는 것이 특징이다.
 
 ```js
-let print = function () {
-  console.log("hello world");
+const 함수이름 = (매개변수) => {
+  // 함수 실행 코드
 };
 ```
 
-<code>print</code>라는 변수에 hello world를 출력하는 함수를 하나의 값처럼 할당. <br>
-<code>print</code>는 변수지만 함수를 값으로 가지고 있기 때문에 <code>print()</code> 함수를 호출하는 것과 동일하게 호출 가능.
-
-<br>
-
-### 함수 선언식과 함수 표현식의 차이점
-
 ```js
-// 함수 선언식: 호이스팅 O
-// print 함수를 함수 선언식을 통해 작성하고 print 함수 선언문 전에 함수를 호출
-
-print(); // hello world
-
-function print() {
-  console.log("hello world");
-}
-```
-
-```js
-// 함수 표현식: 호이스팅 X
-
-print(); // print is not a function
-
-let print = function () {
-  console.log("hello world");
-};
-
-// 표현식은 호이스팅의 대상에 해당되지 않기 때문에, 함수 표현식으로
-// 생성된 함수들을 호출할 경우에는 함수의 선언문을 호출문보다 위쪽에 작성해주어야함
-
-let print = function () {
-  console.log("hello world");
-};
-
-print(); // hello world
-```
-
-<br>
-
-### 함수 표현식을 화살표형 함수를 통해 더 간결하게 작성
-
-```js
-// 기존 함수 표현식
-const print = function () {
-  console.log("hello world");
+// 일반 함수 표현식
+const add = function (a, b) {
+  return a + b;
 };
 
 // 화살표 함수
-const print = () => {
-  console.log("hello world");
+const add = (a, b) => {
+  return a + b;
 };
-
-print(); // hello world
 ```
 
-- <code>=></code>를 통해 변수의 함수를 값으로 할당 <br>
-- 화살표 함수는 함수 표현식처럼 변수의 이름을 통해 함수를 호출할 수 있다.
-- 또한 호이스팅의 대상이 아니기 때문에 순서를 잘 지켜서 작성해야한다.
-
-<br>
+- 위의 화살표 함수는 add라는 변수에 함수를 할당하는 방식으로, 일반적인 함수 표현식의 축약형으로 볼 수 있다.
 
 ### 콜백함수
 
