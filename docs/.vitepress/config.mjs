@@ -118,7 +118,10 @@ export default defineConfig({
               text: "기초 문법",
               collapsed: false,
               items: [
-                { text: "index", link: "javascript/basic/jsindex" },
+                {
+                  text: "정리 후 삭제 필요파일",
+                  link: "javascript/basic/jsindex",
+                },
                 { text: "변수와 상수", link: "javascript/basic/js01" },
                 { text: "자료형과 형변환", link: "javascript/basic/js02" },
                 { text: "연산자", link: "javascript/basic/js03" },
@@ -132,7 +135,7 @@ export default defineConfig({
               items: [
                 { text: "함수", link: "javascript/basic/js06" },
                 { text: "스코프", link: "javascript/basic/js07" },
-                { text: "호이스팅", link: "" },
+                { text: "호이스팅", link: "javascript/basic/js08" },
                 { text: "함수 표현식", link: "" },
                 { text: "화살표 함수", link: "" },
                 { text: "this", link: "" },
