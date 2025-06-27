@@ -136,12 +136,7 @@ export default defineConfig({
                 { text: "함수", link: "javascript/basic/js06" },
                 { text: "스코프", link: "javascript/basic/js07" },
                 { text: "호이스팅", link: "javascript/basic/js08" },
-                { text: "함수 선언 방법", link: "javascript/basic/js09" },
-                {
-                  text: "화살표 함수와 콜백 함수",
-                  link: "javascript/basic/js10",
-                },
-                { text: "this", link: "" },
+                { text: "this", link: "javascript/basic/js09" },
               ],
             },
             {
