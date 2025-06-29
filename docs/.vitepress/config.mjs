@@ -144,7 +144,7 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: "객체", link: "javascript/basic/js10" },
-                { text: "배열", link: "" },
+                { text: "배열", link: "javascript/basic/js11" },
                 { text: "배열 내장함수", link: "" },
                 { text: "생성자 함수", link: "" },
                 { text: "구조 분해 할당", link: "" },
