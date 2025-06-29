@@ -145,8 +145,7 @@ export default defineConfig({
               items: [
                 { text: "객체", link: "javascript/basic/js10" },
                 { text: "배열", link: "javascript/basic/js11" },
-                { text: "배열 메서드", link: "javascript/basic/js12" },
-                { text: "생성자 함수", link: "javascript/basic/js13" },
+                { text: "생성자 함수", link: "javascript/basic/js12" },
                 { text: "구조 분해 할당", link: "" },
                 { text: "Spread / Rest 문법", link: "" },
               ],
