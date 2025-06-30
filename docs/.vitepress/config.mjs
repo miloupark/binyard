@@ -154,8 +154,8 @@ export default defineConfig({
               text: "비동기와 API",
               collapsed: false,
               items: [
-                { text: "비동기 처리", link: "" },
-                { text: "Promise 객체", link: "" },
+                { text: "비동기 처리", link: "javascript/basic/js15" },
+                { text: "Promise 객체", link: "javascript/basic/js16" },
                 { text: "async / await", link: "" },
                 { text: "API 호출", link: "" },
               ],
