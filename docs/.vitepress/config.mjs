@@ -156,7 +156,7 @@ export default defineConfig({
               items: [
                 { text: "비동기 처리", link: "javascript/basic/js15" },
                 { text: "Promise 객체", link: "javascript/basic/js16" },
-                { text: "async / await", link: "" },
+                { text: "async / await", link: "javascript/basic/js17" },
                 { text: "API 호출", link: "" },
               ],
             },
