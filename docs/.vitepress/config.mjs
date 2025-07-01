@@ -164,9 +164,9 @@ export default defineConfig({
               text: "DOM과 DOM API",
               collapsed: false,
               items: [
-                { text: "웹과 DOM", link: "" },
-                { text: "DOM API", link: "" },
-                { text: "이벤트 처리", link: "" },
+                { text: "웹과 DOM", link: "javascript/basic/js19" },
+                { text: "DOM API", link: "javascript/basic/js20" },
+                { text: "이벤트 처리", link: "javascript/basic/js21" },
               ],
             },
           ],
