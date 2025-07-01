@@ -118,10 +118,6 @@ export default defineConfig({
               text: "기초 문법",
               collapsed: false,
               items: [
-                {
-                  text: "정리 후 삭제 필요파일",
-                  link: "javascript/basic/jsindex",
-                },
                 { text: "변수와 상수", link: "javascript/basic/js01" },
                 { text: "자료형과 형변환", link: "javascript/basic/js02" },
                 { text: "연산자", link: "javascript/basic/js03" },
@@ -158,15 +154,16 @@ export default defineConfig({
                 { text: "Promise 객체", link: "javascript/basic/js16" },
                 { text: "async / await", link: "javascript/basic/js17" },
                 { text: "API 호출", link: "javascript/basic/js18" },
+                { text: "Local Storage", link: "javascript/basic/js19" },
               ],
             },
             {
               text: "DOM과 DOM API",
               collapsed: false,
               items: [
-                { text: "웹과 DOM", link: "javascript/basic/js19" },
-                { text: "DOM API", link: "javascript/basic/js20" },
-                { text: "이벤트 처리", link: "javascript/basic/js21" },
+                { text: "웹과 DOM", link: "javascript/basic/js20" },
+                { text: "DOM API", link: "javascript/basic/js21" },
+                { text: "이벤트 처리", link: "javascript/basic/js22" },
               ],
             },
           ],
