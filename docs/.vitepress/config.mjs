@@ -16,7 +16,7 @@ export default defineConfig({
       { text: "About", link: "/hyebin/about" },
       { text: "Frontend", link: "/frontend/index" },
       { text: "OZ", link: "/OZ/intro" },
-      { text: "Javascript", link: "/javascript/basic/js01" },
+      { text: "Javascript", link: "/javascript/basic/js00" },
     ],
 
     sidebar: {
@@ -132,7 +132,17 @@ export default defineConfig({
                 { text: "함수", link: "javascript/basic/js06" },
                 { text: "스코프", link: "javascript/basic/js07" },
                 { text: "호이스팅", link: "javascript/basic/js08" },
-                { text: "this", link: "javascript/basic/js09" },
+                {
+                  text: "this",
+                  collapsed: false,
+                  items: [
+                    { text: "기본 개념", link: "javascript/basic/js09" },
+                    {
+                      text: "화살표 함수와 this",
+                      link: "javascript/basic/js23",
+                    },
+                  ],
+                },
               ],
             },
             {
