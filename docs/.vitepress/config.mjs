@@ -63,17 +63,17 @@ export default defineConfig({
       "/OZ/": [
         {
           text: "OZ초격차캠프 FE",
-          collapsed: true,
+          collapsed: false,
           items: [{ text: "TIL", link: "OZ/til/til01" }],
         },
         {
           text: "베이스 캠프 미션",
-          collapsed: false,
+          collapsed: true,
           items: [
             { text: "사전 미션", link: "/OZ/intro" },
             {
               text: "워밍업 칼럼",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "01. 뇌 가소성", link: "/OZ/warmingup/warmingup01" },
                 { text: "02. 메타인지", link: "OZ/warmingup/warmingup02" },
@@ -81,7 +81,7 @@ export default defineConfig({
             },
             {
               text: "비기너 트랙",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "CLI 환경 알아보기", link: "/OZ/beginner/beginner01" },
                 { text: "Git과 GitHub", link: "OZ/beginner/beginner02" },
@@ -173,7 +173,7 @@ export default defineConfig({
     socialLinks: [
       { icon: "github", link: "https://github.com/miloupark" },
       { icon: "linkedin", link: "https://www.linkedin.com/in/hyebinparkfe" },
-      { icon: "instagram", link: "https://www.instagram.com/parkjujeop/#" },
+      // { icon: "instagram", link: "https://www.instagram.com/parkjujeop/#" },
     ],
     lastUpdated: {
       text: "마지막 업데이트 날짜",
