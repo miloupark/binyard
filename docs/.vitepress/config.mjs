@@ -116,7 +116,7 @@ export default defineConfig({
             { text: "자바스크립트의 실행 환경", link: "javascript/basic/js00" },
             {
               text: "기초 문법",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "변수와 상수", link: "javascript/basic/js01" },
                 { text: "자료형과 형변환", link: "javascript/basic/js02" },
