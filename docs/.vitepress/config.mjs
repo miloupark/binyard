@@ -163,7 +163,7 @@ export default defineConfig({
               items: [
                 { text: "웹과 DOM", link: "javascript/basic/js20" },
                 { text: "DOM API", link: "javascript/basic/js21" },
-                { text: "이벤트 처리", link: "javascript/basic/js22" },
+                { text: "form 조작", link: "javascript/basic/js22" },
               ],
             },
           ],
