@@ -64,7 +64,22 @@ export default defineConfig({
         {
           text: "OZ초격차캠프 FE",
           collapsed: false,
-          items: [{ text: "TIL", link: "OZ/til/til01" }],
+          items: [
+            { text: "Intro", link: "/OZ/til/intro.md" },
+            {
+              text: "HTML",
+              collapsed: true,
+              items: [
+                { text: "HTML5", link: "/OZ/til/html/html01" },
+                { text: "HTML이란?", link: "/OZ/til/html/html02" },
+                { text: "시맨틱 태그", link: "/OZ/til/html/html03" },
+                {
+                  text: "meta, head 태그",
+                  link: "/OZ/til/html04",
+                },
+              ],
+            },
+          ],
         },
         {
           text: "베이스 캠프 미션",
