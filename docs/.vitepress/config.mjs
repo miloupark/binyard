@@ -65,7 +65,8 @@ export default defineConfig({
           text: "OZ초격차캠프 FE13",
           collapsed: false,
           items: [
-            { text: "Frontend", link: "/OZ/til/intro.md" },
+            { text: "Frontend", link: "/OZ/til/intro" },
+            { text: "Daily Mission", link: "/OZ/til/mission" },
             {
               text: "HTML",
               collapsed: true,
