@@ -18,7 +18,7 @@ hero:
       link: /frontend/index.md
     - theme: alt
       text: OZ
-      link: /OZ/intro.md
+      link: /OZ/til/intro.md
 
 features:
   - icon: 👩🏻‍💻

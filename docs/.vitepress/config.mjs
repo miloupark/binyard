@@ -15,7 +15,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "About", link: "/hyebin/about" },
       { text: "Frontend", link: "/frontend/index" },
-      { text: "OZ", link: "/OZ/intro" },
+      { text: "OZ", link: "/OZ/til/intro" },
       { text: "Javascript", link: "/javascript/basic/js00" },
     ],
 
@@ -62,10 +62,10 @@ export default defineConfig({
       ],
       "/OZ/": [
         {
-          text: "OZ초격차캠프 FE",
+          text: "OZ초격차캠프 FE13",
           collapsed: false,
           items: [
-            { text: "Intro", link: "/OZ/til/intro.md" },
+            { text: "Frontend", link: "/OZ/til/intro.md" },
             {
               text: "HTML",
               collapsed: true,
@@ -75,7 +75,7 @@ export default defineConfig({
                 { text: "시맨틱 태그", link: "/OZ/til/html/html03" },
                 {
                   text: "meta, head 태그",
-                  link: "/OZ/til/html04",
+                  link: "/OZ/til/html/html04",
                 },
               ],
             },
