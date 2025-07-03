@@ -143,7 +143,7 @@ export default defineConfig({
             },
             {
               text: "함수와 실행 컨텍스트",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "함수", link: "javascript/basic/js06" },
                 { text: "스코프", link: "javascript/basic/js07" },
@@ -190,6 +190,14 @@ export default defineConfig({
                 { text: "웹과 DOM", link: "javascript/basic/js20" },
                 { text: "DOM API", link: "javascript/basic/js21" },
                 { text: "form 조작", link: "javascript/basic/js22" },
+              ],
+            },
+            {
+              text: "모듈과 컴포넌트",
+              collapsed: false,
+              items: [
+                { text: "모듈 시스템", link: "javascript/basic/js24" },
+                { text: "컴포넌트", link: "javascript/basic/js25" },
               ],
             },
           ],
