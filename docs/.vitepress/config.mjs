@@ -68,6 +68,19 @@ export default defineConfig({
             { text: "Frontend", link: "/OZ/til/intro" },
             { text: "Daily Mission", link: "/OZ/til/mission" },
             {
+              text: "Core JavaScript",
+              collapsed: true,
+              items: [
+                { text: "데이터 타입", link: "/OZ/til/corejs/corejs01" },
+                { text: "실행 컨텍스트", link: "/OZ/til/corejs/corejs02" },
+                { text: "this", link: "/OZ/til/corejs/corejs03" },
+                { text: "콜백 함수", link: "/OZ/til/corejs/corejs04" },
+                { text: "클로저", link: "/OZ/til/corejs/corejs05" },
+                { text: "프로토타입", link: "/OZ/til/corejs/corejs06" },
+                { text: "클래스", link: "/OZ/til/corejs/corejs07" },
+              ],
+            },
+            {
               text: "HTML",
               collapsed: true,
               items: [
