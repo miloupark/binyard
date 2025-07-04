@@ -93,6 +93,20 @@ export default defineConfig({
                 },
               ],
             },
+            {
+              text: "CSS",
+              collapsed: true,
+              items: [
+                { text: "CSS Cascading", link: "/OZ/til/css/css01" },
+                { text: "시멘틱 마크업", link: "/OZ/til/css/css02" },
+                { text: "Flex vs Grid", link: "/OZ/til/css/css03" },
+                { text: "inline vs block", link: "/OZ/til/css/css04" },
+                { text: "display", link: "/OZ/til/css/css05" },
+                { text: "margin 겹침 현상", link: "/OZ/til/css/css06" },
+                { text: "Box Model", link: "/OZ/til/css/css07" },
+                { text: "Reset vs Normalize.css", link: "/OZ/til/css/css08" },
+              ],
+            },
           ],
         },
         {
