@@ -227,6 +227,29 @@ export default defineConfig({
                 { text: "컴포넌트", link: "javascript/basic/js25" },
               ],
             },
+            {
+              text: "상태 관리와 SPA",
+              collapsed: false,
+              items: [
+                { text: "상태 관리", link: "javascript/basic/js26" },
+                { text: "SPA와 MPA", link: "javascript/basic/js27" },
+                { text: "SPA와 라우팅", link: "javascript/basic/js28" },
+              ],
+            },
+            {
+              text: "Node.js와 Express",
+              collapsed: false,
+              items: [
+                { text: "Node.js", link: "javascript/basic/js29" },
+                { text: "npm과 패키지 관리", link: "javascript/basic/js30" },
+                {
+                  text: "CommonJS와 모듈 시스템",
+                  link: "javascript/basic/js31",
+                },
+                { text: "Express.js", link: "javascript/basic/js32" },
+                { text: "라우팅과 미들웨어", link: "javascript/basic/js33" },
+              ],
+            },
           ],
         },
       ],
