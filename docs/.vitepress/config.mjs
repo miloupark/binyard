@@ -254,7 +254,7 @@ export default defineConfig({
         },
         {
           text: "Core JavaScript",
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: "데이터 타입", link: "javascript/corejs/cjs01" },
             { text: "실행 컨텍스트", link: "javascript/corejs/cjs02" },
