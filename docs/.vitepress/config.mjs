@@ -154,7 +154,7 @@ export default defineConfig({
       "/javascript/": [
         {
           text: "JavaScript",
-          collapsed: false,
+          collapsed: true,
           items: [
             { text: "자바스크립트의 실행 환경", link: "javascript/basic/js00" },
             {
@@ -190,7 +190,7 @@ export default defineConfig({
             },
             {
               text: "데이터 구조",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "객체", link: "javascript/basic/js10" },
                 { text: "배열", link: "javascript/basic/js11" },
@@ -201,7 +201,7 @@ export default defineConfig({
             },
             {
               text: "비동기와 API",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "비동기 처리", link: "javascript/basic/js15" },
                 { text: "Promise 객체", link: "javascript/basic/js16" },
@@ -212,7 +212,7 @@ export default defineConfig({
             },
             {
               text: "DOM과 DOM API",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "웹과 DOM", link: "javascript/basic/js20" },
                 { text: "DOM API", link: "javascript/basic/js21" },
@@ -221,7 +221,7 @@ export default defineConfig({
             },
             {
               text: "모듈과 컴포넌트",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "모듈 시스템", link: "javascript/basic/js24" },
                 { text: "컴포넌트", link: "javascript/basic/js25" },
@@ -229,7 +229,7 @@ export default defineConfig({
             },
             {
               text: "상태 관리와 SPA",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "상태 관리", link: "javascript/basic/js26" },
                 { text: "SPA와 MPA", link: "javascript/basic/js27" },
@@ -238,7 +238,7 @@ export default defineConfig({
             },
             {
               text: "Node.js와 Express",
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: "Node.js", link: "javascript/basic/js29" },
                 { text: "npm과 패키지 관리", link: "javascript/basic/js30" },
@@ -250,6 +250,19 @@ export default defineConfig({
                 { text: "라우팅과 미들웨어", link: "javascript/basic/js33" },
               ],
             },
+          ],
+        },
+        {
+          text: "Core JavaScript",
+          collapsed: true,
+          items: [
+            { text: "데이터 타입", link: "javascript/corejs/cjs01" },
+            { text: "실행 컨텍스트", link: "javascript/corejs/cjs02" },
+            { text: "this", link: "javascript/corejs/cjs03" },
+            { text: "콜백 함수", link: "javascript/corejs/cjs04" },
+            { text: "클로저", link: "javascript/corejs/cjs05" },
+            { text: "프로토타입", link: "javascript/corejs/cjs06" },
+            { text: "클래스", link: "javascript/corejs/cjs07" },
           ],
         },
       ],
