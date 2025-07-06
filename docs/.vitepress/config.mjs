@@ -154,7 +154,7 @@ export default defineConfig({
       "/javascript/": [
         {
           text: "JavaScript",
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: "자바스크립트의 실행 환경", link: "javascript/basic/js00" },
             {
