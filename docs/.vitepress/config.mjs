@@ -234,7 +234,7 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: "상태 관리", link: "javascript/basic/js26" },
-                { text: "SPA와 MPA", link: "javascript/basic/js27" },
+                { text: "MPA와 SPA", link: "javascript/basic/js27" },
                 { text: "SPA와 라우팅", link: "javascript/basic/js28" },
               ],
             },
