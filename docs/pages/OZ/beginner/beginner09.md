@@ -74,33 +74,63 @@ HTML 문서에 CSS 문서를 적용하는 방법은 다음과 같이 3가지가 
 
 ## 3. 선택자
 
+```less
+선택자
+├── 기본 선택자
+│   ├── 전체 선택자: *
+│   ├── 태그 선택자: div, p, h1 등
+│   ├── 클래스 선택자: .classname
+│   └── ID 선택자: #id
+│
+├── 결합자 (Combinators)
+│   ├── 후손 선택자: A B (A 요소의 모든 후손 B)
+│   ├── 자식 선택자: A > B (A 요소의 직계 자식 B)
+│   ├── 인접 형제 선택자: A + B (A 요소 바로 뒤에 오는 형제 B)
+│   └── 일반 형제 선택자: A ~ B (A 요소 뒤에 나오는 형제 B들)
+│
+├── 속성 선택자
+│   ├── [attr]               : 특정 속성이 존재하는 요소
+│   ├── [attr="value"]       : 속성값이 정확히 일치하는 요소
+│   ├── [attr~="value"]      : 공백으로 구분된 속성값 중 하나가 일치
+│   ├── [attr|="value"]      : 하이픈(-)으로 구분된 접두어가 일치
+│   ├── [attr^="value"]      : 특정 값으로 시작하는 속성값
+│   ├── [attr$="value"]      : 특정 값으로 끝나는 속성값
+│   └── [attr*="value"]      : 특정 값을 포함하는 속성값
+│
+└── 기타 선택자 (의사 클래스 등)
+    ├── 상태 선택자: :hover, :focus, :checked, :disabled, :enabled, :active 등
+    ├── 구조 선택자: :first-child, :last-child, :nth-child(n), :not() 등
+    └── 의사 요소 선택자: ::before, ::after 등
+
+```
+
 #### <code>선택자</code>
 
 ```css
-/* 1. 태그 선택자 - 모든 <p> 요소에 적용 */
+/* 태그 선택자 */
 p {
   color: blue;
 }
 
-/* 2. 클래스 선택자 - class="highlight"인 요소에 적용 */
+/* 클래스 선택자 */
 .highlight {
   background-color: yellow;
 }
 
-/* 3. ID 선택자 - id="main-title"인 요소에 적용 */
+/* ID 선택자 */
 #main-title {
   font-size: 30px;
   font-weight: bold;
 }
 
-/* 4. 전체 선택자 - 모든 요소에 적용 (기본 여백 제거 등) */
+/* 전체 선택자 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 5. 그룹 선택자 - 여러 요소를 한꺼번에 선택 */
+/* 그룹 선택자 */
 h1,
 h2,
 h3 {
@@ -108,31 +138,40 @@ h3 {
   color: darkslategray;
 }
 
-/* 6. 자식 선택자 - <ul>의 바로 아래 <li>만 선택 */
+/* 자식 선택자 */
 ul > li {
   list-style-type: none;
   padding-left: 10px;
 }
 
-/* 7. 후손 선택자 - <div> 안의 모든 <p> 선택 */
+/* 후손 선택자 */
 div p {
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
-/* 8. 속성 선택자 - type="checkbox"인 <input> 선택 */
+/* 속성 선택자 */
 input[type="checkbox"] {
   width: 20px;
   height: 20px;
 }
+a[href^="https"] {
+  color: green;
+}
+img[src$=".png"] {
+  border: 2px solid red;
+}
+[title*="cat"] {
+  background-color: yellow;
+}
 
-/* 9. 의사 클래스 - 마우스 올렸을 때 <a> 스타일 */
+/* 의사 클래스 */
 a:hover {
   color: red;
   text-decoration: underline;
 }
 
-/* 10. 의사 요소 - <p>의 첫 글자 스타일 */
+/* 의사 요소 */
 p::first-letter {
   font-size: 2em;
   font-weight: bold;
@@ -146,7 +185,8 @@ p::first-letter {
 2. 인라인 스타일
 3. ID 선택자
 4. 클래스/속성/의사 클래스 선택자
-5. 태그 선택자
+5. 태그 선택자, 의사 요소
+6. 전체 선택자 \*
 
 ## 4. 박스 모델 (Box Model)
 
@@ -525,3 +565,5 @@ HTML 요소의 위치 지정 방식을 정의하는 속성이다. top, right, bo
 - `scroll`: 항상 스크롤바 표시 (내용이 넘치지 않아도)
 - `visible`: 기본값. 넘치는 콘텐츠 그대로 보임 (잘리지 않음)
 - `hidden`: 넘치는 콘텐츠는 숨김 (잘려서 안 보임)
+
+<br>
