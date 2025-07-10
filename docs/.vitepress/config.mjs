@@ -66,13 +66,24 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: "Frontend", link: "/OZ/fe/intro" },
-            { text: "Learning Log", link: "/OZ/fe/learninglog" },
             { text: "Daily Mission", link: "/OZ/fe/mission" },
           ],
         },
         {
-          text: " Blog",
+          text: "Learning Log",
           collapsed: false,
+          items: [
+            { text: "Reflection", link: "/OZ/llog/intro" },
+            {
+              text: "TIL",
+              collapsed: true,
+              items: [{ text: "JavaScript", link: "/OZ/llog/til/js" }],
+            },
+          ],
+        },
+        {
+          text: " Blog",
+          collapsed: true,
           items: [
             {
               text: "HTML",
@@ -105,7 +116,7 @@ export default defineConfig({
         },
         {
           text: "Core JavaScript",
-          collapsed: false,
+          collapsed: true,
           items: [
             { text: "데이터 타입", link: "/OZ/corejs/corejs01" },
             { text: "실행 컨텍스트", link: "/OZ/corejs/corejs02" },
