@@ -62,26 +62,32 @@
 
 ![day5mission](./images/day05-1.png)
 
-[`👩🏻‍💻제출한 코드보기`](https://github.com/miloupark/OZ-DailyMission/tree/main/day5/chat)
+[`👩🏻‍💻 제출한 코드보기`](https://github.com/miloupark/OZ-DailyMission/tree/main/day5/chat)
 
 <br>
 
 ![day5mission](./images/day05-2.png)
 
-[`👩🏻‍💻제출한 코드보기`](https://github.com/miloupark/OZ-DailyMission/tree/main/day5/responsive)
+[`👩🏻‍💻 제출한 코드보기`](https://github.com/miloupark/OZ-DailyMission/tree/main/day5/responsive)
 
 <br>
 
 ![day5mission](./images/day05-3.png)
 
-[`👩🏻‍💻제출한 코드보기`](https://github.com/miloupark/OZ-DailyMission/tree/main/day5/responsive_develop)
+[`👩🏻‍💻 제출한 코드보기`](https://github.com/miloupark/OZ-DailyMission/tree/main/day5/responsive_develop)
 
 <br>
 
 ![day5mission](./images/day05-4.png)
 
-[`👩🏻‍💻제출한 코드보기`](https://github.com/miloupark/OZ-DailyMission/tree/main/market)
+[`👩🏻‍💻 제출한 코드보기`](https://github.com/miloupark/OZ-DailyMission/tree/main/market)
 
+<br>
+:::
+
+### JavaScript
+
+::: info `day 6`~`day 20` [Stackblitz Collections](https://stackblitz.com/@miloupark/collections/oz-dailymission-js)
 <br>
 :::
 <Comment/>
