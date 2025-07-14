@@ -2,6 +2,8 @@
 
 > 디버깅은 나부터... 🔫<br>
 
+![모가지로날아보자](./til/images/reflection.jpg)
+
 ::: details <Badge type="tip" text="Week 1" />
 🗓️ 25.07.03-25.07.04<br>
 
