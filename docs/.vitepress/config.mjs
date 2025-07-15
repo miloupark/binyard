@@ -38,6 +38,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: "JavaScript", link: "/javascript/basic/js00" },
+            { text: "TypeScript", link: "/typescript/basic/ts00" },
             { text: "React", link: "/frontend/react" },
             { text: "React Native", link: "/frontend/react-native01" },
           ],
@@ -279,7 +280,25 @@ export default defineConfig({
           ],
         },
       ],
+      "/typescript/": [
+        {
+          text: "TypeScript",
+          collapsed: false,
+          items: [
+            { text: "소개", link: "typescript/basic/ts00" },
+            {
+              text: "기초 문법",
+              collapsed: true,
+              items: [
+                { text: "변수 선언", link: "typescript/basic/ts01" },
+                { text: "타입 주석", link: "typescript/basic/ts02" },
+              ],
+            },
+          ],
+        },
+      ],
     },
+
     socialLinks: [
       { icon: "github", link: "https://github.com/miloupark" },
       { icon: "linkedin", link: "https://www.linkedin.com/in/hyebinparkfe" },
