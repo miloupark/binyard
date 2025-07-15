@@ -41,6 +41,7 @@ export default defineConfig({
             { text: "TypeScript", link: "/typescript/basic/ts00" },
             { text: "React", link: "/frontend/react" },
             { text: "React Native", link: "/frontend/react-native01" },
+            { text: "CLI Commands", link: "/frontend/cli" },
           ],
         },
         {
