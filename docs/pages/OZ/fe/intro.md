@@ -34,7 +34,7 @@
 
 <br>
 
-<img src="./images/til01.png" alt="zep에서의나" width="280" />
+<img src="./images/til01.png" alt="zep에서의나" />
 
 #### 내가 노력하고 도전한 만큼이 내 세계 💫
 
