@@ -135,13 +135,11 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 :::
 
 ::: details `day 10`
-[`👩🏻‍💻 `]()
-[`👩🏻‍💻 `]()
-[`👩🏻‍💻 `]()
-[`👩🏻‍💻 `]()
-[`👩🏻‍💻 `]()
+[`👩🏻‍💻 `](#)
+[`👩🏻‍💻 `](#)
+[`👩🏻‍💻 `](#)
+[`👩🏻‍💻 `](#)
+[`👩🏻‍💻 `](#)
 :::
-
-<!-- [Stackblitz Collections](https://stackblitz.com/@miloupark/collections/oz-dailymission-js) -->
 
 <Comment/>
