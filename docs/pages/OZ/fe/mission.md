@@ -134,12 +134,18 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 [`👩🏻‍💻 JavaScript 4일차 봄 옷 고르기`](https://stackblitz.com/edit/vitejs-vite-wwrf6erc?file=main.js)
 :::
 
-::: details `day 10`
+::: details `day 10` 함수 기초
+[`👩🏻‍💻 JavaScript 5일차 주사위 만들기 2`](https://stackblitz.com/edit/vitejs-vite-lf1xfpcj?file=main.js)
+[`👩🏻‍💻 JavaScript 5일차 윤년 구하기 2`](https://stackblitz.com/edit/vitejs-vite-vnsfbtdw?file=main.js)
+[`👩🏻‍💻 JavaScript 5일차 카페 주문하기`](https://stackblitz.com/edit/vitejs-vite-xfvywc2w?file=main.js)
+
+:::
+
+::: details `day 11`
 [`👩🏻‍💻 `](#)
 [`👩🏻‍💻 `](#)
 [`👩🏻‍💻 `](#)
-[`👩🏻‍💻 `](#)
-[`👩🏻‍💻 `](#)
+
 :::
 
 <Comment/>
