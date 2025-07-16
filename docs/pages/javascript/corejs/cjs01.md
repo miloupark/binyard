@@ -1,25 +1,140 @@
-# Data Types
+# 🔣 Data Types
 
-```plaintext {8,14,15,16}
-Data Type
-├── Primitive Type 기본형
-│   ├── Number
-│   ├── String
-│   ├── Boolean
-│   ├── null
-│   ├── undefined
-│   └── Symbol
-└── Reference Type 참조형
-    └── Object
-        ├── Array
-        ├── Function
-        ├── RegExp(Regular Expression)
-        ├── Set / WeakSet
-        ├── Map / WeakMap
-        └── ...
+:::info 🎯 Learning Goals
+
+- 기본형과 참조형 타입이 다르게 동작하는 이유? <Badge type="tip" text="# 메모리와 데이터" /> <Badge type="tip" text="# 식별자와 변수의 개념" />
+
+:::
+
+<!-- [데이터 타입 종류](#데이터-타입의-종류) -->
+
+## 1. 데이터 타입의 종류
+
+```plaintext {7}
+Primitive Type 기본형
+├── Number
+├── String
+├── Boolean
+├── null
+├── undefined
+└── Symbol
+
+```
+
+```plaintext {6,7,8}
+Reference Type 참조형
+└── Object
+    ├── Array
+    ├── Function
+    ├── RegExp(Regular Expression)
+    ├── Set / WeakSet
+    ├── Map / WeakMap
+    └── ...
 
 ※ 표시된 데이터 타입은 ES6(ECMAScript 2015)에서 도입된 것
 ```
+
+자바스크립트에서 데이터는 기본형과 참조형으로 나뉜다.
+
+- `기본형`은 실제 값을 직접 저장
+- `참조형`은 값이 저장된 메모리 주소(참조)를 저장
+
+이 차이는 변수 복사, 비교 연산, 메모리 관리에서 중요한 차이를 만든다.
+
+<br>
+
+### Primitive Type vs Reference Type
+
+| 항목             | Primitive Type         | Reference Type                    |
+| ---------------- | ---------------------- | --------------------------------- |
+| 저장 방식        | 값 자체를 저장         | 참조(주소)를 저장                 |
+| 메모리 저장 위치 | Stack                  | Heap (참조는 Stack에 저장)        |
+| 복사 시 동작     | 값 복사 (깊은 복사)    | 참조 복사 (얕은 복사)             |
+| 변경 가능성      | 불변 (Immutable)       | 가변 (Mutable)                    |
+| 비교 방식        | 값 자체를 비교 (===)   | 주소(참조값)를 비교 (===)         |
+| typeof 결과 예시 | "number", "string" 등  | "object" 또는 "function"          |
+| 대표 예시        | 42, "text", true, null | {}, \[], function() {}, new Map() |
+
+:::details 💡 `null`은 왜 typeof 결과가 "object"일까?
+
+자바스크립트에서 `typeof null`은 `"object"`를 반환한다.
+
+이는 자바스크립트 오래된 버그로, `null`은 실제로 객체가 아님에도 불구하고 object로 인식한다.
+
+```js
+typeof null === "object"; // true
+```
+
+이 버그는 이미 너무 많은 코드에서 사용되어 있어서 지금까지도 고쳐지지 않고 유지되고 있다.
+
+```js
+const value = null;
+
+value === null; // true
+```
+
+정확하게 'null'인지 확인하려면 `typeof` 대신 `=== null` 비교를 하는 게 정확하다.
+
+<br>
+
+[📎 The history of “typeof null”](https://2ality.com/2013/10/typeof-null.html)
+:::
+
+<br>
+
+⚠️ 기본형은 불변하다고 하는데, 변수에 값을 재할당하는 것은 문제가 되지 않는다.<br>
+왜 불변인데도 변수에 새로운 값을 넣을 수 있는 걸까?
+
+```js
+let a = 10;
+let b = a;
+
+b = 20;
+
+console.log(a); // 10
+console.log(b); // 20
+```
+
+이 질문을 이해하려면 자바스크립트에서 값이 메모리에 어떻게 저장되고,  
+변수(식별자)가 그 값을 어떻게 참조하는지에 대한 개념이 필요하다.
+
+## 2. 데이터 타입에 관한 배경지식
+
+### 2-1. 메모리와 데이터
+
+컴퓨터는 모든 데이터를 0과 1로 저장한다. 메모리는 이진수인 `비트`로 구성되어 있으며,
+각 비트는 `고유한 식별자`를 가지고 있어 데이터를 저장하고 접근할 수 있다.<br>
+
+최소 단위인 `비트`로 데이터를 관리하는 것은 비효율적이므로, 여러 비트를 묶어 `바이트`라는 단위로 사용한다.
+1바이트는 8비트로 구성되며, 256(2⁸)개의 값을 표현할 수 있어 효율적인 데이터 저장과 접근이 가능하다. <br>
+따라서 컴퓨터가 메모리를 관리할 때는 `바이트 단위의 주소`를 사용한다.
+
+```less
+ 1bit (= 0 or 1)
+  ↓
+| 0 | 1 | 0 | 1 | 1 | 0 | 0 | 1 | ← 1byte (=8 bits)
+
+```
+
+- `비트 (bit)`: 0 또는 1만 표현할 수 있는 메모리의 최소 단위
+- `바이트 (byte)`: 1 바이트는 8개의 비트로 구성
+
+::: info 💡
+자바스크립트에서 number 타입은 64비트(8바이트)를 확보한다.
+:::
+
+<br>
+
+### 2-2. 식별자와 변수
+
+```js
+// age라는 식별자(이름)의 변수에 30이라는 값을 저장
+let age = 30;
+```
+
+`변수 variable`: 변할 수 있는 데이터(숫자, 문자열, 객체, 배열 등)
+
+`식별자 identifier`: 어떤 데이터를 식별하는 데 사용하는 이름, 변수명
 
 ## 자바스크립트 메모리 구조
 

@@ -103,6 +103,7 @@
 
 - [Framer Motion (React)](https://www.framer.com/motion/)
 - [GSAP](https://gsap.com/docs/v3/)
+- [Lottie](https://lottiefiles.com/kr/)
 
 :::
 
@@ -159,10 +160,11 @@
 
 :::
 
-::: info ☁️ Deployment & Hosting
+::: info 🚀 Deployment, Hosting & Domain
 
 - [Vercel](https://vercel.com/docs)
 - [Netlify](https://docs.netlify.com/)
 - [GitHub Pages](https://docs.github.com/en/pages)
+- [Gabia](https://www.gabia.com/)
 
 :::
