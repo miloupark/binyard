@@ -3,7 +3,8 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Binyard",
-  description: "Hyebin Vitepress Blog",
+  description: "FE Growth Log by Hyebin Park",
+  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   srcDir: "./pages/",
   base: "/",
   themeConfig: {
