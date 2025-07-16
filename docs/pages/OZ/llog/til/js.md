@@ -236,7 +236,9 @@ let name = "훈이"; // 변수 선언과 초기화
 
 - 변수명에는 오직 `문자`, `숫자`, `$`, `_` 만 포함될 수 있다.
 - 변수명 첫번째 글자로 숫자가 올 수 없다.
-- [`자바스크립트 예약어 사용 불가`](https://www.w3schools.com/js/js_reserved.asp)
+- 자바스크립트의 예약어는 변수명으로 사용할 수 없다.
+- [`📎 W3S Reserved words`](https://www.w3schools.com/js/js_reserved.asp)
+- [`📎 MDN Reserved words`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#reserved_words)
 
 <br>
 
