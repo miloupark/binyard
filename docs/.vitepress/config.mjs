@@ -71,7 +71,7 @@ export default defineConfig({
       ],
       "/OZ/": [
         {
-          text: "OZ초격차캠프 FE13",
+          text: "OZ Front-end",
           collapsed: false,
           items: [
             { text: "Frontend", link: "/OZ/fe/intro" },

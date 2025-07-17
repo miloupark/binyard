@@ -1,14 +1,16 @@
-# OZ 초격차캠프 <Badge type="tip" text="2025-07-03 ~ 2025-12-29" />
-
-### 👩🏻‍💻 Frontend 13기
+# 👩🏻‍💻 Frontend 13기 <Badge type="tip" text="2025-07-03 ~ 2025-12-29" />
 
 ::: details 🔮 OZ Archive
 
-```less {1,6,16}
+```less {1,5,10}
 📁 OZ 초격차캠프
 ├── Frontend
-├── Learning Log
 └── Daily Mission
+
+📁 Learning Log
+├── Reflection
+└── TIL
+    └── JavaScript
 
 📁 Blog
 ├── HTML
