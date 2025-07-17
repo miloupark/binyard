@@ -46,15 +46,21 @@ export default defineConfig({
           ],
         },
         {
+          text: "Unclear to Clear",
+          collapsed: false,
+          items: [
+            { text: "Git", link: "/frontend/untoc/git" },
+            { text: "JavaScript", link: "/frontend/untoc/js" },
+            { text: "HTML", link: "/frontend/untoc/html" },
+            { text: "CSS", link: "/frontend/untoc/css" },
+          ],
+        },
+        {
           text: "Programmers",
           collapsed: false,
           items: [{ text: "Javascript", link: "/frontend/programmers-js" }],
         },
-        {
-          text: "Git",
-          collapsed: false,
-          items: [{ text: "git", link: "/frontend/git" }],
-        },
+
         {
           text: "Vitepress",
           collapsed: false,
