@@ -15,6 +15,12 @@
 
 :::
 
+::: details ✨ Inspiration
+
+- [Inspiration](#)
+
+:::
+
 ::: info 🗺️ Roadmap
 
 - [Developer Roadmap](https://github.com/kamranahmedse/developer-roadmap?tab=readme-ov-file)
@@ -23,10 +29,13 @@
 
 :::
 
-::: info 💊 Helper
+::: info 💡 Useful Resources
 
 - [MDN](https://developer.mozilla.org/ko/)
 - [W3S](https://www.w3schools.com/)
+- [Stack Overflow](https://stackoverflow.com/)
+- [Toss-Frontend Fundamentals](https://frontend-fundamentals.com/code-quality/)
+- [Toss-Bundling Fundamentals](https://frontend-fundamentals.com/bundling/)
 
 :::
 
@@ -104,6 +113,7 @@
 - [Framer Motion (React)](https://www.framer.com/motion/)
 - [GSAP](https://gsap.com/docs/v3/)
 - [Lottie](https://lottiefiles.com/kr/)
+- [Josh W. Comeau's Blog](https://www.joshwcomeau.com/)
 
 :::
 
