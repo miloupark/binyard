@@ -23,11 +23,11 @@ hero:
 features:
   - icon: 👩🏻‍💻
     title: Hyebin Park
-    details:
-  - icon: 💡
-    title: FE
-    details:
+    details: FE Dev 박혜빈입니다.
   - icon: ✍🏼
     title: Blog
-    details:
+    details: 모호함을 명확함으로, 낯설음을 익숙함으로. <br> 이해로 나아가기 위한 기록
+  - icon: 💡
+    title: FE
+    details: 사용자 경험을 최우선으로 생각하며,<br> 더 나은 서비스를 구현하는 데 가치를 둡니다.
 ---
