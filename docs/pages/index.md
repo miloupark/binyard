@@ -5,7 +5,7 @@ layout: home
 hero:
   name: Personal Growth Archives
   # text:
-  tagline: 🐣 FE 공부 기록 블로그
+  tagline: From Unclear to Clear - A Frontend Learning Log
   actions:
     - theme: brand
       text: About
