@@ -154,11 +154,13 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 
 :::
 
-::: details `day 12`
+::: details `day 12` 배열, 객체 응용
 
-[`👩🏻‍💻 `](#)
-[`👩🏻‍💻 `](#)
-[`👩🏻‍💻 `](#)
+[`👩🏻‍💻 JavaScript 7일차 직원 관리하기`](https://stackblitz.com/edit/vitejs-vite-at4bxkad?file=main.js)
+
+[`👩🏻‍💻 JavaScript 7일차 마왕 물리치기`](https://stackblitz.com/edit/vitejs-vite-m7nkgcdr?file=main.js)
+
+[`👩🏻‍💻 JavaScript 7일차 스택 자료구조 만들기`](https://stackblitz.com/edit/vitejs-vite-7dhxvnwx?file=main.js)
 
 :::
 
