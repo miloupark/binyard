@@ -164,4 +164,12 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 
 :::
 
+::: details ` day 13` 함수 응용, 구조분해할당
+
+[`👩🏻‍💻 JavaScript 8일차 오류 해결하기 2`](https://stackblitz.com/edit/vitejs-vite-7taguauw?file=main.js)
+
+[`👩🏻‍💻 JavaScript 8일차 템플릿 만들기`](https://stackblitz.com/edit/vitejs-vite-txyprsjz?file=main.js)
+
+:::
+
 <Comment/>
