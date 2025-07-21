@@ -88,7 +88,10 @@ export default defineConfig({
             {
               text: "TIL",
               collapsed: true,
-              items: [{ text: "JavaScript", link: "/OZ/llog/til/js" }],
+              items: [
+                { text: "JavaScript", link: "/OZ/llog/til/js" },
+                { text: "Draft", link: "/OZ/llog/til/jsdraft" },
+              ],
             },
           ],
         },
@@ -314,6 +317,7 @@ export default defineConfig({
       { icon: "linkedin", link: "https://www.linkedin.com/in/hyebinparkfe" },
       // { icon: "instagram", link: "https://www.instagram.com/parkjujeop/#" },
     ],
+
     lastUpdated: {
       text: "마지막 업데이트 날짜",
       formatOptions: {
@@ -321,6 +325,7 @@ export default defineConfig({
         timeStyle: "short",
       },
     },
+
     outline: {
       level: [1, 2], // On this page Heading
     },
