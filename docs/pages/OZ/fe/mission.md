@@ -164,11 +164,21 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 
 :::
 
-::: details ` day 13` 함수 응용, 구조분해할당
+::: details `day 13` 함수 응용, 구조분해할당
 
 [`👩🏻‍💻 JavaScript 8일차 오류 해결하기 2`](https://stackblitz.com/edit/vitejs-vite-7taguauw?file=main.js)
 
 [`👩🏻‍💻 JavaScript 8일차 템플릿 만들기`](https://stackblitz.com/edit/vitejs-vite-txyprsjz?file=main.js)
+
+:::
+
+::: details `day 14` DOM 기초, 이벤트 객체
+
+[`👩🏻‍💻 JavaScript 9일차 햄버거 주문서`](https://stackblitz.com/edit/stackblitz-starters-xvjgnfwf?file=script.js)
+
+[`👩🏻‍💻 JavaScript 9일차 로또 번호 생성기 기능 추가 구현`](https://stackblitz.com/edit/stackblitz-starters-x1notbge?file=lotto.js)
+
+[`👩🏻‍💻 JavaScript 9일차 로또 당첨 번호 및 로또 번호 자동 생성`](https://stackblitz.com/edit/stackblitz-starters-gs81befw?file=script.js)
 
 :::
 
