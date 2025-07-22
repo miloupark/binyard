@@ -128,19 +128,19 @@ export default defineConfig({
             },
           ],
         },
-        {
-          text: "Core JavaScript",
-          collapsed: true,
-          items: [
-            { text: "데이터 타입", link: "/OZ/corejs/corejs01" },
-            { text: "실행 컨텍스트", link: "/OZ/corejs/corejs02" },
-            { text: "this", link: "/OZ/corejs/corejs03" },
-            { text: "콜백 함수", link: "/OZ/corejs/corejs04" },
-            { text: "클로저", link: "/OZ/corejs/corejs05" },
-            { text: "프로토타입", link: "/OZ/corejs/corejs06" },
-            { text: "클래스", link: "/OZ/corejs/corejs07" },
-          ],
-        },
+        // {
+        //   text: "Core JavaScript",
+        //   collapsed: true,
+        //   items: [
+        //     { text: "데이터 타입", link: "/OZ/corejs/corejs01" },
+        //     { text: "실행 컨텍스트", link: "/OZ/corejs/corejs02" },
+        //     { text: "this", link: "/OZ/corejs/corejs03" },
+        //     { text: "콜백 함수", link: "/OZ/corejs/corejs04" },
+        //     { text: "클로저", link: "/OZ/corejs/corejs05" },
+        //     { text: "프로토타입", link: "/OZ/corejs/corejs06" },
+        //     { text: "클래스", link: "/OZ/corejs/corejs07" },
+        //   ],
+        // },
         {
           text: "베이스 캠프 미션",
           collapsed: true,
