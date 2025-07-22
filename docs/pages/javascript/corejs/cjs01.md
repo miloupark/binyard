@@ -468,9 +468,9 @@ console.log(user === user2); // false
 
 <br>
 
-### 기존 정보를 복사해서 새로운 객체를 반환하는 함수(얕은 복사)
+#### 기존 정보를 복사해서 새로운 객체를 반환하는 함수(얕은 복사)
 
-```js
+```js {8,9,13} ts:line-numbers {1}
 var copyObject = function (target) {
   var result = {};
   for (var prop in target) {
@@ -483,17 +483,19 @@ var copyObject = function (target) {
 - result라는 새로운 객체를 만들고 반환한다.
 - `for-in` 문으로 target 객체의 모든 속성(prop)을 반복하면서, 각 속성의 값을 result에 복사한다.
 
-왜 이렇게 `copyObject()` 복사 함수를 따로 만들까?
+::: info 💡 왜 이렇게 copyObject() 복사 함수를 따로 만들까?
 
 - 속성이 많을 경우 직접 { a: x, b: y, c: z }처럼 일일이 작성하기 어렵기 때문이다.
-- 어떤 객체든 재사용 가능한 일반 함수로 만들 수 있다.
-- 불변 객체 원칙을 지킬 수 있다.
+- 어떤 객체든 `재사용` 가능한 일반 함수로 만들 수 있다.
+- `불변 객체 원칙`을 지킬 수 있다.
+
+:::
 
 <br>
 
-### copyObject를 이용한 객체 복사
+#### copyObject를 이용한 객체 복사
 
-```js
+```js {15} ts:line-numbers {1}
 var copyObject = function (target) {
   var result = {};
   for (var prop in target) {
@@ -517,6 +519,10 @@ console.log(user.name, user2.name); // Jaenam Jung
 console.log(user === user2); // false
 ```
 
+::: details 메모리 영역의 변화보기
+![copyObject를 이용한 객체 복사](./images/cj1-11.png)
+:::
+
 - 협업 시 user 객체 내부 변경이 필요할 때는 copyObject() 함수를 사용하기로 합의하고 그 규칙을 지킨다면 user 객체가 곧 불변객체라고 볼 수 있다.
 - copyObject()는 `얕은 복사`만 수행하므로, 중첩 객체가 있다면 `깊은 복사`가 필요하다.
 
@@ -524,7 +530,227 @@ console.log(user === user2); // false
 
 ### 5-2. 얕은 복사와 깊은 복사
 
+- 얕은 복사(shallow copy): 바로 아래 단계의 값만 복사하는 방법
+- 깊은 복사(deep copy): 객체 내부의 모든 중첩된 값까지 재귀적으로 복사하는 방법
+
 <br>
+
+#### 중첩된 객체에 대한 얕은 복사
+
+```js {19,22,25} ts:line-numbers {1}
+var copyObject = function (target) {
+  var result = {};
+  for (var prop in target) {
+    result[prop] = target[prop];
+  }
+  return result;
+};
+
+var user = {
+  name: "Jaenam",
+  urls: {
+    portfolio: "http://github.com/abc",
+    blog: "http://blog.com",
+    facebook: "http://facebook.com/abc",
+  },
+};
+var user2 = copyObject(user);
+
+user2.name = "Jung";
+console.log(user.name === user2.name); // false
+
+user.urls.portfolio = "http://portfolio.com";
+console.log(user.urls.portfolio === user2.urls.portfolio); // true
+
+user2.urls.blog = "";
+console.log(user.urls.blog === user2.urls.blog); // true
+```
+
+::: details 메모리 영역의 변화보기
+![중첩된 객체에 대한 얕은 복사](./images/cj1-12.png)
+:::
+
+- 얕은 복사는 객체의 `최상위 프로퍼티`만 복사하기 때문에, user 객체에 직접 속한 프로퍼티인 `name`은 새로운 메모리에 복사된다.
+- 반면, 중첩 객체인 `urls`는 주소(참조값)만 복사되어 user와 user2가 `같은 urls 객체를 공유`하게 된다.
+- 따라서 urls 내부의 프로퍼티들은 복사되지 않고, 기존 데이터를 그대로 참조하게 된다.
+
+<br>
+
+⚠️ 깊은 복사 또는 불변성 유지의 중요성 <br>
+얕은 복사는 중첩된 객체 구조에서 복사본과 원본이 내부 객체를 공유하기 때문에, 의도치 않은 사이드 이펙트가 발생할 수 있다. 상태의 예측 가능성을 높이고 의도치 않은 변경을 막기 위해서는 `깊은 복사` 또는 `불변성을 유지하는 설계`가 중요하다.
+
+<br>
+
+#### 중첩된 객체에 대한 깊은 복사
+
+```js {19} ts:line-numbers {1}
+var copyObject = function (target) {
+  var result = {};
+  for (var prop in target) {
+    result[prop] = target[prop];
+  }
+  return result;
+};
+
+var user = {
+  name: "Jaenam",
+  urls: {
+    portfolio: "http://github.com/abc",
+    blog: "http://blog.com",
+    facebook: "http://facebook.com/abc",
+  },
+};
+
+var user2 = copyObject(user);
+user2.urls = copyObject(user.urls);
+
+user.urls.portfolio = "http://portfolio.com";
+console.log(user.urls.portfolio === user2.urls.portfolio); // false
+
+user2.urls.blog = "";
+console.log(user.urls.blog === user2.urls.blog); // false
+```
+
+- `user2 = copyObject(user)` → user의 1단계 프로퍼티(name, urls)만 얕게 복사한다.
+- `user2.urls = copyObject(user.urls)`→ 객체의 프로퍼티 중 값이 참조형 데이터(객체)인 경우 다시 그 내부의 프로퍼티들도 복사해야 한다.
+- 따라서 `user.urls`와 `user2.urls`는 서로 다른 객체를 참조하게 되어,
+  이후 각각의 변경이 독립적으로 작동하고, 불필요한 의존성도 사라진다.
+
+::: info 📌 요약
+중첩 객체를 복사할 때는 참조형 프로퍼티에 대해서도 재귀적으로 복사해 주어야, 원본과 복사본이 완전히 분리되어 안전하게 관리할 수 있다.
+:::
+
+::: details 🔁 재귀(Recursion)란?
+
+"자기 자신을 다시 호출하는 함수나 동작 방식"을 의미한다.
+재귀는 일반적으로 복잡한 구조나 중첩된 문제를 간단한 단위로 나눠서 처리할 때 사용된다.
+
+<br>
+
+객체 복사에 쓰이는 재귀
+
+```js
+var user = {
+  name: "Hyebin",
+  urls: {
+    blog: "http://blog.com",
+    github: {
+      main: "http://github.com",
+    },
+  },
+};
+```
+
+위처럼 객체 안에 또 객체가 있는 중첩 구조에서는, 얕은 복사로는 내부까지 모두 복사되지 않기 때문에
+"깊은 복사"를 하려면 이 중첩된 구조를 전부 하나하나 따라 들어가서 모든 객체를 새로 복사해야 한다.
+이때 사용하는 방식이 재귀(recursion)이다.
+
+<br>
+
+| 재귀 함수   | 자기 자신을 호출하는 함수 (종료 조건이 꼭 필요함)       |
+| ----------- | ------------------------------------------------------- |
+| 재귀적 복사 | 객체나 배열처럼 중첩된 구조를 따라가며 전부 복사하는 것 |
+
+:::
+
+<br>
+
+#### 객체의 깊은 복사를 수행하는 범용 함수
+
+```js {5} ts:line-numbers {1}
+var copyObjectDeep = function (target) {
+  var result = {};
+  if (typeof target === "object" && target !== null) {
+    for (var prop in target) {
+      result[prop] = copyObjectDeep(target[prop]);
+    }
+  } else {
+    result = target;
+  }
+  return result;
+};
+```
+
+- copyObjectDeep()는 중첩 구조를 따라가며 깊은 복사를 수행하는 재귀 함수이다.
+- `typeof target === "object" && target !== null` 조건을 통해
+  null은 제외하고 객체와 배열을 구분하지 않고 모두 복사 대상으로 처리한다.
+- for-in 반복문을 통해 모든 프로퍼티들을 순회하며, 그 값에 대해 다시 `copyObjectDeep()`을을 호출하여 내부에 중첩된 객체까지 재귀적으로 복사한다.
+- 복사 대상이 원시값일 경우에는 재귀 호출 없이 그대로 복사된다.
+
+```js
+// 깊은 복사 결과 확인
+var obj = {
+  a: 1,
+  b: {
+    c: null,
+    d: [1, 2],
+  },
+};
+var obj2 = copyObjectDeep(obj);
+
+obj2.a = 3;
+obj2.b.c = 4;
+obj.b.d[1] = 3;
+
+console.log(obj); // { a: 1. b: { c: null, d: [1, 3] } }
+console.log(obj2); // { a: 3. b: { c: 4, d: { 0: 1, 1: 2 } } }
+```
+
+<br>
+
+#### JSON을 활용한 간단한 깊은 복사
+
+`JSON.stringify()` `JSON.parse()`
+
+```js {2} ts:line-numbers {1}
+var copyObjectViaJSON = function (target) {
+  return JSON.parse(JSON.stringify(target));
+};
+
+var obj = {
+  a: 1,
+  b: {
+    c: null,
+    d: [1, 2],
+    func1: function () {
+      console.log(3);
+    },
+  },
+  func2: function () {
+    console.log(4);
+  },
+};
+
+var obj2 = copyObjectViaJSON(obj);
+
+obj2.a = 3;
+obj2.b.c = 4;
+obj.b.d[1] = 3;
+
+console.log(obj); // { a: 1. b: { c: null, d: [1, 3], func1: f() }, func2: f() }
+console.log(obj2); // { a: 3. b: { c: 4,    d: [1, 2] } }
+```
+
+- `copyObjectViaJSON()` 함수는 객체를 JSON 문자열로 변환한 뒤 다시 객체로 파싱하여
+  내부 구조를 깊은 복사하는 간단한 방법이다.
+- `JSON.stringify(target)`을 통해 객체를 문자열로 직렬화한 뒤,
+  `JSON.parse()`를 사용해 새로운 객체를 생성한다.
+- 이 과정에서 객체의 중첩 구조는 전부 문자열로 풀어졌다가 새롭게 재구성되므로,
+  원본 객체와는 완전히 분리된 새로운 객체가 생성된다.
+
+<br>
+
+::: info ⚠️ 주의할 점
+`JSON.stringify()`는 다음과 같은 값들을 직렬화하지 못한다:
+
+- function, undefined, Symbol, Date, Map, Set, 순환 참조 등
+- 위 예제에서도 `func1`, `func2`는 obj2에 포함되지 않고 사라진 것을 볼 수 있다.
+- 따라서 이 방식은 단순하고 순수한 데이터 객체에만 사용하는 것이 안전하다.
+
+:::
+
+<br>
+
 > 참고 출처: 『코어 자바스크립트』, 위키북스 [예제코드 다운로드](https://wikibook.co.kr/corejs/)
 
 ## 자바스크립트 메모리 구조
