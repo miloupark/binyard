@@ -9,6 +9,22 @@ export default defineConfig({
   ],
   srcDir: "./pages/",
   base: "/",
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("shiki")) return "shiki";
+            if (id.includes("vitepress")) return "vitepress";
+            if (id.includes("@vue")) return "vue";
+            if (id.includes("highlight.js")) return "highlight";
+            return "vendor";
+          }
+        },
+      },
+    },
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
