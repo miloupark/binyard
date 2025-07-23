@@ -5,7 +5,7 @@ layout: home
 hero:
   name: Personal Growth Archives
   # text:
-  tagline: From Unclear to Clear - A Frontend Learning Log
+  tagline: 🚀 From Unclear to Clear - A Frontend Learning Log
   actions:
     - theme: brand
       text: About

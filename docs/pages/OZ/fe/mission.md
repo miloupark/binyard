@@ -182,4 +182,14 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 
 :::
 
+::: details `day 15` 비동기
+
+[`👩🏻‍💻 JavaScript 10일차 `](#)
+
+[`👩🏻‍💻 JavaScript 10일차 `](#)
+
+[`👩🏻‍💻 JavaScript 10일차 `](#)
+
+:::
+
 <Comment/>
