@@ -184,11 +184,11 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 
 ::: details `day 15` 비동기
 
-[`👩🏻‍💻 JavaScript 10일차 `](#)
+[`👩🏻‍💻 JavaScript 10일차 순간 포착`](https://stackblitz.com/edit/vitejs-vite-p93mteu3?file=src%2Fmain.js)
 
-[`👩🏻‍💻 JavaScript 10일차 `](#)
+[`👩🏻‍💻 JavaScript 10일차 콜백 탈출`](https://stackblitz.com/edit/vitejs-vite-cptdwcri?file=main.js)
 
-[`👩🏻‍💻 JavaScript 10일차 `](#)
+[`👩🏻‍💻 JavaScript 10일차 반응 속도`](https://stackblitz.com/edit/vitejs-vite-bckhv8by?file=index.html&file=src%2Fmain.js)
 
 :::
 
