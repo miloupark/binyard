@@ -60,6 +60,7 @@ export default defineConfig({
             { text: "TypeScript", link: "/typescript/basic/ts00" },
             { text: "React", link: "/frontend/react" },
             { text: "React Native", link: "/frontend/react-native01" },
+            { text: "DSA", link: "/dsa/dsa00" },
             { text: "CLI Commands", link: "/frontend/cli" },
           ],
         },
@@ -94,21 +95,15 @@ export default defineConfig({
           items: [
             { text: "Frontend", link: "/OZ/fe/intro" },
             { text: "Daily Mission", link: "/OZ/fe/mission" },
+            { text: "Reflection", link: "/OZ/fe/reflection" },
           ],
         },
         {
           text: "Learning Log",
           collapsed: false,
           items: [
-            { text: "Reflection", link: "/OZ/llog/intro" },
-            {
-              text: "TIL",
-              collapsed: true,
-              items: [
-                { text: "JavaScript", link: "/OZ/llog/til/js" },
-                { text: "Draft", link: "/OZ/llog/til/jsdraft" },
-              ],
-            },
+            { text: "JavaScript", link: "/OZ/llog/js" },
+            { text: "Draft", link: "/OZ/llog/jsdraft" },
           ],
         },
         {
@@ -324,6 +319,18 @@ export default defineConfig({
               ],
             },
           ],
+        },
+      ],
+      "/dsa/": [
+        {
+          text: "Data Structures",
+          collapsed: false,
+          items: [{ text: "draft", link: "dsa/dsa00" }],
+        },
+        {
+          text: "Algorithms",
+          collapsed: false,
+          items: [{ text: "draft", link: "dsa/dsa00" }],
         },
       ],
     },

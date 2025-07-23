@@ -2,7 +2,7 @@
 
 > 디버깅은 나부터... 🔫<br>
 
-![모가지로날아보자](./til/images/reflection.jpg)
+![모가지로날아보자](./images/reflection.jpg)
 
 ::: details <Badge type="tip" text="Week 1" /> <Badge type="info" text="🗓️ 25.07.03-25.07.04" />
 
