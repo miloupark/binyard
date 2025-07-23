@@ -6,7 +6,9 @@
 
 :::
 
-[`📎 1-5. 불변 객체 발표`](../../OZ/corejs/corejs01.md)
+[🎨 Data Types_Figma](https://www.figma.com/design/BOdr3uWiyS9uGV62r3KHsz/CoreJS_images_hyebin?node-id=0-1&t=b3jvWaTeSHvfq60K-1)
+
+<!-- [`📎 1-5. 불변 객체 발표`](../../OZ/corejs/corejs01.md) -->
 
 <!-- [데이터 타입 종류](#데이터-타입의-종류) -->
 
@@ -641,6 +643,10 @@ console.log(user.urls.portfolio === user2.urls.portfolio); // false
 user2.urls.blog = "";
 console.log(user.urls.blog === user2.urls.blog); // false
 ```
+
+::: details 메모리 영역의 변화보기
+![중첩된 객체에 대한 깊은 복사](./images/cj1-13.png)
+:::
 
 - `user2 = copyObject(user)` → user의 1단계 프로퍼티(name, urls)만 얕게 복사한다.
 - `user2.urls = copyObject(user.urls)`→ 객체의 프로퍼티 중 값이 참조형 데이터(객체)인 경우 다시 그 내부의 프로퍼티들도 복사해야 한다.
