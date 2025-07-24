@@ -124,11 +124,16 @@
 - [Google Fonts](https://fonts.google.com/)
 - [Heroicons](https://heroicons.com/)
 - [iconify](https://icon-sets.iconify.design/)
+- [Carbon](https://carbon.now.sh/)
+- [Ray.so](https://ray.so/)
 
 :::
 
 ::: info 🔌 API & Data Fetching
 
+- [Swagger UI](https://swagger.io/tools/swagger-ui/)
+- [Swagger UI Docs](https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/)
+- [Swagger Editor](https://editor.swagger.io/)
 - [Axios](https://axios-http.com/docs/intro)
 - [TanStack Query (React Query)](https://tanstack.com/query/latest)
 
@@ -167,6 +172,15 @@
 
 - [Jest](https://jestjs.io/docs/getting-started)
 - [Testing Library](https://testing-library.com/docs/)
+
+:::
+
+::: info 🛝 Playground & Live Editors
+
+- [Live DOM Viewer](https://software.hixie.ch/utilities/js/live-dom-viewer/)
+- [CodePen](https://codepen.io/)
+- [CodeSandbox](https://codesandbox.io/)
+- [StackBlitz](https://stackblitz.com/)
 
 :::
 
