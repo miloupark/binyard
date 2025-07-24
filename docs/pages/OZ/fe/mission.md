@@ -192,4 +192,14 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 
 :::
 
+::: details `day 16` 데이터 fetch
+
+[`👩🏻‍💻 JavaScript 11일차 강아지 페이지 만들기`](https://stackblitz.com/edit/vitejs-vite-u9umbwnv?file=breeds.js)
+
+[`👩🏻‍💻 JavaScript 11일차 오늘의 날씨`](https://stackblitz.com/edit/vitejs-vite-zor67zl2?file=src%2Fmain.js)
+
+[`👩🏻‍💻 JavaScript 11일차 오늘 뭐 입지?`](https://stackblitz.com/edit/vitejs-vite-fvch4kdg?file=src%2Fmain.js)
+
+:::
+
 <Comment/>
