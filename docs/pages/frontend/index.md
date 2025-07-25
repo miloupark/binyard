@@ -136,6 +136,7 @@
 - [Swagger Editor](https://editor.swagger.io/)
 - [Axios](https://axios-http.com/docs/intro)
 - [TanStack Query (React Query)](https://tanstack.com/query/latest)
+- [JSONPlaceholder (Mock API)](https://jsonplaceholder.typicode.com/)
 
 :::
 
