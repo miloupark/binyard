@@ -202,4 +202,13 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 
 :::
 
+::: details `day 17 ~ day 20` 계산기 | Project-Based Learning
+
+[`👩🏻‍💻 계산기 GitHub`](https://github.com/miloupark/calculator)
+
+- DAY 1_HTML로 목업 만들기
+- DAY 2_HTML로 목업 만들기, Flexbox로 정렬 및 배치하기
+
+:::
+
 <Comment/>
