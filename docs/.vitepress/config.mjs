@@ -4,9 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "Binyard",
   description: "FE Growth Log by Hyebin Park",
-  head: [
-    ["link", { rel: "icon", href: "../pages/images/favicon/favicon.ico" }],
-  ],
+  head: [["link", { rel: "icon", href: "./images/favicon/favicon.ico" }]],
   srcDir: "./pages/",
   base: "/",
   build: {
