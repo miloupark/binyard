@@ -33,7 +33,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "About", link: "/hyebin/about" },
-      { text: "Frontend", link: "/frontend/index" },
+      { text: "Frontend", link: "/frontend/reference" },
       { text: "OZ", link: "/OZ/fe/intro" },
       { text: "Javascript", link: "/javascript/basic/js00" },
     ],

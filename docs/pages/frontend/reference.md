@@ -39,6 +39,20 @@
 
 :::
 
+::: info 📽 Visualization
+
+- [JavaScript Visualized Series by Lydia Hallie](https://dev.to/lydiahallie#javascript-visualized)
+- [CSS Flexbox Cheatsheet (by Josh Comeau)](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/)
+- [CSS Grid Cheatsheet (by Josh Comeau)](https://www.joshwcomeau.com/css/interactive-guide-to-grid/)
+- [Flexbox Visual Guide (by Malven Co)](https://flexbox.malven.co/)
+- [Grid Visual Guide (by Malven Co)](https://grid.malven.co/)
+- [React Component Visualizer – React Flow](https://reactflow.dev/)
+- [Uiverse](https://uiverse.io/)
+- [Learn Git Branching](https://learngitbranching.js.org/)
+- [Regex 101](https://regex101.com/)
+
+:::
+
 ::: info 👩‍💻 Language
 
 - [MDN JavaScript](https://developer.mozilla.org/ko/docs/Web/JavaScript)
@@ -83,6 +97,9 @@
 
 ::: info 🎨 Styling
 
+- [CSS Animation Tool – Animista](https://animista.net/)
+- [Cubic-Bezier Visual Editor](https://cubic-bezier.com/)
+- [CSS Clip-Path Maker (by Bennett Feely)](https://bennettfeely.com/clippy/)
 - [Sass](https://sass-lang.com/documentation)
 - [Tailwind CSS](https://tailwindcss.com/docs/installation/using-vite)
 - [Styled-components](https://styled-components.com/docs)
