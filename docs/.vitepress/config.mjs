@@ -4,7 +4,22 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "Binyard",
   description: "FE Growth Log by Hyebin Park",
-  head: [["link", { rel: "icon", href: "/favicon/favicon.ico" }]],
+  head: [
+    ["link", { rel: "icon", href: "/favicon/favicon.ico" }],
+    ["meta", { property: "og:title", content: "Binyard" }],
+    [
+      "meta",
+      { property: "og:description", content: "FE Growth Log by Hyebin Park" },
+    ],
+    [
+      "meta",
+      {
+        property: "og:image",
+        content: "https://binyard.me/favicon/favicon.png",
+      },
+    ],
+    ["meta", { property: "og:url", content: "https://binyard.me/" }],
+  ],
   srcDir: "./pages/",
   base: "/",
   build: {
