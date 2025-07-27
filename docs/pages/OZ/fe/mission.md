@@ -202,12 +202,173 @@ Math.floor(Math.random() * (max - min + 1)) + min;
 
 :::
 
-::: details `day 17 ~ day 20` 계산기 | Project-Based Learning
+::: details `day 17` 계산기 | DAY 1_HTML로 목업 만들기
 
 [`👩🏻‍💻 계산기 GitHub`](https://github.com/miloupark/calculator)
 
-- DAY 1_HTML로 목업 만들기
-- DAY 2_HTML로 목업 만들기, Flexbox로 정렬 및 배치하기
+#### 📋 진행 내용 요약
+
+- 초기 프로젝트 셋업 및 환경 구성<br>
+  → npm init으로 프로젝트 초기화, package.json 및 .gitignore 작성
+- 계산기 UI 목업 및 레이아웃 작성
+- 기본 스타일링 및 버튼 그룹 구성
+- README 작성: 프로젝트 가이드 & 네이밍 규칙 정리
+
+#### 🔨 개선할 점
+
+미션 가이드에 명확한 클래스명 규칙이 없어, 개인적으로 BEM 방식에 따라 네이밍 규칙을 먼저 세워 작업을 진행했다.  
+하지만 이후 DAY 2 미션지를 확인해보니 필수 클래스명이 추가로 지정되어 있어, 일부 클래스명을 수정해야 할 필요가 생겼다.
+
+::: code-group
+
+```html [index.html]
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <main class="calculator">
+      <h1 class="a11y-hidden">Calculator</h1>
+      <div class="calc-container p-40">
+        <!-- calculator window buttons -->
+        <div class="calc__window-btns">
+          <button
+            class="calc__window-btn--close btn-xs"
+            aria-label="화면 닫기"
+            title="닫기"
+          ></button>
+          <button
+            class="calc__window-btn--min btn-xs"
+            aria-label="화면 최소화"
+            title="최소화"
+          ></button>
+          <button
+            class="calc__window-btn--max btn-xs"
+            aria-label="화면 최대화"
+            title="최대화"
+          ></button>
+        </div>
+
+        <!-- calculator display -->
+        <div class="calc__display p-40"></div>
+
+        <!-- calculator keypad -->
+        <div class="calc__keypad p-40"></div>
+      </div>
+    </main>
+  </body>
+</html>
+```
+
+```css
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* color variables */
+:root {
+  --white: #ffffff;
+  --black: #212121;
+  --red: #ff5f57;
+  --yellow: #ffbd2e;
+  --green: #28c840;
+}
+
+/* calculator-layout */
+.calculator {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calc-container {
+  width: 600px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 4px solid #2d2f36;
+}
+
+/* calculator-inner */
+.calc__window-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.calc__window-btn--close {
+  background-color: var(--red);
+}
+.calc__window-btn--min {
+  background-color: var(--yellow);
+}
+.calc__window-btn--max {
+  background-color: var(--green);
+}
+
+.calc__display {
+  height: 120px;
+  text-align: right;
+  border: 4px solid #9000ff;
+}
+
+.calc__keypad {
+  flex: 1;
+  border: 4px solid #0085f9;
+}
+
+/* utils */
+.a11y-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.btn-xs {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.p-40 {
+  padding: 40px;
+}
+```
+
+:::
+
+::: details `day 18` 계산기 | DAY 2_HTML로 목업 만들기, Flexbox로 정렬 및 배치하기
+
+[`👩🏻‍💻 계산기 GitHub`](https://github.com/miloupark/calculator)
+
+-
 
 :::
 
