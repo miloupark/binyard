@@ -220,6 +220,17 @@ export default defineConfig({
               ],
             },
             {
+              text: "내장 객체와 메서드",
+              collapsed: true,
+              items: [
+                { text: "Math", link: "javascript/basic/js34" },
+                // { text: "Date", link: "javascript/basic/js35" },
+                // { text: "JSON", link: "javascript/basic/js36" },
+                // { text: "Global 함수", link: "javascript/basic/js37" },
+                // { text: "console", link: "javascript/basic/js38" },
+              ],
+            },
+            {
               text: "함수와 실행 컨텍스트",
               collapsed: true,
               items: [
