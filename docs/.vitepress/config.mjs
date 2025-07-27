@@ -48,7 +48,7 @@ export default defineConfig({
       ],
       "/frontend/": [
         {
-          items: [{ text: "Reference Docs", link: "/frontend/index" }],
+          items: [{ text: "Reference Docs", link: "/frontend/reference" }],
         },
         {
           text: "Frontend",

@@ -15,7 +15,7 @@ hero:
       link: /hyebin/resume.md
     - theme: alt
       text: Frontend
-      link: /frontend/index.md
+      link: /frontend/reference.md
     - theme: alt
       text: OZ
       link: /OZ/fe/intro.md
