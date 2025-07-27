@@ -75,7 +75,7 @@ export default defineConfig({
         {
           text: "Programmers",
           collapsed: false,
-          items: [{ text: "Javascript", link: "/frontend/programmers-js" }],
+          items: [{ text: "Javascript", link: "/frontend/programmers/js" }],
         },
 
         {
