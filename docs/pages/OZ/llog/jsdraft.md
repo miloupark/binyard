@@ -162,3 +162,29 @@ function login(currentStatus) {
 <br>
 
 ## 구조분해할당
+
+# Day 16 \_ HTTP
+
+### HTTP란?
+
+웹 브라우저에서 데이터를 주고받을 때 `브라우저(클라이언트)`와 `서버`는 무언가의 규칙에 따라 소통한다. 이 통신 규칙(프로토콜)이 바로 `HTTP(HyperText Transfer Protocol)`이다.
+즉, 웹에서 데이터를 주고받기 위한 통신 규칙이다.
+
+### HTTP는 어떻게 동작할까?
+
+## HTTP 요청/응답
+
+- [`📎 MDN HTTP`](https://developer.mozilla.org/ko/docs/Web/HTTP)
+
+::: info 프로토콜이란?
+프로토콜(protocol)은 컴퓨터가 정보를 주고받을 때 사용하는 통신 규칙이다. 쉽게 말하면 약속된 규칙이다.
+브라우저(클라이언트)가 서버에 정보를 요청하면 어떤 형식으로 요청하고, 어떻게 응답할지를 정한 통신 규칙이 바로 HTTP(HyperText Transfer Protocol)이다.
+:::
+
+::: info
+
+- 이메일 보낼 땐 SMTP
+- 파일 전송할 땐 FTP
+- 웹 브라우저에서는 HTTP 또는 보안이 강화된 HTTPS를 사용한다.
+
+:::

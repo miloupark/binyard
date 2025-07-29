@@ -686,6 +686,458 @@ button {
 
 :::
 
+::: details `day 19` 계산기 | DAY 3\_ 버튼 클릭 시 디스플레이에 표시되도록 만들기
+
+[`👩🏻‍💻 계산기 GitHub`](https://github.com/miloupark/calculator)
+
+#### 📋 진행 내용 요약
+
+- 각 버튼을 클릭했을 때 console에 각 버튼의 value 출력
+- 숫자 디스플레이에 표시
+- 소수점 중복 입력 방지 로직 구현
+- Clear 기능 추가
+- 콘솔에 입력 흐름 시각적으로 디버깅
+
+<br>
+
+#### 🔨 개선할 점
+
+- `btnClick` 함수 내부에서 조건문이 많아 복잡하고, `console.log(clickedBtnText)`가 중복되어 있어서 버튼 타입별 동작을 함수로 분리하거나, switch문 등으로 리팩토링 진행 예정
+- 콘솔에 모든 `clickedBtnText`를 출력하지만, 실제 동작상 필요 없는 경우가 있어 미션 완료 후 개선 예정
+- 디스플레이 글자 수에 따른 글자 크기 조절은 아직 구현 전
+- 연산자, 기능, 결과 버튼에 대한 동작 구현은 미구현 상태 (day 4)
+
+<br>
+
+#### 🧩 forEach()를 사용한 이유 (feat.map() 메서드)
+
+```js
+// 제출 코드
+
+// 계산기 버튼에 클릭 이벤트 등록
+calcButtons.forEach((button) => {
+  button.addEventListener("click", btnClick);
+});
+
+// 🔍 디버깅용 출력
+console.log(calcButtons);
+// 계산기 버튼(.button)을 모두 선택하면 NodeList가 반환됨
+// NodeList는 유사 배열 객체지만, forEach() 메서드로 순회 가능
+```
+
+- 모든 버튼에 클릭 이벤트 리스너를 등록하기 위해 `forEach()`를 사용했다.
+- 전역에서 `const calcButtons = document.querySelectorAll(".button");`를 통해 버튼들을 가져오고, 콘솔에 출력해보면 `NodeList`가 반환된다. `NodeList`는 배열과 비슷한 구조의 유사 배열 객체이며, `forEach()` 메서드를 사용할 수 있다.
+
+🧩 map()
+
+- `map()`은 원본 배열을 기반으로 `새로운 배열 생성하고 반환`하는 경우에 많이 사용되는 메서드이기 때문에 리턴값이 필요없는 경우에는 `map()`보다는 `forEach()`가 적합하다.
+- 현 계산기에서는 각 버튼에 이벤트 리스너를 부여하는 작업이므로 `forEach()`로 구현했다.
+
+🧩 NodeList?
+
+- `NodeList`는 배열과 비슷한 구조의 유사 배열 객체이며, 인덱스로 접근할 수 있고, length 속성도 존재하지만, 진짜 자바스크립트 배열이 아니기 때문에 push(), pop() 등의 배열 메서드는 사용할 수 없다.
+- 하지만, NodeList는 forEach() 메서드를 사용할 수 있는 `iterable 객체`이다. 배열처럼 요소를 순회하며 각 버튼에 이벤트를 등록할 수 있다.
+
+🧩 iterable 객체?
+
+- [📎 iterable object](https://ko.javascript.info/iterable)
+- 이터러블 객체란? `for...of`, `spread`, `Array.from()` 등에 사용할 수 있는 객체로서, 내부에 `Symbol.iterator()` 메서드를 가지고 있는 객체이다.
+- 배열, 문자열, NodeList, Set, Map 등은 모두 iterable이고 `일반 객체`는 기본적으로 iterable이 아니다.
+- 이때 사용되는 `Symbol.iterator`는 `심볼(Symbol)` 타입의 값이기 때문에, 그동안 매번 지나쳤던 프리미티브 타입 중 '심볼(Symbol)'에 대해 제대로 이해할 필요성을 느꼈다.. 🔫
+
+<br>
+
+#### reference
+
+- [JavaScript 학습콘텐츠 7일차 map]
+- [📎 MDN forEach()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+- [📎 MDN map()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+
+<br>
+
+::: code-group
+
+```html [index.html]
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pretendard@1.3.8/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <main class="calculator">
+      <h1 class="a11y-hidden">계산기</h1>
+      <div class="calc-container">
+        <!-- calculator window buttons -->
+        <div class="calc__window-btns">
+          <button
+            type="button"
+            class="calc__window-btn close"
+            aria-label="화면 닫기"
+            title="닫기"
+          ></button>
+          <button
+            type="button"
+            class="calc__window-btn min"
+            aria-label="화면 최소화"
+            title="최소화"
+          ></button>
+          <button
+            type="button"
+            class="calc__window-btn max"
+            aria-label="화면 최대화"
+            title="최대화"
+          ></button>
+        </div>
+
+        <!-- calculator display -->
+        <!-- 
+          - 스크린리더 자동 읽기: role="status" + aria-live="polite"
+          - 키보드 포커스 가능: tabindex="0"
+          - input 대신 div 사용 (직접 입력 없이 버튼 클릭으로만 동작)
+        -->
+        <div
+          class="calc__display"
+          role="status"
+          aria-live="polite"
+          aria-label="계산 결과"
+          tabindex="0"
+        >
+          0
+        </div>
+
+        <!-- calculator buttons -->
+        <div class="calc__buttons">
+          <button type="button" class="button function clear" aria-label="초기화" title="초기화">
+            <span class="button__inner">C</span>
+          </button>
+          <button type="button" class="button function" aria-label="부호 전환" title="부호 전환">
+            <span class="button__inner">±</span>
+          </button>
+          <button type="button" class="button function" aria-label="퍼센트" title="퍼센트">
+            <span class="button__inner">%</span>
+          </button>
+          <button type="button" class="button operator" aria-label="나누기" title="나누기">
+            <span class="button__inner">/</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">7</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">8</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">9</span>
+          </button>
+          <button type="button" class="button operator" aria-label="곱하기" title="곱하기">
+            <span class="button__inner">*</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">4</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">5</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">6</span>
+          </button>
+          <button type="button" class="button operator" aria-label="빼기" title="빼기">
+            <span class="button__inner">-</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">1</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">2</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">3</span>
+          </button>
+          <button type="button" class="button operator" aria-label="더하기" title="더하기">
+            <span class="button__inner">+</span>
+          </button>
+          <button type="button" class="button number zero">
+            <span class="button__inner">0</span>
+          </button>
+          <button type="button" class="button decimal" aria-label="소수점" title="소수점">
+            <span class="button__inner">.</span>
+          </button>
+          <button type="button" class="button equal" aria-label="계산하기" title="계산하기">
+            <span class="button__inner">=</span>
+          </button>
+        </div>
+      </div>
+      <div class="calc-shadow" aria-hidden="true"></div>
+    </main>
+    <script src="./src/script.js"></script>
+  </body>
+</html>
+```
+
+```css
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Pretendard", sans-serif;
+  background-color: var(--black);
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* color variables */
+:root {
+  --white: #ffffff;
+  --gray-100: #eeeeee;
+  --gray-200: #dadada;
+  --gray-300: #b8b8b8;
+  --gray-400: #444444;
+  --gray-600: #666666;
+  --gray-700: #777777;
+  --gray-800: #8c8c8c;
+  --black: #222222;
+  /* status color */
+  --red: #ff5f57;
+  --yellow: #ffbd2e;
+  --green: #28c840;
+}
+
+/* calculator-layout */
+.calculator {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calc-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid var(--white);
+  background-color: var(--gray-100);
+  z-index: 100;
+}
+
+.calc-shadow {
+  position: absolute;
+  bottom: 136px;
+  width: 384px;
+  height: 30px;
+  background: var(--gray-300);
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, var(--gray-400) -20%, var(--gray-700) 90%);
+}
+
+/* calculator inner */
+/* window buttons */
+.calc__window-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.calc__window-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-color: var(--gray-600);
+  transition: all 0.2s ease;
+}
+
+.calc__window-btn.close:hover {
+  background-color: var(--red);
+  background-image: url(./images/ico_close.svg);
+}
+
+.calc__window-btn.min:hover {
+  background-color: var(--yellow);
+  background-image: url(./images/ico_min.svg);
+}
+.calc__window-btn.max:hover {
+  background-color: var(--green);
+  background-image: url(./images/ico_max.svg);
+}
+
+/* display */
+.calc__display {
+  width: 340px;
+  height: 88px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+  font-size: 32px;
+  border-radius: 8px;
+  color: var(--gray-100);
+  background-color: var(--black);
+}
+
+/* buttons */
+.calc__buttons {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: var(--black);
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: var(--gray-600);
+  padding: 20px;
+  border-radius: 4px;
+  background-color: var(--gray-200);
+  transition: all 0.2s ease;
+}
+
+.button__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 50%;
+  background: linear-gradient(150deg, var(--gray-300) 20%, var(--gray-100) 60%);
+}
+
+.button.zero {
+  flex-grow: 1;
+}
+
+.button:hover {
+  background-color: var(--gray-300);
+}
+
+.button:active {
+  transform: scale(0.9);
+  background-color: var(--gray-800);
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* utils */
+.a11y-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+```
+
+```js [script.js]
+// 계산기 DOM 요소 (전역)
+const calcButtons = document.querySelectorAll(".button"); // 계산기 버튼들
+const calcDisplay = document.querySelector(".calc__display"); // 계산기 화면
+
+// 버튼 클릭 시 실행
+const btnClick = (event) => {
+  // 클릭된 버튼 관련 변수 (지역)
+  const clickedBtn = event.currentTarget; // 클릭된 버튼 요소
+  const clickedBtnText = clickedBtn.querySelector(".button__inner").textContent; // 버튼 안의 텍스트
+
+  // 버튼 종류 확인
+  const isNumber = clickedBtn.classList.contains("number"); // 숫자 버튼 여부 확인
+  const isDecimal = clickedBtn.classList.contains("decimal"); // 소수점 버튼 여부 확인
+  const isClear = clickedBtn.classList.contains("clear"); // 초기화(C) 버튼 여부 확인
+  const isFunction = clickedBtn.classList.contains("function"); // 기능 버튼 여부 확인
+  const isOperator = clickedBtn.classList.contains("operator"); // 연산자 버튼 여부 확인
+  const isEqual = clickedBtn.classList.contains("equal"); // 결과 버튼 여부
+
+  // 현재 display 화면(공백 제거된 문자열)
+  const currentDisplay = calcDisplay.textContent.trim();
+
+  // 초기화(C) 버튼 클릭 시: 디스플레이 0으로 초기화
+  if (isClear) {
+    console.log(clickedBtnText);
+    calcDisplay.textContent = 0;
+    return; // 종료
+  }
+
+  // 결과 버튼
+  if (isEqual) {
+    console.log(clickedBtnText);
+    return;
+  }
+
+  // 연산자 버튼 클릭 시: 콘솔 출력
+  if (isOperator) {
+    console.log(clickedBtnText);
+    return;
+  }
+
+  // 기능 버튼 클릭 시: 콘솔 출력
+  if (isFunction) {
+    console.log(clickedBtnText);
+    return;
+  }
+
+  // 소수점 중복 입력 방지: 디스플레이에 소수점이 없다면 추가
+  if (isDecimal) {
+    console.log(clickedBtnText);
+    if (!currentDisplay.includes(".")) {
+      calcDisplay.textContent = currentDisplay + clickedBtnText;
+    }
+    return; // 이미 포함되어 있다면 리턴(무시)
+  }
+
+  // 숫자 클릭 시: 현재 화면이 0이면 클릭된 버튼의 값으로 대체, 아니면 이어 붙이기
+  if (isNumber) {
+    console.log(clickedBtnText);
+    if (currentDisplay === "0") {
+      calcDisplay.textContent = clickedBtnText;
+    } else {
+      calcDisplay.textContent += clickedBtnText;
+    }
+  }
+};
+
+// 계산기 버튼에 클릭 이벤트 등록
+calcButtons.forEach((button) => {
+  button.addEventListener("click", btnClick);
+});
+
+// 🔍 디버깅용 출력
+// console.log(calcButtons);
+// 계산기 버튼(.button)을 모두 선택하면 NodeList가 반환됨
+// NodeList는 유사 배열 객체지만, forEach() 메서드가 있어서 순회 가능
+```
+
 :::
 
 <Comment/>
