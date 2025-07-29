@@ -368,7 +368,323 @@ button {
 
 [`👩🏻‍💻 계산기 GitHub`](https://github.com/miloupark/calculator)
 
--
+#### 📋 진행 내용 요약
+
+- 계산기 레이아웃에 Flexbox 적용하여 정렬 및 배치 구현
+- 버튼 종류별 클래스 세분화
+- Pretendard 웹폰트 적용 및 UI 스타일링 반영
+- README 작성: 데모 url 및 디자인 시안 반영
+
+#### 🔨 개선할 점
+
+- display에 출력되는 글자가 많아졌을 때의 폰트 사이즈 대응은 아직 미구현
+
+::: code-group
+
+```html [index.html]
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pretendard@1.3.8/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <main class="calculator">
+      <h1 class="a11y-hidden">계산기</h1>
+      <div class="calc-container">
+        <!-- calculator window buttons -->
+        <div class="calc__window-btns">
+          <button
+            type="button"
+            class="calc__window-btn close"
+            aria-label="화면 닫기"
+            title="닫기"
+          ></button>
+          <button
+            type="button"
+            class="calc__window-btn min"
+            aria-label="화면 최소화"
+            title="최소화"
+          ></button>
+          <button
+            type="button"
+            class="calc__window-btn max"
+            aria-label="화면 최대화"
+            title="최대화"
+          ></button>
+        </div>
+
+        <!-- calculator display -->
+        <!-- 
+          - 스크린리더 자동 읽기: role="status" + aria-live="polite"
+          - 키보드 포커스 가능: tabindex="0"
+          - input 대신 div 사용 (직접 입력 없이 버튼 클릭으로만 동작)
+        -->
+        <div
+          class="calc__display"
+          role="status"
+          aria-live="polite"
+          aria-label="계산 결과"
+          tabindex="0"
+        >
+          0
+        </div>
+
+        <!-- calculator buttons -->
+        <div class="calc__buttons">
+          <button type="button" class="button function clear" aria-label="초기화" title="초기화">
+            <span class="button__inner">C</span>
+          </button>
+          <button type="button" class="button function" aria-label="부호 전환" title="부호 전환">
+            <span class="button__inner">±</span>
+          </button>
+          <button type="button" class="button function" aria-label="퍼센트" title="퍼센트">
+            <span class="button__inner">%</span>
+          </button>
+          <button type="button" class="button operator" aria-label="나누기" title="나누기">
+            <span class="button__inner">/</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">7</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">8</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">9</span>
+          </button>
+          <button type="button" class="button operator" aria-label="곱하기" title="곱하기">
+            <span class="button__inner">*</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">4</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">5</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">6</span>
+          </button>
+          <button type="button" class="button operator" aria-label="빼기" title="빼기">
+            <span class="button__inner">-</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">1</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">2</span>
+          </button>
+          <button type="button" class="button number">
+            <span class="button__inner">3</span>
+          </button>
+          <button type="button" class="button operator" aria-label="더하기" title="더하기">
+            <span class="button__inner">+</span>
+          </button>
+          <button type="button" class="button number zero">
+            <span class="button__inner">0</span>
+          </button>
+          <button type="button" class="button decimal" aria-label="소수점" title="소수점">
+            <span class="button__inner">.</span>
+          </button>
+          <button type="button" class="button equal" aria-label="계산하기" title="계산하기">
+            <span class="button__inner">=</span>
+          </button>
+        </div>
+      </div>
+      <div class="calc-shadow" aria-hidden="true"></div>
+    </main>
+    <script src="./src/script.js"></script>
+  </body>
+</html>
+```
+
+```css
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Pretendard", sans-serif;
+  background-color: var(--black);
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* color variables */
+:root {
+  --white: #ffffff;
+  --gray-100: #eeeeee;
+  --gray-200: #dadada;
+  --gray-300: #b8b8b8;
+  --gray-400: #444444;
+  --gray-600: #666666;
+  --gray-700: #777777;
+  --gray-800: #8c8c8c;
+  --black: #222222;
+  /* status color */
+  --red: #ff5f57;
+  --yellow: #ffbd2e;
+  --green: #28c840;
+}
+
+/* calculator-layout */
+.calculator {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calc-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid var(--white);
+  background-color: var(--gray-100);
+  z-index: 100;
+}
+
+.calc-shadow {
+  position: absolute;
+  bottom: 136px;
+  width: 384px;
+  height: 30px;
+  background: var(--gray-300);
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, var(--gray-400) -20%, var(--gray-700) 90%);
+}
+
+/* calculator inner */
+/* window buttons */
+.calc__window-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.calc__window-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-color: var(--gray-600);
+  transition: all 0.2s ease;
+}
+
+.calc__window-btn.close:hover {
+  background-color: var(--red);
+  background-image: url(./images/ico_close.svg);
+}
+
+.calc__window-btn.min:hover {
+  background-color: var(--yellow);
+  background-image: url(./images/ico_min.svg);
+}
+.calc__window-btn.max:hover {
+  background-color: var(--green);
+  background-image: url(./images/ico_max.svg);
+}
+
+/* display */
+.calc__display {
+  width: 340px;
+  height: 88px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+  font-size: 32px;
+  border-radius: 8px;
+  color: var(--gray-100);
+  background-color: var(--black);
+}
+
+/* buttons */
+.calc__buttons {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: var(--black);
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: var(--gray-600);
+  padding: 20px;
+  border-radius: 4px;
+  background-color: var(--gray-200);
+  transition: all 0.2s ease;
+}
+
+.button__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 50%;
+  background: linear-gradient(150deg, var(--gray-300) 20%, var(--gray-100) 60%);
+}
+
+.button.zero {
+  flex-grow: 1;
+}
+
+.button:hover {
+  background-color: var(--gray-300);
+}
+
+.button:active {
+  transform: scale(0.9);
+  background-color: var(--gray-800);
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* utils */
+.a11y-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+```
+
+:::
 
 :::
 
