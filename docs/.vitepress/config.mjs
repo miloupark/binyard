@@ -7,10 +7,7 @@ export default defineConfig({
   head: [
     ["link", { rel: "icon", href: "/favicon/favicon.ico" }],
     ["meta", { property: "og:title", content: "Binyard" }],
-    [
-      "meta",
-      { property: "og:description", content: "FE Growth Log by Hyebin Park" },
-    ],
+    ["meta", { property: "og:description", content: "FE Growth Log by Hyebin Park" }],
     [
       "meta",
       {
@@ -96,9 +93,7 @@ export default defineConfig({
         {
           text: "Vitepress",
           collapsed: false,
-          items: [
-            { text: "Markdown Examples", link: "/frontend/markdown-examples" },
-          ],
+          items: [{ text: "Markdown Examples", link: "/frontend/markdown-examples" }],
         },
       ],
       "/OZ/": [
@@ -116,6 +111,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: "JavaScript", link: "/OZ/llog/js" },
+            { text: "Calculator", link: "/OZ/llog/calculator" },
             { text: "Draft", link: "/OZ/llog/jsdraft" },
           ],
         },
