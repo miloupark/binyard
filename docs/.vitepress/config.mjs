@@ -23,7 +23,7 @@ export default defineConfig({
       "meta",
       {
         property: "og:image",
-        content: "https://binyard.me/favicon/favicon.png",
+        content: "https://binyard.me/favicon/twitter-card.png",
       },
     ],
     ["meta", { property: "og:url", content: "https://binyard.me/" }],
