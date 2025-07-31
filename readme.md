@@ -1,3 +1,6 @@
-# Personal Growth Archives
+# Binyard · Frontend Growth Log
 
-### [🐣 FE 공부 기록 블로그](https://binyard.me/)
+A personal learning archive documenting my journey as a frontend developer.  
+Built with [VitePress](https://vitepress.dev) and continuously evolving.
+
+### [🐝 Visit Binyard](https://binyard.me/)

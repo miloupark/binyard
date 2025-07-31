@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: Personal Growth Archives
+  name: Binyard
   # text:
-  tagline: 🚀 From Unclear to Clear - A Frontend Learning Log
+  tagline: 🐝 A Frontend Growth Log
   actions:
     - theme: brand
       text: About
