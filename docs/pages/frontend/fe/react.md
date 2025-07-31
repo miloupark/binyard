@@ -1,0 +1,14 @@
+# React
+
+```bash
+# 프로젝트 생성
+$ npx create-react-app 프로젝트명
+```
+
+- `create-react-app`에 의해 자동으로 프로젝트가 scaffolding 된다.
+- Scaffolding: 새로운 프로젝트나 모듈을 시작할 때, 초기 구조와 설정을 자동으로 생성해주는 과정
+
+```bash
+# 프로젝트 실행
+$ npm run start
+```

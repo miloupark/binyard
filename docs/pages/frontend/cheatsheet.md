@@ -1,4 +1,4 @@
-# CLI Cheatsheet <small>for me.. 🐣</small>
+# Cheatsheet <small>for me.. 🐣</small>
 
 ![binnyterminal](./images/cli.png)
 
@@ -221,3 +221,128 @@ $ npm run docs:build
 # 빌드 결과 미리보기
 $ npm run docs:preview
 ```
+
+## 🔖 VitePress Markdown
+
+> 자주 사용하는 VitePress 확장 마크다운 예시 모음
+
+::: info More
+
+[📎 VitePress Markdown Guide](https://vitepress.dev/guide/markdown)
+
+:::
+
+<br>
+
+### Syntax Highlighting
+
+VitePress provides Syntax Highlighting powered by [Shiki](https://github.com/shikijs/shiki), with additional features like line-highlighting:
+
+::: details Line Highlight Only (`js{4}`)
+
+#### `Input`
+
+````md
+```js{4}
+export default {
+  data () {
+    return {
+      msg: 'Highlighted!'
+    }
+  }
+}
+```
+````
+
+#### `Output`
+
+```js{4}
+export default {
+  data () {
+    return {
+      msg: 'Highlighted!'
+    }
+  }
+}
+```
+
+:::
+::: details Line Numbers + Line Highlight (`js:line-numbers {4}`)
+
+#### `Input`
+
+````md
+```js:line-numbers {4}
+export default {
+  data () {
+    return {
+      msg: 'Highlighted!'
+    }
+  }
+}
+```
+````
+
+#### `Output`
+
+```js:line-numbers {4}
+export default {
+  data () {
+    return {
+      msg: 'Highlighted!'
+    }
+  }
+}
+```
+
+:::
+
+<br>
+
+### Custom Containers
+
+#### `Input`
+
+```md
+::: info
+This is an info box.
+:::
+
+::: tip
+This is a tip.
+:::
+
+::: warning
+This is a warning.
+:::
+
+::: danger
+This is a dangerous warning.
+:::
+
+::: details
+This is a details block.
+:::
+```
+
+#### `Output`
+
+::: info
+This is an info box.
+:::
+
+::: tip
+This is a tip.
+:::
+
+::: warning
+This is a warning.
+:::
+
+::: danger
+This is a dangerous warning.
+:::
+
+::: details
+This is a details block.
+:::

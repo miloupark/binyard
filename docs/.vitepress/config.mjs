@@ -60,7 +60,10 @@ export default defineConfig({
       ],
       "/frontend/": [
         {
-          items: [{ text: "Reference Docs", link: "/frontend/reference" }],
+          items: [
+            { text: "Reference Docs", link: "/frontend/reference" },
+            { text: "My Cheatsheet", link: "/frontend/cheatsheet" },
+          ],
         },
         {
           text: "Frontend",
@@ -68,11 +71,16 @@ export default defineConfig({
           items: [
             { text: "JavaScript", link: "/javascript/basic/js00" },
             { text: "TypeScript", link: "/typescript/basic/ts00" },
-            { text: "React", link: "/frontend/react" },
-            { text: "React Native", link: "/frontend/react-native01" },
+            { text: "React", link: "/frontend/fe/react" },
+            { text: "React Native", link: "/frontend/fe/react-native01" },
+            { text: "Git & GitHub", link: "/frontend/fe/git-github" },
             { text: "DSA", link: "/dsa/dsa00" },
-            { text: "CLI Commands", link: "/frontend/cli" },
           ],
+        },
+        {
+          text: "Programmers",
+          collapsed: false,
+          items: [{ text: "Javascript", link: "/frontend/programmers/js" }],
         },
         {
           text: "Unclear to Clear",
@@ -83,17 +91,6 @@ export default defineConfig({
             { text: "HTML", link: "/frontend/untoc/html" },
             { text: "CSS", link: "/frontend/untoc/css" },
           ],
-        },
-        {
-          text: "Programmers",
-          collapsed: false,
-          items: [{ text: "Javascript", link: "/frontend/programmers/js" }],
-        },
-
-        {
-          text: "Vitepress",
-          collapsed: false,
-          items: [{ text: "Markdown Examples", link: "/frontend/markdown-examples" }],
         },
       ],
       "/OZ/": [
