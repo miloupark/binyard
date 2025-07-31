@@ -686,7 +686,7 @@ button {
 
 :::
 
-::: details `day 19` 계산기 | DAY 3\_ 버튼 클릭 시 디스플레이에 표시되도록 만들기
+::: details `day 19` 계산기 | DAY 3\_버튼 클릭 시 디스플레이에 표시되도록 만들기
 
 [`👩🏻‍💻 계산기 GitHub`](https://github.com/miloupark/calculator)
 
@@ -1137,6 +1137,674 @@ calcButtons.forEach((button) => {
 // 계산기 버튼(.button)을 모두 선택하면 NodeList가 반환됨
 // NodeList는 유사 배열 객체지만, forEach() 메서드가 있어서 순회 가능
 ```
+
+:::
+
+::: details `day 20` 계산기 | DAY 4\_계산 기능 구현하기 & DAY 5\_배포
+
+[`👩🏻‍💻 계산기 GitHub`](https://github.com/miloupark/calculator)
+
+#### 📋 진행 내용 요약
+
+- `btnClick` 함수에 복잡한 조건문을 각 버튼마다 기능별로 함수 분리
+- 각 버튼에 data-set 속성을 추가해 버튼 안의 텍스트를 직접 읽지 않고 값을 가져오도록 개선
+- firstOperand, secondOperand, operator 전역 변수 추가 및 상태 저장
+- `=` 버튼 클릭 시 연산 결과 출력 및 연속 계산 구현
+- `%`, `±`, `C` 기능 버튼 구현
+- 0으로 나누는 상황에서 "정의되지 않음" 메시지 출력 및 상태 초기화를 위해 `checkNaN()` 추가
+- 화면에 숫자가 길어지면 폰트 크기가 줄어들도록 `adjustDisplayFontSize()` 함수 추가
+
+#### 🌐 배포 과정
+
+- Vercel을 이용해 계산기 프로젝트 배포
+  - .dev 도메인은 HTTPS가 필수라 Cloudflare를 이용해 보안 인증 처리
+  - 가비아에서 도메인 구입 → Cloudflare에 등록 후 DNS 설정 (CNAME, A 레코드)
+  - Vercel 프로젝트 설정에서 Custom Domain 연결 완료
+  - 프로젝트 구조 정리를 위해 calculator 레포를 hyebin-dev monorepo로 마이그레이션(?)
+
+<br>
+
+#### 🔨 개선할 점
+
+- 전역 변수 `firstOperand`, `operator` 같은 상태들을 하나의 `state 객체`로 묶어서 관리할 예정
+  → 실시간 세션에서 아이디어를 얻었고, 구조가 훨씬 깔끔해질 것 같아서 꼭 적용해보고 싶다.
+
+  ```js
+  // 예시
+  const defaultState = {
+    firstOperand: null,
+    secondOperand: null,
+    operator: null,
+    shouldResetDisplay: false,
+  };
+
+  const state = { ...defaultState };
+
+  Object.assign(state, defaultState);
+  ```
+
+- `calcDisplay.textContent`를 직접 수정하는 코드가 반복돼서,
+  getDisplay(), setDisplay() 같은 함수로 display 관련 코드를 따로 빼서 관리하고 중복을 줄이려 한다.
+- 지금은 한 파일 안에 모든 기능이 섞여 있어서, 기능별로 JS 파일을 나눠보려 한다. (유틸, 기능, 계산, 이벤트 등)
+
+<br>
+
+::: code-group
+
+```html [index.html]
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pretendard@1.3.8/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <main class="calculator">
+      <h1 class="a11y-hidden">계산기</h1>
+      <div class="calc-container">
+        <!-- calculator window buttons -->
+        <div class="calc__window-btns">
+          <button
+            type="button"
+            class="calc__window-btn close"
+            aria-label="화면 닫기"
+            title="닫기"
+          ></button>
+          <button
+            type="button"
+            class="calc__window-btn min"
+            aria-label="화면 최소화"
+            title="최소화"
+          ></button>
+          <button
+            type="button"
+            class="calc__window-btn max"
+            aria-label="화면 최대화"
+            title="최대화"
+          ></button>
+        </div>
+
+        <!-- calculator display -->
+        <!-- 
+          - 스크린리더 자동 읽기: role="status" + aria-live="polite"
+          - 키보드 포커스 가능: tabindex="0"
+          - input 대신 div 사용 (직접 입력 없이 버튼 클릭으로만 동작)
+        -->
+        <div
+          class="calc__display"
+          role="status"
+          aria-live="polite"
+          aria-label="계산 결과"
+          tabindex="0"
+        >
+          0
+        </div>
+
+        <!-- calculator buttons -->
+        <div class="calc__buttons">
+          <button
+            type="button"
+            class="button function clear"
+            data-set="C"
+            aria-label="초기화"
+            title="초기화"
+          >
+            <span class="button__inner">C</span>
+          </button>
+          <button
+            type="button"
+            class="button function"
+            data-set="±"
+            aria-label="부호 전환"
+            title="부호 전환"
+          >
+            <span class="button__inner">±</span>
+          </button>
+          <button
+            type="button"
+            class="button function"
+            data-set="%"
+            aria-label="퍼센트"
+            title="퍼센트"
+          >
+            <span class="button__inner">%</span>
+          </button>
+          <button
+            type="button"
+            class="button operator"
+            data-set="/"
+            aria-label="나누기"
+            title="나누기"
+          >
+            <span class="button__inner">/</span>
+          </button>
+          <button type="button" class="button number" data-set="7">
+            <span class="button__inner">7</span>
+          </button>
+          <button type="button" class="button number" data-set="8">
+            <span class="button__inner">8</span>
+          </button>
+          <button type="button" class="button number" data-set="9">
+            <span class="button__inner">9</span>
+          </button>
+          <button
+            type="button"
+            class="button operator"
+            data-set="*"
+            aria-label="곱하기"
+            title="곱하기"
+          >
+            <span class="button__inner">*</span>
+          </button>
+          <button type="button" class="button number" data-set="4">
+            <span class="button__inner">4</span>
+          </button>
+          <button type="button" class="button number" data-set="5">
+            <span class="button__inner">5</span>
+          </button>
+          <button type="button" class="button number" data-set="6">
+            <span class="button__inner">6</span>
+          </button>
+          <button type="button" class="button operator" data-set="-" aria-label="빼기" title="빼기">
+            <span class="button__inner">-</span>
+          </button>
+          <button type="button" class="button number" data-set="1">
+            <span class="button__inner">1</span>
+          </button>
+          <button type="button" class="button number" data-set="2">
+            <span class="button__inner">2</span>
+          </button>
+          <button type="button" class="button number" data-set="3">
+            <span class="button__inner">3</span>
+          </button>
+          <button
+            type="button"
+            class="button operator"
+            data-set="+"
+            aria-label="더하기"
+            title="더하기"
+          >
+            <span class="button__inner">+</span>
+          </button>
+          <button type="button" class="button number zero" data-set="0">
+            <span class="button__inner">0</span>
+          </button>
+          <button
+            type="button"
+            class="button decimal"
+            data-set="."
+            aria-label="소수점"
+            title="소수점"
+          >
+            <span class="button__inner">.</span>
+          </button>
+          <button
+            type="button"
+            class="button equal"
+            data-set="="
+            aria-label="계산하기"
+            title="계산하기"
+          >
+            <span class="button__inner">=</span>
+          </button>
+        </div>
+      </div>
+      <div class="calc-shadow" aria-hidden="true"></div>
+    </main>
+    <script src="./src/script.js"></script>
+  </body>
+</html>
+```
+
+```css
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Pretendard", sans-serif;
+  background-color: var(--black);
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* color variables */
+:root {
+  --white: #ffffff;
+  --gray-100: #eeeeee;
+  --gray-200: #dadada;
+  --gray-300: #b8b8b8;
+  --gray-400: #444444;
+  --gray-600: #666666;
+  --gray-700: #777777;
+  --gray-800: #8c8c8c;
+  --black: #222222;
+  /* status color */
+  --red: #ff5f57;
+  --yellow: #ffbd2e;
+  --green: #28c840;
+}
+
+/* calculator-layout */
+.calculator {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calc-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid var(--white);
+  background-color: var(--gray-100);
+  z-index: 100;
+}
+
+.calc-shadow {
+  position: absolute;
+  bottom: 136px;
+  width: 384px;
+  height: 30px;
+  background: var(--gray-300);
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, var(--gray-400) -20%, var(--gray-700) 90%);
+}
+
+/* calculator inner */
+/* window buttons */
+.calc__window-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.calc__window-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-color: var(--gray-600);
+  transition: all 0.2s ease;
+}
+
+.calc__window-btn.close:hover {
+  background-color: var(--red);
+  background-image: url(./images/ico_close.svg);
+}
+
+.calc__window-btn.min:hover {
+  background-color: var(--yellow);
+  background-image: url(./images/ico_min.svg);
+}
+.calc__window-btn.max:hover {
+  background-color: var(--green);
+  background-image: url(./images/ico_max.svg);
+}
+
+/* display */
+.calc__display {
+  width: 340px;
+  height: 88px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+  font-size: 32px;
+  border-radius: 8px;
+  color: var(--gray-100);
+  background-color: var(--black);
+  transition: font-size 0.2s ease;
+}
+
+/* buttons */
+.calc__buttons {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: var(--black);
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: var(--gray-600);
+  padding: 20px;
+  border-radius: 4px;
+  background-color: var(--gray-200);
+  transition: all 0.2s ease;
+}
+
+.button__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 50%;
+  background: linear-gradient(150deg, var(--gray-300) 20%, var(--gray-100) 60%);
+}
+
+.button.zero {
+  flex-grow: 1;
+}
+
+.button:hover {
+  background-color: var(--gray-300);
+}
+
+.button:active {
+  transform: scale(0.9);
+  background-color: var(--gray-800);
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* utils */
+.a11y-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+```
+
+```js [script.js]
+// DOM 요소 (전역)
+const calcButtons = document.querySelectorAll(".button"); // 계산기 버튼들
+const calcDisplay = document.querySelector(".calc__display"); // 계산기 화면
+
+// 계산기 상태 변수 (전역)
+let firstOperand = null; // 첫 번째 피연산자
+let secondOperand = null; // 두 번째 피연산자
+let operator = null; // 연산자
+let shouldResetDisplay = false; // 새 숫자 입력 시, 디스플레이 초기화 여부
+
+// 에러
+const isNotDefined = "정의되지 않음";
+
+// isNotDefined 체크 함수
+const checkNaN = () => {
+  calcDisplay.textContent = isNotDefined;
+  firstOperand = null;
+  secondOperand = null;
+  operator = null;
+  shouldResetDisplay = true;
+};
+
+// display의 글자 수에 따라 폰트 크기 줄이는 함수 (단, 입력 제한은 없음)
+const adjustDisplayFontSize = () => {
+  const displayTextLength = calcDisplay.textContent.length;
+
+  if (displayTextLength <= 14) {
+    calcDisplay.style.fontSize = "";
+  } else if (displayTextLength <= 20) {
+    calcDisplay.style.fontSize = "22px";
+  } else if (displayTextLength <= 26) {
+    calcDisplay.style.fontSize = "18px";
+  } else {
+    calcDisplay.style.fontSize = "12px";
+  }
+};
+
+// 초기화(C) 버튼 클릭 시: 계산기 상태 변수 초기화
+const clickClear = () => {
+  firstOperand = null;
+  secondOperand = null;
+  operator = null;
+  shouldResetDisplay = false;
+  calcDisplay.textContent = "0";
+  adjustDisplayFontSize();
+};
+
+// 숫자 버튼 클릭 시
+const clickNumber = (number) => {
+  const currentDisplay = calcDisplay.textContent.trim();
+
+  // 연산자 버튼을 누른 이후거나(true), 현재 디스플레이가 "0"이면 새 숫자로 반영
+  if (shouldResetDisplay || currentDisplay === "0") {
+    calcDisplay.textContent = number;
+    shouldResetDisplay = false;
+  } else {
+    // 이어서 숫자 입력
+    calcDisplay.textContent += number;
+  }
+
+  adjustDisplayFontSize();
+};
+
+// 소수점 버튼 클릭 시
+const clickDecimal = () => {
+  const currentDisplay = calcDisplay.textContent.trim();
+
+  if (currentDisplay === isNotDefined) {
+    clickClear();
+  }
+
+  if (shouldResetDisplay) {
+    // 연산자 다음, 새 숫자를 시작하는 경우 "0."부터 시작
+    calcDisplay.textContent = "0.";
+    shouldResetDisplay = false;
+  } else if (!currentDisplay.includes(".")) {
+    // 소수점 없으면 추가
+    calcDisplay.textContent += ".";
+  }
+
+  adjustDisplayFontSize();
+};
+
+// 연산자 버튼 클릭 시
+const clickOperator = (value) => {
+  let currentDisplay = calcDisplay.textContent.trim();
+
+  // 화면에 "정의되지 않음"이면 clickClear() 호출 후 0부터 시작
+  if (currentDisplay === isNotDefined) {
+    clickClear();
+    currentDisplay = "0";
+  }
+
+  if (firstOperand === null) {
+    firstOperand = currentDisplay; // 첫 번째 피연산자가 null이면 현재 값을 저장
+  } else if (operator && !shouldResetDisplay) {
+    secondOperand = currentDisplay; // 기존 연산자가 있고, 새 숫자 입력이 있다면 계산 진행
+
+    const result = calculate(firstOperand, operator, secondOperand);
+
+    if (result === isNotDefined) {
+      checkNaN();
+      return;
+    }
+
+    calcDisplay.textContent = String(result); // 화면 출력 시 숫자 -> 문자열로 변경
+    firstOperand = result; // 계산 결과 다음 계산의 첫 번째 숫자로 저장
+  }
+
+  operator = value; // 클릭한 연산기호 저장
+  shouldResetDisplay = true; // 새로운 숫자 입력 -> display 초기화 상태 변경
+
+  console.log(`firstOperand: ${firstOperand}, operator: ${operator}`);
+};
+
+// = 버튼 클릭 시
+const clickEqual = () => {
+  // 첫 번째 피연산자와 연산자가 null이 아니면
+  if (firstOperand !== null && operator !== null) {
+    secondOperand = calcDisplay.textContent.trim(); // 현재 값을 넣고 calculate() 실행
+
+    const result = calculate(firstOperand, operator, secondOperand);
+
+    // NaN 에러 확인
+    if (result === isNotDefined) {
+      checkNaN();
+      return;
+    }
+
+    calcDisplay.textContent = String(result); // 화면 출력 시 숫자 -> 문자열로 변경
+    adjustDisplayFontSize();
+
+    // 첫 번째 피연산자에 다음 계산을 이어가도록 결과 저장
+    firstOperand = result;
+    secondOperand = null;
+    shouldResetDisplay = true;
+  }
+};
+
+// function 버튼 클릭 시
+const clickFunction = (funcValue) => {
+  const currentDisplay = calcDisplay.textContent.trim();
+  let result;
+
+  switch (funcValue) {
+    case "C": // 별도 초기화 함수(clickClear) 호출
+      return clickClear();
+    case "±": // 현재 숫자의 부호 전환
+      result = parseFloat(currentDisplay) * -1;
+      break;
+    case "%":
+      const currentNum = parseFloat(currentDisplay);
+
+      // 첫 번째 피연산자와 연산자가 null이 아니면, 즉 피연산자와 연산자가 있으면
+      if (firstOperand !== null && operator !== null) {
+        const firstNum = parseFloat(firstOperand);
+
+        switch (operator) {
+          case "+":
+            result = (firstNum * currentNum) / 100;
+            break;
+          case "-":
+            result = (firstNum * currentNum) / 100;
+            break;
+          case "*":
+            result = currentNum / 100;
+            break;
+          case "/":
+            result = currentNum / 100;
+            break;
+        }
+
+        secondOperand = result;
+        calcDisplay.textContent = String(result);
+        adjustDisplayFontSize();
+
+        return;
+      } else {
+        // 연산자 없는 경우
+        result = currentNum / 100;
+        secondOperand = result;
+        calcDisplay.textContent = String(result);
+        return;
+      }
+    default:
+      return; // 정의되지 않은 기능 고려
+  }
+
+  calcDisplay.textContent = String(result);
+  adjustDisplayFontSize();
+};
+
+// calculate 함수: 연산자에 따라 계산 결과 반환
+const calculate = (firstOperand, operator, secondOperand) => {
+  // 문자열을 부동소수점 숫자로 변환
+  const firstNum = parseFloat(firstOperand);
+  const secondNum = parseFloat(secondOperand);
+
+  // 피 연산자들 중 하나라도 NaN면 "정의되지 않음 처리"
+  if (isNaN(firstNum) || isNaN(secondNum)) return isNotDefined;
+
+  // 연산 조건문
+  switch (operator) {
+    case "+":
+      return firstNum + secondNum;
+    case "-":
+      return firstNum - secondNum;
+    case "*":
+      return firstNum * secondNum;
+    case "/":
+      if (secondNum !== 0) {
+        return firstNum / secondNum;
+      } else {
+        // secondNum이 0이면 '정의되지 않음' 출력 (레퍼런스: 맥북 계산기)
+        // 이후 연산자, 숫자 입력 시 Nan 반환 이슈로 개선
+        return isNotDefined;
+      }
+    default:
+      return secondNum; // 정의되지 않은 연산자 고려
+  }
+};
+
+// 버튼 클릭 이벤트
+const btnClick = (event) => {
+  // 클릭된 버튼 요소 및 값
+  const clickedBtn = event.currentTarget; // 클릭한 버튼
+  const clickedBtnValue = clickedBtn.dataset.set; // 버튼에 설정된 데이터 값 (html data-set)
+
+  // 버튼 클래스에 따라 함수 호출
+  if (clickedBtn.classList.contains("clear")) return clickClear();
+  if (clickedBtn.classList.contains("number")) return clickNumber(clickedBtnValue);
+  if (clickedBtn.classList.contains("decimal")) return clickDecimal();
+  if (clickedBtn.classList.contains("operator")) return clickOperator(clickedBtnValue);
+  if (clickedBtn.classList.contains("equal")) return clickEqual();
+  if (clickedBtn.classList.contains("function")) return clickFunction(clickedBtnValue);
+};
+
+// 계산기 버튼에 클릭 이벤트 등록
+calcButtons.forEach((button) => {
+  button.addEventListener("click", btnClick);
+});
+
+// 🔍 디버깅용 출력
+// console.log(calcButtons);
+// 계산기 버튼(.button)을 모두 선택하면 NodeList가 반환됨
+// NodeList는 유사 배열 객체지만, forEach() 메서드가 있어서 순회 가능
+```
+
+:::
+
+### Git & GitHub
+
+::: details `Day 21` Git & GitHub 1
+
+[`👩🏻‍💻 Commits on Jul 31, 2025`](https://github.com/miloupark/git/commits/main/)
+
+:::
+
+::: details `Day 22` Git & GitHub 2
+
+[`👩🏻‍💻 Commits on Aug 01, 2025`](https://github.com/miloupark/git/commits/main/)
 
 :::
 
