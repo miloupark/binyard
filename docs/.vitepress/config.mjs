@@ -5,7 +5,18 @@ export default defineConfig({
   title: "Binyard",
   description: "FE Growth Log by Hyebin Park",
   head: [
-    ["link", { rel: "icon", href: "/favicon/favicon.ico" }],
+    ["link", { rel: "icon", href: "https://binyard.me/favicon/favicon.ico" }],
+    [
+      "link",
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "https://binyard.me/favicon/apple-touch-icon.png",
+      },
+    ],
+    ["meta", { name: "viewport", content: "width=device-width, initial-scale=1" }],
+
+    // Open Graph
     ["meta", { property: "og:title", content: "Binyard" }],
     ["meta", { property: "og:description", content: "FE Growth Log by Hyebin Park" }],
     [
@@ -16,6 +27,12 @@ export default defineConfig({
       },
     ],
     ["meta", { property: "og:url", content: "https://binyard.me/" }],
+
+    // Twitter Card
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    ["meta", { name: "twitter:title", content: "Binyard" }],
+    ["meta", { name: "twitter:description", content: "FE Growth Log by Hyebin Park" }],
+    ["meta", { name: "twitter:image", content: "https://binyard.me/favicon/twitter-card.png" }],
   ],
   srcDir: "./pages/",
   base: "/",
