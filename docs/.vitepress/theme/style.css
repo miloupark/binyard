@@ -143,7 +143,6 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: var(--vp-c-bg);
   border-bottom: 1px solid var(--vp-c-divider);
 }
 
@@ -151,4 +150,13 @@
 .vp-code-group .blocks {
   max-height: 350px; /* 전체 높이에서 탭 높이만큼 빼기 */
   overflow-y: auto;
+}
+
+/* CodeGroup 코드 블록(.vp-doc 내 language-*, .vp-block)의 하단 여백 제거 */
+@media (min-width: 640px) {
+  .vp-doc div[class*="language-"],
+  .vp-block {
+    border-radius: 8px;
+    margin: 16px 0 0; /* origin → margin: 16px 0; */
+  }
 }
