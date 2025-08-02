@@ -896,7 +896,7 @@ calcButtons.forEach((button) => {
 ### 리팩토링 목표
 
 - 기능별로 파일을 나누고 명확한 책임 부여
-- 기능 확장 고려하기
+- DOM 의존도 줄이기 (index.js에서만 접근)
 - JS의 ES Modules 문법 활용 (import/export로 연결)
 - React 프레임워크 사용을 고려해 익숙한 구조 만들기
 
@@ -912,16 +912,21 @@ calculator/
 │   └── styles/
 │       └── style.css
 ├── modules/
-│   ├── Calulator.js
+│   ├── Calculator.js
 │   ├── buttons/
-│   │   ├── handleNumber.js
-│   │   ├── handleOperator.js
-│   │   ├── handleEqual.js
 │   │   ├── handleDecimal.js
-│   │   └── handleFunction.js
+│   │   ├── handleEqual.js
+│   │   ├── handleFunction.js
+│   │   ├── handleNumber.js
+│   │   └── handleOperator.js
+│   ├── constants/
+│   │   ├── isNotDefined.js
+│   │   └── defaultState.js
 │   └── utils/
 │       ├── adjustFontSize.js
-│       └── checkNaN.js
+│       ├── calculate.js
+│       ├── checkNaN.js
+│       └── clear.js
 └── index.html
 ```
 
