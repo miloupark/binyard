@@ -1,5 +1,14 @@
 # Calculator <Badge type="info" text="🗓️ 2025-07-25 ~ 2025-07-30" /> <Badge type="info" text="JS Final Mission in OZ" />
 
+::: info 🐰 Jump to
+
+- 💻 [Final Submission](#final-submission) <Badge type="info" text="📆 2025-07-30" />
+- 🔨 [Refactoring](#refactoring) <Badge type="info" text="📆 2025-08-02" />
+
+:::
+
+---
+
 ::: info 📎 Quick Access
 
 - 🌐 [Live Site (hyebin.dev – Vercel)](https://hyebin.dev/calculator)
@@ -9,6 +18,8 @@
 - 🎨 [Figma Design](https://www.figma.com/design/hh1hbNBF5992A1dQYb6INU/Calculator?node-id=0-1&t=AJexyvuflp4TE5th-1)
 
 :::
+
+## 💻 Preview
 
 <iframe 
   src="https://hyebin.dev/calculator" 
@@ -141,15 +152,26 @@ calcButtons.forEach((button) => {
 
 <br>
 
-# 최종 제출 코드 <Badge type="info" text="📆 업데이트 예정" />
+# Final Submission <Badge type="info" text="📆 Day 4 | 제출 코드" />
 
 > 아래는 4일차, 최종 제출한 과제의 코드다. 앞서 3일 동안 작성한 코드에서 개선이 필요하다고 느낀 부분들을 반영했고, 당시의 나로선 할 수 있는 최선..🥲🔫  
 > 배포를 마치고 보니 벌써 고쳐야하는 점들이 보인다. 이후 새로운 레포로 코드를 이관했고,  
 > 해당 레포에서 위에 정리한 개선점들을 반영하고 추가 기능을 넣어볼 계획이다!
 
-💻 [제출 코드 깃허브](https://github.com/miloupark/calculator) <Badge type="warning" text="Archived" />
+💻 [Final Submission repo](https://github.com/miloupark/calculator) <Badge type="warning" text="Archived" />
 
-::: details 제출 코드
+## 📁 Folder Structure
+
+```md
+calculator/
+├── src/
+│ ├── images
+│ ├── script.js
+│ └── style.css
+└── index.html
+```
+
+::: details script.js
 
 ```js
 // DOM 요소 (전역)
@@ -846,3 +868,300 @@ calcButtons.forEach((button) => {
 ```
 
 - `console.log(calcButtons)`는 버튼 목록이 담긴 NodeList를 확인 할 수 있다.
+
+<br>
+
+---
+
+<br>
+
+# Refactoring <Badge type="info" text="🔨ES Modules + Class" /> <Badge type="info" text="📆 2025-08-02" />
+
+> 전역 변수와 함수로 구성된 계산기 코드를 기능별 분리 하고 싶어서 리팩토링을 진행했다.  
+> 처음엔 Sass처럼 JS도 파일을 쪼개서 합치면 되겠지 싶었는데, 경기도 오산이었고..  
+> 리팩토링을 진행한 다른 동기분의 코드를 보니 뭔가 리액트 코드랑 비슷한 느낌이었다. 바로 모듈화! 😮💡  
+> 물론 리액트도 자바스크립트 프레임워크긴 하지만, js에서 저런 구조로 구현할 수 있는지는 처음 알았다.  
+> <s>아니 이전에 이미 블로그에 모듈 정리해놨었다... 바보인가..?</s>  
+> js에서도 기능별로 파일을 쪼개고 import/export로 연결하는 걸 모듈화라고 한다.  
+> 서치 후, "class" 기반 구조로 리팩토링하고 "ES Modules"로 파일 간 역할을 나눠보았다!
+
+💻 [GitHub](https://github.com/miloupark/calculator) <Badge type="tip" text="Update!" />
+
+### 기존 코드의 문제점
+
+- 하나의 파일에 모든 로직이 몰려있어 가독성이 좋지 않다.
+- 전역 변수와 함수가 얽혀 있어 유지보수에 어려움이 있다.
+- 기능이 늘어날수록 버그 추적과 수정이 어려워진다.
+
+### 리팩토링 목표
+
+- 기능별로 파일을 나누고 명확한 책임 부여
+- 기능 확장 고려하기
+- JS의 ES Modules 문법 활용 (import/export로 연결)
+- React 프레임워크 사용을 고려해 익숙한 구조 만들기
+
+<br>
+
+## 📁 Folder Structure
+
+```plaintext
+calculator/
+├── src/
+│   ├── images/
+│   ├── index.js
+│   └── styles/
+│       └── style.css
+├── modules/
+│   ├── Calulator.js
+│   ├── buttons/
+│   │   ├── handleNumber.js
+│   │   ├── handleOperator.js
+│   │   ├── handleEqual.js
+│   │   ├── handleDecimal.js
+│   │   └── handleFunction.js
+│   └── utils/
+│       ├── adjustFontSize.js
+│       └── checkNaN.js
+└── index.html
+```
+
+<br>
+
+## 📦 Modular JS / ES Modules / Class
+
+| 개념             | 설명                                                                              | 키워드 / 예시                                        |
+| ---------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| Modular JS       | “기능을 역할별로 파일로 나눠서 관리”하겠다는 코딩 구조의 개념 (프로그래밍 패턴)   | `DOM`, `로직`, `유틸` 등을 각각 파일로 나눔          |
+| ES Modules (ESM) | JS에 공식적으로 도입된 모듈 시스템 문법 `import/export`로 파일 간 기능 공유       | `export default`, `import { func } from "./util.js"` |
+| Class            | 객체를 만드는 설계도(템플릿) <br> OOP(객체지향 프로그래밍) 방식으로 구조를 체계화 | `class Calculator {}`<br> `new Calculator()`         |
+
+- Modular JS: 코드를 역할별로 분리해 관리한다는 설계 원칙
+- ES Modules: 모듈을 import/export로 연결하는 JS 표준 문법 (문법적인 구현)
+- Class: 변수와 함수를 묶어 객체지향적으로 구성하는 도구 (내부 구조 설계)
+
+위 세 가지 개념을 함께 사용해 모듈러 + 클래스 기반 설계를 구현할 수 있다.  
+역할별로 나눈 모듈 파일 안에 Class를 정의하고, 이를 import/export로 연결하면 구조화된 설계를 구현할 수 있다.
+
+::: info 📎 Reference
+
+- [📎 ES Modules (Binyard)](/javascript/basic/js24.html)
+- [📎 JavaScript.info Modules](https://ko.javascript.info/modules-intro)
+- [📎 javascript.info import/export ](https://ko.javascript.info/import-export)
+- [📎 MDN Class](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes)
+- [📎 JavaScript.info Class](https://ko.javascript.info/class)
+
+:::
+
+<br>
+
+## 📄 Class 구조 + ES Modules 예시
+
+### Default Export (기본 내보내기)
+
+- 한 파일에서 단 하나의 변수, 함수, 클래스만 export 할 수 있다.
+- `import`시 중괄호 없이 가져오며, `as` 없이도 원하는 이름으로 사용할 수 있다.
+- `default export`는 한 모듈에 하나만 존재할 수 있어서, 협업 시 명확한 진입점을 만들고 싶을 때 유용하다. (물론 프로젝트나 팀의 컨벤션이 우선)
+
+::: code-group
+
+```js [index.js] {4}
+// 📁 index.js
+
+// user.js 모듈에서 User 클래스를 import(불러오기)
+import User from "./user.js";
+
+// User 클래스 인스턴스(객체) 생성
+const hyebin = new User("혜빈");
+
+// greet 메서드 실행
+hyebin.greet(); // "안녕하세요, 저는 혜빈입니다." 콘솔 출력
+```
+
+```js [user.js] {4,17}
+// 📁 user.js
+
+// User 클래스 정의
+class User {
+  // constructor는 클래스 인스턴스가 생성될 때 자동으로 실행되는 메서드
+  constructor(name) {
+    this.name = name; // 전달받은 name을 this.name에 저장
+  }
+
+  // greet은 User 클래스에 정의된 메서드
+  greet() {
+    console.log(`안녕하세요, 저는 ${this.name}입니다.`);
+  }
+}
+
+// 다른 파일(index.js)에서 사용될 수 있도록 export(내보내기)
+export default User;
+```
+
+```html[index.html] {12}
+<!-- 📄 index.html -->
+<!-- type="module"을 설정하면 js 모듈 시스템이 작동하고 import/export가 가능해진다. -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Module Test</title>
+</head>
+<body>
+  <!-- index.js가 실행되며, 내부에서 user.js 모듈을 불러온다. -->
+  <script type="module" src="./index.js"></script>
+</body>
+</html>
+
+```
+
+:::
+
+::: info 🔍 예시 흐름
+
+1. 브라우저가 index.html 로딩
+2. type=module에 의해 index.js 실행
+3. index.js는 user.js에서 User 클래스를 가져온다.
+4. new User("혜빈")으로 인스턴스를 생성한다.
+5. greet() 메서드를 호출해 "안녕하세요, 저는 혜빈입니다."가 콘솔에 출력된다.
+
+:::
+
+<br>
+
+### Named Export (이름 지정 내보내기)
+
+- 한 파일에서 여러 개의 변수, 함수, 클래스 등을 export 할 수 있다.
+- `import`할 때, `{}`를 사용하며, 필요에 따라 `as` 키워드로 다른 이름을 지정할 수 있다.
+
+::: code-group
+
+```js [index.js] {4,5}
+// 📁 index.js
+
+// user.js와 admin.js에서 각각 User, Admin 클래스를 named import
+import { User } from "./user.js";
+import { Admin } from "./admin.js";
+
+// as 키워드로 별칭을 줄 수 있다.
+// import { User as MyUser } from './user.js'
+
+// User 클래스 인스턴스 생성
+const hyebin = new User("혜빈");
+hyebin.greet(); // "안녕하세요, 저는 혜빈입니다." 콘솔 출력
+
+// Admin 클래스 인스턴스 생성
+const admin = new Admin("관리자");
+admin.greet(); // "안녕하세요, 저는 관리자입니다." 콘솔 출력
+```
+
+```js [user.js] {4,15}
+// 📁 user.js
+
+// User 클래스 정의
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log(`안녕하세요, 저는 ${this.name}입니다.`);
+  }
+}
+
+// named export
+export { User };
+```
+
+```js [admin.js] {4,15}
+// 📁 admin.js
+
+// Admin 클래스 정의
+class Admin {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log(`안녕하세요, 저는 ${this.name}입니다.`);
+  }
+}
+
+// named export
+export { Admin };
+```
+
+```html[index.html] {12}
+<!-- 📄 index.html -->
+<!-- type="module"을 설정하면 js 모듈 시스템이 작동하고 import/export가 가능해진다. -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Module Test</title>
+</head>
+<body>
+  <!-- index.js가 실행되며, 그 내부에서 user.js, admin.js를 불러온다. -->
+  <script type="module" src="./index.js"></script>
+</body>
+</html>
+
+```
+
+:::
+
+::: info 🔍 예시 흐름
+
+1. 브라우저가 index.html 로딩
+2. type=module에 의해 index.js 실행
+3. index.js는 user.js에서 User, admin.js에서 Admin 클래스를 가져온다.
+4. new User("혜빈"), new Admin("관리자")로 객체를 생성
+5. 각각의 greet() 메서드가 호출되어 아래 문구가 콘솔에 출력된다.  
+   "안녕하세요, 저는 혜빈입니다.",  
+   "안녕하세요, 저는 관리자입니다."
+
+:::
+
+<br>
+
+### default & named 정리
+
+| 조건                                             | 권장 Export 방식 |
+| ------------------------------------------------ | ---------------- |
+| 하나만 export / 컴포넌트 한 개                   | `default export` |
+| 여러 개 export / 재사용 목적 (유틸, 상태, 훅 등) | `named export`   |
+
+<br>
+
+### 파일명 규칙
+
+js에서는 파스칼 표기(PascalCase) 또는 카멜 표기(camelCase)를 주로 사용한다.
+| 목적 | 파일명 예시 |
+| ---------------- | ----------------------------------------------- |
+| 컴포넌트 | `UserCard.js`, `ProfileList.js` |
+| 유틸 함수 | `math.js`, `formatDate.js` |
+| 클래스 정의 | `Calculator.js`, `User.js`, |
+| 설정/상수 | `config.js`, `constants.js` |
+| 단일 진입 파일 | `index.js`, `main.js` 등 루트처럼 사용하는 파일 |
+
+::: info 클래스 이름은 왜 대문자로 시작할까?
+
+- 생성자 함수/클래스와 일반 함수를 구분하기 위해  
+  : js는 함수와 클래스가 문법적으로 비슷하기 때문에,  
+  new 키워드로 생성하는 생성자 함수나 클래스는 대문자로 시작하는 것이 관례이다.
+
+  ```js
+  function user() {} // 일반 함수
+  function User() {} // 생성자 함수
+  class User {} // 클래스도 생성자 함수 기반
+  ```
+
+- 공식 문서도 이렇게 권장한다.
+  > [📎 MDN Class](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes)  
+  > [📎 JavaScript.info Class](https://ko.javascript.info/class)  
+  > [📎 Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript#naming--PascalCase)
+
+:::
+
+<br>
