@@ -15,13 +15,13 @@
 ![stack&queue](./images/cj2-1.png)
 스택과 큐는 데이터를 저장하고 꺼내는 방식에 따라 구분되는 `선형 자료구조(linear data structure)`.
 
-#### 스택 (Stack)
+#### 스택 (Stack) 🥞
 
 - 데이터를 위로 쌓는 구조이다
 - 가장 나중에 넣은 데이터가 가장 먼저 나오는 `LIFO` (Last In, First Out) 구조이다.
 - 대표 메서드: push(), pop()
 
-#### 큐 (Queue)
+#### 큐 (Queue) 🚶‍♂️🚶‍♀️🚶‍♂️🚶‍♂️
 
 - 데이터를 줄 세워 처리하는 구조이다.
 - 가장 먼저 넣은 데이터가 가장 먼저 나오는 `FIFO` (First In, First Out) 구조
@@ -29,7 +29,7 @@
 
 <br>
 
-### 실행 컨텍스트를 구성할 수 있는 방법
+#### 실행 컨텍스트를 구성할 수 있는 방법
 
 - `전역 공간 (Global Context)`<br>
   : 자바스크립트 파일이 처음 로드될 때 생성된다.
@@ -40,8 +40,6 @@
 - `eval() 사용 비권장`<br>
   : 문자열 코드를 런타임에 실행하는 경우 별도의 컨텍스트가 생성된다.
 
-<br>
-
 자바스크립트에서 실행 컨텍스트를 생성할 수 있는 실질적인 코드 단위는 `함수`이다.<br>
 따라서 자바스크립트의 실행 환경은 기본적으로 `함수 단위`로 나뉜다고 볼 수 있다.
 
@@ -49,10 +47,16 @@
 조건문이나 반복문 등 블록문은 블록 스코프는 형성하지만, 별도의 실행 컨텍스트를 생성하지 않는다.
 :::
 
-### 실행 컨텍스트와 콜 스택 흐름
+<br>
+
+---
+
+### 1-2. 실행 컨텍스트와 콜 스택
 
 아래 코드는 함수 호출에 따라 실행 컨텍스트가 생성되고 제거되는 흐름을 보여준다. <br>
 실행 순서는 다음과 같다.
+
+#### 콘솔 출력 흐름으로 보는 실행 결과
 
 ![실행 컨텍스트와 콜 스택](./images/cj2-2.png)
 
@@ -61,7 +65,11 @@
 - 3. `inner()` 종료 후 다시 `outer()` 내부 진행
 - 4. 모든 실행이 끝나고 전역에서 마지막 `console.log(a)`
 
+🔍 아래에서 더 디테일하게 확인해보자.
+
 <br>
+
+#### 실행 컨텍스트와 콜 스택 시각화
 
 ![실행 컨텍스트와 콜 스택](./images/cj2-3.png)
 
@@ -83,6 +91,8 @@
 
 <br>
 
+#### 콜 스택의 변화 과정
+
 ![실행 컨텍스트와 콜 스택](./images/cj2-4.png)
 
 - 자바스크립트 엔진은 함수 호출 시마다 실행 컨텍스트를 생성하고 콜 스택에 push한다.
@@ -101,138 +111,150 @@
 
 <br>
 
-## 실행 컨텍스트 구성 요소
+## 02. 실행 컨텍스트 내부 구조
 
-실행 컨텍스트는 아래와 같은 세 가지 구성 요소로 이루어진다.
+![활성화된 실행 컨텍스트의 수집 정보](./images/cj2-5.png)
 
-```less {2,6,10}
+### Execution Context 구성 요소
+
+- `🗳️ Variable Environment`  
+  : 현재 컨텍스트 내의 식별자 정보와 외부 환경 참조를 포함한다.  
+  선언 시점의 Lexical Environment의 📸스냅샷으로, 이후의 변경 사항은 반영되지 않는다.
+
+- `🗳️ Lexical Environment`  
+  : 초기에는 Variable Environment와 동일하지만,  
+  변경 사항이 실시간으로 반영되며 변수 값 추적이 가능하다.
+
+- `🔗 This Binding`  
+  : 해당 실행 컨텍스트에서 this가 참조해야 할 객체를 가리킨다.
+
+<br>
+
+> 📎 [Dmitry Soshnikov의 Lexical Environment ](https://dmitrysoshnikov.com/ecmascript/es5-chapter-3-2-lexical-environments-ecmascript-implementation/)  
+> ES5 사양에 기반으로 Lexical Environment 개념을 JS 코드와 함께 설명한 참고 블로그.
+> 『코어 자바스크립트』도 이 내용을 바탕으로 설명이 구성되어 있다.
+
+<br>
+
+## 03. VariableEnvironment
+
+![VariableEnvironment](./images/cj2-6.png)
+실행 컨텍스트가 생성될 때, `Variable Environment`에 정보를 수집한 뒤,  
+그 내용을 그대로 복사해 `Lexical Environment`를 구성한다.
+
+<br>
+
+<small>이후에는 주로 `Lexical Environment`를 사용하며,</small>
+두 구조는 내부적으로 모두 다음과 같은 공통 구조를 가진다.
+
+```less {3,4,7,8}
 Execution Context
-├── Variable Environment: 현재 환경과 관련된 식별자 정보 수집, 변화 반영 X
+├── 🗳️ Variable Environment
 │   ├── Environment Record(snapshot)
 │   └── Outer Environment Reference(snapshot)
 │
-├── Lexical Environment: 현재 환경과 관련된 각 식별자의 데이터 추적, 변화 반영 O
-│   ├── Environment Record: 현재 컨텍스트 내부의 식발자 정보
-│   └── Outer Environment Reference: 현재 문맥에 관련 있는 외부 식별자 정보
+├── 🗳️ Lexical Environment
+│   ├── Environment Record
+│   └── Outer Environment Reference
 │
-└── This Binding: 해당 컨텍스트의 this 값
+└── 🔗 This Binding
 
 ```
 
 <br>
 
-### Variable Environment
+## 04. LexicalEnvironment
 
-LexicalEnvironment와 거의 동일하지만, 변수 선언 당시의 스냅샷처럼 초기 선언 상태를 저장하는 데 집중한다.
-과거엔 var 중심의 선언을 담당했지만, ES6 이후 대부분의 실시간 추적은 LexicalEnvironment가 담당한다.
+![LexicalEnvironment](./images/cj2-7.png)
 
-- VariableEnvironment는 초기 상태 기록
-- LexicalEnvironment는 실행 중 상태 반영
+`Lexical Environment`는 실행 컨텍스트를 구성하는 '환경 정보들의 집합 객체'이다.  
+실행 중 변수의 값을 실시간으로 추적하는 핵심 구조다.  
+<small>💡 이 구조는 클로저, 스코프 체인, this 바인딩 동작 방식의 핵심 기반이 된다!</small>
+
+- `Environment Record`: 현재 컨텍스트 내부에서 선언된 식별자 정보(변수, 함수 등)
+- `Outer Environment Reference`: 상위 스코프를 참조해 '스코프 체인'을 구성할 수 있도록 돕는 연결 정보
 
 <br>
 
-### Lexical Environment
+---
 
-Lexical Environment는 실행 중인 코드의 스코프 정보와 외부 스코프 참조를 포함하는 객체이다.
-현재 컨텍스트에서 선언된 식별자 정보(변수, 함수 등)를 기록하고, 필요시 바깥 스코프도 참조할 수 있게 한다.
+### 4-1. EnvironmentRecord와 호이스팅
 
-#### `Environment Record`
+`Environment Record`는 현재 실행 컨텍스트의 식별자 정보를 수집하는 공간이다.  
+실행 컨텍스트가 생성될 때, 엔진은 이 정보를 가장 먼저 수집하며 이 과정을 흔히 호이스팅(Hoisting)이라고 부른다.  
+<small>호이스팅은 실제 동작이 아니라, 식별자 정보가 미리 등록되는 현상을 설명하기 위한 개념적인 표현이다.</small>
 
-Environment Record는 현재 실행 중인 컨텍스트 내부에서 선언된 변수와 함수 정보를 저장하는 공간이다.
-실행 컨텍스트가 생성되는 시점에 이 정보를 먼저 수집하는데, 이 과정을 흔히 호이스팅(Hoisting)이라고 부른다.
+<br>
 
-호이스팅은 실제 코드가 끌어올려지는 것이 아니라, 식별자 정보가 미리 등록되는 현상을 설명하기 위한 개념적인 표현이다.
+#### Environment Record 이해하기
 
-::: info Hoisting ?
-호이스팅은 실행 컨텍스트 내부의 변수, 함수 선언을 코드 실행 전에 미리 등록하는 것처럼 보이는 현상이다.
-var 변수는 선언만 등록되고 초기값은 undefined, 함수 선언문은 전체 함수 객체가 등록된다.
+![Environment Record](./images/cj2-8.png)
+
+식별자 `function a`, `var b`, `var c` 호이스팅 결과 :
+
+- `function a`: 함수 선언문 전체가 끌어올려진다.
+- `var b`, `var c`: 변수 선언만 끌어올려지고, 값은 `undefined`로 초기화된다.
+
+이렇게 끌어올려진 정보들이 `Environment Record`에 저장되는 내용이다.
+
+실행 컨텍스트가 생성될 때 현재 스코프에 어떤 식별자가 존재하는지를 먼저 수집하는데,  
+이 과정 때문에, 마치 코드의 선언부만 위로 올라간 것처럼 보이는 현상이 발생하는 것이다.
+
+<br>
+
+---
+
+### 4-2. Outer Environment Reference
+
+![Outer Environment Reference](./images/cj2-9.png)
+
+`Outer Environment Reference`란 현재 실행 컨텍스트의 렉시컬 환경이 외부 환경을 참조하는 구조이다.
+즉, 현재 컨텍스트에 존재하지 않은 식별자를 찾을 때, 이 참조를 따라 외부 환경(Lexical Environment)을 탐색하게 된다.
+
+따라서, 없는 변수나 함수는 `Outer Environment Reference`를 통해 바깥 `Lexical Environment`를 참조한다. 만약 거기서도 찾지 못한다면, 더 바깥의 환경으로 계속해서 탐색한다.
+
+이러한 참조 구조에 의해 `스코프 체인(Scope Chain)` 이 만들어진다.
+
+<br>
+
+#### Outer Environment Reference와 Scope Chain 이해하기
+
+![Outer Environment Reference](./images/cj2-10.png)
+
+`inner` 컨텍스트는 자신의 `Environment Record` 뿐만 아니라,  
+`Outer Environment Reference`를 통해 `outer`와 전역 컨텍스트의 `Lexical Environment`까지 참조할 수 있다.
+
+::: info 🔍 흐름으로 이해하는 스코프 체인
+
+`inner`에서 식별자를 탐색할 때는 다음과 같은 흐름을 따른다:
+
+1. 자신의 Environment Record에서 식별자를 찾는다.
+2. 없으면 Outer Environment Reference를 따라 `outer`의 Lexical Environment로 이동해 탐색한다.
+3. 그래도 없으면 다시 Outer Environment Reference를 따라 `전역` Lexical Environment까지 탐색한다.
+
+이처럼 가까운 스코프부터 바깥 스코프로 점진적으로 탐색하는 구조를 🔗스코프 체인이라고 한다.
 :::
 
-::: code-group
+<br>
 
-```js [Environment Record 예시]
-console.log(a());
-console.log(b());
-console.log(C());
+#### Scope & Scope Chain 요약
 
-function a() {
-  return "a";
-}
+::: info 💡
 
-var b = function bb() {
-  return "bb";
-};
+#### Scope
 
-var c = function () {
-  return "c";
-};
-```
+- 변수의 유효범위를 의미하며, 실행 컨텍스트에 의해 결정된다.
+- 변수는 자신이 정의된 실행 컨텍스트 내부에서만 접근 가능하다.
+- 내부(자식)스코프는 외부(부모) 스코프에 접근할 수 있지만, 외부 스코프는 내부 스코프에 접근할 수 없다.  
+  → 외부에서는 inner의 Lexical Environment를 참조할 수 없기 때문이다.
 
-```js [이해하기]
-// 이해를 쉽게 하기 위한 허구의 개념
-function a() {
-  return "a";
-}
-var b;
-var c;
+#### Scope Chain
 
-console.log(a());
-console.log(b());
-console.log(C());
+- 현재 스코프에서 식별자를 찾지 못했을 때, Outer Environment Reference를 따라 바깥 스코프를 차례로 탐색하는 구조다.
 
-b = function bb() {
-  return "bb";
-};
+#### Shadowing
 
-c = function () {
-  return "c";
-};
-```
+- 가장 가까운 스코프에 동일한 이름의 식별자가 존재하면, 그 식별자가 우선 사용되고 바깥 식별자는 가려진다.
+- 이처럼 가까운 선언이 우선하는 현상을 Shadowing이라고 한다.
 
 :::
-
-```js
-// Environment Record
-{
-  function a() {...}
-  var b;
-  var c;
-}
-```
-
-위로 끌어올려진 내용 전체가 바로 Environment Record이다. 실행 컨텍스트가 처음 생성되는 순간에 Environment Record에 이 정보들을 수집하는 것이다. 현재 컨텍스트에서 선언되어 있는 식별자들이 무엇이 있는지에 대한 정보를 코드 순서대로 수집하다보니 호이스팅한 거랑 똑같은 개념이 되어버린다.
-<br>
-
-#### `Outer Environment Reference`
-
-현재 컨텍스트에 없는 변수나 함수는 `Outer Environment Reference`를 통해 바깥 LexicalEnvironment에서 찾는다.
-이 구조가 스코프 체인(Scope Chain)을 형성하며, 바깥에서부터 안쪽으로 탐색하는 방식이다.
-
-가까운 스코프에서 먼저 찾고, 찾으면 더 이상 탐색하지 않는다. 이처럼 가까운 선언이 우선하는 현상을 Shadowing이라고 한다.
-
-<br>
-
-## 스택 (Stack)
-
-스택은 데이터를 순서대로 쌓고 꺼내는 자료구조이다. 가장 나중에 넣은 데이터가 가장 먼저 나오는 구조이기 때문에 LIFO(Last in, First Out 후입선출) 구조라고 부른다.
-
-```js
-push(); // 쌓기
-pop(); // 꺼내기
-```
-
-### 콜 스택 (Call Stack)
-
-자바스크립트 엔진은 함수 실행 흐름을 추적하고 제어하기 위해 실행 컨텍스트를 스택 구조로 관리한다. 이를 콜 스택이라고 한다.
-가장 나중에 호출된 함수의 컨텍스트가 스택의 가장 위에 위치하며, 함수가 종료되면 pop되어 스택에서 제거된다.
-
-#### 콜 스택 흐름
-
-```less
-1. Global Execution Context → push
-2. outer() → Execution Context 생성 → push
-3. inner() → Execution Context 생성 → push
-4. inner() 종료 → pop
-5. outer() 종료 → pop
-
-```
