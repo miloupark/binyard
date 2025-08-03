@@ -1,4 +1,4 @@
-# 실행 컨텍스트 (Execution context)
+# 📦 Execution Context
 
 ## 01. 실행 컨텍스트란?
 

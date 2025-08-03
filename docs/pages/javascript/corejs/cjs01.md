@@ -1,17 +1,5 @@
 # 🔣 Data Types
 
-:::info 🎯 Learning Goals
-
-- 기본형과 참조형 타입이 다르게 동작하는 이유? <Badge type="tip" text="# 메모리와 데이터" /> <Badge type="tip" text="# 식별자와 변수의 개념" />
-
-:::
-
-[🎨 Data Types_Figma](https://www.figma.com/design/BOdr3uWiyS9uGV62r3KHsz/CoreJS_images_hyebin?node-id=0-1&t=b3jvWaTeSHvfq60K-1)
-
-<!-- [`📎 1-5. 불변 객체 발표`](../../OZ/corejs/corejs01.md) -->
-
-<!-- [데이터 타입 종류](#데이터-타입의-종류) -->
-
 ## 01. 데이터 타입의 종류
 
 ```plaintext {7}
