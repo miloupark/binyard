@@ -129,6 +129,7 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+/* -------------------------------------------------------------------------- */
 /* Component: CodeGroup */
 .vp-code-group {
   position: relative;
@@ -157,4 +158,16 @@
 .vp-block {
   border-radius: 8px;
   margin: 16px 0 0; /* origin → margin: 16px 0; */
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* 📎 링크 스타일: 기본은 밑줄 제거, hover 시 밑줄 표시 */
+.vp-doc a {
+  text-decoration: none;
+}
+
+.vp-doc a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
