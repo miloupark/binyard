@@ -875,30 +875,23 @@ calcButtons.forEach((button) => {
 
 <br>
 
-# Refactoring <Badge type="info" text="🔨ES Modules + Class" /> <Badge type="info" text="📆 2025-08-02" />
+# Refactoring <Badge type="info" text="🔨ES Modules + Class" /> <Badge type="danger" text="📆 2025-08-02 ~ ⚠️ Refactoring in progress" />
 
 > 전역 변수와 함수로 구성된 계산기 코드를 기능별 분리 하고 싶어서 리팩토링을 진행했다.  
 > 처음엔 Sass처럼 JS도 파일을 쪼개서 합치면 되겠지 싶었는데, 경기도 오산이었고..  
 > 리팩토링을 진행한 다른 동기분의 코드를 보니 뭔가 리액트 코드랑 비슷한 느낌이었다. 바로 모듈화! 😮💡  
 > 물론 리액트도 자바스크립트 프레임워크긴 하지만, js에서 저런 구조로 구현할 수 있는지는 처음 알았다.  
-> <s>아니 이전에 이미 블로그에 모듈 정리해놨었다... 바보인가..?</s>  
+> <s>아니 이전에 공부하고 이미 블로그에 정리해놨었다... 바보인가..?</s>  
 > js에서도 기능별로 파일을 쪼개고 import/export로 연결하는 걸 모듈화라고 한다.  
-> 서치 후, "class" 기반 구조로 리팩토링하고 "ES Modules"로 파일 간 역할을 나눠보았다!
+> "class" 기반 구조로 리팩토링하고 "ES Modules"로 파일 간 역할을 나눠보려한다!
 
-💻 [GitHub](https://github.com/miloupark/calculator) <Badge type="tip" text="Update!" />
-
-### 기존 코드의 문제점
-
-- 하나의 파일에 모든 로직이 몰려있어 가독성이 좋지 않다.
-- 전역 변수와 함수가 얽혀 있어 유지보수에 어려움이 있다.
-- 기능이 늘어날수록 버그 추적과 수정이 어려워진다.
+💻 [GitHub](https://github.com/miloupark/calculator) <Badge type="danger" text="🚧 Refactoring in progress" />
 
 ### 리팩토링 목표
 
 - 기능별로 파일을 나누고 명확한 책임 부여
 - DOM 의존도 줄이기 (index.js에서만 접근)
 - JS의 ES Modules 문법 활용 (import/export로 연결)
-- React 프레임워크 사용을 고려해 익숙한 구조 만들기
 
 <br>
 
