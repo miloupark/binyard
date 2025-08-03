@@ -133,7 +133,7 @@
 /* Component: CodeGroup */
 .vp-code-group {
   position: relative;
-  max-height: 400px;
+  max-height: 800px;
   overflow: hidden; /* 전체 스크롤 막고 아래 blocks만 scroll */
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
@@ -149,7 +149,7 @@
 
 /* 코드 블록 스크롤 영역 */
 .vp-code-group .blocks {
-  max-height: 350px; /* 전체 높이에서 탭 높이만큼 빼기 */
+  max-height: 750px; /* 전체 높이에서 탭 높이만큼 빼기 */
   overflow-y: auto;
 }
 
