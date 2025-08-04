@@ -349,6 +349,11 @@ export default defineConfig({
             { text: "클래스", link: "/javascript/corejs/cjs07" },
           ],
         },
+        {
+          text: "Functional JavaScript",
+          collapsed: false,
+          items: [{ text: "함수형 프로그래밍", link: "/javascript/funcjs/fjs01" }],
+        },
       ],
       "/typescript/": [
         {
