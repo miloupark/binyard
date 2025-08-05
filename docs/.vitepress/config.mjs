@@ -100,7 +100,7 @@ export default defineConfig({
           items: [
             { text: "JavaScript", link: "/javascript/basic/js00" },
             { text: "TypeScript", link: "/typescript/basic/ts00" },
-            { text: "React", link: "/frontend/fe/react" },
+            { text: "React", link: "/react/re00" },
             { text: "React Native", link: "/frontend/fe/react-native01" },
             { text: "Git & GitHub", link: "/frontend/fe/git-github" },
             { text: "DSA", link: "/dsa/dsa00" },
@@ -371,6 +371,15 @@ export default defineConfig({
             },
           ],
         },
+      ],
+      "/react/": [
+        { text: "React를 위한 Node.js", link: "/react/re00" },
+        { text: "React", link: "/react/re01" },
+        // {
+        //   text: "React",
+        //   collapsed: false,
+        //   items: [{ text: "React를 위한 Node.js", link: "/react/re00" }],
+        // },
       ],
       "/dsa/": [
         {
