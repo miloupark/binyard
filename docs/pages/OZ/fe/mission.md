@@ -1,6 +1,6 @@
 # 👊🏼 Daily Mission
 
-### HTML/CSS
+## HTML/CSS
 
 ::: details `Day 1` 나의 하루 문서 만들기
 
@@ -85,7 +85,7 @@
 <br>
 :::
 
-### JavaScript
+## JavaScript
 
 [`👩🏻‍💻 StackBlitz Collections`](https://stackblitz.com/@miloupark/collections/oz-dailymission-js)
 
@@ -1794,7 +1794,7 @@ calcButtons.forEach((button) => {
 
 :::
 
-### Git & GitHub
+## Git & GitHub
 
 ::: details `Day 21` Git & GitHub 1
 
@@ -1806,6 +1806,27 @@ calcButtons.forEach((button) => {
 
 [`👩🏻‍💻 Commits on Aug 01, 2025`](https://github.com/miloupark/git/commits/main/)
 
+:::
+::: details `Day 23` Git & GitHub 3
+
+- 레포지토리 url 제출
+
+[`Git & GitHub 블로그 정리`](https://binyard.me/frontend/fe/git-github.html)
+
+:::
+
+## React
+
+[`👩🏻‍💻 StackBlitz Collections`](https://stackblitz.com/@miloupark/collections/oz-dailymission-react)
+
+::: details `Day 24` React를 위한 Node.js, nvm, npm, npx
+[`👩🏻‍💻 React 1일차 package.json 수정하기`](https://stackblitz.com/edit/vitejs-vite-pdmnju85?file=package.json)
+:::
+::: details `Day 25`
+[`👩🏻‍💻 React 2일차`](#)
+:::
+::: details `Day 26`
+[`👩🏻‍💻 React 3일차`](#)
 :::
 
 <Comment/>
