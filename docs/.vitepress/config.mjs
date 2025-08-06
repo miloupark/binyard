@@ -376,6 +376,7 @@ export default defineConfig({
         { text: "React를 위한 Node.js", link: "/react/re00" },
         { text: "React", link: "/react/re01" },
         { text: "Component", link: "/react/re02" },
+        { text: "JSX", link: "/react/re03" },
         // {
         //   text: "React",
         //   collapsed: false,
