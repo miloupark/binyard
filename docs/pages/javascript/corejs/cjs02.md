@@ -181,24 +181,146 @@ Execution Context
 ### 4-1. EnvironmentRecord와 호이스팅
 
 `Environment Record`는 현재 실행 컨텍스트의 식별자 정보를 수집하는 공간이다.  
-실행 컨텍스트가 생성될 때, 엔진은 이 정보를 가장 먼저 수집하며 이 과정을 흔히 호이스팅(Hoisting)이라고 부른다.  
-<small>호이스팅은 실제 동작이 아니라, 식별자 정보가 미리 등록되는 현상을 설명하기 위한 개념적인 표현이다.</small>
+실행 컨텍스트가 생성될 때, 엔진은 이 정보를 가장 먼저 수집하며 이 과정을 흔히 호이스팅(Hoisting)이라고 부른다.
+
+<small>💡 호이스팅은 실제 코드 이동이 아닌,
+식별자 정보가 미리 등록되는 현상을 설명하기 위한 개념적 표현이다.</small>
 
 <br>
 
-#### Environment Record 이해하기
+### 🔁 호이스팅 규칙
 
-![Environment Record](./images/cj2-8.png)
+매개변수와 변수에 대한 호이스팅
+
+![매개변수와 변수에 대한 호이스팅](./images/cj2-8.png)
+
+함수가 실행되기 전, 자바스크립트 엔진은 실행 컨텍스트를 생성하고 `EnvironmentRecord`에 식별자들을 다음 순서대로 사전에 등록한다.
+
+- 1. 매개변수 x → `인자 1`과 바인딩되어 `x: 1`로 등록
+- 2. `var x;` 선언 → 이미 `x`가 있으므로 중복 선언은 무시
+- 3. `var x = 2` → 선언은 무시되고, 실행 단계에서 `x = 2` 할당만 적용
+
+따라서 최종적으로 EnvironmentRecord에는 매개변수 `x` 하나만 등록되고,  
+모든 var 선언은 무시되며, 이후 실행 단계에서 `x = 2`만 재할당된다.
+
+<br>
+
+함수 선언의 호이스팅
+
+![함수 선언의 호이스팅](./images/cj2-9.png)
+
+함수 선언문은 변수 선언보다 먼저 `EnvironmentRecord`에 등록되며, 선언과 동시에 함수 전체가 바인딩된다.
+
+- 1. `function b()` → 함수 선언이 가장 먼저 수집 → `b: function b() {}`로 등록
+- 2. `var b` → 이미 b가 있으므로 중복 선언은 무시
+- 3. 실행 단계에서 b = bbb 할당 → 기존 함수가 문자열로 덮어씌워짐
+
+즉, `function b()`는 실행 전에 이미 EnvironmentRecord에 바인딩되어 있고,
+이후 `b = 'bbb'`가 실행되면, 해당 식별자의 값만 변경된다.
+
+<br>
+
+Environment Record 정리
+
+![Environment Record](./images/cj2-10.png)
 
 식별자 `function a`, `var b`, `var c` 호이스팅 결과 :
 
-- `function a`: 함수 선언문 전체가 끌어올려진다.
+- `function a`: 함수 선언문 전체가 호이스팅 된다(끌어올려진다).
 - `var b`, `var c`: 변수 선언만 끌어올려지고, 값은 `undefined`로 초기화된다.
 
-이렇게 끌어올려진 정보들이 `Environment Record`에 저장되는 내용이다.
+이렇게 끌어올려진 식별자 정보들이 `Environment Record`에 저장된다.
 
 실행 컨텍스트가 생성될 때 현재 스코프에 어떤 식별자가 존재하는지를 먼저 수집하는데,  
-이 과정 때문에, 마치 코드의 선언부만 위로 올라간 것처럼 보이는 현상이 발생하는 것이다.
+이 과정 때문에, 마치 코드의 선언부만 코드 상단으로 올라간 것처럼 보이는 현상이 발생하는 것이다.
+
+<br>
+
+### 함수 선언문과 함수 표현식
+
+자바스크립트에서 함수를 정의하는 방식은 대표적으로 함수 선언문 함수 표현식이 있다. 이 둘은 호이스팅 방식에서 차이를 보인다.
+
+#### 함수 선언문(Function Declaration)
+
+```js
+// 함수명 a가 곧 변수명
+function a() {...}
+a();
+```
+
+- `function a()`는 실행 컨텍스트 생성 시 EnvironmentRecord에 전체 함수가 등록된다.
+- 따라서 선언 이전에도 정상적으로 호출할 수 있다. 함수 선언은 변수 선언보다도 먼저 수집된다.
+
+::: info 💡 함수 선언문
+코드 상 위치와 관계없이, 가장 먼저 EnvironmentRecord에 바인딩되는 특징이 있다.
+:::
+<br>
+
+#### 함수 표현식(Function Expression)
+
+```js
+// 익명 함수 표현식: 변수명 b가 곧 함수명
+var b = function(){...}
+b();
+
+// 기명 함수 표현식: 변수명은 c, 함수명은 d
+var c = function d(){...}
+c()
+d() // ReferenceError
+```
+
+- `var`로 선언한 함수 표현식은 선언만 호이스팅되고, 값은 undefined
+- `let 또는 const`를 사용할 경우, TDZ(Temporal Dead Zone)에 걸려 선언 전에 접근하면 ReferenceError가 발생한다.
+- `function d()`처럼 함수 내부에서 이름을 붙인 경우, 해당 이름은 함수 내부에서만 접근 가능하며 외부에서는 사용 불가하다.
+- 기명 표현식은 디버깅 스택 추적 또는 내부 재귀 호출용 이름 부여에 자주 사용된다.
+
+<br>
+
+#### 예제 비교
+
+원본 코드
+
+```js
+// 원본 코드
+console.log(sum(1, 2));
+console.log(multiply(3, 4));
+
+// 함수 선언문 sum
+function sum(a, b) {
+  return a + b;
+}
+
+// 함수 표현식 multiply
+var multiply = function (a, b) {
+  return a * b;
+};
+```
+
+호이스팅 이후의 개념적 코드 예시
+
+```js
+// 함수 선언문은 전체 함수가 끌어올려진다.
+// 비유적 예시
+var sum = function sum(a, b) {
+  return a + b;
+};
+
+// 실제로는 sum이라는 이름이 EnvironmentRecord에 바인딩되고,
+// 그 값으로 전체 함수 객체가 들어감. sum: <function object>
+// function sum(a, b) {
+//   return a + b;
+// }
+
+var multiply; // 변수는 선언부만 끌어올립니다.
+
+console.log(sum(1, 2));
+console.log(multiply(3, 4)); // TypeError: multiply is not a function
+
+// 변수의 할당부는 원래 자리에 남겨두고 실제 함수 할당은 여기서 이뤄짐
+multiply = function (a, b) {
+  return a * b;
+};
+```
 
 <br>
 
@@ -206,7 +328,7 @@ Execution Context
 
 ### 4-2. Outer Environment Reference
 
-![Outer Environment Reference](./images/cj2-9.png)
+![Outer Environment Reference](./images/cj2-11.png)
 
 `Outer Environment Reference`란 현재 실행 컨텍스트의 렉시컬 환경이 외부 환경을 참조하는 구조이다.
 즉, 현재 컨텍스트에 존재하지 않은 식별자를 찾을 때, 이 참조를 따라 외부 환경(Lexical Environment)을 탐색하게 된다.
@@ -217,9 +339,9 @@ Execution Context
 
 <br>
 
-#### Outer Environment Reference와 Scope Chain 이해하기
+#### Scope Chain
 
-![Outer Environment Reference](./images/cj2-10.png)
+![Outer Environment Reference](./images/cj2-12.png)
 
 `inner` 컨텍스트는 자신의 `Environment Record` 뿐만 아니라,  
 `Outer Environment Reference`를 통해 `outer`와 전역 컨텍스트의 `Lexical Environment`까지 참조할 수 있다.
@@ -237,9 +359,7 @@ Execution Context
 
 <br>
 
-#### Scope & Scope Chain 요약
-
-::: info 💡
+::: info 💡 Scope & Scope Chain 요약
 
 #### Scope
 
