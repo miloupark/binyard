@@ -3,7 +3,6 @@ import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 
 import Comment from "../components/Comment.vue";
-import StackblitzEmbed from "../components/StackblitzEmbed.vue";
 import "./style.css";
 
 /** @type {import('vitepress').Theme} */
