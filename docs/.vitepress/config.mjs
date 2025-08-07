@@ -377,6 +377,8 @@ export default defineConfig({
         { text: "React", link: "/react/re01" },
         { text: "Component", link: "/react/re02" },
         { text: "JSX", link: "/react/re03" },
+        { text: "State & Props", link: "/react/re04" },
+        { text: "SPA", link: "/react/re05" },
         // {
         //   text: "React",
         //   collapsed: false,
