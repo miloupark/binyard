@@ -1822,11 +1822,61 @@ calcButtons.forEach((button) => {
 ::: details `Day 24` React를 위한 Node.js, nvm, npm, npx
 [`👩🏻‍💻 React 1일차 package.json 수정하기`](https://stackblitz.com/edit/vitejs-vite-pdmnju85?file=package.json)
 :::
-::: details `Day 25`
-[`👩🏻‍💻 React 2일차`](#)
+::: details `Day 25` React-App 세팅, component와 JSX 문법 이해하기
+[`👩🏻‍💻 React 2일차`](#)  
+React의 3가지 특징과 각 특징에 대한 간단한 설명
+
+- 컴포넌트 기반 개발: UI를 독립적이고 재사용 가능한 컴포넌트 단위로 나누어 개발하는 방식
+- 선언적 프로그래밍: 어떻게(How?)가 아닌 무엇(What)을 결과를 얻고자 하는지를 중심으로 코드를 작성하는 방식
+- 가상 DOM 사용: 상태 변화가 발생하면, 가상의 DOM 트리를 만들고 이전 상태와 비교한 후 실제 DOM에는 필요한 변경만 최소한으로 적용한다. (이를 통해 성능을 최적화 할 수 있다.)
+
+<br>
+
+create-react-app vs Vite 비교
+
+| 비교 항목      | `create-react-app` | `Vite`        |
+| -------------- | ------------------ | ------------- |
+| 초기 빌드 속도 | 느리다             | 빠르다        |
+| 개발 서버 속도 | 느리다             | 빠르다        |
+| 번들 크기      | 크다               | 작다          |
+| 구성 방식      | Webpack            | Rollup 기반   |
+| 공식 지원 여부 | 권장되지 않음      | 권장하는 방식 |
+
+<br>
+
+React에서 Create-react-app(CRA)를 추천하지 않는 이유  
+: CRA는 느리고 커스터마이징이 불편해 확장성이 떨어집니다.  
+번들의 크기도 커서 규모가 커질수록 관리가 어렵습니다.  
+따라서 공식 사이트에서도 권장하지 않으며, Vite, Next.js 등을 권장합니다.  
+https://create-react-app.dev/docs/getting-started/
+
+<br>
+
+함수형 컴포넌트가 React에서 더 선호되는 이유  
+: 함수형 컴포넌트는 작성이 간단하고 코드가 직관적입니다.  
+React Hook을 통해 상태 관리와 생명주기 처리, 성능 최적화까지 효율적으로 구현할 수 있어 선호됩니다.  
+React의 공식 권장 방식이기도 합니다.
+
 :::
-::: details `Day 26`
-[`👩🏻‍💻 React 3일차`](#)
+
+::: details `Day 26` JSX, map & filter를 활용한 반복 렌더링
+[`👩🏻‍💻 JSX의 특징 이해하기`](https://github.com/miloupark/OZ_FE_REACT_ASSIGNMENTS_understand_jsx/pull/1)  
+[`👩🏻‍💻 map & filter를 활용한 반복 렌더링`](https://github.com/miloupark/OZ_FE_REACT_ASSIGNMENTS_map-filter/pull/1)
+:::
+
+::: details `Day 27` state & props, 카드 갤러리
+[`👩🏻‍💻 state와 props를 사용하여 카운터 앱 생성하기`](https://github.com/miloupark/OZ_FE_REACT_ASSIGNMENTS/pull/2)  
+[`👩🏻‍💻 카드 갤러리 완성하기`](https://github.com/miloupark/OZ_FE_REACT_ASSIGNMENTS/pull/1)
+:::
+
+::: details `Day 28` React 상태, Todo-App, 장바구니 구현
+[`👩🏻‍💻 React 상태 변화 주의 사항 이해하기`](https://stackblitz.com/edit/vitejs-vite-7ufrrw6y?file=src%2FApp.jsx)  
+[`👩🏻‍💻 나만의 Todo App 만들기`](https://github.com/miloupark/Todo-App/pull/1)  
+[`👩🏻‍💻 장바구니 완성하기`](https://github.com/miloupark/oz_react_deepening_05/pull/1)  
+:::
+
+::: details `Day 29`
+[`👩🏻‍💻 React`](#)  
 :::
 
 <Comment/>
