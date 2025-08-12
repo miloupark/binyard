@@ -138,6 +138,7 @@ export default defineConfig({
           items: [
             { text: "JavaScript", link: "/OZ/llog/js" },
             { text: "Calculator", link: "/OZ/llog/calculator" },
+            { text: "React SPA Basic", link: "/OZ/llog/animal-info" },
             { text: "Draft", link: "/OZ/llog/jsdraft" },
           ],
         },
