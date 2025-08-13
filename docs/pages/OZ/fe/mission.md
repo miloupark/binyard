@@ -1875,7 +1875,19 @@ React의 공식 권장 방식이기도 합니다.
 [`👩🏻‍💻 장바구니 완성하기`](https://github.com/miloupark/oz_react_deepening_05/pull/1)  
 :::
 
-::: details `Day 29`
+::: details `Day 29` React SPA
+[`👩🏻‍💻 동물 정보 사이트`](https://binyard.me/OZ/llog/animal-info.html)  
+[`👩🏻‍💻 웹 사이트 라우팅 연결`](https://stackblitz.com/edit/vitejs-vite-qbu2jf4i?file=src%2FApp.jsx)  
+[`👩🏻‍💻 어드민 페이지 연결`](https://github.com/miloupark/oz_react_deepening_06/pull/1)  
+:::
+
+::: details `Day 31` React Hooks
+[`👩🏻‍💻 useEffect를 사용하여 생명주기 이해하기`](https://stackblitz.com/edit/vitejs-vite-bfz3bao8?file=src%2FApp.jsx)  
+[`👩🏻‍💻 실시간 시계 어플리케이션 제작하기`](https://github.com/miloupark/oz_react_deepening_07)  
+:::
+
+::: details `Day 30`
+[`👩🏻‍💻 React`](#)  
 [`👩🏻‍💻 React`](#)  
 :::
 
