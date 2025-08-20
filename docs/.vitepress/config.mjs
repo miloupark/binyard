@@ -403,17 +403,17 @@ export default defineConfig({
         {
           text: "SCSS",
           collapsed: false,
-          items: [{ text: "scss", link: "/scss00" }],
+          items: [{ text: "scss", link: "/styling/scss00" }],
         },
         {
           text: "styled-components",
           collapsed: false,
-          items: [{ text: "styled-components", link: "/sc/sc00" }],
+          items: [{ text: "styled-components", link: "/styling/sc00" }],
         },
         {
           text: "Tailwind CSS",
           collapsed: false,
-          items: [{ text: "Tailwind CSS", link: "/tc/tc00" }],
+          items: [{ text: "Tailwind CSS", link: "/styling/tc00" }],
         },
       ],
     },
