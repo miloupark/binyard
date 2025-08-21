@@ -104,7 +104,7 @@ export default defineConfig({
             { text: "React Native", link: "/frontend/fe/react-native01" },
             { text: "Git & GitHub", link: "/frontend/fe/git-github" },
             { text: "DSA", link: "/dsa/dsa00" },
-            { text: "Styling", link: "/styling/scss00" },
+            { text: "Styling", link: "/styling/tailwindcss/tc00" },
           ],
         },
         {
@@ -406,17 +406,17 @@ export default defineConfig({
           items: [{ text: "scss", link: "/styling/scss00" }],
         },
         {
-          text: "styled-components",
-          collapsed: false,
-          items: [{ text: "styled-components", link: "/styling/sc00" }],
-        },
-        {
           text: "Tailwind CSS",
           collapsed: false,
           items: [
             { text: "About", link: "/styling/tailwindcss/tc00" },
             { text: "Installation", link: "/styling/tailwindcss/tc01" },
           ],
+        },
+        {
+          text: "styled-components",
+          collapsed: false,
+          items: [{ text: "styled-components", link: "/styling/sc00" }],
         },
       ],
     },
