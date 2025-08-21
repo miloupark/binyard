@@ -413,7 +413,10 @@ export default defineConfig({
         {
           text: "Tailwind CSS",
           collapsed: false,
-          items: [{ text: "Tailwind CSS", link: "/styling/tc00" }],
+          items: [
+            { text: "About", link: "/styling/tailwindcss/tc00" },
+            { text: "Installation", link: "/styling/tailwindcss/tc01" },
+          ],
         },
       ],
     },
