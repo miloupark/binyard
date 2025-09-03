@@ -109,9 +109,9 @@ document.getElementById("a").addEventListener("click", cbFunc);
 // PointerEvent {...}
 ```
 
-- this는 이벤트 타겟 요소 `<div id="a">abc</div>`
-- 첫 번째 인자 x는 이벤트 객체 `PointerEvent`
-- 즉, 호출자가 this와 인자를 어떻게 넘길지 미리 정해둔 것이다.
+- this는 이벤트가 바인딩된 요소 `<div id="a">abc</div>`
+- 콜백 함수의 매개변수 `x`는, 실제 클릭이 발생했을 때 브라우저가 이벤트 객체 `PointerEvent`를 인자로 전달하여 x에 담긴다.
+- 즉, 호출자가 this와 인자를 어떤 규칙으로 넘길지 미리 정해둔 것을 따른다.
 
 ## 콜백함수의 특징
 
