@@ -1881,14 +1881,36 @@ React의 공식 권장 방식이기도 합니다.
 [`👩🏻‍💻 어드민 페이지 연결`](https://github.com/miloupark/oz_react_deepening_06/pull/1)  
 :::
 
-::: details `Day 31` React Hooks
+::: details `Day 30` React Hooks
 [`👩🏻‍💻 useEffect를 사용하여 생명주기 이해하기`](https://stackblitz.com/edit/vitejs-vite-bfz3bao8?file=src%2FApp.jsx)  
 [`👩🏻‍💻 실시간 시계 어플리케이션 제작하기`](https://github.com/miloupark/oz_react_deepening_07)  
 :::
 
-::: details `Day 30` React Hooks
+::: details `Day 31` React Hooks
 [`👩🏻‍💻 useRef를 사용하여 검색어 받아오기`](https://stackblitz.com/edit/vitejs-vite-wvbwv8ny?file=src%2FApp.jsx)  
 [`👩🏻‍💻 Custom Hooks를 사용하여 이미지 갤러리 만들기`](https://stackblitz.com/edit/vitejs-vite-lzf8ljmw?file=src%2Fhooks%2FuseFetch.js)  
+:::
+
+::: details `Day 32` React Mini Project_Todo App
+[`👩🏻‍💻 Todo App`](https://github.com/miloupark/Todo?tab=readme-ov-file)  
+[`🪧 Milestones & PR`](https://github.com/miloupark/Todo/milestones?state=closed)
+:::
+
+::: details `Day 33` React 스타일링 SASS
+[`👩🏻‍💻 SCSS를 이용하여 OZ 페이지 디자인하기`](https://github.com/miloupark/OZ_FE_SCSS/pull/1)  
+[`🚀 Demo`](https://miloupark.github.io/OZ_FE_SCSS/)
+:::
+
+::: details `Day 34` React 스타일링 Styled-Components
+[`👩🏻‍💻 Styled-Components를 이용하여 OZ 페이지 디자인하기`](https://github.com/miloupark/oz-styled-components/pull/1/files)  
+[`🚀 Demo`](https://miloupark.github.io/oz-styled-components/)
+:::
+
+::: details `Day 35` React 스타일링 Tailwind CSS
+[`👩🏻‍💻 tailwindcss를 이용하여 OZ 페이지 디자인하기 `](https://github.com/miloupark/oz-tailwind/pull/1)  
+[`🚀 Demo`](https://miloupark.github.io/oz-tailwind/)  
+[`👩🏻‍💻 tailwindcss를 이용하여 OZ 페이지 디자인하기 `](https://github.com/miloupark/oz-tailwind-counter/pull/1)  
+[`🚀 Demo`](https://miloupark.github.io/oz-tailwind-counter/)  
 :::
 
 <Comment/>

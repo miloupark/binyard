@@ -14,11 +14,17 @@ export default defineConfig({
         href: "https://binyard.me/favicon/apple-touch-icon.png",
       },
     ],
-    ["meta", { name: "viewport", content: "width=device-width, initial-scale=1" }],
+    [
+      "meta",
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+    ],
 
     // Open Graph
     ["meta", { property: "og:title", content: "Binyard" }],
-    ["meta", { property: "og:description", content: "FE Growth Log by Hyebin Park" }],
+    [
+      "meta",
+      { property: "og:description", content: "FE Growth Log by Hyebin Park" },
+    ],
     [
       "meta",
       {
@@ -31,8 +37,17 @@ export default defineConfig({
     // Twitter Card
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
     ["meta", { name: "twitter:title", content: "Binyard" }],
-    ["meta", { name: "twitter:description", content: "FE Growth Log by Hyebin Park" }],
-    ["meta", { name: "twitter:image", content: "https://binyard.me/favicon/twitter-card.png" }],
+    [
+      "meta",
+      { name: "twitter:description", content: "FE Growth Log by Hyebin Park" },
+    ],
+    [
+      "meta",
+      {
+        name: "twitter:image",
+        content: "https://binyard.me/favicon/twitter-card.png",
+      },
+    ],
   ],
   srcDir: "./pages/",
   base: "/",
@@ -130,6 +145,7 @@ export default defineConfig({
           items: [
             { text: "Frontend", link: "/OZ/fe/intro" },
             { text: "Daily Mission", link: "/OZ/fe/mission" },
+            { text: "↳ Feedback Reference", link: "/OZ/fe/feedback" },
             { text: "Reflection", link: "/OZ/fe/reflection" },
           ],
         },
@@ -231,7 +247,10 @@ export default defineConfig({
           text: "JavaScript",
           collapsed: false,
           items: [
-            { text: "자바스크립트의 실행 환경", link: "/javascript/basic/js00" },
+            {
+              text: "자바스크립트의 실행 환경",
+              link: "/javascript/basic/js00",
+            },
             {
               text: "기초 문법",
               collapsed: true,
@@ -354,7 +373,9 @@ export default defineConfig({
         {
           text: "Functional JavaScript",
           collapsed: false,
-          items: [{ text: "함수형 프로그래밍", link: "/javascript/funcjs/fjs01" }],
+          items: [
+            { text: "함수형 프로그래밍", link: "/javascript/funcjs/fjs01" },
+          ],
         },
       ],
       "/typescript/": [
@@ -381,6 +402,7 @@ export default defineConfig({
         { text: "JSX", link: "/react/re03" },
         { text: "State & Props", link: "/react/re04" },
         { text: "SPA", link: "/react/re05" },
+        { text: "Props", link: "/react/re06" },
         // {
         //   text: "React",
         //   collapsed: false,
