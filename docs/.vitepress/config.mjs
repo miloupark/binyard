@@ -403,11 +403,14 @@ export default defineConfig({
         { text: "State & Props", link: "/react/re04" },
         { text: "SPA", link: "/react/re05" },
         { text: "Props", link: "/react/re06" },
-        // {
-        //   text: "React",
-        //   collapsed: false,
-        //   items: [{ text: "React를 위한 Node.js", link: "/react/re00" }],
-        // },
+        {
+          text: "State Management",
+          collapsed: false,
+          items: [
+            { text: "Zustand", link: "react/state/zustand/zs00" },
+            { text: "Store", link: "react/state/zustand/zs01" },
+          ],
+        },
       ],
       "/dsa/": [
         {
