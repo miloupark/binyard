@@ -378,3 +378,7 @@ multiply = function (a, b) {
 - 이처럼 가까운 선언이 우선하는 현상을 Shadowing이라고 한다.
 
 :::
+
+<br>
+<badge type=info text="#오즈코딩스쿨"></badge><badge type=info text="#초격차_프론트엔드_13기"></badge><badge type=info text="#개발기록"></badge> 
+<Comment/>
