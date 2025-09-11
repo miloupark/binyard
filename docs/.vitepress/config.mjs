@@ -449,7 +449,11 @@ export default defineConfig({
         {
           text: "Node.js",
           collapsed: false,
-          items: [{ text: "intro", link: "/nodejs/node00" }],
+          items: [
+            { text: "Node.js 소개", link: "/nodejs/node00" },
+            { text: "모듈 시스템 CJS vs ESM", link: "/nodejs/node01" },
+            // { text: "", link: "/nodejs/node02" },
+          ],
         },
       ],
     },
