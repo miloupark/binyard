@@ -117,6 +117,7 @@ export default defineConfig({
             { text: "TypeScript", link: "/typescript/basic/ts00" },
             { text: "React", link: "/react/re00" },
             { text: "React Native", link: "/frontend/fe/react-native01" },
+            { text: "Node.js", link: "/nodejs/node00" },
             { text: "Git & GitHub", link: "/frontend/fe/git-github" },
             { text: "DSA", link: "/dsa/dsa00" },
             { text: "Styling", link: "/styling/tailwindcss/tc00" },
@@ -442,6 +443,13 @@ export default defineConfig({
           text: "styled-components",
           collapsed: false,
           items: [{ text: "styled-components", link: "/styling/sc00" }],
+        },
+      ],
+      "/nodejs/": [
+        {
+          text: "Node.js",
+          collapsed: false,
+          items: [{ text: "intro", link: "/nodejs/node00" }],
         },
       ],
     },
