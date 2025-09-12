@@ -451,8 +451,22 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: "Node.js 소개", link: "/nodejs/node00" },
-            { text: "모듈 시스템 CJS vs ESM", link: "/nodejs/node01" },
-            { text: "File System", link: "/nodejs/node02" },
+            {
+              text: "Module System",
+              collapsed: false,
+              items: [
+                { text: "CommonJS", link: "/nodejs/node01" },
+                { text: "ES Modules", link: "/nodejs/node02" },
+              ],
+            },
+            {
+              text: "File System",
+              collapsed: false,
+              items: [
+                { text: "CommonJS", link: "/nodejs/node03" },
+                { text: "ES Modules", link: "/nodejs/node04" },
+              ],
+            },
           ],
         },
       ],

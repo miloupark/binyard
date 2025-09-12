@@ -47,3 +47,21 @@ Press Ctrl+C to abort current expression, Ctrl+D to exit the REPL
 ```
 
 :::
+
+<br>
+
+## 모듈 시스템
+
+Node.js에는 두 가지 모듈 시스템이 있다.
+
+### CommonJS modules (CJS)
+
+- Node.js 초창기부터 기본으로 사용된 방식 (`require` `module.exports`)
+
+### ES Modules (ESM)
+
+- 브라우저 표준 모듈 시스템 (`import`, `export`)
+- 점차 Node.js의 기본으로 자리잡는 추세라고 한다.
+
+<br>
+<Comment/>

@@ -1,373 +1,299 @@
-# File System
+# ES Module
 
-::: info Reference
+::: info 📦 ES Module 설정 방법
+Node.js에서 ES Module을 사용하려면 다음 중 하나의 설정이 필요하다.
 
-- 📎 [fs 공식 문서](https://nodejs.org/api/fs.html)
-- 📎 [path 모듈 공식 문서](https://nodejs.org/api/path.html)
+1. `package.json`에 항목 추가
+
+   ```json
+   {
+     "type": "module"
+   }
+   ```
+
+2. 모듈 파일 확장자를 `.mjs`로 지정
+
+최신 버전의 Node.js에서는 설정 없이도 동작할 수 있지만, 실무에서는 환경 차이를 고려해 위 설정 중 하나를 적용하는 것이 안전하다.
 
 :::
 
 <br>
 
----
-
-# CommonJS fs모듈
-
-## readFile() <badge type="tip" text="읽기-비동기"></badge>
+## 기본 export / import
 
 ::: code-group
 
-```js [비동기 readFile()]
-// fs는 Node.js에서 기본으로 제공하는 내장 모듈이다.
-const fs = require("fs");
+```js [math.js]
+export const PI = 3.14159265359;
 
-// readFile 함수를 사용해 index 문서의 데이터를 읽어올 수 있다.
-fs.readFile("./index.txt", "utf8", (err, data) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log(data);
-});
-
-console.log("내가 먼저 출력");
-
-// 내가 먼저 출력
-// readFile 읽어오기 작업은 비동기지롱
-```
-
-```plaintext [index.txt]
-readFile 읽어오기 작업은 비동기지롱
-```
-
-:::
-
-- 첫 번째 인자: 경로(문자열)
-- 두 번째 인자: 인코딩 형식 (데이터를 읽는 데 사용할 형식)
-- 세 번째 인자: 콜백 함수 (에러/데이터 처리)
-- "내가 먼저 출력"이 먼저 실행되는 것으로, 비동기 방식임을 확인할 수 있다.
-
-<br>
-
-## readFileSync() <badge type="tip" text="읽기-동기"></badge>
-
-::: code-group
-
-```js [동기 readFileSync]
-const fs = require("fs");
-const data = fs.readFileSync("./index.txt", "utf8");
-
-console.log(data);
-console.log("내가 나중에 출력");
-// readFileSync 읽어오기 작업은 동기지롱
-// 내가 나중에 출력
-```
-
-```plaintext [index.txt]
-readFileSync 읽어오기 작업은 동기지롱
-```
-
-:::
-
-- 파일 크기가 작을 때는 무방하지만, 작업이 무거우면 성능에 지장을 줄 수 있으므로 지양하는 것이 좋다.
-- 콜백이 필요 없어 코드가 간단하다.
-
-<br>
-
-## writeFile() · writeFileSync()
-
-::: code-group
-
-```js [writeFile() · writeFileSync()]
-const fs = require("fs");
-
-// 동기
-fs.writeFileSync("./out-sync.txt", "안녕 난 writeFileSync.");
-console.log("동기왔어요");
-
-// 비동기
-fs.writeFile("./out-async.txt", "안녕 난 writeFile.", (err) => {
-  if (err) throw err;
-  console.log("비동기왔어요");
-});
-
-console.log("나는 깍뚜기");
-
-// 동기왔어요
-// 나는 깍뚜기
-// 비동기왔어요
-```
-
-```plaintext [out-sync.txt]
-안녕 난 writeFileSync.
-```
-
-```plaintext [out-async.txt]
-안녕 난 writeFile.
-```
-
-:::
-
-- `writeFileSync`: 동기 실행 + 콜백 없음
-- `writeFile`: 파일 생성/덮어쓰기 + 콜백
-- 파일 경로와 저장될 데이터를 인자로 넣어 실행하면 파일이 만들어진다.
-- 기존 파일이 있으면 덮어쓴다.
-
-<br>
-
-## appendFile() · appendFileSync()
-
-파일에 데이터를 이어 붙이는 함수
-
-::: code-group
-
-```js [ appendFile() · appendFileSync()]
-const fs = require("fs");
-
-// 동기
-fs.appendFileSync("./out-sync.txt", "\n안녕 난 appendFileSync.");
-console.log("동기라네");
-
-// 비동기
-fs.appendFile("./out-async.txt", "\n안녕 난 appendFile.", (err) => {
-  if (err) throw err;
-  console.log("비동기라네");
-});
-
-console.log("나는 깍뚜기");
-
-// 동기라네
-// 나는 깍뚜기
-// 비동기라네
-```
-
-```plaintext [out-sync.txt]
-안녕 난 writeFileSync.
-안녕 난 appendFileSync.
-```
-
-```plaintext [out-async.txt]
-안녕 난 writeFile.
-안녕 난 appendFile.
-```
-
-:::
-
-- 기존 파일에 데이터를 이어 붙이는 함수
-
-<br>
-
-## existsSync() · access()
-
-특정 파일의 존재 유무를 확인하는 기능
-
-::: code-group
-
-```js [existsSync() · access()]
-const fs = require("fs");
-
-// 동기
-if (fs.existsSync("out-sync.txt")) {
-  console.log("동기", "파일이 있어용.");
-} else {
-  console.log("동기", "파일이 없어용.");
+export function add(a, b) {
+  return a + b;
 }
 
-// 비동기
-fs.access("out-async.txt", fs.constants.F_OK, (err) => {
-  console.log("비동기", err ? "파일이 없어용." : "파일이 있어용.");
-});
-
-// 동기 파일이 있어용
-// 비동기 파일이 있어용
+export class MathOps {
+  mult(a, b) {
+    return a * b;
+  }
+}
 ```
 
-```plaintext [out-sync.txt]
-안녕 난 writeFileSync.
-안녕 난 appendFileSync.
+```js [app.js]
+// 필요한 항목만 구조분해 import
+import { PI, add, MathOps } from "./math.js";
+
+console.log(PI, add(PI, 2), new MathOps().mult(PI, 2));
 ```
 
-```plaintext [out-async.txt]
-안녕 난 writeFile.
-안녕 난 appendFile.
-```
+```js [app2.js]
+// 모듈 전체를 하나의 객체로 가져오기
+import * as math from "./math.js";
 
-:::
-
-- `existsSync`: 동기, true/false 반환
-- `access`: 비동기, 원래 파일이나 디렉토리에 특정 권한이 있는지 확인하는 함수
-  - 두 번째 인자: `fs.constants.F_OK`를 넣어주면 파일 존재 유무만 확인한다.
-  - 콜백의 `err` 여부로 판단한다.
-
-<br>
-
-::: info ⚠️ exists()
-
-`fs.exists()` 함수는 오류 처리 부족으로 Deprecated 되었다고 한다.
-
-```js
-const fs = require("fs");
-
-// ⚠️ Deprecated
-fs.exists("out-async.txt", (exists) => {
-  console.log(exists ? "File exists." : "File does not exist.");
-});
+console.log(math.PI, math.add(math.PI, 2), new math.MathOps().mult(math.PI, 2));
 ```
 
 :::
 
+- 선언 앞에 `export` 키워드를 붙여 모듈을 내보낸다.
+- import 시에는 구조분해 방식과 `\* as` 방식 둘 다 가능하다.
+- `\* as` 방식을 쓰면 모듈 전체를 하나의 네임스페이스 객체로 다룰 수 있다.
+
 <br>
 
-## unlinkSync() · unlink()
-
-파일 삭제
+## default export
 
 ::: code-group
 
-```js [unlinkSync() · unlink()]
-const fs = require("fs");
+```js [math.js]
+export const PI = 3.14159265359;
 
-// 동기
-fs.unlinkSync("out-sync.txt");
-console.log("동기 삭제해따잉");
+export function add(a, b) {
+  return a + b;
+}
 
-// 비동기
-fs.unlink("out-async.txt", (err) => {
-  if (err) {
-    console.error("Error deleting file:", err);
-    return;
-  }
-  console.log("비동기 삭제해따잉");
-});
-
-// 동기 삭제해따잉
-// 비동기 삭제해따잉
+export default function sub(a, b) {
+  return a - b;
+}
 ```
 
-```plaintext [out-sync.txt]
-[삭제 전 내용 예시]
-안녕 난 writeFileSync.
-안녕 난 appendFileSync.
-```
+```js [app.js]
+import subtract, { PI, add } from "./math.js";
 
-```plaintext [out-async.txt]
-[삭제 전 내용 예시]
-안녕 난 writeFile.
-안녕 난 appendFile.
+console.log(PI, add(PI, 2), subtract(7, 3));
 ```
 
 :::
 
-- 파일 삭제
-- 대상이 없거나 권한이 없으면 오류 발생한다.
+- `default` 키워드는 모듈을 대표하는 값을 지정한다.
+- 불러올 때는 `{}` 없이 원하는 이름으로 import 가능 (subtract)
+- 한 모듈에는 `default export`가 하나만 존재할 수 있다.
 
 <br>
 
-# CommonJS 경로
+## 이름 충돌 방지 (alias)
 
-## 전역변수: \_\_dirname · \_\_filename
+::: code-group
 
-CommonJS에서만 사용 가능한, 실행중인 문서의 경로 정보 전역 변수
+```js [app.js]
+import * as math from "./math.js";
+import * as vector from "./vector.js";
 
-```js [index.js]
-console.log(__dirname);
-console.log(__filename);
+console.log(math.add(1, 2));
+console.log(vector.add({ x: 1, y: 2 }, { x: 3, y: 4 }));
 ```
 
-- `__dirname`: 실행 중인 디렉토리 경로
-- `__filename`: 실행 파일 전체 경로
+```js [app2.js]
+import { add as addMath, mult } from "./math.js";
+import { add as addVector, sub } from "./vector.js";
 
-<br>
-
-## path 모듈
-
-```js [index.js]
-const path = require("path");
-
-console.log(path.join("files", "hello.txt"));
-console.log(path.join("./files", "utils", "../hello.txt"));
-// 바깥 폴더를 뜻하는 상대 경로가 있으므로 utils는 경로에 포함되지 않는다.
-console.log(path.join(__dirname, "files", "hello.txt"));
-console.log(path.resolve("files/hello.txt"));
-
-// files/hello.txt
-// files/hello.txt
-// /Users/binny/nodejs/files/hello.txt
-// (/Users/binny/nodejs)/files/hello.txt → (CWD=현재 작업 디렉토리)에 따라 달라진다.
+console.log(addMath(1, 2));
+console.log(addVector({ x: 1, y: 2 }, { x: 3, y: 4 }));
 ```
 
-- `join()`: 경로 조각을 합쳐 정규화된 경로 문자열 반환
-- `resolve()`: 현재 작업 디렉토리 기준으로 절대 경로 생성
-- 참고: `path.join("./files","utils","../hello.txt")`에서 utils가 빠지는 이유는 `..`가 한 단계 상위를 가리키기 때문(정규화)
+```js [math.js]
+export const add = (a, b) => a + b;
+export const mult = (a, b) => a * b;
+```
+
+```js [vector.js]
+export const add = (a, b) => ({
+  x: a.x + b.x,
+  y: a.y + b.y,
+});
+
+export const sub = (a, b) => ({
+  x: a.x - b.x,
+  y: a.y - b.y,
+});
+```
+
+:::
+
+- 서로 다른 모듈에서 같은 이름을 export하면 충돌이 발생한다.
+- `import * as`를 사용해 각각 네임스페이스로 묶거나, `add as addMath`처럼 별칭을 지정해 구분한다.
 
 <br>
 
-### basename() · dirname() · extname()
+## 모듈 캐싱
 
-경로를 해석해 부분적인 정보를 반환하는 함수
+::: code-group
+
+```js [counter.js]
+let count = 0;
+
+export const increment = () => count++;
+export const getCount = () => count;
+```
+
+```js [fileA.js]
+import { getCount, increment } from "./counter.js";
+
+console.log("1.", getCount());
+increment();
+console.log("2.", getCount());
+```
+
+```js [fileB.js]
+import { getCount, increment } from "./counter.js";
+
+console.log("3.", getCount());
+increment();
+console.log("4.", getCount());
+```
+
+```js [app.js]
+import "./fileA.js";
+import "./fileB.js";
+// 1. 0
+// 2. 1
+// 3. 1
+// 4. 2
+```
+
+:::
+
+- ES Module도 CommonJS와 마찬가지로 캐싱된다.
+- 따라서 동일한 모듈을 여러 번 import해도 같은 인스턴스를 공유한다.
+
+::: info 💡 캐싱되지 않게 하려면?
+
+경로에 서로 다른 쿼리 스트링을 붙여주면 된다.  
+같은 모듈이라도 경로 문자열이 달라지면 새로운 모듈로 인식해 캐싱이 되지 않는다.
 
 ```js
-const path = require("path");
-const filePath = path.join(__dirname, "files", "hello.txt");
+import { getCount, increment } from "./counter.js?v=1";
+import { getCount, increment } from "./counter.js?v=2";
 
-console.log(path.basename(filePath));
-console.log(path.dirname(filePath));
-console.log(path.extname(filePath));
-
-// hello.txt
-// .../files
-// .txt
+import "./fileA.js";
+import "./fileB.js";
+// 1. 0
+// 2. 1
+// 3. 0
+// 4. 1
 ```
 
-- `basename()`: 해당 경로의 마지막에 있는 파일이나 폴더의 이름을 추출해 반환
-- `dirname()`: 디렉토리 경로 반환
-- `extname()`: 파일의 확장자를 추출해 반환
+:::
 
 <br>
 
-### parse() · format()
+## 동적 import
 
-경로를 객체로 다룰 때
+::: code-group
 
-```js
-const path = require("path");
+```js [app.js]
+async function dynamicAdd(a, b) {
+  if (typeof a === "number" && typeof b === "number") {
+    console.log("Loading math module...");
+    import("./math.js").then((math) => {
+      console.log(`Result: ${math.add(a, b)}`);
+    });
+  } else {
+    console.log("Loading vector module...");
+    const vector = await import("./vector.js");
+    console.log("Result:", vector.add(a, b));
+  }
+  console.log("Function execution continues...");
+}
 
-const filePath = path.join(__dirname, "files", "hello.txt");
-const parsed = path.parse(filePath);
+dynamicAdd(2, 3);
+// Loading math module...
+// Function execution continues...
+// Result: 5
 
-console.log(parsed);
-console.log(path.format(parsed));
-
-// {
-//   root: '/'
-//   dir: '/Users/binny/nodejs/files'
-//   base: 'hello.txt'
-//   ext: '.txt'
-//   name: 'hello'
-// }
-//  /Users/binny/nodejs/files/hello.txt
+dynamicAdd({ x: 2, y: 3 }, { x: 4, y: 1 });
+// Loading vector module...
+// Result: { x: 6, y: 4 }
+// Function execution continues...
 ```
 
-- `parse()`: 문자열을 토대로 해당 경로의 정보를 담은 객체를 반환
-- `format()`: parse 함수로 만든 객체를 format 함수에 인자로 넣으면 해당 경로의 문자열로 조합해서 반환한다.
+```js [math.js]
+export const add = (a, b) => a + b;
+export const mult = (a, b) => a * b;
+```
+
+```js [vector.js]
+export const add = (a, b) => ({
+  x: a.x + b.x,
+  y: a.y + b.y,
+});
+
+export const sub = (a, b) => ({
+  x: a.x - b.x,
+  y: a.y - b.y,
+});
+```
+
+:::
+
+- 필요한 시점에 모듈을 비동기적으로 import해 초기 로딩 시간을 단축할 수 있다.
 
 <br>
 
-### relative()
+## Top-level await
 
-두 경로 간의 관계를 나타내는 함수
+::: code-group
 
-```js
-const path = require("path");
+```js [fetch-google.js]
+const response = await fetch("https://www.google.com");
+const html = await response.text();
 
-const from = "/Users/binny/nodejs/hello.txt";
-const to = "/Users/binny/javascript/es6";
-
-console.log(path.relative(from, to));
-// ../../javascript/es6
+export { html };
 ```
 
-- `from`에서 `to`로 가는 상대 경로 계산
-- 두 경로가 같은 드라이브에 위치해야 하고, 같은 기준점에서 시작해야 `relative()` 함수를 사용할 수 있다.
+```js [app.js]
+import { html } from "./fetch-google.js";
+
+console.log(html.slice(0, 15)); // <!doctype html>
+```
+
+:::
+
+- ES Module은 내부적으로 비동기 로드를 지원한다.
+- 따라서 최상위 스코프에서도 await 사용 가능하다.
+- 반면 CommonJS에서는 반드시 async 함수 안에서만 await을 사용할 수 있다.
+
+::: details 💡 Top-level await <badge type="tip" text="ESM에서 함수 밖 최상위 스코프에서 쓰는 await"></badge>
+
+일반적으로 `await`은 `async function` 안에서만 사용할 수 있다.  
+하지만 ES Module(ESM)에서는 모듈 최상위 스코프(= 함수 밖, 전역 같은 위치)에서도 `await`을 쓸 수 있도록 허용했다.
+이런 기능을 `Top-level await`이라고 부른다.
 
 <br>
+
+##### 특징
+
+1. ESM 전용: CommonJ에서는 사용할 수 없고, 반드시 async 함수 안에서만 가능하다.
+
+2. 모듈 간 의존성 해결
+
+   - 다른 모듈이 await된 값을 가져올 때까지 import가 지연될 수 있다.
+   - 즉, import 자체가 비동기로 동작할 수 있다.
+
+3. 실무 활용 예시
+   - fetch로 원격 데이터를 읽어온 뒤 export
+   - DB 연결 초기화
+   - 설정 파일 비동기 로드
+
+:::
+
+<br>
+<Comment/>
