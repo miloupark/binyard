@@ -312,5 +312,88 @@ JWT (Json Web Token): JSON 객체에 정보를 담고 이를 토큰으로 암호
 
 <br>
 
+## OAuth 2.0
+
+OAuth(Open Authorization) 이미 사용자 정보를 가지고 있는 서비스가 다른 서비스에서의 사용자의 인증을 대신 해주는 방법
+
+### OAuth 2.0의 목적
+
+![소셜로그인](./images/oauth01.png)
+
+- 보안성 강화: 비밀번호를 직접 입력하지 않고, 제3자(구글, 네이버, 카카오 등)가 인증을 대신 처리
+- 사용자 편의성: 한 번 가입한 계정으로 여러 서비스에서 로그인 가능
+- 서비스 신뢰성: 내가 내 비밀번호를 새로운 사이트에 주지 않아도 되니까 더 안전하다.
+
+::: info 💡 Reference
+
+- [kakao login](https://developers.kakao.com/docs/latest/ko/kakaologin/common)
+- [naver login](https://developers.naver.com/products/login/api/api.md)
+- [google login](https://console.cloud.google.com/)
+
+:::
+
+<br>
+
+### OAuth의 주체
+
+`사용자(Resource Owner)`: 사용자 정보 자체를 의미하며, 리소스를 소유한 주체
+
+`새로운 서비스(Application)`
+
+- 클라이언트(Client): 사용자 요청을 받아 인증을 위임하는 애플리케이션
+- 서버(Server): 클라이언트와 연동되어 동작하는 서버
+
+`사용중인 서비스`
+
+- 리소스 서버(Resource Server): 사용자의 실제 정보를 보관하는 서버
+- 인증 서버(Authorization Server): OAuth를 인증을 담당하는 서버 (로그인 & 권한 동의 처리)
+
+<br>
+
+### OAuth의 흐름
+
+#### 간단한 흐름
+
+![OAuth의 흐름](./images/oauth02.png)
+
+- 사용자가 로그인 버튼 클릭
+- 인증 서버에서 로그인/권한 동의
+- Authorization Code 발급
+- Access Token 교환
+- 사용자 정보 제공
+
+::: info 🤧 쉽게 이해하기
+
+- Authorization Code: 임시 인증 번호 (은행에서 받는 SMS 인증번호 같은 개념)
+- Access Token: 실제 서비스 이용권 (영화표나 지하철표 같은 개념)
+- Refresh Token: Access Token이 만료되면 새로 발급받을 수 있는 쿠폰
+
+:::
+
+<br>
+
+#### 클라이언트와 서버 분리
+
+![OAuth의 흐름](./images/oauth03.png)
+
+- 사용자가 사이트(Client)에 접속
+- Client가 Authorization Server로 인증 요청
+- 사용자가 로그인 및 동의 진행
+- Authorization Server → Authorization Code 발급
+- Client → Server로 Code 전달
+- Server가 Authorization Server에 Code 검증 요청
+- Authorization Server에서 Code 확인 후 Access Token 발급
+- Server가 Resource Server에 Access Token으로 사용자 정보 요청
+- Resource Server가 사용자 정보 응답
+
+::: info 💡 정리
+
+- OAuth는 비밀번호를 직접 입력하지 않고도 로그인할 수 있게 해준다.
+- 보안을 위해 Access Token은 서버가 다루고, 클라이언트에는 직접 노출하지 않는다.
+- Authorization Code → Access Token 교환 과정을 통해 이중 보안을 구현한다.
+- 사용자가 직접 권한을 관리할 수 있어 더 안전하다.
+
+:::
+
 <br>
 <Comment/>
