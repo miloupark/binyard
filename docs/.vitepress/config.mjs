@@ -118,6 +118,7 @@ export default defineConfig({
             { text: "React", link: "/react/re00" },
             { text: "React Native", link: "/frontend/fe/react-native01" },
             { text: "Node.js", link: "/nodejs/node00" },
+            { text: "Database", link: "/database/db00" },
             { text: "Git & GitHub", link: "/frontend/fe/git-github" },
             { text: "DSA", link: "/dsa/dsa00" },
             { text: "Styling", link: "/styling/tailwindcss/tc00" },
