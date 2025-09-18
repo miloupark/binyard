@@ -472,6 +472,16 @@ export default defineConfig({
           ],
         },
       ],
+      "/database/": [
+        {
+          text: "Database",
+          collapsed: false,
+          items: [
+            { text: "Database", link: "/database/db00" },
+            { text: "SQL", link: "/database/db01" },
+          ],
+        },
+      ],
     },
 
     socialLinks: [
