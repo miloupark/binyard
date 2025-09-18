@@ -480,6 +480,7 @@ export default defineConfig({
             { text: "Database", link: "/database/db00" },
             { text: "SQL", link: "/database/db01" },
             { text: "SQL 데이터 타입", link: "/database/db02" },
+            { text: "SQL 데이터 CRUD", link: "/database/db03" },
           ],
         },
       ],
