@@ -410,7 +410,8 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: "Zustand", link: "react/state/zustand/zs00" },
-            { text: "Store", link: "react/state/zustand/zs01" },
+            { text: "Store Basics", link: "react/state/zustand/zs01" },
+            { text: "Design & Patterns", link: "react/state/zustand/zs02" },
           ],
         },
       ],
