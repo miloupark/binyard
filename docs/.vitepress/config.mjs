@@ -482,7 +482,7 @@ export default defineConfig({
             { text: "SQL 데이터 타입", link: "/database/db02" },
             { text: "SQL 데이터 CRUD", link: "/database/db03" },
             { text: "데이터 모델링 기초", link: "/database/db04" },
-            { text: "draft", link: "/database/db05" },
+            { text: "서버와 데이터베이스", link: "/database/db05" },
           ],
         },
       ],
