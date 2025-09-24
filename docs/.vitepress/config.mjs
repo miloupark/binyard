@@ -119,6 +119,7 @@ export default defineConfig({
             { text: "React Native", link: "/frontend/fe/react-native01" },
             { text: "Node.js", link: "/nodejs/node00" },
             { text: "Database", link: "/database/db00" },
+            { text: "AWS", link: "/aws/aws00" },
             { text: "Git & GitHub", link: "/frontend/fe/git-github" },
             { text: "DSA", link: "/dsa/dsa00" },
             { text: "Styling", link: "/styling/tailwindcss/tc00" },
@@ -485,6 +486,13 @@ export default defineConfig({
             { text: "데이터 모델링 기초", link: "/database/db04" },
             { text: "서버와 데이터베이스", link: "/database/db05" },
           ],
+        },
+      ],
+      "/aws/": [
+        {
+          text: "AWS",
+          collapsed: false,
+          items: [{ text: "Draft", link: "/aws/aws00" }],
         },
       ],
     },
