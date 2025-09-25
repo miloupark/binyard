@@ -58,12 +58,11 @@ https://example.com/users/123?tab=profile#section1
 ```
 
 - `경로(Path)`: `/users/123`
-
-- `Route Param (파라미터)`: `/users/:id → /users/123`  
+- `Route Param (파라미터)`: /users/:id → /users/123  
   리소스의 고유 식별자 전달에 사용
-- `Query Param (쿼리스트링)`: `/products?category=shoes&page=2`  
+- `Query Param (쿼리스트링)`: /products?category=shoes&page=2  
   필터, 옵션, 페이지네이션 등에 활용
-- `Hash`: `#section1`
+- `Hash`: #section1  
   특정 영역으로 스크롤 이동
 
 <br>
@@ -102,7 +101,7 @@ function App() {
 ### Route
 
 - 현재 URL이 무엇인지 확인하고, 그 경로에 맞는 컴포넌트를 렌더링한다.
-<!-- - 예를 들어 /about이면 About 컴포넌트를, /이면 Home 컴포넌트를 보여준다. -->
+- 예를 들어 /about이면 About 컴포넌트를, /이면 Home 컴포넌트를 보여준다.
 - 즉, 무엇을 보여줄지를 결정한다.
 
 <br>
