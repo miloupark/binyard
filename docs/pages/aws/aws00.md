@@ -5,7 +5,7 @@
 ::: info 🔖 Reference
 
 - [AWS 공식 홈페이지](https://aws.amazon.com/ko/)
-<!-- - []() -->
+- [실전 Amazon S3와 CloudFront로 정적 파일 배포하기](https://aws.amazon.com/ko/blogs/korea/amazon-s3-amazon-cloudfront-a-match-made-in-the-cloud/)
 
 :::
 ::: info 📘 Glossary
@@ -235,7 +235,17 @@ Amazon CloudFront는 콘텐츠를 빠르고 안전하게 전송할 수 있도록
 CloudFront는 전 세계 여러 위치에 임시 저장소(Edge Location)를 두고 콘텐츠 복사본을 저장한다.
 사용자는 가장 가까운 엣지 로케이션에서 콘텐츠를 가져오기 때문에, 원본 S3와 직접 통신하는 것보다 지연 시간이 줄어들고 속도가 빨라진다.
 
-💡 이런 방식을 CDN(Content Delivery Network) 이라고 부른다.  
+### S3 단독 배포 (지연 발생)
+
+![](./images/aws08.jpg)
+
+### S3 + CloudFront 배포 (Edge Location 캐싱)
+
+![](./images/aws09.jpg)
+
+<br>
+
+💡 이런 방식을 CDN(Content Delivery Network)이라고 부른다.  
 따라서 CloudFront는 CDN 서비스의 일종이다.
 
 <br>
@@ -253,6 +263,13 @@ CloudFront는 전 세계 여러 위치에 임시 저장소(Edge Location)를 두
 ---
 
 <br>
+
+# S3, CloudFront를 활용한 아키텍처 구성
+
+![S3, CloudFront를 활용한 아키텍처 구성](./images/aws10.png)
+
+CloudFront가 사용자와 S3 사이에서 캐시 역할을 하기 때문에,  
+사용자는 S3에 직접 접근하지 않고 CloudFront를 통해 빠르고 안전하게 콘텐츠를 전달받는다.
 
 <br>
 <Comment/>
