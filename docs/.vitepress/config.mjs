@@ -413,10 +413,6 @@ export default defineConfig({
           items: [
             { text: "React Router", link: "/react/reactrouter/router00" },
             { text: "React Router Hooks", link: "/react/reactrouter/router01" },
-            // { text: "URL 파라미터 Route Param", link: "react/router/router01" },
-            // { text: "쿼리스트링 Query Param", link: "react/router/router02" },
-            // { text: "네비게이션 Link vs useNavigate", link: "react/router/router03" },
-            // { text: "다중 파라미터 Nested Routes", link: "react/router/router04" },
           ],
         },
         {
