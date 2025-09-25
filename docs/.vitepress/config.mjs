@@ -159,6 +159,7 @@ export default defineConfig({
             { text: "JavaScript", link: "/OZ/llog/js" },
             { text: "Calculator", link: "/OZ/llog/calculator" },
             { text: "React SPA Basic", link: "/OZ/llog/animal-info" },
+            { text: "UQuiz", link: "/OZ/llog/uquiz" },
             { text: "Draft", link: "/OZ/llog/jsdraft" },
           ],
         },
