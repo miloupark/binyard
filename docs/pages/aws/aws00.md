@@ -41,7 +41,11 @@ AWS는, 원격으로 컴퓨터 자원을 빌려 사용할 수 있게 해주는 �
 
 <br>
 
-## S3 (Simple Storage Service)
+---
+
+<br>
+
+# S3 (Simple Storage Service)
 
 Amazon S3는 AWS에서 제공하는 파일 저장소 서비스이다.
 
@@ -169,11 +173,13 @@ $ npx create-next-app@latest
 - Next.js는 정적 배포 / 동적 배포 두 가지 방식이 있다.
 - S3에서는 정적 배포만 가능 → 따라서 설정이 필요하다.
 
+<br>
+
 ### Next.js 정적 배포 설정
 
 ::: code-group
 
-```mjs [next.comfig.mjs]
+```js [next.comfig.mjs]
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
@@ -190,13 +196,63 @@ export default nextConfig;
 
 <br>
 
-::: info 📌 기억해둘 것
+::: info 📌 정리
 
 - Vite → dist 폴더 업로드
 - Next.js → `next.comfig.mjs` 수정 후 out 폴더 업로드
 - 동적 배포는 S3 불가 (EC2, Vercel 등 필요)
 
 :::
+
+<br>
+
+---
+
+<br>
+
+# CloudFront
+
+Amazon CloudFront는 콘텐츠를 빠르고 안전하게 전송할 수 있도록 도와주는 AWS 서비스이다.  
+주요 특징은 다음과 같다:
+
+- 컨텐츠 전송 성능 향상 → 전 세계 어디서나 빠른 응답
+- HTTPS 지원 → S3 단독은 HTTP만 가능
+- 보안 강화 → DDos 방어, 접근 제어, 암호화 등 추가 기능 제공
+
+💡 S3 + CloudFront 조합으로 배포하는 경우가 많다.
+
+<br>
+
+### 현업에서의 사용
+
+- S3 + CloudFront는 AWS에서 정적 사이트 배포 시 흔히 사용하는 조합이다.
+- 그 외에도 Netlify, Vercel, Cloudflare 같은 SaaS형 배포 서비스를 활용하기도 한다.
+
+<br>
+
+## CloudFront 작동 방식
+
+CloudFront는 전 세계 여러 위치에 임시 저장소(Edge Location)를 두고 콘텐츠 복사본을 저장한다.
+사용자는 가장 가까운 엣지 로케이션에서 콘텐츠를 가져오기 때문에, 원본 S3와 직접 통신하는 것보다 지연 시간이 줄어들고 속도가 빨라진다.
+
+💡 이런 방식을 CDN(Content Delivery Network) 이라고 부른다.  
+따라서 CloudFront는 CDN 서비스의 일종이다.
+
+<br>
+
+::: info 📌 정리
+
+- S3 = 저장소 (정적 웹 배포 가능, 하지만 HTTPS 불가)
+- CloudFront = CDN + HTTPS 지원 + 보안 강화
+- S3 + CloudFront = 빠르고 안전한 배포 환경을 만들 수 있다.
+
+:::
+
+<br>
+
+---
+
+<br>
 
 <br>
 <Comment/>
