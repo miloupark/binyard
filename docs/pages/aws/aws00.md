@@ -508,6 +508,17 @@ Route 53을 사용 중이므로 DNS 검증을 선택하는 것이 가장 쉽다.
 
 브라우저 주소창에서 `https://hoonywhitesocks.o-r.kr` 입력 시 HTTPS 보안 연결된 내 웹 사이트가 표시된다.
 
+## 요약
+
+::: info 💡 AWS 배포 과정 한눈에 보기
+
+1. React 프로젝트 S3에 업로드
+2. CloudFront로 배포
+3. Route 53을 통해 도메인 발급 및 연결
+4. ACM 인증서를 발급하여 HTTPS 적용
+
+:::
+
 <br>
 
 ---
