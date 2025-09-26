@@ -119,10 +119,17 @@ export default defineConfig({
             { text: "React Native", link: "/frontend/fe/react-native01" },
             { text: "Node.js", link: "/nodejs/node00" },
             { text: "Database", link: "/database/db00" },
-            { text: "AWS", link: "/aws/aws00" },
             { text: "Git & GitHub", link: "/frontend/fe/git-github" },
             { text: "DSA", link: "/dsa/dsa00" },
             { text: "Styling", link: "/styling/tailwindcss/tc00" },
+          ],
+        },
+        {
+          text: "Cloud",
+          collapsed: false,
+          items: [
+            { text: "Cloud", link: "/cloud/cloud/cloud00" },
+            { text: "AWS", link: "/cloud/aws/aws00" },
           ],
         },
         {
@@ -196,19 +203,6 @@ export default defineConfig({
             },
           ],
         },
-        // {
-        //   text: "Core JavaScript",
-        //   collapsed: true,
-        //   items: [
-        //     { text: "데이터 타입", link: "/OZ/corejs/corejs01" },
-        //     { text: "실행 컨텍스트", link: "/OZ/corejs/corejs02" },
-        //     { text: "this", link: "/OZ/corejs/corejs03" },
-        //     { text: "콜백 함수", link: "/OZ/corejs/corejs04" },
-        //     { text: "클로저", link: "/OZ/corejs/corejs05" },
-        //     { text: "프로토타입", link: "/OZ/corejs/corejs06" },
-        //     { text: "클래스", link: "/OZ/corejs/corejs07" },
-        //   ],
-        // },
         {
           text: "베이스 캠프 미션",
           collapsed: true,
