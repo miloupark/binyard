@@ -506,8 +506,6 @@ Route 53을 사용 중이므로 DNS 검증을 선택하는 것이 가장 쉽다.
 
 ![](./images/aws22.png)
 
-브라우저 주소창에서 `https://hoonywhitesocks.o-r.kr` 입력 시 HTTPS 보안 연결된 내 웹 사이트가 표시된다.
-
 ## 요약
 
 ::: info 💡 AWS 배포 과정 한눈에 보기
