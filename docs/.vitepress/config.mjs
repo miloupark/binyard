@@ -125,11 +125,21 @@ export default defineConfig({
           ],
         },
         {
-          text: "Cloud",
+          text: "Network Basics",
           collapsed: false,
           items: [
-            { text: "Cloud", link: "/cloud/cloud/cloud00" },
-            { text: "AWS", link: "/cloud/aws/aws00" },
+            { text: "IP / Port", link: "/frontend/network/network00" },
+            { text: "CIDR", link: "/frontend/network/network01" },
+            { text: "OSI 7계층", link: "/frontend/network/network02" },
+            { text: "TCP/IP 프로토콜", link: "/frontend/network/network03" },
+          ],
+        },
+        {
+          text: "Cloud & AWS",
+          collapsed: false,
+          items: [
+            { text: "Cloud", link: "/frontend/cloud/cloud/cloud00" },
+            { text: "AWS", link: "/frontend/cloud/aws/aws00" },
           ],
         },
         {
