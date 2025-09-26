@@ -405,7 +405,6 @@ Route 53 외에도 DNS 역할을 제공하는 서비스는 많다.
 # 도메인 연결
 
 - [내도메인한국 실습](https://xn--220b31d95hq8o.xn--3e0b707e/)
-- [도메인](hoonywhitesocks.o-r.kr)
 
 ![](./images/aws14.png)
 
@@ -456,7 +455,7 @@ CloudFront에 사용할 SSL 인증서는 반드시 `버지니아 북부(us-east-
 
 ![](./images/aws18.png)
 
-인증서를 적용할 도메인(hoonywhitesocks.o-r.kr)을 입력한다.  
+인증서를 적용할 도메인을 입력한다.  
 이 단계에서 AWS는 도메인 소유권 검증을 요구한다
 
 - DNS 검증(권장): Route 53에 자동으로 CNAME 레코드를 추가 → 간편 & 자동 갱신 지원
@@ -495,7 +494,7 @@ Route 53을 사용 중이므로 DNS 검증을 선택하는 것이 가장 쉽다.
 
 ![](./images/aws21.png)
 
-- Alternative domain name (CNAMEs)에 도메인(hoonywhitesocks.o-r.kr) 입력
+- Alternative domain name (CNAMEs)에 도메인 입력
 - Custom SSL certificate에서 ACM에서 발급받은 인증서 선택
 
 이제 CloudFront가 HTTPS를 적용한 상태로 S3 콘텐츠를 서비스한다.
