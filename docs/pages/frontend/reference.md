@@ -1,11 +1,15 @@
 # 📑 Frontend Reference Docs
 
+<h2 id="learning-platforms" class="anchor-heading">📚 Learning Platforms</h2>
+
 ::: details 📚 Learning Platforms
 
 - [Inflearn](https://www.inflearn.com/)
 - [Udemy](https://www.udemy.com/)
 
 :::
+
+<h2 id="coding-test-platforms" class="anchor-heading">🧠 Coding Test Platforms</h2>
 
 ::: details 🧠 Coding Test Platforms
 
@@ -15,11 +19,15 @@
 
 :::
 
+<h2 id="inspiration" class="anchor-heading">✨ Inspiration</h2>
+
 ::: details ✨ Inspiration
 
 - [Inspiration](#)
 
 :::
+
+<h2 id="roadmap" class="anchor-heading">🗺️ Roadmap</h2>
 
 ::: info 🗺️ Roadmap
 
@@ -28,6 +36,8 @@
 - [Frontend Beginner Roadmap](https://roadmap.sh/frontend?r=frontend-beginner)
 
 :::
+
+<h2 id="useful-resources" class="anchor-heading">💡 Useful Resources</h2>
 
 ::: info 💡 Useful Resources
 
@@ -38,6 +48,8 @@
 - [Toss-Bundling Fundamentals](https://frontend-fundamentals.com/bundling/)
 
 :::
+
+<h2 id="visualization" class="anchor-heading">📽 Visualization</h2>
 
 ::: info 📽 Visualization
 
@@ -53,6 +65,8 @@
 
 :::
 
+<h2 id="language" class="anchor-heading">👩‍💻 Language</h2>
+
 ::: info 👩‍💻 Language
 
 - [MDN JavaScript](https://developer.mozilla.org/ko/docs/Web/JavaScript)
@@ -61,6 +75,8 @@
 - [TypeScript](https://www.typescriptlang.org/ko/docs/handbook/intro.html)
 
 :::
+
+<h2 id="library-framework" class="anchor-heading">⚛️ Library & Framework</h2>
 
 ::: info ⚛️ Library & Framework
 
@@ -73,6 +89,8 @@
 
 :::
 
+<h2 id="state-management" class="anchor-heading">🎛 State Management</h2>
+
 ::: info 🎛 State Management
 
 - [Redux](https://redux.js.org/)
@@ -81,6 +99,8 @@
 
 :::
 
+<h2 id="routing-libraries" class="anchor-heading">🌐 Routing Libraries</h2>
+
 ::: info 🌐 Routing Libraries
 
 - [React Router](https://reactrouter.com/en/main)
@@ -88,12 +108,16 @@
 
 :::
 
+<h2 id="form-handling" class="anchor-heading">📝 Form Handling</h2>
+
 ::: info 📝 Form Handling
 
 - [React Hook Form](https://react-hook-form.com/)
 - [Formik](https://formik.org/)
 
 :::
+
+<h2 id="styling" class="anchor-heading">🎨 Styling</h2>
 
 ::: info 🎨 Styling
 
@@ -107,6 +131,8 @@
 
 :::
 
+<h2 id="css-architecture" class="anchor-heading">🧱 CSS Architecture & Methodologies</h2>
+
 ::: info 🧱 CSS Architecture & Methodologies
 
 - [BEM](https://getbem.com/introduction/)
@@ -115,6 +141,22 @@
 - [Atomic CSS](https://acss.io/)
 
 :::
+
+<h2 id="toast" class="anchor-heading">🔔 Toast & Notification</h2>
+
+::: info 🔔 Toast & Notification
+
+- [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
+- [↳ npm](https://www.npmjs.com/package/react-toastify)
+- [React Hot Toast](https://react-hot-toast.com/)
+- [Radix UI – Toast](https://www.radix-ui.com/primitives/docs/components/toast)
+- [shadcn/ui – Toast](https://ui.shadcn.com/docs/components/toast)
+- [Chakra UI - Toast](https://chakra-ui.com/docs/components/toast)
+- [MUI Snackbar](https://mui.com/material-ui/react-snackbar/)
+
+:::
+
+<h2 id="ui-components" class="anchor-heading">🧱 UI Component Libraries</h2>
 
 ::: info 🧱 UI Component Libraries
 
@@ -125,6 +167,8 @@
 
 :::
 
+<h2 id="animation" class="anchor-heading">🎞 Animation</h2>
+
 ::: info 🎞 Animation
 
 - [Framer Motion (React)](https://www.framer.com/motion/)
@@ -133,6 +177,8 @@
 - [Josh W. Comeau's Blog](https://www.joshwcomeau.com/)
 
 :::
+
+<h2 id="icons-assets" class="anchor-heading">🖼 Icon & Asset Tools</h2>
 
 ::: info 🖼 Icon & Asset Tools
 
@@ -146,6 +192,8 @@
 
 :::
 
+<h2 id="api-data" class="anchor-heading">🔌 API & Data Fetching</h2>
+
 ::: info 🔌 API & Data Fetching
 
 - [Swagger UI](https://swagger.io/tools/swagger-ui/)
@@ -157,6 +205,8 @@
 
 :::
 
+<h2 id="bundlers" class="anchor-heading">⚙️ Bundler & Build Tools</h2>
+
 ::: info ⚙️ Bundler & Build Tools
 
 - [Vite](https://vite.dev/guide/)
@@ -164,12 +214,17 @@
 
 :::
 
+<h2 id="package-managers" class="anchor-heading">📦 Package Managers</h2>
+
 ::: info 📦 Package Managers
 
 - [npm](https://docs.npmjs.com/)
 - [Yarn](https://classic.yarnpkg.com/en/docs/)
 
 :::
+
+<h2 id="git" class="anchor-heading">🌱 Git & Version Control</h2>
+
 ::: info 🌱 Git & Version Control
 
 - [Git](https://git-scm.com/doc)
@@ -179,6 +234,9 @@
 - [Learn Git Branching](https://learngitbranching.js.org/)
 
 :::
+
+<h2 id="linting-formatting" class="anchor-heading">🧹 Linting & Formatting</h2>
+
 ::: info 🧹 Linting & Formatting
 
 - [ESLint](https://eslint.org/docs/latest/)
@@ -186,12 +244,16 @@
 
 :::
 
+<h2 id="testing" class="anchor-heading">🧪 Testing</h2>
+
 ::: info 🧪 Testing
 
 - [Jest](https://jestjs.io/docs/getting-started)
 - [Testing Library](https://testing-library.com/docs/)
 
 :::
+
+<h2 id="playground" class="anchor-heading">🛝 Playground & Live Editors</h2>
 
 ::: info 🛝 Playground & Live Editors
 
@@ -202,6 +264,8 @@
 
 :::
 
+<h2 id="deployment" class="anchor-heading">🚀 Deployment, Hosting & Domain</h2>
+
 ::: info 🚀 Deployment, Hosting & Domain
 
 - [Vercel](https://vercel.com/docs)
@@ -210,3 +274,15 @@
 - [Gabia](https://www.gabia.com/)
 
 :::
+
+<!-- 이 페이지에서만 적용됨  -->
+<style scoped>
+.anchor-heading{
+  opacity: 0;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  margin: 0;
+  padding:0;
+}
+</style>
