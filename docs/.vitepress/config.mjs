@@ -138,14 +138,52 @@ export default defineConfig({
           text: "Cloud & AWS",
           collapsed: false,
           items: [
-            { text: "Cloud", link: "/frontend/cloud/cloud/cloud00" },
-            { text: "Infrastructure", link: "/frontend/cloud/cloud/cloud01" },
-            { text: "Service Layers", link: "/frontend/cloud/cloud/cloud02" },
-            { text: "Cloud Network", link: "/frontend/cloud/cloud/cloud03" },
-            { text: "VPC와 Subnet", link: "/frontend/cloud/cloud/cloud04" },
-            { text: "Computing Models", link: "/frontend/cloud/cloud/cloud05" },
-            { text: "AWS Compute", link: "/frontend/cloud/cloud/cloud06" },
-            { text: "AWS", link: "/frontend/cloud/aws/aws00" },
+            {
+              text: "Cloud",
+              collapsed: false,
+              items: [
+                { text: "Cloud", link: "/frontend/cloud/cloud/cloud00" },
+                {
+                  text: "Infrastructure",
+                  link: "/frontend/cloud/cloud/cloud01",
+                },
+                {
+                  text: "Service Layers",
+                  link: "/frontend/cloud/cloud/cloud02",
+                },
+                {
+                  text: "Cloud Network",
+                  link: "/frontend/cloud/cloud/cloud03",
+                },
+                { text: "VPC와 Subnet", link: "/frontend/cloud/cloud/cloud04" },
+                {
+                  text: "Computing Models",
+                  link: "/frontend/cloud/cloud/cloud05",
+                },
+                { text: "AWS Compute", link: "/frontend/cloud/cloud/cloud06" },
+              ],
+            },
+            {
+              text: "AWS",
+              collapsed: false,
+              items: [
+                { text: "AWS", link: "/frontend/cloud/aws/aws00" },
+                {
+                  text: "Amazon S3",
+                  link: "/frontend/cloud/aws/aws01",
+                },
+                { text: "CloudFront CDN", link: "/frontend/cloud/aws/aws02" },
+                { text: "Route 53 DNS", link: "/frontend/cloud/aws/aws03" },
+                {
+                  text: "정적 사이트 배포 실습",
+                  link: "/frontend/cloud/aws/aws04",
+                },
+                {
+                  text: "배포 운영 및 관리",
+                  link: "/frontend/cloud/aws/aws05",
+                },
+              ],
+            },
           ],
         },
         {
@@ -509,13 +547,6 @@ export default defineConfig({
             { text: "데이터 모델링 기초", link: "/database/db04" },
             { text: "서버와 데이터베이스", link: "/database/db05" },
           ],
-        },
-      ],
-      "/aws/": [
-        {
-          text: "AWS",
-          collapsed: false,
-          items: [{ text: "Draft", link: "/aws/aws00" }],
         },
       ],
     },
