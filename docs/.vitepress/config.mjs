@@ -139,6 +139,12 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: "Cloud", link: "/frontend/cloud/cloud/cloud00" },
+            { text: "Infrastructure", link: "/frontend/cloud/cloud/cloud01" },
+            { text: "Service Layers", link: "/frontend/cloud/cloud/cloud02" },
+            { text: "Cloud Network", link: "/frontend/cloud/cloud/cloud03" },
+            { text: "VPC와 Subnet", link: "/frontend/cloud/cloud/cloud04" },
+            { text: "Computing Models", link: "/frontend/cloud/cloud/cloud05" },
+            { text: "AWS Compute", link: "/frontend/cloud/cloud/cloud06" },
             { text: "AWS", link: "/frontend/cloud/aws/aws00" },
           ],
         },
@@ -417,6 +423,10 @@ export default defineConfig({
           items: [
             { text: "React Router", link: "/react/reactrouter/router00" },
             { text: "React Router Hooks", link: "/react/reactrouter/router01" },
+            {
+              text: "Route 설정 분리 패턴",
+              link: "/react/reactrouter/router02",
+            },
           ],
         },
         {
