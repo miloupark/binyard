@@ -441,14 +441,14 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: "소개", link: "/typescript/basic/ts00" },
-            {
-              text: "기초 문법",
-              collapsed: true,
-              items: [
-                { text: "변수 선언", link: "/typescript/basic/ts01" },
-                { text: "타입 주석", link: "/typescript/basic/ts02" },
-              ],
-            },
+            // {
+            //   text: "기초 문법",
+            //   collapsed: true,
+            //   items: [
+            //     { text: "변수 선언", link: "/typescript/basic/ts01" },
+            //     { text: "타입 주석", link: "/typescript/basic/ts02" },
+            //   ],
+            // },
           ],
         },
       ],
