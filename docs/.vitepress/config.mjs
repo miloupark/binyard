@@ -161,6 +161,7 @@ export default defineConfig({
                   link: "/frontend/cloud/cloud/cloud05",
                 },
                 { text: "AWS Compute", link: "/frontend/cloud/cloud/cloud06" },
+                { text: "CI/CD", link: "/frontend/cloud/cloud/cloud07" },
               ],
             },
             {
