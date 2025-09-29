@@ -183,6 +183,10 @@ export default defineConfig({
                   text: "배포 운영 및 관리",
                   link: "/frontend/cloud/aws/aws05",
                 },
+                {
+                  text: "CI/CD with GitHub Actions",
+                  link: "/frontend/cloud/aws/aws06",
+                },
               ],
             },
           ],
