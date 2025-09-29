@@ -24,10 +24,10 @@ S3에 빌드 결과물을 올리고, CloudFront 캐시를 무효화해서 항상
 
 ## IAM
 
-GitHub Actions는 AWS 외부 서비스이다. 따라서 AWS 자원에 접근하려면 권한이 필요하다.
+GitHub Actions는 AWS 외부 서비스이므로, AWS 리소스에 접근하려면 `IAM 사용자`를 생성해야 한다.  
+배포 전용 계정을 만들고 `Access Key`를 발급받아야 한다.
 
-이때 사용하는 것이 IAM(Identity and Access Management) 사용자이다. 별도의 배포 전용 계정을 만들어 `Access Key를 발급`받고,  
-이 Key를 `GitHub Secrets에 등록`해서 안전하게 인증을 처리한다.
+이 키 값은 GitHub에 직접 노출하지 않고 `Secrets`에 등록해 안전하게 관리한다
 
 ![](./images/aws32.png)
 
@@ -54,17 +54,17 @@ GitHub Actions는 AWS 외부 서비스이다. 따라서 AWS 자원에 접근하�
 
 ## GitHub Secrets 등록
 
-IAM에서 발급받은 Access Key ID와 Secret Access Key를 GitHub Repository의 `Secrets`에 등록한다.
+IAM에서 발급받은 `Access Key ID`와 `Secret Access Key`를 GitHub Repository의 `Secrets`에 등록한다.
 
 ![](./images/aws41.png)
 
-💡 워크플로우 코드에서 키 값을 직접 노출하지 않고, 안전하게 인증 정보를 사용할 수 있다.
+💡 덕분에 워크플로우 코드에서 키 값을 직접 노출하지 않고 안전하게 사용할 수 있다.
 
 <br>
 
 ## GitHub Actions Workflow 작성
 
-`.github/workflows/deploy.yml 파일`을 작성  
+`.github/workflows/deploy.yml 파일`을 생성한다.  
 (main 브랜치에 push 할 때마다 실행되도록 설정)
 
 ![](./images/aws42.png)
@@ -125,7 +125,7 @@ jobs:
 
 :::
 
-::: info 🧩 정리하면, 이런 흐름으로 CI/CD가 동작한다.
+::: info 🧩 Workflow 흐름
 
 - `actions/checkout@v4` → 소스코드 가져오기
 - `aws-actions/configure-aws-credentials@v4` → AWS 인증 처리
@@ -137,9 +137,11 @@ jobs:
 
 ## AWS CLI 명령어들
 
-- `aws s3 rm --recursive`: S3 버킷 안의 기존 파일을 전부 삭제
-- `aws s3 cp ./dist s3://버킷이름/ --recursive`: 로컬의 dist 폴더 전체를 S3 버킷으로 업로드
-- `aws cloudfront create-invalidation --distribution-id ... --paths "/*"`: CloudFront 캐시 무효화 실행 (모든 파일을 새로고침)
+| 명령어                                                                  | 설명                                        |
+| ----------------------------------------------------------------------- | ------------------------------------------- |
+| `aws s3 rm --recursive s3://버킷이름`                                   | S3 버킷의 기존 파일 전체 삭제               |
+| `aws s3 cp ./dist s3://버킷이름/ --recursive`                           | 로컬 dist 폴더 전체를 S3 버킷으로 업로드    |
+| `aws cloudfront create-invalidation --distribution-id ... --paths "/*"` | CloudFront 캐시 무효화 (모든 파일 새로고침) |
 
 💡 덕분에 사용자는 항상 최신 빌드된 파일을 받게 된다.
 
@@ -157,7 +159,7 @@ jobs:
 ## CloudFront 캐시 무효화 확인
 
 CloudFront에서 무효화 내역을 확인하면,  
-GitHub Actions에서 실행한 무효화 명령이 기록되고 완료됨 상태가 된다.  
+GitHub Actions에서 실행한 명령이 기록되고 완료됨 상태로 표시된다.  
 이제 CloudFront는 새로운 빌드 파일을 사용자에게 전달한다.
 
 ![](./images/aws44.png)
@@ -168,14 +170,13 @@ GitHub Actions에서 실행한 무효화 명령이 기록되고 완료됨 상태
 
 ::: info 💡
 
-- IAM 사용자 생성 → Access Key 발급
-- GitHub Secrets에 등록
-- GitHub Actions Workflow 작성 (deploy.yml)
-- push 시 자동 실행 → S3 업로드 + CloudFront 캐시 무효화
-- CloudFront에서 최신 배포 확인
+- 1. IAM 사용자 생성 → Access Key 발급
+- 2. GitHub Secrets에 등록
+- 3. GitHub Actions Workflow 작성 (deploy.yml)
+- 4. push 시 자동 실행 → S3 업로드 + CloudFront 캐시 무효화
+- 5. CloudFront에서 최신 배포 확인
 
-💡 이렇게 설정하면, 이제 git push origin main 한 번으로
-React 프로젝트가 자동으로 AWS에 배포된다.
+💡 이제 `git push origin main` 한 번으로 React 프로젝트가 자동으로 AWS에 배포된다.
 
 :::
 
