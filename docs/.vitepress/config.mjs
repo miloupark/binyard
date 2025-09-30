@@ -187,6 +187,10 @@ export default defineConfig({
                   text: "CI/CD with GitHub Actions",
                   link: "/frontend/cloud/aws/aws06",
                 },
+                {
+                  text: "Frontend CI/CD & Git Flow",
+                  link: "/frontend/cloud/aws/aws07",
+                },
               ],
             },
           ],
