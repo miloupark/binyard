@@ -149,4 +149,5 @@ Route 53 외에도 DNS 역할을 제공하는 서비스는 많다.
 - 학습/실무 차이: 학습은 무료로 가능, 실무는 반드시 유료 도메인 필요
 
 <br>
+<badge type=info text="#오즈코딩스쿨"></badge><badge type=info text="#초격차_프론트엔드_13기"></badge><badge type=info text="#개발기록"></badge> 
 <Comment/>

@@ -369,4 +369,5 @@ git push -u origin feature/1
 - Deploy To Prod: `main 브랜치` push 시 실행
 
 <br>
+<badge type=info text="#오즈코딩스쿨"></badge><badge type=info text="#초격차_프론트엔드_13기"></badge><badge type=info text="#개발기록"></badge> 
 <Comment/>

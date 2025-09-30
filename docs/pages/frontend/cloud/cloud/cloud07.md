@@ -203,4 +203,5 @@ GitHub Actions에서는 민감한 값을 코드에 직접 적지 않고, `Secret
 - 로그에는 값이 그대로 노출되지 않고 `***`로 마스킹 처리된다.
 
 <br>
+<badge type=info text="#오즈코딩스쿨"></badge><badge type=info text="#초격차_프론트엔드_13기"></badge><badge type=info text="#개발기록"></badge> 
 <Comment/>

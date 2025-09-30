@@ -519,4 +519,5 @@ console.log(getCount()); // 5
 🤔 찾아보기! 그럼 React Hook은 클로저 기반의 설계인 것인가..?
 
 <br>
+<badge type=info text="#오즈코딩스쿨"></badge><badge type=info text="#초격차_프론트엔드_13기"></badge><badge type=info text="#개발기록"></badge> 
 <Comment/>
