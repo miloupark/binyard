@@ -444,7 +444,8 @@ export default defineConfig({
           text: "TypeScript",
           collapsed: false,
           items: [
-            { text: "소개", link: "/typescript/basic/ts00" },
+            { text: "TypeScript", link: "/typescript/basic/ts00" },
+            { text: "Intro", link: "/typescript/basic/ts01" },
             // {
             //   text: "기초 문법",
             //   collapsed: true,

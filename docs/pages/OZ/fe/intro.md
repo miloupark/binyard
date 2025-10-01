@@ -21,7 +21,7 @@ First Word 법칙
 
 <h2 id="html" class="anchor-heading">HTML</h2>
 
-::: info HTML
+::: details HTML
 
 #### HTML 학습 목표
 
@@ -45,7 +45,7 @@ First Word 법칙
 
 <h2 id="css" class="anchor-heading">CSS</h2>
 
-::: info CSS
+::: details CSS
 
 #### CSS 학습 목표
 
@@ -74,7 +74,7 @@ First Word 법칙
 
 <h2 id="javascript" class="anchor-heading">JavaScript</h2>
 
-::: info JavaScript
+::: details JavaScript
 
 #### JavaScript 학습 목표
 
@@ -219,7 +219,7 @@ First Word 법칙
 
 <h2 id="git-github" class="anchor-heading">Git & GitHub</h2>
 
-::: info Git & GitHub
+::: details Git & GitHub
 
 #### Git & GitHub 학습 목표
 
@@ -248,7 +248,7 @@ First Word 법칙
 
 <h2 id="react" class="anchor-heading">React</h2>
 
-::: info React
+::: details React
 
 <br>
 
@@ -420,7 +420,7 @@ custom hooks를 만들어 로직을 재사용하고, 컴포넌트 간의 상태 
 
 <h2 id="nodejs-express" class="anchor-heading">Node.js & Express</h2>
 
-::: info Node.js & Express
+::: details Node.js & Express
 
 #### 학습 목표
 
@@ -508,7 +508,7 @@ OAuth 2.0을 활용한 소셜 로그인
 
 <h2 id="database" class="anchor-heading">Database</h2>
 
-::: info Database
+::: details Database
 
 #### 데이터베이스 학습 목표
 
@@ -556,7 +556,7 @@ SQL
 
 <h2 id="aws" class="anchor-heading">AWS</h2>
 
-::: info AWS
+::: details AWS
 
 #### AWS 학습 목표
 
@@ -597,8 +597,37 @@ HTTPS 설정
 
 :::
 
+<h2 id="typescript" class="anchor-heading"></h2>
+
+::: details TypeScript
+
+#### TypeScript 학습 목표
+
+1. TypeScript란 무엇인지 설명할 수 있다.
+2. JavaScript와 TypeScript의 차이점을 설명할 수 있다.
+3. TypeScript를 설치하고 설정할 수 있다.
+4. TypeScript의 기본 동작 원리를 이해할 수 있다.
+5. TypeScript 환경을 설정할 수 있다.
+6. TypeScript로 간단한 프로그램을 작성할 수 있다.
+7. 배열 타입을 정의하고 사용할 수 있다.
+8. 객체 타입을 정의하고 사용할 수 있다.
+9. 함수 타입을 정의하고 사용할 수 있다.
+10. 유니언 타입을 정의하고 사용할 수 있다.
+11. 인터페이스를 정의하고 사용할 수 있다.
+12. 튜플을 정의하고 사용할 수 있다.
+13. 열거형을 정의하고 사용할 수 있다.
+14. 타입 추론과 타입 단언을 이해하고 사용할 수 있다.
+15. 클래스를 정의하고 사용할 수 있다.
+16. 제네릭을 정의하고 사용할 수 있다.
+17. 제네릭 함수를 작성하고 활용할 수 있다.
+18. TypeScript와 DOM을 함께 사용할 수 있다.
+19. 타입 좁히기(Type Narrowing)를 이해하고 사용할 수 있다.
+20. 고급 타입과 유틸리티 타입을 사용할 수 있다.
+
+:::
+
 <!-- <h2 id="" class="anchor-heading"></h2>
-::: info
+::: details
 - []()
 ::: -->
 
