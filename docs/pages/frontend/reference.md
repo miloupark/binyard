@@ -275,6 +275,23 @@
 
 :::
 
+::: info Draft
+
+- [뱅크샐러드 코드 리뷰 문화 pn](https://blog.banksalad.com/tech/banksalad-code-review-culture/)
+- [에어비앤비 코드 컨벤션](https://github.com/airbnb/javascript)
+- [tweakcn](https://tweakcn.com/)
+- [Learn Typescript](https://learntypescript.dev/)
+- [Ts config](https://www.typescriptlang.org/tsconfig/)
+- [카카오엔터프라이즈가 GitHub Actions를 사용하는 이유](https://tech.kakao.com/posts/516)
+- [GitHub Marketplace](https://github.com/marketplace)
+- [↳ checkout](https://github.com/marketplace/actions/checkout)
+- [shields](https://shields.io/badges)
+- [sli](https://sli.dev/)
+- [FE interview](https://github.com/BentoumiTech/front-end-interview-handbook-1/blob/master/Translations/Korean/questions/javascript-questions.md)
+- [FE 자기소개](https://zero-base.co.kr/event/media_insight_contents_FE_frontend_1minute_introduction)
+
+:::
+
 <!-- 이 페이지에서만 적용됨  -->
 <style scoped>
 .anchor-heading{

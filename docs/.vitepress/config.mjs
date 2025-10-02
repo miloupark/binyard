@@ -446,14 +446,19 @@ export default defineConfig({
           items: [
             { text: "TypeScript", link: "/typescript/basic/ts00" },
             { text: "Intro", link: "/typescript/basic/ts01" },
-            // {
-            //   text: "기초 문법",
-            //   collapsed: true,
-            //   items: [
-            //     { text: "변수 선언", link: "/typescript/basic/ts01" },
-            //     { text: "타입 주석", link: "/typescript/basic/ts02" },
-            //   ],
-            // },
+            {
+              text: "다양한 타입",
+              collapsed: false,
+              items: [
+                { text: "배열 타입", link: "/typescript/basic/ts02" },
+                { text: "객체 타입", link: "/typescript/basic/ts03" },
+                { text: "함수 타입", link: "/typescript/basic/ts04" },
+                { text: "유니언 타입", link: "/typescript/basic/ts05" },
+                { text: "인터페이스", link: "/typescript/basic/ts06" },
+                { text: "튜플", link: "/typescript/basic/ts07" },
+                { text: "열거형", link: "/typescript/basic/ts08" },
+              ],
+            },
           ],
         },
       ],
