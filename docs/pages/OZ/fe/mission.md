@@ -438,16 +438,36 @@ button {
 
         <!-- calculator buttons -->
         <div class="calc__buttons">
-          <button type="button" class="button function clear" aria-label="초기화" title="초기화">
+          <button
+            type="button"
+            class="button function clear"
+            aria-label="초기화"
+            title="초기화"
+          >
             <span class="button__inner">C</span>
           </button>
-          <button type="button" class="button function" aria-label="부호 전환" title="부호 전환">
+          <button
+            type="button"
+            class="button function"
+            aria-label="부호 전환"
+            title="부호 전환"
+          >
             <span class="button__inner">±</span>
           </button>
-          <button type="button" class="button function" aria-label="퍼센트" title="퍼센트">
+          <button
+            type="button"
+            class="button function"
+            aria-label="퍼센트"
+            title="퍼센트"
+          >
             <span class="button__inner">%</span>
           </button>
-          <button type="button" class="button operator" aria-label="나누기" title="나누기">
+          <button
+            type="button"
+            class="button operator"
+            aria-label="나누기"
+            title="나누기"
+          >
             <span class="button__inner">/</span>
           </button>
           <button type="button" class="button number">
@@ -459,7 +479,12 @@ button {
           <button type="button" class="button number">
             <span class="button__inner">9</span>
           </button>
-          <button type="button" class="button operator" aria-label="곱하기" title="곱하기">
+          <button
+            type="button"
+            class="button operator"
+            aria-label="곱하기"
+            title="곱하기"
+          >
             <span class="button__inner">*</span>
           </button>
           <button type="button" class="button number">
@@ -471,7 +496,12 @@ button {
           <button type="button" class="button number">
             <span class="button__inner">6</span>
           </button>
-          <button type="button" class="button operator" aria-label="빼기" title="빼기">
+          <button
+            type="button"
+            class="button operator"
+            aria-label="빼기"
+            title="빼기"
+          >
             <span class="button__inner">-</span>
           </button>
           <button type="button" class="button number">
@@ -483,16 +513,31 @@ button {
           <button type="button" class="button number">
             <span class="button__inner">3</span>
           </button>
-          <button type="button" class="button operator" aria-label="더하기" title="더하기">
+          <button
+            type="button"
+            class="button operator"
+            aria-label="더하기"
+            title="더하기"
+          >
             <span class="button__inner">+</span>
           </button>
           <button type="button" class="button number zero">
             <span class="button__inner">0</span>
           </button>
-          <button type="button" class="button decimal" aria-label="소수점" title="소수점">
+          <button
+            type="button"
+            class="button decimal"
+            aria-label="소수점"
+            title="소수점"
+          >
             <span class="button__inner">.</span>
           </button>
-          <button type="button" class="button equal" aria-label="계산하기" title="계산하기">
+          <button
+            type="button"
+            class="button equal"
+            aria-label="계산하기"
+            title="계산하기"
+          >
             <span class="button__inner">=</span>
           </button>
         </div>
@@ -571,7 +616,11 @@ button {
   height: 30px;
   background: var(--gray-300);
   border-radius: 0 0 12px 12px;
-  background: linear-gradient(180deg, var(--gray-400) -20%, var(--gray-700) 90%);
+  background: linear-gradient(
+    180deg,
+    var(--gray-400) -20%,
+    var(--gray-700) 90%
+  );
 }
 
 /* calculator inner */
@@ -814,16 +863,36 @@ console.log(calcButtons);
 
         <!-- calculator buttons -->
         <div class="calc__buttons">
-          <button type="button" class="button function clear" aria-label="초기화" title="초기화">
+          <button
+            type="button"
+            class="button function clear"
+            aria-label="초기화"
+            title="초기화"
+          >
             <span class="button__inner">C</span>
           </button>
-          <button type="button" class="button function" aria-label="부호 전환" title="부호 전환">
+          <button
+            type="button"
+            class="button function"
+            aria-label="부호 전환"
+            title="부호 전환"
+          >
             <span class="button__inner">±</span>
           </button>
-          <button type="button" class="button function" aria-label="퍼센트" title="퍼센트">
+          <button
+            type="button"
+            class="button function"
+            aria-label="퍼센트"
+            title="퍼센트"
+          >
             <span class="button__inner">%</span>
           </button>
-          <button type="button" class="button operator" aria-label="나누기" title="나누기">
+          <button
+            type="button"
+            class="button operator"
+            aria-label="나누기"
+            title="나누기"
+          >
             <span class="button__inner">/</span>
           </button>
           <button type="button" class="button number">
@@ -835,7 +904,12 @@ console.log(calcButtons);
           <button type="button" class="button number">
             <span class="button__inner">9</span>
           </button>
-          <button type="button" class="button operator" aria-label="곱하기" title="곱하기">
+          <button
+            type="button"
+            class="button operator"
+            aria-label="곱하기"
+            title="곱하기"
+          >
             <span class="button__inner">*</span>
           </button>
           <button type="button" class="button number">
@@ -847,7 +921,12 @@ console.log(calcButtons);
           <button type="button" class="button number">
             <span class="button__inner">6</span>
           </button>
-          <button type="button" class="button operator" aria-label="빼기" title="빼기">
+          <button
+            type="button"
+            class="button operator"
+            aria-label="빼기"
+            title="빼기"
+          >
             <span class="button__inner">-</span>
           </button>
           <button type="button" class="button number">
@@ -859,16 +938,31 @@ console.log(calcButtons);
           <button type="button" class="button number">
             <span class="button__inner">3</span>
           </button>
-          <button type="button" class="button operator" aria-label="더하기" title="더하기">
+          <button
+            type="button"
+            class="button operator"
+            aria-label="더하기"
+            title="더하기"
+          >
             <span class="button__inner">+</span>
           </button>
           <button type="button" class="button number zero">
             <span class="button__inner">0</span>
           </button>
-          <button type="button" class="button decimal" aria-label="소수점" title="소수점">
+          <button
+            type="button"
+            class="button decimal"
+            aria-label="소수점"
+            title="소수점"
+          >
             <span class="button__inner">.</span>
           </button>
-          <button type="button" class="button equal" aria-label="계산하기" title="계산하기">
+          <button
+            type="button"
+            class="button equal"
+            aria-label="계산하기"
+            title="계산하기"
+          >
             <span class="button__inner">=</span>
           </button>
         </div>
@@ -947,7 +1041,11 @@ button {
   height: 30px;
   background: var(--gray-300);
   border-radius: 0 0 12px 12px;
-  background: linear-gradient(180deg, var(--gray-400) -20%, var(--gray-700) 90%);
+  background: linear-gradient(
+    180deg,
+    var(--gray-400) -20%,
+    var(--gray-700) 90%
+  );
 }
 
 /* calculator inner */
@@ -1311,7 +1409,13 @@ calcButtons.forEach((button) => {
           <button type="button" class="button number" data-set="6">
             <span class="button__inner">6</span>
           </button>
-          <button type="button" class="button operator" data-set="-" aria-label="빼기" title="빼기">
+          <button
+            type="button"
+            class="button operator"
+            data-set="-"
+            aria-label="빼기"
+            title="빼기"
+          >
             <span class="button__inner">-</span>
           </button>
           <button type="button" class="button number" data-set="1">
@@ -1429,7 +1533,11 @@ button {
   height: 30px;
   background: var(--gray-300);
   border-radius: 0 0 12px 12px;
-  background: linear-gradient(180deg, var(--gray-400) -20%, var(--gray-700) 90%);
+  background: linear-gradient(
+    180deg,
+    var(--gray-400) -20%,
+    var(--gray-700) 90%
+  );
 }
 
 /* calculator inner */
@@ -1774,11 +1882,14 @@ const btnClick = (event) => {
 
   // 버튼 클래스에 따라 함수 호출
   if (clickedBtn.classList.contains("clear")) return clickClear();
-  if (clickedBtn.classList.contains("number")) return clickNumber(clickedBtnValue);
+  if (clickedBtn.classList.contains("number"))
+    return clickNumber(clickedBtnValue);
   if (clickedBtn.classList.contains("decimal")) return clickDecimal();
-  if (clickedBtn.classList.contains("operator")) return clickOperator(clickedBtnValue);
+  if (clickedBtn.classList.contains("operator"))
+    return clickOperator(clickedBtnValue);
   if (clickedBtn.classList.contains("equal")) return clickEqual();
-  if (clickedBtn.classList.contains("function")) return clickFunction(clickedBtnValue);
+  if (clickedBtn.classList.contains("function"))
+    return clickFunction(clickedBtnValue);
 };
 
 // 계산기 버튼에 클릭 이벤트 등록
@@ -1911,6 +2022,145 @@ React의 공식 권장 방식이기도 합니다.
 [`🚀 Demo`](https://miloupark.github.io/oz-tailwind/)  
 [`👩🏻‍💻 tailwindcss를 이용하여 OZ 페이지 디자인하기 `](https://github.com/miloupark/oz-tailwind-counter/pull/1)  
 [`🚀 Demo`](https://miloupark.github.io/oz-tailwind-counter/)  
+:::
+
+::: details `Day 36` React 상태관리 심화
+`👩🏻‍💻 OZ 카페 실습 복습`- 노션 제출
+
+:::
+
+::: details `Day 37` React 상태관리 심화, Context API
+[`👩🏻‍💻 Context API를 사용하여 OZ카페 코드 개선하기`](https://github.com/miloupark/oz-cafe-practice/pull/1)
+
+:::
+::: details `Day 38` React 상태관리 심화, Redux & Redux-Toolkit, Recoil, Zustand
+[`👩🏻‍💻 Redux을 사용하여 OZ카페 코드 리팩토링하기`](https://github.com/miloupark/oz-cafe-redux-toolkit/pull/1)  
+[`👩🏻‍💻 Redux-Toolkit을 사용하여 OZ카페 코드 리팩토링하기`](https://github.com/miloupark/oz-cafe-redux-toolkit/pull/2)  
+[`👩🏻‍💻 Recoil로 전역 상태 관리하기`](https://github.com/miloupark/oz_kanbanboard_recoil/milestone/1?closed=1)  
+[`👩🏻‍💻 Zustand 로 전역 상태 관리하기 & 로컬 스토리지에 자동 반영하기`](https://github.com/miloupark/oz_kanbanboard_zustand/milestone/1?closed=1)
+
+:::
+
+::: details `Day 39` React 최적화, useCallback, useMemo, React.memo
+[`👩🏻‍💻 useCallback, useMemo, React.memo 사용해보기`](https://stackblitz.com/edit/vitejs-vite-ueegmprw?file=src%2FApp.jsx)
+:::
+
+::: details `Day 40` React 최적화, Todolist 최적화
+[`👩🏻‍💻 Todolist 최적화해보기`](https://github.com/miloupark/oz_todo_optimization)
+:::
+
+::: details `Day 41` 포켓몬 도감 만들기 미니프로젝트(1/2)
+[`👩🏻‍💻 포켓몬 도감`](https://github.com/miloupark/pokedex)  
+[`🚀 React Pokédex`](https://pokedex-murex-psi.vercel.app/)
+:::
+
+::: details `Day 42` 포켓몬 도감 만들기 미니프로젝트(2/2)
+[`👩🏻‍💻 포켓몬 도감`](https://github.com/miloupark/pokedex)  
+[`🚀 React Pokédex`](https://pokedex-murex-psi.vercel.app/)
+
+:::
+
+::: details `Day 43` Next.js
+`👩🏻‍💻 Next.js 개념 정리하기` - 노션 제출
+:::
+
+## Node.js
+
+::: details `Day 44` Node.js 개념 정리하기
+`👩🏻‍💻 Node.js 개념 정리하기` - 노션 제출
+:::
+
+::: details `Day 45` 로그인 웹 서버 만들기
+
+<!-- [`👩🏻‍💻 `]() -->
+
+:::
+
+::: details `Day 46` Session으로 유저정보 관리하기
+
+<!-- [`👩🏻‍💻 `]() -->
+
+:::
+
+::: details `Day 47` Token으로 유저정보 관리하기
+[`👩🏻‍💻 Token으로 유저정보 관리하기`](https://github.com/miloupark/oz_token_login)
+:::
+
+::: details `Day 48` OAuth 2.0으로 소셜 로그인 구현
+[`👩🏻‍💻 OAuth 2.0으로 소셜 로그인 구현하기 - (Kakao/Naver/Google)`](https://github.com/miloupark/oauth2.0)
+:::
+
+## Database
+
+::: details `Day 49` 데이터베이스 개요, SQL 실습 환경 소개
+`👩🏻‍💻 SQL 과제` - 노션 제출
+:::
+
+::: details `Day 50` SQL 기초 문법, 데이터 모델링 기초
+`👩🏻‍💻 SQL 과제` - 노션 제출
+:::
+
+::: details `Day 51` SQL로 여러 테이블 다루기, 데이터 모델링 심화
+`👩🏻‍💻 SQL 과제` - 노션 제출
+:::
+
+::: details `Day 52` 데이터 모델링 CASE STUDY
+`👩🏻‍💻 SQL 과제` - 노션 제출
+:::
+
+::: details `Day 53` 서버와 데이터베이스 학습
+`👩🏻‍💻 SQL 과제` - 노션 제출
+:::
+
+## AWS
+
+::: details `Day 54` AWS에 대한 이해
+`👩🏻‍💻 AWS에 대한 이해`- 노션 제출
+:::
+
+::: details `Day 55` S3와 CloudFront를 이용한 정적 웹사이트 호스팅
+`👩🏻‍💻 S3와 CloudFront를 이용한 정적 웹사이트 호스팅`- 노션 제출
+:::
+
+::: details `Day 56` 도메인 설정, HTTPS 설정
+`👩🏻‍💻 도메인 설정, HTTPS 설정` - 노션 제출
+:::
+
+::: details `Day 57` CI/CD 기본 개념
+`👩🏻‍💻 CI/CD 기본 개념` - 노션 제출
+:::
+
+::: details `Day 58` 현업에서 프로젝트 진행하는 방식으로 실습
+[`👩🏻‍💻 현업에서 프로젝트 진행하는 방식으로 실습`](https://github.com/miloupark/cicd-sandbox)
+:::
+
+## TypeScript
+
+::: details `Day 59` TypeScript에 대해 알아보기
+[`👩🏻‍💻 TypeScript에 대해 알아보기`](https://github.com/miloupark/oz-typescript)
+:::
+
+::: details `Day 60` TodoList 리팩토링
+[`👩🏻‍💻 TypeScript의 다양한 타입 사용해보기`](https://stackblitz.com/edit/vitejs-vite-bz5bjt9m?file=src%2Findex.ts)  
+[`👩🏻‍💻 TodoList 리팩토링 해보기`](https://github.com/miloupark/oz_typescript_02)
+:::
+
+::: details `Day 61` TypeScript
+
+<!-- [`👩🏻‍💻 `](#) -->
+
+:::
+
+::: details `Day 62` TypeScript
+
+<!-- [`👩🏻‍💻 `](#) -->
+
+:::
+
+::: details `Day 63` TypeScript
+
+<!-- [`👩🏻‍💻 `](#) -->
+
 :::
 
 <Comment/>
