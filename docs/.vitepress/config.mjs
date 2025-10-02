@@ -455,7 +455,7 @@ export default defineConfig({
                 { text: "Function Types", link: "/typescript/basic/ts04" },
                 { text: "Union Types", link: "/typescript/basic/ts05" },
                 { text: "Intersection Types", link: "/typescript/basic/ts06" },
-                { text: "인터페이스", link: "/typescript/basic/ts07" },
+                { text: "Interfaces", link: "/typescript/basic/ts07" },
                 { text: "튜플", link: "/typescript/basic/ts08" },
                 { text: "열거형", link: "/typescript/basic/ts09" },
               ],
