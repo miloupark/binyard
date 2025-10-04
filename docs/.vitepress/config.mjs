@@ -172,6 +172,10 @@ export default defineConfig({
               link: "/javascript/basic/js00",
             },
             {
+              text: "브라우저에서 JS 로딩 전략",
+              link: "/javascript/basic/js000",
+            },
+            {
               text: "기초 문법",
               collapsed: true,
               items: [
