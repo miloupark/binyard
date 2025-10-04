@@ -124,27 +124,7 @@ document.write(`
 
 <br>
 
-## 🛠 console 객체
-
-브라우저 내부에는 개발자가 상황을 확인하고 디버깅할 수 있도록 `console` 객체도 포함되어 있다.
-이 객체 역시 window의 하위 객체이므로, 생략하고 바로 사용할 수 있다.
-
-- [`📎 MDN console`](https://developer.mozilla.org/ko/docs/Web/API/console)
-
-<br>
-
-### console.log()
-
-```js
-window.console.log();
-console.log();
-```
-
-- 콘솔 창에 메세지를 출력한다. 숫자, 문자열, 객체 등 다양한 자료형을 출력할 수 있다.
-- 브라우저에서는 console 탭에 출력되고, Node.js에서는 터미널에 출력된다.
-- [`📎 MDN console.log()`](https://developer.mozilla.org/ko/docs/Web/API/console/log_static)
-
-::: details script 태그의 src 속성과 실행 방식
+## 💡 script 태그와 실행 방식
 
 ```html
 <body>
@@ -162,13 +142,25 @@ HTML에서 `<script src="...">`를 사용하면 스크립트 파일만 로드되
 
 <br>
 
-1. 외부 스크립트만 실행
+### 1. 외부 스크립트만 실행
 
 ```html
 <script src="script.js"></script>
 ```
 
-2. 인라인 스크립트만 실행
+- `src` 속성이 지정되면 해당 파일만 로드된다.
+- 태그 내부에 작성된 코드는 HTML 명세에 따라 무시된다.
+
+```html
+<!-- 무시됨 -->
+<script src="script.js">
+  console.log("이 코드는 실행되지 않는다.");
+</script>
+```
+
+<br>
+
+### 2. 인라인 스크립트만 실행
 
 ```html
 <script>
@@ -176,7 +168,12 @@ HTML에서 `<script src="...">`를 사용하면 스크립트 파일만 로드되
 </script>
 ```
 
-3. 둘 다 실행하고 싶을 때
+- 태그 안에 직접 작성한 코드가 실행된다.
+- 별도의 src 속성이 없을 때만 유효하다.
+
+<br>
+
+### 3. 외부 + 인라인을 모두 실행하고 싶을 때
 
 ```html
 <script src="script.js"></script>
@@ -185,7 +182,77 @@ HTML에서 `<script src="...">`를 사용하면 스크립트 파일만 로드되
 </script>
 ```
 
-:::
+- 외부 스크립트 파일과 인라인 코드를 각각 별도 태그로 작성해야 한다.
+- 하나의 `<script>` 태그 안에서 src와 내부 코드 둘 다 실행하는 것은 불가능하다.
+
+<br>
+
+::: info 💡 정리
+
+- src 속성이 있으면 태그 내부 코드는 무시된다.
+- 인라인 코드와 외부 스크립트를 함께 쓰고 싶으면 태그를 분리해야 한다.
+  :::
+
+<br>
+
+## 🛠 console 객체
+
+브라우저에는 개발자가 코드를 확인하고 디버깅할 수 있도록 `console` 객체가 내장되어 있다.
+`console`은 `window` 객체의 하위 객체이므로, `window.`를 생략하고 바로 사용할 수 있다.
+
+- [`📎 MDN console`](https://developer.mozilla.org/ko/docs/Web/API/console)
+
+<br>
+
+### console.log()
+
+```js
+// 원래는 window.console.log() 형태지만 생략 가능
+window.console.log();
+console.log();
+
+console.log(1); // 1
+
+// 자동 개행되므로 여러 값은 쉼표로 구분
+console.log(1, 10); // 1 10
+
+// 표현식 출력
+console.log(1 + 10); // 11
+
+// 문자열 출력
+console.log("텍스트 출력"); // 텍스트 출력
+```
+
+- `console.log()`는 괄호 안의 값이나 표현식을 평가해 `콘솔에 출력하는 메서드`
+- 자바스크립트의 모든 데이터 타입과 표현식을 출력할 수 있다.
+- 출력 위치: `브라우저 → 개발자 도구 콘솔 탭`, `Node.js → 터미널`
+- [`📎 MDN console.log()`](https://developer.mozilla.org/ko/docs/Web/API/console/log_static)
+
+<br>
+
+### console.log()는 언제 사용할까?
+
+- 코드 동작 확인: 함수 실행 결과나 변수 값 확인
+- 에러 추적: 특정 지점까지 코드가 실행되는지, 값이 예상과 다르게 나오는지 확인
+- 로직 디버깅: 조건문 충족 여부, 반복문 횟수 확인
+- 데이터 확인: 사용자 입력값, 서버에서 받아온 응답 데이터 점검
+
+💡 `console.log()`는 코드의 흐름과 상태를 눈으로 확인할 수 있는 가장 간단하고 강력한 도구
+
+<br>
+
+### console 메서드 요약
+
+| 메서드                                      | 설명                          | 주 사용 상황                                 | 출력 예시                                                |
+| ------------------------------------------- | ----------------------------- | -------------------------------------------- | -------------------------------------------------------- |
+| `console.log()`                             | 값을 그대로 출력              | 변수 값, <br>표현식,<br> 문자열 등 일반 확인 | `console.log(1+1)` → `2`                                 |
+| `console.dir()`                             | 객체/DOM을 트리 구조로 출력   | 객체 속성,<br> DOM 구조 탐색                 | `console.dir(document.body)`                             |
+| `console.error()`                           | 에러 메시지를 붉은색으로 출력 | 예외 상황, <br>에러 핸들링 시                | `console.error("Error!")`                                |
+| `console.warn()`                            | 경고 메시지를 노란색으로 출력 | 잠재적 문제 경고                             | `console.warn("Deprecated API")`                         |
+| `console.table()`                           | 배열/객체를 표 형태로 출력    | 데이터 목록 확인                             | `console.table([{id:1},{id:2}])`                         |
+| `console.time()` <br> `console.timeEnd()`   | 코드 실행 시간 측정           | 성능 측정,<br> 디버깅                        | `console.time("t"); ...;`<br> `console.timeEnd("t");`    |
+| `console.group()` <br> `console.groupEnd()` | 로그를 그룹화                 | 관련 로그 묶어서 보기                        | `console.group("User"); ...;` <br> `console.groupEnd();` |
+| `console.clear()`                           | 콘솔 창 초기화                | 콘솔 로그를 지울 때                          | (브라우저 콘솔 화면이 깨끗해짐)                          |
 
 <br>
 
@@ -202,39 +269,55 @@ HTML에서 `<script src="...">`를 사용하면 스크립트 파일만 로드되
 
 ## 📦 변수 (Variable)
 
-변수란 데이터를 저장할 수 있는 이름표이다. 데이터를 저장해두고, 그 이름을 통해 데이터를 재사용할 수 있다.
+변수란 데이터를 저장할 수 있는 이름표이다. 한 번 저장해두면 그 이름을 통해 나중에 다시 꺼내 쓰거나 수정할 수 있다.
+
+::: info 💡 왜 변수가 필요할까?
+
+대부분의 JavaScript 프로그램은 사용자 입력이나 서버에서 받은 데이터를 처리한다.
+
+- 계산기 앱 → 사용자가 입력한 숫자와 계산 결과를 저장
+- 온라인 쇼핑몰 → 상품 목록이나 장바구니 정보를 기억
+
+이처럼 다양한 데이터를 저장하고 관리하기 위해 변수가 필요하다.  
+즉, 변수는 변할 수 있는 데이터를 담아두는 공간이며, 여기에 이름을 붙여 관리한다.
+
+:::
+
+<br>
+
+### 변수 선언과 값 할당
 
 ```js
-let monkey = "banana";
-monkey = "원숭이";
+let monkey = "banana"; // 선언 + 초기화
+monkey = "원숭이"; // 재할당
 ```
 
 ```js
 const pi = 3.14;
-pi = 3.1415; // TypeError
+pi = 3.1415; // TypeError (상수는 재할당 불가)
 ```
 
-- let: 재할당 가능한 변수 선언 키워드
-- const: 재할당 불가능한 상수 선언 키워드
+- `let`: 재할당 가능한 변수 선언 키워드
+- `const`: 재할당 불가능한 상수 선언 키워드 (값 고정)
 
 <br>
 
 ### 변수 선언 및 초기화
 
 ```js
-let name; // 변수 선언
-name = "훈이"; // 변수 초기화
+let name; // 선언
+name = "훈이"; // 초기화
 ```
 
 ```js
-let name = "훈이"; // 변수 선언과 초기화
+let name = "훈이"; // 선언과 동시에 초기화
 ```
 
 <br>
 
 ### 변수명 규칙
 
-- 변수명에는 오직 `문자`, `숫자`, `$`, `_` 만 포함될 수 있다.
+- 변수명에는 오직 `문자`, `숫자`, `$`, `_` 만 포함 가능하다.
 - 변수명 첫번째 글자로 숫자가 올 수 없다.
 - 자바스크립트의 예약어는 변수명으로 사용할 수 없다.
 - [`📎 W3S Reserved words`](https://www.w3schools.com/js/js_reserved.asp)
@@ -242,12 +325,62 @@ let name = "훈이"; // 변수 선언과 초기화
 
 <br>
 
-## 🔒 상수
+### var 키워드를 사용하지 않는 이유
 
-상수란 변하지 않는 값이다. 단 하나의 데이터를 위해 사용되는 이름표로 값의 변경이 불가능하다.
+`var`는 ES6 이전까지 유일한 변수 선언 키워드였지만, 지금은 let과 const가 도입되면서 더 이상 권장되지 않는다.
+그 이유는 var가 가진 호이스팅(hoisting) 문제와 예측 불가능한 동작 때문이다.
+
+#### 1. 중복 선언 허용
+
+let과 const는 같은 이름으로 변수를 재선언하면 에러가 발생하지만, `var`는 허용한다.  
+같은 변수를 덮어써도 에러가 나지 않아 버그 추적이 어려워진다.
 
 ```js
-const 상수이름 = 데이터;
+let userName;
+let userName; // SyntaxError
+
+const age = 20;
+const age = 30; // SyntaxError
+
+var city = "Seoul";
+var city = "Busan"; // 허용됨
+console.log(city); // Busan
+```
+
+<br>
+
+#### 2. 선언 전에 사용 가능 (호이스팅 문제)
+
+let과 const는 선언 전에 접근하면 `ReferenceError`가 발생한다.
+
+```js
+console.log(title); // ReferenceError
+let title = "JavaScript";
+```
+
+반면 var는 호이스팅 시 자동으로 `undefined`로 초기화되기 때문에, 에러 없이 지나간다.
+
+```js
+console.log(title); // undefined ← 에러 아님
+var title = "JavaScript";
+```
+
+<br>
+
+#### 3. var 대신 let/const
+
+- var는 중복 선언 가능 + 선언 전 접근 허용 때문에 예측 불가능한 코드 동작을 만든다.
+- 반면 let과 const는 ReferenceError를 발생시켜 문제를 즉시 확인할 수 있다.
+- 따라서 안전하고 명확한 코드 작성을 위해서는 let과 const를 사용하는 것이 권장된다.
+
+<br>
+
+## 🔒 상수 (Constant)
+
+상수는 변하지 않는 값을 저장하기 위한 이름표이다. 한 번 값이 할당되면 이후에 변경할 수 없다.
+
+```js
+const 상수이름 = 값;
 ```
 
 <br>
@@ -259,8 +392,51 @@ const pi = 3.14;
 pi = 3.1415; // TypeError
 ```
 
-- 상수는 선언될 때 지정된 데이터로 고정된다. 따라서 선언 이후 데이터를 대입하려고 하면 에러가 발생한다.
-- 상수는 선언과 초기화를 동시에 진행해야 한다.
+- const는 선언과 동시에 초기화해야 한다.
+- 이후 재할당은 불가능하다.
+
+<br>
+
+### 자주 발생하는 에러
+
+::: info 🚨 Uncaught SyntaxError: Missing initializer in const declaration
+
+```js
+const a; // 초기값 없음 → SyntaxError
+```
+
+- const 변수를 선언하고 초기 값을 할당하지 않을 경우 발생한다.
+
+:::
+
+::: info 🚨 Uncaught TypeError: Assignment to constant variable.
+
+```js
+const a = 10;
+a = 20; // 재할당 불가 → TypeError
+```
+
+- 이미 선언된 const 변수에 새 값을 넣으려고 할 때 발생한다.
+
+:::
+
+<br>
+
+### const를 쓰는 이유
+
+- 코드 안정성 : 값이 고정되므로 의도치 않은 재할당을 막을 수 있다.
+- 유지 보수성 : 변수 값이 바뀌지 않으니 코드 흐름이 더 예측 가능하고 디버깅이 쉽다.
+- 명확한 의도 전달 : 이 값은 절대 바뀌지 않는다는 의미가 코드에 드러난다.
+
+::: info ⚠️ 단, 객체나 배열 같은 참조 타입(reference type)은 내부 속성/요소 변경은 가능하다.
+
+```js
+const arr = [1, 2, 3];
+arr.push(4); // 가능
+arr = [5, 6, 7]; // TypeError
+```
+
+:::
 
 <br>
 
