@@ -239,7 +239,10 @@ export default defineConfig({
               text: "DOM과 DOM API",
               collapsed: false,
               items: [
-                { text: "웹과 DOM", link: "/javascript/basic/js20" },
+                {
+                  text: "웹과 브라우저 객체 모델",
+                  link: "/javascript/basic/js20",
+                },
                 { text: "DOM API", link: "/javascript/basic/js21" },
                 { text: "form 조작", link: "/javascript/basic/js22" },
               ],
