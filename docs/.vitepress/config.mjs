@@ -88,6 +88,7 @@ export default defineConfig({
         items: [
           { text: "Javascript", link: "/javascript/basic/js00" },
           { text: "Core Javascript", link: "/javascript/corejs/cjs01" },
+          { text: "Functional JavaScript", link: "/javascript/funcjs/fjs01" },
         ],
       },
     ],
@@ -113,101 +114,400 @@ export default defineConfig({
           text: "Frontend",
           collapsed: false,
           items: [
-            { text: "JavaScript", link: "/javascript/basic/js00" },
-            { text: "TypeScript", link: "/typescript/basic/ts00" },
+            {
+              text: "JavaScript",
+              collapsed: false,
+              items: [
+                { text: "JavaScript", link: "/javascript/basic/js00" },
+                { text: "Core JavaScript", link: "/javascript/corejs/cjs01" },
+                {
+                  text: "Functional JavaScript",
+                  link: "/javascript/funcjs/fjs01",
+                },
+              ],
+            },
+            { text: "TypeScript", link: "/frontend/typescript/basic/ts00" },
             { text: "React", link: "/react/re00" },
             { text: "React Native", link: "/frontend/fe/react-native01" },
-            { text: "Node.js", link: "/nodejs/node00" },
-            { text: "Database", link: "/database/db00" },
             { text: "Git & GitHub", link: "/frontend/fe/git-github" },
-            { text: "DSA", link: "/dsa/dsa00" },
-            { text: "Styling", link: "/styling/tailwindcss/tc00" },
+            { text: "DSA", link: "/frontend/dsa/dsa00" },
+            { text: "Styling", link: "/frontend/styling/tailwindcss/tc00" },
           ],
         },
         {
-          text: "Network Basics",
+          text: "Be for Frontend",
           collapsed: false,
           items: [
-            { text: "IP / Port", link: "/frontend/network/network00" },
-            { text: "CIDR", link: "/frontend/network/network01" },
-            { text: "OSI 7계층", link: "/frontend/network/network02" },
-            { text: "TCP/IP 프로토콜", link: "/frontend/network/network03" },
-          ],
-        },
-        {
-          text: "Cloud & AWS",
-          collapsed: false,
-          items: [
-            {
-              text: "Cloud",
-              collapsed: false,
-              items: [
-                { text: "Cloud", link: "/frontend/cloud/cloud/cloud00" },
-                {
-                  text: "Infrastructure",
-                  link: "/frontend/cloud/cloud/cloud01",
-                },
-                {
-                  text: "Service Layers",
-                  link: "/frontend/cloud/cloud/cloud02",
-                },
-                {
-                  text: "Cloud Network",
-                  link: "/frontend/cloud/cloud/cloud03",
-                },
-                { text: "VPC와 Subnet", link: "/frontend/cloud/cloud/cloud04" },
-                {
-                  text: "Computing Models",
-                  link: "/frontend/cloud/cloud/cloud05",
-                },
-                { text: "AWS Compute", link: "/frontend/cloud/cloud/cloud06" },
-                { text: "CI/CD", link: "/frontend/cloud/cloud/cloud07" },
-              ],
-            },
-            {
-              text: "AWS",
-              collapsed: false,
-              items: [
-                { text: "AWS", link: "/frontend/cloud/aws/aws00" },
-                {
-                  text: "Amazon S3",
-                  link: "/frontend/cloud/aws/aws01",
-                },
-                { text: "CloudFront CDN", link: "/frontend/cloud/aws/aws02" },
-                { text: "Route 53 DNS", link: "/frontend/cloud/aws/aws03" },
-                {
-                  text: "정적 사이트 배포 실습",
-                  link: "/frontend/cloud/aws/aws04",
-                },
-                {
-                  text: "배포 운영 및 관리",
-                  link: "/frontend/cloud/aws/aws05",
-                },
-                {
-                  text: "CI/CD with GitHub Actions",
-                  link: "/frontend/cloud/aws/aws06",
-                },
-                {
-                  text: "Frontend CI/CD & Git Flow",
-                  link: "/frontend/cloud/aws/aws07",
-                },
-              ],
-            },
+            { text: "Node.js", link: "/backend/nodejs/node00" },
+            { text: "Database", link: "/backend/database/db00" },
+            { text: "Network", link: "/backend/network/network00" },
+            { text: "Cloud", link: "/backend/cloud/cloud00" },
+            { text: "AWS", link: "/backend/aws/aws00" },
           ],
         },
         {
           text: "Programmers",
-          collapsed: false,
+          collapsed: true,
           items: [{ text: "Javascript", link: "/frontend/programmers/js" }],
         },
         {
           text: "Unclear to Clear",
-          collapsed: false,
+          collapsed: true,
           items: [
             { text: "Git", link: "/frontend/untoc/git" },
             { text: "JavaScript", link: "/frontend/untoc/js" },
             { text: "HTML", link: "/frontend/untoc/html" },
             { text: "CSS", link: "/frontend/untoc/css" },
+          ],
+        },
+      ],
+
+      "/javascript/basic": [
+        {
+          text: "JavaScript",
+          collapsed: false,
+          items: [
+            {
+              text: "자바스크립트의 실행 환경",
+              link: "/javascript/basic/js00",
+            },
+            {
+              text: "기초 문법",
+              collapsed: true,
+              items: [
+                { text: "변수와 상수", link: "/javascript/basic/js01" },
+                { text: "자료형과 형변환", link: "/javascript/basic/js02" },
+                { text: "연산자", link: "/javascript/basic/js03" },
+                { text: "조건문", link: "/javascript/basic/js04" },
+                { text: "반복문", link: "/javascript/basic/js05" },
+              ],
+            },
+            {
+              text: "내장 객체와 메서드",
+              collapsed: true,
+              items: [
+                { text: "Math", link: "/javascript/basic/js34" },
+                // { text: "Date", link: "javascript/basic/js35" },
+                // { text: "JSON", link: "javascript/basic/js36" },
+                // { text: "Global 함수", link: "javascript/basic/js37" },
+                // { text: "console", link: "javascript/basic/js38" },
+              ],
+            },
+            {
+              text: "함수와 실행 컨텍스트",
+              collapsed: false,
+              items: [
+                { text: "함수", link: "/javascript/basic/js06" },
+                { text: "스코프", link: "/javascript/basic/js07" },
+                { text: "호이스팅", link: "/javascript/basic/js08" },
+                {
+                  text: "this",
+                  collapsed: false,
+                  items: [
+                    { text: "기본 개념", link: "/javascript/basic/js09" },
+                    {
+                      text: "화살표 함수와 this",
+                      link: "javascript/basic/js23",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              text: "데이터 구조",
+              collapsed: false,
+              items: [
+                { text: "객체", link: "/javascript/basic/js10" },
+                { text: "배열", link: "/javascript/basic/js11" },
+                { text: "생성자 함수", link: "/javascript/basic/js12" },
+                { text: "구조 분해 할당", link: "/javascript/basic/js13" },
+                { text: "Spread / Rest", link: "/javascript/basic/js14" },
+              ],
+            },
+            {
+              text: "비동기와 API",
+              collapsed: false,
+              items: [
+                { text: "비동기 처리", link: "/javascript/basic/js15" },
+                { text: "Promise 객체", link: "/javascript/basic/js16" },
+                { text: "async / await", link: "/javascript/basic/js17" },
+                { text: "API 호출", link: "/javascript/basic/js18" },
+                { text: "Local Storage", link: "/javascript/basic/js19" },
+              ],
+            },
+            {
+              text: "DOM과 DOM API",
+              collapsed: false,
+              items: [
+                { text: "웹과 DOM", link: "/javascript/basic/js20" },
+                { text: "DOM API", link: "/javascript/basic/js21" },
+                { text: "form 조작", link: "/javascript/basic/js22" },
+              ],
+            },
+            {
+              text: "모듈과 컴포넌트",
+              collapsed: false,
+              items: [
+                { text: "모듈 시스템", link: "/javascript/basic/js24" },
+                { text: "컴포넌트", link: "/javascript/basic/js25" },
+              ],
+            },
+            {
+              text: "상태 관리와 SPA",
+              collapsed: false,
+              items: [
+                { text: "상태 관리", link: "/javascript/basic/js26" },
+                { text: "MPA와 SPA", link: "/javascript/basic/js27" },
+                { text: "SPA와 라우팅", link: "/javascript/basic/js28" },
+              ],
+            },
+            {
+              text: "Node.js와 Express",
+              collapsed: false,
+              items: [
+                { text: "Node.js", link: "/javascript/basic/js29" },
+                { text: "npm과 패키지 관리", link: "/javascript/basic/js30" },
+                {
+                  text: "CommonJS와 모듈 시스템",
+                  link: "/javascript/basic/js31",
+                },
+                { text: "Express.js", link: "/javascript/basic/js32" },
+                { text: "라우팅과 미들웨어", link: "/javascript/basic/js33" },
+              ],
+            },
+          ],
+        },
+      ],
+      "/javascript/corejs": [
+        {
+          text: "Core JavaScript",
+          collapsed: false,
+          items: [
+            { text: "데이터 타입", link: "/javascript/corejs/cjs01" },
+            { text: "실행 컨텍스트", link: "/javascript/corejs/cjs02" },
+            { text: "this", link: "/javascript/corejs/cjs03" },
+            { text: "콜백 함수", link: "/javascript/corejs/cjs04" },
+            { text: "클로저", link: "/javascript/corejs/cjs05" },
+            { text: "프로토타입", link: "/javascript/corejs/cjs06" },
+            { text: "클래스", link: "/javascript/corejs/cjs07" },
+          ],
+        },
+      ],
+      "/javascript/funcjs": [
+        {
+          text: "Functional JavaScript",
+          collapsed: false,
+          items: [
+            { text: "함수형 프로그래밍", link: "/javascript/funcjs/fjs01" },
+            { text: "draft", link: "/javascript/funcjs/fjs02" },
+          ],
+        },
+      ],
+      "frontend/typescript/": [
+        {
+          text: "TypeScript",
+          collapsed: false,
+          items: [
+            { text: "TypeScript", link: "/frontend/typescript/basic/ts00" },
+            { text: "Intro", link: "/frontend/typescript/basic/ts01" },
+            {
+              text: "다양한 타입",
+              collapsed: false,
+              items: [
+                { text: "Array", link: "/frontend/typescript/basic/ts02" },
+                { text: "Object", link: "/frontend/typescript/basic/ts03" },
+                { text: "Function", link: "/frontend/typescript/basic/ts04" },
+                { text: "Union", link: "/frontend/typescript/basic/ts05" },
+                {
+                  text: "Intersection",
+                  link: "/frontend/typescript/basic/ts06",
+                },
+                {
+                  text: "Interfaces",
+                  link: "/frontend/typescript/basic/ts07",
+                },
+                { text: "Tuple", link: "/frontend/typescript/basic/ts08" },
+                { text: "Enum", link: "/frontend/typescript/basic/ts09" },
+              ],
+            },
+          ],
+        },
+      ],
+      "/react/": [
+        { text: "React를 위한 Node.js", link: "/react/re00" },
+        { text: "React", link: "/react/re01" },
+        { text: "Component", link: "/react/re02" },
+        { text: "JSX", link: "/react/re03" },
+        { text: "State & Props", link: "/react/re04" },
+        { text: "SPA", link: "/react/re05" },
+        { text: "Props", link: "/react/re06" },
+        {
+          text: "React Router",
+          collapsed: false,
+          items: [
+            { text: "React Router", link: "/react/reactrouter/router00" },
+            { text: "React Router Hooks", link: "/react/reactrouter/router01" },
+            {
+              text: "Route 설정 분리 패턴",
+              link: "/react/reactrouter/router02",
+            },
+          ],
+        },
+        {
+          text: "State Management",
+          collapsed: false,
+          items: [
+            { text: "Zustand", link: "/react/state/zustand/zs00" },
+            { text: "Store Basics", link: "/react/state/zustand/zs01" },
+            { text: "Design & Patterns", link: "/react/state/zustand/zs02" },
+          ],
+        },
+      ],
+      "/frontend/dsa/": [
+        {
+          text: "Data Structures",
+          collapsed: false,
+          items: [{ text: "draft", link: "/frontend/dsa/dsa00" }],
+        },
+        {
+          text: "Algorithms",
+          collapsed: false,
+          items: [{ text: "draft", link: "/frontend/dsa/dsa00" }],
+        },
+      ],
+      "/frontend/styling/": [
+        {
+          text: "SCSS",
+          collapsed: false,
+          items: [{ text: "scss", link: "/frontend/styling/scss00" }],
+        },
+        {
+          text: "Tailwind CSS",
+          collapsed: false,
+          items: [
+            { text: "About", link: "/frontend/styling/tailwindcss/tc00" },
+            {
+              text: "Installation",
+              link: "/frontend/styling/tailwindcss/tc01",
+            },
+          ],
+        },
+        {
+          text: "styled-components",
+          collapsed: false,
+          items: [
+            { text: "styled-components", link: "/frontend/styling/sc00" },
+          ],
+        },
+      ],
+      "backend/nodejs/": [
+        {
+          text: "Node.js",
+          collapsed: false,
+          items: [
+            { text: "Node.js 소개", link: "/backend/nodejs/node00" },
+            { text: "Summary", link: "/backend/nodejs/node99" },
+            {
+              text: "Module System",
+              collapsed: false,
+              items: [
+                { text: "CommonJS", link: "/backend/nodejs/node01" },
+                { text: "ES Modules", link: "/backend/nodejs/node02" },
+              ],
+            },
+            {
+              text: "File System",
+              collapsed: false,
+              items: [
+                { text: "CommonJS", link: "/backend/nodejs/node03" },
+                { text: "ES Modules", link: "/backend/nodejs/node04" },
+              ],
+            },
+          ],
+        },
+      ],
+      "backend/database/": [
+        {
+          text: "Database",
+          collapsed: false,
+          items: [
+            { text: "Database", link: "/backend/database/db00" },
+            { text: "SQL", link: "/backend/database/db01" },
+            { text: "SQL 데이터 타입", link: "/backend/database/db02" },
+            { text: "SQL 데이터 CRUD", link: "/backend/database/db03" },
+            { text: "데이터 모델링 기초", link: "/backend/database/db04" },
+            { text: "서버와 데이터베이스", link: "/backend/database/db05" },
+          ],
+        },
+      ],
+      "backend/network/": [
+        {
+          text: "Network",
+          collapsed: false,
+          items: [
+            { text: "IP / Port", link: "/backend/network/network00" },
+            { text: "CIDR", link: "/backend/network/network01" },
+            { text: "OSI 7계층", link: "/backend/network/network02" },
+            { text: "TCP/IP 프로토콜", link: "/backend/network/network03" },
+          ],
+        },
+      ],
+      "backend/cloud": [
+        {
+          text: "Cloud",
+          collapsed: false,
+          items: [
+            { text: "Cloud", link: "/backend/cloud/cloud00" },
+            {
+              text: "Infrastructure",
+              link: "/backend/cloud/cloud01",
+            },
+            {
+              text: "Service Layers",
+              link: "/backend/cloud/cloud02",
+            },
+            {
+              text: "Cloud Network",
+              link: "/backend/cloud/cloud03",
+            },
+            { text: "VPC와 Subnet", link: "/backend/cloud/cloud04" },
+            {
+              text: "Computing Models",
+              link: "/backend/cloud/cloud05",
+            },
+            { text: "AWS Compute", link: "/backend/cloud/cloud06" },
+            { text: "CI/CD", link: "/backend/cloud/cloud07" },
+          ],
+        },
+      ],
+      "backend/aws": [
+        {
+          text: "AWS",
+          collapsed: false,
+          items: [
+            { text: "AWS", link: "/backend/aws/aws00" },
+            {
+              text: "Amazon S3",
+              link: "/backend/aws/aws01",
+            },
+            { text: "CloudFront CDN", link: "/backend/aws/aws02" },
+            { text: "Route 53 DNS", link: "/backend/aws/aws03" },
+            {
+              text: "정적 사이트 배포 실습",
+              link: "/backend/aws/aws04",
+            },
+            {
+              text: "배포 운영 및 관리",
+              link: "/backend/aws/aws05",
+            },
+            {
+              text: "CI/CD with GitHub Actions",
+              link: "/backend/aws/aws06",
+            },
+            {
+              text: "Frontend CI/CD & Git Flow",
+              link: "/backend/aws/aws07",
+            },
           ],
         },
       ],
@@ -300,268 +600,6 @@ export default defineConfig({
                 },
               ],
             },
-          ],
-        },
-      ],
-      "/javascript/": [
-        {
-          text: "JavaScript",
-          collapsed: false,
-          items: [
-            {
-              text: "자바스크립트의 실행 환경",
-              link: "/javascript/basic/js00",
-            },
-            {
-              text: "기초 문법",
-              collapsed: true,
-              items: [
-                { text: "변수와 상수", link: "/javascript/basic/js01" },
-                { text: "자료형과 형변환", link: "/javascript/basic/js02" },
-                { text: "연산자", link: "/javascript/basic/js03" },
-                { text: "조건문", link: "/javascript/basic/js04" },
-                { text: "반복문", link: "/javascript/basic/js05" },
-              ],
-            },
-            {
-              text: "내장 객체와 메서드",
-              collapsed: true,
-              items: [
-                { text: "Math", link: "/javascript/basic/js34" },
-                // { text: "Date", link: "javascript/basic/js35" },
-                // { text: "JSON", link: "javascript/basic/js36" },
-                // { text: "Global 함수", link: "javascript/basic/js37" },
-                // { text: "console", link: "javascript/basic/js38" },
-              ],
-            },
-            {
-              text: "함수와 실행 컨텍스트",
-              collapsed: true,
-              items: [
-                { text: "함수", link: "/javascript/basic/js06" },
-                { text: "스코프", link: "/javascript/basic/js07" },
-                { text: "호이스팅", link: "/javascript/basic/js08" },
-                {
-                  text: "this",
-                  collapsed: false,
-                  items: [
-                    { text: "기본 개념", link: "/javascript/basic/js09" },
-                    {
-                      text: "화살표 함수와 this",
-                      link: "javascript/basic/js23",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              text: "데이터 구조",
-              collapsed: true,
-              items: [
-                { text: "객체", link: "/javascript/basic/js10" },
-                { text: "배열", link: "/javascript/basic/js11" },
-                { text: "생성자 함수", link: "/javascript/basic/js12" },
-                { text: "구조 분해 할당", link: "/javascript/basic/js13" },
-                { text: "Spread / Rest", link: "/javascript/basic/js14" },
-              ],
-            },
-            {
-              text: "비동기와 API",
-              collapsed: true,
-              items: [
-                { text: "비동기 처리", link: "/javascript/basic/js15" },
-                { text: "Promise 객체", link: "/javascript/basic/js16" },
-                { text: "async / await", link: "/javascript/basic/js17" },
-                { text: "API 호출", link: "/javascript/basic/js18" },
-                { text: "Local Storage", link: "/javascript/basic/js19" },
-              ],
-            },
-            {
-              text: "DOM과 DOM API",
-              collapsed: true,
-              items: [
-                { text: "웹과 DOM", link: "/javascript/basic/js20" },
-                { text: "DOM API", link: "/javascript/basic/js21" },
-                { text: "form 조작", link: "/javascript/basic/js22" },
-              ],
-            },
-            {
-              text: "모듈과 컴포넌트",
-              collapsed: true,
-              items: [
-                { text: "모듈 시스템", link: "/javascript/basic/js24" },
-                { text: "컴포넌트", link: "/javascript/basic/js25" },
-              ],
-            },
-            {
-              text: "상태 관리와 SPA",
-              collapsed: true,
-              items: [
-                { text: "상태 관리", link: "/javascript/basic/js26" },
-                { text: "MPA와 SPA", link: "/javascript/basic/js27" },
-                { text: "SPA와 라우팅", link: "/javascript/basic/js28" },
-              ],
-            },
-            {
-              text: "Node.js와 Express",
-              collapsed: true,
-              items: [
-                { text: "Node.js", link: "/javascript/basic/js29" },
-                { text: "npm과 패키지 관리", link: "/javascript/basic/js30" },
-                {
-                  text: "CommonJS와 모듈 시스템",
-                  link: "/javascript/basic/js31",
-                },
-                { text: "Express.js", link: "/javascript/basic/js32" },
-                { text: "라우팅과 미들웨어", link: "/javascript/basic/js33" },
-              ],
-            },
-          ],
-        },
-        {
-          text: "Core JavaScript",
-          collapsed: false,
-          items: [
-            { text: "데이터 타입", link: "/javascript/corejs/cjs01" },
-            { text: "실행 컨텍스트", link: "/javascript/corejs/cjs02" },
-            { text: "this", link: "/javascript/corejs/cjs03" },
-            { text: "콜백 함수", link: "/javascript/corejs/cjs04" },
-            { text: "클로저", link: "/javascript/corejs/cjs05" },
-            { text: "프로토타입", link: "/javascript/corejs/cjs06" },
-            { text: "클래스", link: "/javascript/corejs/cjs07" },
-          ],
-        },
-        {
-          text: "Functional JavaScript",
-          collapsed: false,
-          items: [
-            { text: "함수형 프로그래밍", link: "/javascript/funcjs/fjs01" },
-          ],
-        },
-      ],
-      "/typescript/": [
-        {
-          text: "TypeScript",
-          collapsed: false,
-          items: [
-            { text: "TypeScript", link: "/typescript/basic/ts00" },
-            { text: "Intro", link: "/typescript/basic/ts01" },
-            {
-              text: "다양한 타입",
-              collapsed: false,
-              items: [
-                { text: "Array", link: "/typescript/basic/ts02" },
-                { text: "Object", link: "/typescript/basic/ts03" },
-                { text: "Function", link: "/typescript/basic/ts04" },
-                { text: "Union", link: "/typescript/basic/ts05" },
-                { text: "Intersection", link: "/typescript/basic/ts06" },
-                { text: "Interfaces", link: "/typescript/basic/ts07" },
-                { text: "Tuple", link: "/typescript/basic/ts08" },
-                { text: "Enum", link: "/typescript/basic/ts09" },
-              ],
-            },
-          ],
-        },
-      ],
-      "/react/": [
-        { text: "React를 위한 Node.js", link: "/react/re00" },
-        { text: "React", link: "/react/re01" },
-        { text: "Component", link: "/react/re02" },
-        { text: "JSX", link: "/react/re03" },
-        { text: "State & Props", link: "/react/re04" },
-        { text: "SPA", link: "/react/re05" },
-        { text: "Props", link: "/react/re06" },
-        {
-          text: "React Router",
-          collapsed: false,
-          items: [
-            { text: "React Router", link: "/react/reactrouter/router00" },
-            { text: "React Router Hooks", link: "/react/reactrouter/router01" },
-            {
-              text: "Route 설정 분리 패턴",
-              link: "/react/reactrouter/router02",
-            },
-          ],
-        },
-        {
-          text: "State Management",
-          collapsed: false,
-          items: [
-            { text: "Zustand", link: "/react/state/zustand/zs00" },
-            { text: "Store Basics", link: "/react/state/zustand/zs01" },
-            { text: "Design & Patterns", link: "/react/state/zustand/zs02" },
-          ],
-        },
-      ],
-      "/dsa/": [
-        {
-          text: "Data Structures",
-          collapsed: false,
-          items: [{ text: "draft", link: "/dsa/dsa00" }],
-        },
-        {
-          text: "Algorithms",
-          collapsed: false,
-          items: [{ text: "draft", link: "/dsa/dsa00" }],
-        },
-      ],
-      "/styling/": [
-        {
-          text: "SCSS",
-          collapsed: false,
-          items: [{ text: "scss", link: "/styling/scss00" }],
-        },
-        {
-          text: "Tailwind CSS",
-          collapsed: false,
-          items: [
-            { text: "About", link: "/styling/tailwindcss/tc00" },
-            { text: "Installation", link: "/styling/tailwindcss/tc01" },
-          ],
-        },
-        {
-          text: "styled-components",
-          collapsed: false,
-          items: [{ text: "styled-components", link: "/styling/sc00" }],
-        },
-      ],
-      "/nodejs/": [
-        {
-          text: "Node.js",
-          collapsed: false,
-          items: [
-            { text: "Node.js 소개", link: "/nodejs/node00" },
-            { text: "Summary", link: "/nodejs/node99" },
-            {
-              text: "Module System",
-              collapsed: false,
-              items: [
-                { text: "CommonJS", link: "/nodejs/node01" },
-                { text: "ES Modules", link: "/nodejs/node02" },
-              ],
-            },
-            {
-              text: "File System",
-              collapsed: false,
-              items: [
-                { text: "CommonJS", link: "/nodejs/node03" },
-                { text: "ES Modules", link: "/nodejs/node04" },
-              ],
-            },
-          ],
-        },
-      ],
-      "/database/": [
-        {
-          text: "Database",
-          collapsed: false,
-          items: [
-            { text: "Database", link: "/database/db00" },
-            { text: "SQL", link: "/database/db01" },
-            { text: "SQL 데이터 타입", link: "/database/db02" },
-            { text: "SQL 데이터 CRUD", link: "/database/db03" },
-            { text: "데이터 모델링 기초", link: "/database/db04" },
-            { text: "서버와 데이터베이스", link: "/database/db05" },
           ],
         },
       ],
