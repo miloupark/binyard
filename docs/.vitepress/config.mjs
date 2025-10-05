@@ -86,7 +86,7 @@ export default defineConfig({
       {
         text: "Javascript",
         items: [
-          { text: "Javascript", link: "/javascript/basic/js00" },
+          { text: "Javascript", link: "/javascript/basic/browser/js000" },
           { text: "Core Javascript", link: "/javascript/corejs/cjs01" },
           { text: "Functional JavaScript", link: "/javascript/funcjs/fjs01" },
         ],
@@ -118,7 +118,7 @@ export default defineConfig({
               text: "JavaScript",
               collapsed: false,
               items: [
-                { text: "JavaScript", link: "/javascript/basic/js00" },
+                { text: "JavaScript", link: "/javascript/basic/browser/js000" },
                 { text: "Core JavaScript", link: "/javascript/corejs/cjs01" },
                 {
                   text: "Functional JavaScript",
@@ -161,27 +161,36 @@ export default defineConfig({
           ],
         },
       ],
-
       "/javascript/basic": [
         {
           text: "JavaScript",
           collapsed: false,
           items: [
             {
-              text: "자바스크립트의 실행 환경",
-              link: "/javascript/basic/js00",
-            },
-            {
-              text: "브라우저에서 JS 로딩 전략",
-              link: "/javascript/basic/js000",
-            },
-            {
-              text: "렌더링 성능과 Reflow · Repaint",
-              link: "/javascript/basic/js001",
-            },
-            {
-              text: "브라우저 렌더링 최적화",
-              link: "/javascript/basic/js002",
+              text: "브라우저 렌더링 & 퍼포먼스",
+              collapsed: false,
+              items: [
+                {
+                  text: "자바스크립트의 실행 환경",
+                  link: "/javascript/basic/browser/js000",
+                },
+                {
+                  text: "브라우저에서 JS 로딩 전략",
+                  link: "/javascript/basic/browser/js001",
+                },
+                {
+                  text: "렌더링 성능과 Reflow · Repaint",
+                  link: "/javascript/basic/browser/js002",
+                },
+                {
+                  text: "브라우저 렌더링 최적화",
+                  link: "/javascript/basic/browser/js003",
+                },
+                {
+                  text: "DevTools Performance",
+                  link: "/javascript/basic/browser/js004",
+                },
+              ],
             },
             {
               text: "기초 문법",
