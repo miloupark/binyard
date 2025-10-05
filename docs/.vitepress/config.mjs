@@ -84,10 +84,10 @@ export default defineConfig({
       { text: "Frontend", link: "/frontend/reference" },
       { text: "OZ", link: "/OZ/fe/intro" },
       {
-        text: "Javascript",
+        text: "JavaScript",
         items: [
-          { text: "Javascript", link: "/javascript/basic/browser/js000" },
-          { text: "Core Javascript", link: "/javascript/corejs/cjs01" },
+          { text: "JavaScript", link: "/javascript/basic/js00" },
+          { text: "Core JavaScript", link: "/javascript/corejs/cjs01" },
           { text: "Functional JavaScript", link: "/javascript/funcjs/fjs01" },
         ],
       },
@@ -118,7 +118,7 @@ export default defineConfig({
               text: "JavaScript",
               collapsed: false,
               items: [
-                { text: "JavaScript", link: "/javascript/basic/browser/js000" },
+                { text: "JavaScript", link: "/javascript/basic/js00" },
                 { text: "Core JavaScript", link: "/javascript/corejs/cjs01" },
                 {
                   text: "Functional JavaScript",
@@ -167,23 +167,23 @@ export default defineConfig({
           collapsed: false,
           items: [
             {
+              text: "자바스크립트의 실행 환경",
+              link: "/javascript/basic/js00",
+            },
+            {
               text: "브라우저 렌더링 & 퍼포먼스",
               collapsed: false,
               items: [
                 {
-                  text: "자바스크립트의 실행 환경",
-                  link: "/javascript/basic/browser/js000",
-                },
-                {
-                  text: "브라우저에서 JS 로딩 전략",
+                  text: "JavaScript 로딩 전략",
                   link: "/javascript/basic/browser/js001",
                 },
                 {
-                  text: "렌더링 성능과 Reflow · Repaint",
+                  text: "Reflow · Repaint",
                   link: "/javascript/basic/browser/js002",
                 },
                 {
-                  text: "브라우저 렌더링 최적화",
+                  text: "GPU 합성과 최적화",
                   link: "/javascript/basic/browser/js003",
                 },
                 {
@@ -228,7 +228,7 @@ export default defineConfig({
                     { text: "기본 개념", link: "/javascript/basic/js09" },
                     {
                       text: "화살표 함수와 this",
-                      link: "javascript/basic/js23",
+                      link: "/javascript/basic/js23",
                     },
                   ],
                 },
@@ -327,7 +327,7 @@ export default defineConfig({
           ],
         },
       ],
-      "frontend/typescript/": [
+      "/frontend/typescript/": [
         {
           text: "TypeScript",
           collapsed: false,
@@ -424,7 +424,7 @@ export default defineConfig({
           ],
         },
       ],
-      "backend/nodejs/": [
+      "/backend/nodejs/": [
         {
           text: "Node.js",
           collapsed: false,
@@ -450,7 +450,7 @@ export default defineConfig({
           ],
         },
       ],
-      "backend/database/": [
+      "/backend/database/": [
         {
           text: "Database",
           collapsed: false,
@@ -464,7 +464,7 @@ export default defineConfig({
           ],
         },
       ],
-      "backend/network/": [
+      "/backend/network/": [
         {
           text: "Network",
           collapsed: false,
@@ -476,7 +476,7 @@ export default defineConfig({
           ],
         },
       ],
-      "backend/cloud": [
+      "/backend/cloud": [
         {
           text: "Cloud",
           collapsed: false,
@@ -504,7 +504,7 @@ export default defineConfig({
           ],
         },
       ],
-      "backend/aws": [
+      "/backend/aws": [
         {
           text: "AWS",
           collapsed: false,
