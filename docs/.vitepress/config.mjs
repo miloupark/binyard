@@ -176,6 +176,14 @@ export default defineConfig({
               link: "/javascript/basic/js000",
             },
             {
+              text: "렌더링 성능과 Reflow · Repaint",
+              link: "/javascript/basic/js001",
+            },
+            {
+              text: "브라우저 렌더링 최적화",
+              link: "/javascript/basic/js002",
+            },
+            {
               text: "기초 문법",
               collapsed: true,
               items: [

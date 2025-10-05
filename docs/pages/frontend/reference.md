@@ -290,6 +290,19 @@
 - [FE interview](https://github.com/BentoumiTech/front-end-interview-handbook-1/blob/master/Translations/Korean/questions/javascript-questions.md)
 - [FE 자기소개](https://zero-base.co.kr/event/media_insight_contents_FE_frontend_1minute_introduction)
 
+- [MDN - script: 스크립트 요소](https://developer.mozilla.org/ko/docs/Web/HTML/Reference/Elements/script)
+- [Google Developers - Remove Render-Blocking JavaScript](https://developers.google.com/speed/docs/insights/BlockingJS#overview)
+- [Chrome for Developers - Eliminate render-blocking resources](https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources)
+
+- [MDN - Critical rendering path](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path)
+- [Web.dev - Rendering performance](https://web.dev/articles/rendering-performance)
+- [Chrome for Developers - Minimize main thread work](https://developer.chrome.com/docs/lighthouse/performance/mainthread-work-breakdown)
+
+- [MDN - Populating the page: how browsers work](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work#overview)
+- [Chrome for Developers - Discover issues with rendering performance](https://developer.chrome.com/docs/devtools/rendering/performance)
+- [Web.dev - Rendering on the Web](https://web.dev/articles/rendering-performance)
+- [Chrome for Developers - Inside look at modern web browser (part 3)](https://developer.chrome.com/blog/inside-browser-part3)
+
 :::
 
 <!-- 이 페이지에서만 적용됨  -->
