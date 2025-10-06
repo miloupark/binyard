@@ -124,6 +124,11 @@ export default defineConfig({
                   text: "Functional JavaScript",
                   link: "/javascript/funcjs/fjs01",
                 },
+                {
+                  text: "JavaScript Style Guide",
+                  link: "/javascript/airbnb/00.intro",
+                },
+                
               ],
             },
             { text: "TypeScript", link: "/frontend/typescript/basic/ts00" },
@@ -324,6 +329,31 @@ export default defineConfig({
           items: [
             { text: "함수형 프로그래밍", link: "/javascript/funcjs/fjs01" },
             { text: "draft", link: "/javascript/funcjs/fjs02" },
+          ],
+        },
+      ],
+      "/javascript/airbnb": [
+        {
+          text: "JavaScript Style Guide",
+          collapsed: false,
+          items: [
+            { text: "🏠 Airbnb", 
+              collapsed: false, 
+              items: [
+              { text: "Airbnb · Intro", link: "/javascript/airbnb/00.intro" },
+              { text: "01. Types", link: "/javascript/airbnb/01.types" },
+            ]
+          },
+          { text: "📖 Related Concepts", 
+              collapsed: false, 
+              items: [
+              { text: "Notes · Intro", link: "/javascript/airbnb/notes/00.intro" },
+              { text: "Polyfill", link: "/javascript/airbnb/notes/01.polyfill" },
+              { text: "Immutability", link: "/javascript/airbnb/notes/02.immutability" },
+            ]
+          }
+          
+
           ],
         },
       ],

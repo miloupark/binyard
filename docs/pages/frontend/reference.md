@@ -305,6 +305,31 @@
 
 :::
 
+::: info 🔖 JavaScript Style Guide
+- [javascript.info - Coding Style](https://ko.javascript.info/coding-style)
+
+- [Airbnb JavaScript Style Guide - EN](https://github.com/airbnb/javascript)
+- [Airbnb JavaScript Style Guide - KR (Thanks for ParkSB)](https://github.com/ParkSB/javascript-style-guide?tab=readme-ov-file)
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+- [Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html)
+
+- [Idiomatic JavaScript](https://github.com/rwaldron/idiomatic.js)
+- [Standard JS](https://standardjs.com/)
+
+:::
+
+::: info 🧩 ESLint
+- [ESLint](https://eslint.org/)
+- [prefer-const](https://eslint.org/docs/latest/rules/prefer-const.html)
+- [no-const-assign](https://eslint.org/docs/latest/rules/no-const-assign.html)
+- [no-new-object](https://eslint.org/docs/latest/rules/no-new-object.html)
+- [object-shorthand](https://eslint.org/docs/latest/rules/object-shorthand.html)
+- [quote-props](https://eslint.org/docs/latest/rules/quote-props.html)
+- [no-prototype-builtins](https://eslint.org/docs/latest/rules/no-prototype-builtins)
+- [prefer-object-spread](https://eslint.org/docs/latest/rules/prefer-object-spread)
+
+:::
+
 <!-- 이 페이지에서만 적용됨  -->
 <style scoped>
 .anchor-heading{
