@@ -342,6 +342,7 @@ export default defineConfig({
               items: [
               { text: "Airbnb · Intro", link: "/javascript/airbnb/00.intro" },
               { text: "01. Types", link: "/javascript/airbnb/01.types" },
+              { text: "02. References", link: "/javascript/airbnb/02.references" },
             ]
           },
           { text: "📖 Related Concepts", 
