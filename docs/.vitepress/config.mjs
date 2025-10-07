@@ -372,6 +372,10 @@ export default defineConfig({
                   text: '05.Destructuring',
                   link: '/javascript/airbnb/05.destructuring',
                 },
+                {
+                  text: '06.String',
+                  link: '/javascript/airbnb/06.string',
+                },
               ],
             },
             {
