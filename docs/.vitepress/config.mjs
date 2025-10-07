@@ -86,9 +86,26 @@ export default defineConfig({
       {
         text: 'JavaScript',
         items: [
-          { text: 'JavaScript', link: '/javascript/basic/js00' },
-          { text: 'Core JavaScript', link: '/javascript/corejs/cjs01' },
-          { text: 'Functional JavaScript', link: '/javascript/funcjs/fjs01' },
+          {
+            text: '⚡ Fundamentals',
+            items: [
+              { text: 'JavaScript', link: '/javascript/basic/js00' },
+              { text: 'Core JavaScript', link: '/javascript/corejs/cjs01' },
+              {
+                text: 'Functional JavaScript',
+                link: '/javascript/funcjs/fjs01',
+              },
+            ],
+          },
+          {
+            text: '⚡ JavaScript Style Guide',
+            items: [
+              {
+                text: 'Airbnb Style Guide',
+                link: '/javascript/airbnb/00.intro',
+              },
+            ],
+          },
         ],
       },
     ],
@@ -347,6 +364,10 @@ export default defineConfig({
                   link: '/javascript/airbnb/02.references',
                 },
                 { text: '03. Objects', link: '/javascript/airbnb/03.objects' },
+                {
+                  text: '04.Arrays',
+                  link: '/javascript/airbnb/04.arrays',
+                },
               ],
             },
             {
