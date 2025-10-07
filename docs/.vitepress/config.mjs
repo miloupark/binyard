@@ -368,6 +368,10 @@ export default defineConfig({
                   text: '04.Arrays',
                   link: '/javascript/airbnb/04.arrays',
                 },
+                {
+                  text: '05.Destructuring',
+                  link: '/javascript/airbnb/05.destructuring',
+                },
               ],
             },
             {
