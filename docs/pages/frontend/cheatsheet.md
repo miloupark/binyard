@@ -296,7 +296,103 @@ export default {
 ```
 
 :::
+::: details Focus in Code Blocks (`// [!code focus:<lines>]`)
 
+#### `Input`
+
+````md
+```js
+export default {
+  data() {
+    return {
+      msg: 'Focused!', //  [！code focus]
+    };
+  },
+};
+```
+````
+
+#### `Output`
+
+````md
+```js
+export default {
+  data() {
+    return {
+      msg: 'Focused!', // [!code focus]
+    };
+  },
+};
+```
+````
+
+:::
+::: details Colored Diffs in Code Blocks (`// [!code --]` or `// [!code ++]`)
+
+#### `Input`
+
+````md
+```js
+export default {
+  data () {
+    return {
+      msg: 'Removed' // [！code --]
+      msg: 'Added' // [！code ++]
+    }
+  }
+}
+```
+````
+
+#### `Output`
+
+````md
+```js
+export default {
+  data () {
+    return {
+      msg: 'Removed' // [!code --]
+      msg: 'Added' // [!code ++]
+    }
+  }
+}
+```
+````
+
+:::
+::: details Errors and Warnings in Code Blocks (`// [!code warning]` or // `[!code error]`)
+
+#### `Input`
+
+````md
+```js
+export default {
+  data() {
+    return {
+      msg: 'Error', // [！code error]
+      msg: 'Warning', // [！code warning]
+    };
+  },
+};
+```
+````
+
+#### `Output`
+
+````md
+```js
+export default {
+  data() {
+    return {
+      msg: 'Error', // [!code error]
+      msg: 'Warning', // [!code warning]
+    };
+  },
+};
+```
+````
+
+:::
 <br>
 
 ### Custom Containers
