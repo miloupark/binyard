@@ -376,6 +376,10 @@ export default defineConfig({
                   text: '06.String',
                   link: '/javascript/airbnb/06.string',
                 },
+                {
+                  text: '07.Functions',
+                  link: '/javascript/airbnb/07.functions',
+                },
               ],
             },
             {
