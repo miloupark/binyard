@@ -125,6 +125,10 @@ export default defineConfig({
           items: [
             { text: 'Reference Docs', link: '/frontend/reference' },
             { text: 'My Cheatsheet', link: '/frontend/cheatsheet' },
+            {
+              text: 'Interview Playbook',
+              link: '/frontend/interview-playbook',
+            },
           ],
         },
         {
@@ -156,7 +160,7 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Be for Frontend',
+          text: 'BE for Frontend',
           collapsed: false,
           items: [
             { text: 'Node.js', link: '/backend/nodejs/node00' },
@@ -415,7 +419,7 @@ export default defineConfig({
             { text: 'TypeScript', link: '/frontend/typescript/basic/ts00' },
             { text: 'Intro', link: '/frontend/typescript/basic/ts01' },
             {
-              text: '다양한 타입',
+              text: 'Basic Types',
               collapsed: false,
               items: [
                 { text: 'Array', link: '/frontend/typescript/basic/ts02' },
@@ -432,6 +436,18 @@ export default defineConfig({
                 },
                 { text: 'Tuple', link: '/frontend/typescript/basic/ts08' },
                 { text: 'Enum', link: '/frontend/typescript/basic/ts09' },
+              ],
+            },
+            {
+              text: 'Advanced Features',
+              collapsed: false,
+              items: [
+                {
+                  text: 'Type Inference',
+                  link: '/frontend/typescript/advanced/01.typeinference',
+                },
+                { text: 'Class', link: '/frontend/typescript/advanced/ts10' },
+                { text: 'Generic', link: '/frontend/typescript/advanced/ts11' },
               ],
             },
           ],
