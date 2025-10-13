@@ -450,8 +450,14 @@ export default defineConfig({
                   text: "Type Assertion",
                   link: "/frontend/typescript/advanced/02.type-assertion",
                 },
-                { text: "Class", link: "/frontend/typescript/advanced/ts10" },
-                { text: "Generic", link: "/frontend/typescript/advanced/ts11" },
+                {
+                  text: "Class",
+                  link: "/frontend/typescript/advanced/03.class",
+                },
+                {
+                  text: "Generic",
+                  link: "/frontend/typescript/advanced/04.generic",
+                },
               ],
             },
           ],
