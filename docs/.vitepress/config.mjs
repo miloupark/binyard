@@ -460,6 +460,16 @@ export default defineConfig({
                 },
               ],
             },
+            {
+              text: "DOM & Deep Dive Types",
+              collapsed: false,
+              items: [
+                {
+                  text: "DOM & TypeScript",
+                  link: "/frontend/typescript/dom/01.dom",
+                },
+              ],
+            },
           ],
         },
       ],
