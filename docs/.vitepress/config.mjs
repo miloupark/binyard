@@ -468,6 +468,10 @@ export default defineConfig({
                   text: "DOM & TypeScript",
                   link: "/frontend/typescript/dom/01.dom",
                 },
+                {
+                  text: "Type Narrowing",
+                  link: "/frontend/typescript/advanced/05.type-narrowing",
+                },
               ],
             },
           ],
