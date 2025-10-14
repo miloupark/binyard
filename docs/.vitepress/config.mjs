@@ -419,23 +419,41 @@ export default defineConfig({
             { text: "TypeScript", link: "/frontend/typescript/basic/ts00" },
             { text: "Intro", link: "/frontend/typescript/basic/ts01" },
             {
-              text: "Basic Types",
+              text: "Types",
               collapsed: false,
               items: [
-                { text: "Array", link: "/frontend/typescript/basic/ts02" },
-                { text: "Object", link: "/frontend/typescript/basic/ts03" },
-                { text: "Function", link: "/frontend/typescript/basic/ts04" },
-                { text: "Union", link: "/frontend/typescript/basic/ts05" },
+                {
+                  text: "Array",
+                  link: "/frontend/typescript/types/01.array",
+                },
+                {
+                  text: "Object",
+                  link: "/frontend/typescript/types/02.object",
+                },
+                {
+                  text: "Function",
+                  link: "/frontend/typescript/types/03.function",
+                },
+                {
+                  text: "Union",
+                  link: "/frontend/typescript/types/04.union",
+                },
                 {
                   text: "Intersection",
-                  link: "/frontend/typescript/basic/ts06",
+                  link: "/frontend/typescript/types/05.intersection",
                 },
                 {
                   text: "Interfaces",
-                  link: "/frontend/typescript/basic/ts07",
+                  link: "/frontend/typescript/types/06.interfaces",
                 },
-                { text: "Tuple", link: "/frontend/typescript/basic/ts08" },
-                { text: "Enum", link: "/frontend/typescript/basic/ts09" },
+                {
+                  text: "Tuple",
+                  link: "/frontend/typescript/types/07.tuple",
+                },
+                {
+                  text: "Enum",
+                  link: "/frontend/typescript/types/08.enum",
+                },
               ],
             },
             {
@@ -458,19 +476,27 @@ export default defineConfig({
                   text: "Generic",
                   link: "/frontend/typescript/advanced/04.generic",
                 },
+                {
+                  text: "Advanced Types",
+                  link: "/frontend/typescript/types/05.advanced-type",
+                },
+                {
+                  text: "Utility Types",
+                  link: "/frontend/typescript/types/06.utility-types",
+                },
+                {
+                  text: "Type Narrowing",
+                  link: "/frontend/typescript/advanced/07.type-narrowing",
+                },
               ],
             },
             {
-              text: "DOM & Deep Dive Types",
+              text: "DOM",
               collapsed: false,
               items: [
                 {
                   text: "DOM & TypeScript",
                   link: "/frontend/typescript/dom/01.dom",
-                },
-                {
-                  text: "Type Narrowing",
-                  link: "/frontend/typescript/advanced/05.type-narrowing",
                 },
               ],
             },
