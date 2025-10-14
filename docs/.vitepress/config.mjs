@@ -469,6 +469,10 @@ export default defineConfig({
                   link: "/frontend/typescript/advanced/02.type-assertion",
                 },
                 {
+                  text: "Const Assertion",
+                  link: "/frontend/typescript/advanced/08.const-assertion",
+                },
+                {
                   text: "Class",
                   link: "/frontend/typescript/advanced/03.class",
                 },
