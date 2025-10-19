@@ -279,6 +279,10 @@ export default defineConfig({
                 { text: "async / await", link: "/javascript/basic/js17" },
                 { text: "API 호출", link: "/javascript/basic/js18" },
                 { text: "Local Storage", link: "/javascript/basic/js19" },
+                {
+                  text: "Web Storage의 동작 원리",
+                  link: "/javascript/basic/js19-1",
+                },
               ],
             },
             {
@@ -495,12 +499,54 @@ export default defineConfig({
               ],
             },
             {
+              text: "Modules & Declarations",
+              collapsed: false,
+              items: [
+                {
+                  text: "Modules",
+                  link: "/frontend/typescript/modules/01.modules",
+                },
+                {
+                  text: "Type Declaration Files",
+                  link: "/frontend/typescript/modules/02.declaration-files",
+                },
+              ],
+            },
+            {
+              text: "Async Programming",
+              collapsed: false,
+              items: [
+                {
+                  text: "Async TypeScript",
+                  link: "/frontend/typescript/async/01.async-basics",
+                },
+                {
+                  text: "Error Handling",
+                  link: "/frontend/typescript/async/02.error-handling",
+                },
+                {
+                  text: "Async API Handler",
+                  link: "/frontend/typescript/async/03.api-handler",
+                },
+              ],
+            },
+            {
               text: "DOM",
               collapsed: false,
               items: [
                 {
                   text: "DOM & TypeScript",
                   link: "/frontend/typescript/dom/01.dom",
+                },
+              ],
+            },
+            {
+              text: "Build & Tools",
+              collapsed: false,
+              items: [
+                {
+                  text: "Webpack",
+                  link: "/frontend/typescript/tools/01.webpack",
                 },
               ],
             },
