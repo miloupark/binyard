@@ -151,7 +151,10 @@ export default defineConfig({
                 },
               ],
             },
-            { text: "TypeScript", link: "/frontend/typescript/basic/ts00" },
+            {
+              text: "TypeScript",
+              link: "/frontend/typescript/basic/01.overview",
+            },
             { text: "React", link: "/react/re00" },
             { text: "React Native", link: "/frontend/fe/react-native01" },
             { text: "Git & GitHub", link: "/frontend/fe/git-github" },
@@ -420,8 +423,22 @@ export default defineConfig({
           text: "TypeScript",
           collapsed: false,
           items: [
-            { text: "TypeScript", link: "/frontend/typescript/basic/ts00" },
-            { text: "Intro", link: "/frontend/typescript/basic/ts01" },
+            {
+              text: "Overview",
+              link: "/frontend/typescript/basic/01.overview",
+            },
+            {
+              text: "How It Works",
+              link: "/frontend/typescript/basic/02.how-it-works",
+            },
+            {
+              text: "Install & Config",
+              link: "/frontend/typescript/basic/03.install-config",
+            },
+            {
+              text: "Type Annotation & Basic Types",
+              link: "/frontend/typescript/basic/04.type-annotation.md",
+            },
             {
               text: "Types",
               collapsed: false,
