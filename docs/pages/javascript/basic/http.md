@@ -1,0 +1,359 @@
+# HTTP (HyperText Transfer Protocol)
+
+::: info 🧩 Reference
+
+- 프로토콜: 컴퓨터끼리 통신할 때 지켜야 하는 규칙 + 형식
+- TLS Handshake: 클라이언트와 서버가 비대칭키(공개키/개인키)를 이용해, 이후 통신에 사용할 대칭키(세션 키)를 안전하게 합의하는 과정
+
+- [MDN - HTTP 메시지](https://developer.mozilla.org/ko/docs/Web/HTTP/Guides/Messages)
+
+:::
+
+::: info 🧩 아래 정리를 하고 깨달은 점!
+
+- 왜 refreshToken을 쿠키에 넣는지  
+  → JS로 접근 못 하는 httpOnly 쿠키로 관리해서, 탈취 위험을 줄이고 자동 전송만 맡기려고.
+- 왜 accessToken은 Authorization 헤더에 넣는지  
+  → 매 요청마다 내가 명시적으로 어떤 사용자 권한인지 전달하기 위해, 헤더에 `Bearer 토큰` 형태로 붙인다.
+- 왜 httpOnly 쿠키가 보안적으로 안전한지  
+  → JS에서 읽을 수 없어서, XSS로 스크립트가 떠도 쿠키 내용을 훔쳐갈 수 없기 때문.
+- 왜 state가 없는 HTTP에서 우리가 토큰을 계속 보내야 하는지  
+  → 서버는 이전 요청을 기억하지 않으니, “나 누구인지 + 내 권한” 정보를 토큰으로 매번 증명해야 하기 때문.
+- 왜 HTTPS가 없으면 토큰/쿠키가 털리는지  
+  → 암호화가 없으면 네트워크 중간에서 패킷을 훔쳐볼 수 있어서, Authorization 헤더/쿠키가 그대로 노출되기 때문.
+
+:::
+
+<br>
+
+## HTTP란?
+
+HTTP는 클라이언트가 항상 먼저 요청을 보내는 요청/응답 모델이다.  
+서버는 클라이언트에게 먼저 말을 걸 수 없기 때문에, 클라이언트가 매번 요청을 보내야만 응답을 받을 수 있다.
+
+클라이언트와 서버가 데이터를 주고받을 때 사용하는 통신 규약(프로토콜)이며,  
+HTTP는 `상태가 없는(stateless)` 프로토콜이다.  
+즉 서버는 요청 간의 상태를 기억하지 않기 때문에, 인증 정보(토큰 등)를 매 요청마다 포함해서 보내야 한다.
+
+```plaintext
+Client → (요청) → Server
+Client ← (응답) ← Server
+
+```
+
+- 브라우저는 `요청(Request)`을 보내고, 서버는 그에 대한 `응답(Response)`을 돌려준다.
+
+<br>
+
+## HTTP/1.1 vs HTTP/2
+
+### HTTP/1.1
+
+![](./images/http-1-connection.png)
+
+HTTP/1.1에서는 보통
+
+- `요청 1 → 응답 1 → 연결 종료`
+- 여러 리소스(HTML, JS, CSS, 이미지 등)를 받아와야 할 때 같은 서버에 대해 여러 연결을 열어야 해서 병목이 발생할 수 있다.
+  → 이미지/JS/CSS가 많을수록 느려짐
+
+이 구조는 `정적인 웹`에는 충분했지만, 현대 웹(채팅, 알림, 실시간 데이터, 대량 리소스 로딩)에는 한계가 있다.  
+이런 성능 문제와 한계를 해결하기 위해 `HTTP/2`가 등장했다.
+
+<br>
+
+### HTTP/2
+
+![](./images/http-2-connection.png)
+
+HTTP/2는 `실시간 통신`기술이라기보다는,  
+동시에 많은 리소스를 더 효율적으로 받아오기 위한 `네트워크 성능 최적화 기술`이다.
+
+- 하나의 TCP 연결 내에서 여러 요청을 동시에 처리(멀티플렉싱) → 브라우저 로딩 속도가 크게 빨라짐
+- 한 번의 TCP 연결 안에서 여러 요청을 병렬로 보냄
+- 각 요청은 스트림(stream)이라는 단위로 처리됨
+- 헤더 압축 등 추가적인 최적화 기법 제공
+
+결과적으로, 같은 페이지라도 더 빠르게 로딩된다.
+
+<br>
+
+## HTTP 실시간 통신의 진화
+
+기본 HTTP는 `요청이 있어야 응답하는 1회성 통신`이라 실시간에 약하다.  
+이 한계를 보완하기 위해 등장한 패턴들이 `Polling → Long Polling → SSE → WebSocket`이다.
+
+### Polling
+
+클라이언트가 일정 간격으로 계속 서버에 물어보는 방식이다.
+
+```plaintext
+Client → "알림 있어?" → Server
+Client → "알림 있어?" → Server
+Client → "알림 있어?" → Server
+...
+
+```
+
+- 장점: 구현이(setInterval + fetch 정도로 가능) 쉽다.
+- 단점:
+  - 실시간이 아님 (요청 주기만큼 딜레이)
+  - 매번 요청으로 인해 트래픽 낭비
+  - 서버 부하가 커짐 ("없음" 응답도 계속 보내야 함)
+
+<br>
+
+### Long Polling
+
+일반 Polling을 개선한 방식으로, 서버가 새로운 데이터가 생길 때까지 응답을 늦게 주는 방식이다.
+
+```plaintext
+Client → 요청 보냄
+Server → 새 이벤트가 생길 때까지 기다림
+Server → 이벤트 발생! 응답 전송
+Client → 바로 다시 요청
+```
+
+- 장점:
+  - 일반 폴링보다 실시간에 가깝다.
+  - 거의 모든 브라우저/서버 환경에서 동작한다.
+- 단점:
+  - 연결을 계속 열었다 닫았다 반복
+  - 서버 부하가 여전히 크고
+  - 채팅/게임처럼 이벤트가 많은 서비스에는 비효율적이다.
+
+<br>
+
+### SSE (Server-Sent Events)
+
+Polling이 아니라, `서버 → 클라이언트` 방향으로 일방적으로 계속 푸시 가능한 방식이다.  
+클라이언트가 한 번 연결을 열면, 서버가 스트림 형태로 데이터를 계속 push 해준다.
+
+```plaintext
+Client → 연결 열기 (GET /streams)
+Server → "알림 발생!"
+Server → "새 글 등록!"
+Server → "주식 가격 변경!"
+...
+```
+
+- 장점:
+
+  - 진짜 실시간에 가깝다. (딜레이 거의 없음)
+  - 서버 → 클라이언트 방향 push 가능
+  - 브라우저 기본 지원 (EventSource API)
+  - HTTP 기반이라 방화벽/프록시 통과가 수월하다.
+
+- 단점:
+
+  - 단방향: 서버 → 클라이언트만 가능하고,  
+    클라이언트 → 서버는 여전히 fetch / AJAX / fetch API 필요하다.
+  - 양방향 채팅에는 부적합하다.
+  - 오래된 브라우저(IE)는 미지원
+
+<br>
+
+### WebSocket (양방향 실시간)
+
+HTTP 한계를 완전히 넘어서, `서버 ↔ 클라이언트` 양방향 실시간 통신을 가능하게 하는 기술이다.  
+초기에는 HTTP 요청으로 핸드셰이크를 하고, 이후에는 WebSocket 프로토콜로 업그레이드되어 동작한다.
+
+```plaintext
+Client ⇄ Server
+(양쪽 모두 먼저 메시지를 보낼 수 있음)
+```
+
+- 장점:
+  - 서버 ↔ 클라이언트 양방향 실시간 통신
+  - 채팅, 게임, 공동 문서 편집 등 실시간성이 중요한 서비스에 적합하다.
+- 단점:
+
+  - SSE보다 구현 난이도가 높다.
+  - 서버 인프라에 대한 고려가 필요하다.
+  - 연결을 계속 유지하므로, 접속자 수가 많으면 서버 리소스 관리가 중요해진다.
+
+- 사용 예시:
+  - 카카오톡, 디스코드, 게임, 협업툴 등 실제 실시간 서비스에서 사용
+
+<br>
+
+## HTTP 요청(Request)의 구조
+
+![](./images/request-headers.png)
+
+| 구성 요소    | 설명                                  | 예시                                                           |
+| ------------ | ------------------------------------- | -------------------------------------------------------------- |
+| Request Line | 어떤 메서드로 어떤 URL로 요청하는지   | `GET /users/1 HTTP/1.1`                                        |
+| Method       | 서버에게 어떤 동작을 요청할지         | `GET`, `POST`, `PUT`, `DELETE`                                 |
+| URL          | 자원의 위치                           | [https://api.example.com/users](https://api.example.com/users) |
+| Header       | 요청에 대한 추가 정보 (토큰, 타입 등) | `Authorization`, `Cookie`, `Content-Type`                      |
+| Body         | 실제 전송하는 데이터                  | JSON, FormData 등                                              |
+
+<br>
+
+### 요청 헤더에서 반드시 이해해야 하는 3대장
+
+- 1. `Authorization` - accessToken을 담는 곳
+
+  ```plaintext
+  Authorization: Bearer eyJhbGciOiJIUzI1Ni...
+  ```
+
+- 2. `Cookie` - refreshToken이 자동으로 저장되고 자동으로 실리는 곳
+
+  ```plaintext
+  Cookie: refresh_token=abcdefg12345;
+  ```
+
+- 3. `Content-Type` - 서버에게 Body 해석 방법을 알려줌
+
+  ```plaintext
+  Content-Type: application/json
+  ```
+
+<br>
+
+## HTTP 응답(Response)의 구조
+
+![](./images/response-headers.png)
+
+| 구성 요소   | 설명                                   |
+| ----------- | -------------------------------------- |
+| Status Line | 성공/실패 코드 (200, 400, 401, 500 등) |
+| Headers     | 서버가 브라우저에게 전달하는 정보      |
+| Body        | 실제 응답 데이터                       |
+
+<br>
+
+### Representation Headers란?
+
+`Representation Headers`는 응답 Body(콘텐츠) 자체에 대한 정보를 제공한다.  
+(Content-Type, Content-Length, Last-Modified, ETag 등)
+
+즉, “이 Body는 어떤 형식의 데이터인지, 언제 만들어졌고, 얼마나 크고, 캐싱은 어떻게 해야 하는지” 같은 정보를 담고 있다.
+
+<br>
+
+### 응답 헤더에서 가장 중요한 것: Set-Cookie
+
+```plaintext
+Set-Cookie: refresh_token=abcd1234; HttpOnly; Secure; SameSite=Strict
+```
+
+- 브라우저는 `Set-Cookie` 헤더를 받는 순간 자동으로 쿠키를 저장하고,  
+  같은 도메인/경로 규칙에 맞는 요청을 보낼 때 `Cookie` 헤더에 자동으로 실어 보낸다.
+- 프론트 코드에서 따로 저장 로직을 작성할 필요가 없다.
+
+::: info 프론트에서 따로 저장 로직을 작성해야하는 경우는?
+
+1. accessToken을 localStorage에 저장하고 싶을 때  
+   → JS 코드로 `localStorage.setItem()`해야 한다. (Zustand persist가 이 과정을 자동화해 주는 것뿐이다.)
+
+2. 브라우저에서 접근 가능한 쿠키(non-httpOnly)를 쓰는 경우  
+   → `document.cookie = "key=value"` 로 저장 가능  
+   (하지만 보안 문제 때문에 실제 서비스에서는 거의 사용하지 않는다.)
+
+3. 서버가 쿠키를 주지 않고, 프론트가 직접 상태를 저장해야 할 때  
+   (예: 로그인 되어 있음 플래그를 단순히 localStorage에 넣는 경우 등)
+
+<br>
+
+💡 결론:
+
+- refreshToken은 서버가 httpOnly 쿠키로 내려주고, 브라우저가 자동 관리한다.
+- 프론트는 refreshToken을 localStorage에 직접 저장하지 않는다.
+- accessToken은 JS 코드(또는 Zustand persist 등)를 통해 메모리/스토리지에 저장하는 경우가 많다.
+
+:::
+
+<br>
+
+### Set-Cookie가 자동 저장되는 조건
+
+1. 서버가 `Set-Cookie` 헤더로 쿠키를 내려줄 것
+
+   ```plaintext
+    Set-Cookie: refresh_token=abc123; HttpOnly; Secure
+   ```
+
+2. 도메인/경로 규칙이 올바르게 설정되어 있을 것
+
+   ```plaintext
+   Set-Cookie: refresh_token=abc; Domain=example.com; Path=/
+   ```
+
+3. 추가 속성들
+
+   - Secure: HTTPS 연결에서만 쿠키를 전송
+   - SameSite: 크로스 사이트 요청 시 쿠키 전송을 얼마나 제한할지 제어
+
+이 조건들을 만족하면, 브라우저는 쿠키를 자동으로 저장하고,  
+해당 도메인/경로로 요청을 보낼 때 자동으로 `Cookie` 헤더에 실어서 보낸다.
+
+<br>
+
+## 자주 쓰는 HTTP 메서드
+
+| 메서드 | 설명        | 사용 예시        |
+| ------ | ----------- | ---------------- |
+| GET    | 데이터 조회 | 게시글 목록 보기 |
+| POST   | 데이터 생성 | 새 글 작성       |
+| PUT    | 전체 수정   | 프로필 전체 수정 |
+| PATCH  | 일부 수정   | 닉네임만 수정    |
+| DELETE | 데이터 삭제 | 글 삭제          |
+
+<br>
+
+## HTTPS (Hyper-Text Transfer Protocol Secure)
+
+### HTTPS가 필요한 이유
+
+1. 내가 사이트에 보내는 모든 데이터(토큰, 쿠키, 비밀번호 등)가 암호화된다.
+
+   - `대칭키 암호화` + `비대칭키 암호화`를 조합해서 사용한다.
+   - 중간에서 패킷을 훔쳐보더라도 내용을 알아볼 수 없다.
+
+2. 접속한 서버가 진짜 서버인지 인증된다. (MITM 공격 방지)
+
+   - CA(공인 인증기관)가 발급한 인증서로 브라우저가 서버의 신원을 검증한다.
+   - 사용자가 접속한 곳이 “진짜 우리 서버인지” 확인할 수 있다.
+   - 가짜 서버로 토큰/쿠키가 털리는 것을 방지한다.
+
+<br>
+
+### 두 보안 기능이 동작하는 원리
+
+1. 대칭키 암호화
+
+   - 암호화/복호화에 같은 키를 사용
+   - 속도가 빠르지만, 키가 털리면 끝!
+
+2. 비대칭키 암호화 (공개키/개인키)
+   - 비대칭키로 안전한 통신 채널을 만들고 이후 대칭키로 빠르게 암호화하며 통신한다.  
+     (공개키로 암호화 → 개인키로만 복호화 가능)
+   - 키 교환/인증에 강하다.
+
+실제 HTTPS에서는 처음 연결할 때 `TLS Handshake` 과정에서 비대칭키(공개키/개인키)를 사용해 안전하게 세션 키(대칭키)를 교환하고,
+이후 모든 실제 데이터는 이 대칭키로 빠르고 안전하게 암호화해서 통신한다.
+
+<br>
+
+## 정리
+
+::: info 💡
+
+- HTTP는 요청이 있어야 응답하는 stateless 모델이다.
+- 인증 정보(토큰)는 매 요청마다 포함해서 보내야 한다.
+- refreshToken은 보통 httpOnly 쿠키로 관리되고,  
+  accessToken은 `메모리 또는 스토리지(localStorage 등)`에 저장해 `Authorization 헤더`로 보낸다.
+- `Set-Cookie`는 브라우저가 자동 저장 + 자동 전송하며,  
+  도메인/경로/보안 속성(Secure, SameSite 등)에 따라 동작이 달라진다.
+- HTTP/1.1의 한계를 보완하기 위해 HTTP/2, SSE/ WebSocket 같은 기술들이 등장했다.
+- HTTPS는 암호화 + 서버 인증을 제공해 토큰/쿠키/비밀번호를 안전하게 지켜준다.
+
+:::
+
+이제 HTTP와 HTTPS의 구조와 역할을 이해했으므로,  
+`JWT 기반 인증/인가`, `accessToken / refreshToken의 동작 원리`를 공부할 준비가 되었다!
+
+<Comment/>
