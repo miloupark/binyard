@@ -125,10 +125,10 @@ export default defineConfig({
           items: [
             { text: 'Reference Docs', link: '/frontend/reference' },
             { text: 'My Cheatsheet', link: '/frontend/cheatsheet' },
-            {
-              text: 'Interview Playbook',
-              link: '/frontend/interview-playbook',
-            },
+            // {
+            //   text: 'Interview Playbook',
+            //   link: '/frontend/interview-playbook',
+            // },
           ],
         },
         {
