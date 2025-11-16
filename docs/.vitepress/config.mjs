@@ -125,10 +125,6 @@ export default defineConfig({
           items: [
             { text: 'Reference Docs', link: '/frontend/reference' },
             { text: 'My Cheatsheet', link: '/frontend/cheatsheet' },
-            // {
-            //   text: 'Interview Playbook',
-            //   link: '/frontend/interview-playbook',
-            // },
           ],
         },
         {
@@ -790,7 +786,6 @@ export default defineConfig({
           text: 'Learning Log',
           collapsed: false,
           items: [
-            { text: 'Main Project', link: '/OZ/llog/main-project' },
             { text: 'JavaScript', link: '/OZ/llog/js' },
             { text: 'Calculator', link: '/OZ/llog/calculator' },
             { text: 'React SPA Basic', link: '/OZ/llog/animal-info' },
