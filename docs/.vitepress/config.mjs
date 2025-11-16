@@ -152,6 +152,33 @@ export default defineConfig({
               ],
             },
             {
+              text: 'HTTP & Auth',
+              collapsed: false,
+              items: [
+                {
+                  text: 'HTTP Fundamentals',
+                  link: '/frontend/http-auth/01.http',
+                },
+                {
+                  text: 'Browser Storage',
+                  link: '/frontend/http-auth/02.browser-storage',
+                },
+                {
+                  text: 'Authentication vs Authorization',
+                  link: '/frontend/http-auth/03.authentication-authorization',
+                },
+                {
+                  text: 'JWT & Token',
+                  link: '/frontend/http-auth/04.jwt-token',
+                },
+                {
+                  text: 'CORS',
+                  link: '/frontend/http-auth/05.cors',
+                },
+              ],
+            },
+
+            {
               text: 'TypeScript',
               link: '/frontend/typescript/basic/01.overview',
             },
@@ -280,7 +307,6 @@ export default defineConfig({
                 { text: '비동기 처리', link: '/javascript/basic/js15' },
                 { text: 'Promise 객체', link: '/javascript/basic/js16' },
                 { text: 'async / await', link: '/javascript/basic/js17' },
-                { text: 'HTTP', link: '/javascript/basic/http' },
                 { text: 'API 호출', link: '/javascript/basic/js18' },
                 { text: 'Local Storage', link: '/javascript/basic/js19' },
                 {
